@@ -13,6 +13,9 @@ public class Constants {
 	public static final int driveEncoderRightChannel1 = 7;
 	public static final int driveEncoderRightChannel2 = 8;
 	
+	//This value not accurate
+	public static final int rotateDrivetrainTime = 1;
+	
 	//Computation
 	public static final double driveEncoderToFeet = 1; //TODO change this value to something more accurate.
 }
