@@ -1,5 +1,8 @@
 package com._2491nomythic.robot;
 
+import com._2491nomythic.robot.settings.Constants;
+
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 
 /**
@@ -8,8 +11,11 @@ import edu.wpi.first.wpilibj.buttons.Button;
  */
 public class OI {
 
+	private final Joystick[] controllers = new Joystick[2];
+	
 	public void init() {
-		// TODO Auto-generated method stub
+		controllers[0] = new Joystick(Constants.ControllerOnePort);
+		controllers[1] = new Joystick(Constants.ControllerTwoPort);
 		
 	}
     //// CREATING BUTTONS
