@@ -1,7 +1,6 @@
 package com._2491nomythic.robot.commands.drivetrain;
 
 import com._2491nomythic.robot.commands.CommandBase;
-import com._2491nomythic.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.Timer;
 
@@ -18,6 +17,8 @@ public class RotateDrivetrain extends CommandBase {
         // eg. requires(chassis);
     	requires(drivetrain);
     	timer = new Timer();
+    	
+    	//Positive speed rotates clockwise and negative speed rotates counter-clockwise.
     	speedAndDirection = speed;
     	rotateDuration = time;
     }
@@ -26,8 +27,7 @@ public class RotateDrivetrain extends CommandBase {
     protected void initialize() {
     	timer.start();
     	timer.reset();
-    	
-
+    	drivetrain.drive(speedAndDirection, -speedAndDirection, 0);
     }
 
     // Called repeatedly when this Command is scheduled to run
