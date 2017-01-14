@@ -6,7 +6,6 @@ import com._2491nomythic.robot.commands.CommandBase;
  *
  */
 public class ResetGyro extends CommandBase {
-	public float githubWhy;
 	public ResetGyro() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -14,6 +13,7 @@ public class ResetGyro extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	drivetrain.resetGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -22,7 +22,7 @@ public class ResetGyro extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
