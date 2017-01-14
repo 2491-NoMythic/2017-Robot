@@ -3,10 +3,12 @@ package com._2491nomythic.robot.subsystems;
 import com._2491nomythic.robot.commands.drivetrain.Drive;
 import com._2491nomythic.robot.settings.Constants;
 import com._2491nomythic.robot.subsystems.Drivetrain;
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -15,6 +17,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Drivetrain extends Subsystem {
 	private CANTalon left1, left2, left3, centerLeft, centerRight, right1, right2, right3;
 	private Encoder encoderLeft, encoderRight, encoderCenter;
+	private AHRS gyro;
 	
 	private static Drivetrain instance;
 	
@@ -47,6 +50,8 @@ public class Drivetrain extends Subsystem {
 		encoderLeft.reset();
 		encoderRight.reset();
 		encoderCenter.reset();
+		
+		gyro = new AHRS(SerialPort.Port.kUSB);
 	}
 	
 	public void drive(double speed){
@@ -167,6 +172,15 @@ public class Drivetrain extends Subsystem {
 	public double getCenterEncoderRate() {;
 		return encoderCenter.getRate();
 	}
+	
+	public void resetGyro() {
+		gyro.reset();
+	}
+	
+	public double getGyroAngle(){
+		return gyro.getAngle();
+	}
+	
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
