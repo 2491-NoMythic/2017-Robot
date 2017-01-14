@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Drivetrain extends Subsystem {
-	private CANTalon left, centerLeft, centerRight, right;
+	private CANTalon left1, left2, left3, centerLeft, centerRight, right1, right2, right3;
 	private Encoder encoderLeft, encoderRight, encoderCenter;
 	
 	private static Drivetrain instance;
@@ -29,10 +29,14 @@ public class Drivetrain extends Subsystem {
 	 * The system used to move the robot
 	 */
 	private Drivetrain() {
-		left = new CANTalon(Constants.driveTalonLeftChannel);
+		left1 = new CANTalon(Constants.driveTalonLeft1Channel);
+		left2 = new CANTalon(Constants.driveTalonLeft2Channel);
+		left3 = new CANTalon(Constants.driveTalonLeft3Channel);
 		centerLeft = new CANTalon(Constants.driveTalonCenterLeftChannel);
 		centerRight = new CANTalon(Constants.driveTalonCenterRightChannel);
-		right = new CANTalon(Constants.driveTalonRightChannel);
+		right1 = new CANTalon(Constants.driveTalonRight1Channel);
+		right2 = new CANTalon(Constants.driveTalonRight2Channel);
+		right3 = new CANTalon(Constants.driveTalonRight3Channel);
 		
 		encoderLeft = new Encoder(Constants.driveEncoderLeftChannel1, Constants.driveEncoderLeftChannel2, false, CounterBase.EncodingType.k1X);
 		encoderRight = new Encoder(Constants.driveEncoderRightChannel1, Constants.driveEncoderRightChannel2, false, CounterBase.EncodingType.k1X);
