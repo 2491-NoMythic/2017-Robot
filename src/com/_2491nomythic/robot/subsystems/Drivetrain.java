@@ -62,7 +62,7 @@ public class Drivetrain extends Subsystem {
 	public void drive(double leftRightSpeed, double centerSpeed){
 		driveLeft(leftRightSpeed);
 		driveRight(leftRightSpeed);
-		driveCenter(centerSpeed);
+		driveCenter(centerSpeed, centerSpeed);
 	}
 	
 	public void drive(double leftSpeed, double rightSpeed, double centerLeftSpeed, double centerRightSpeed){
