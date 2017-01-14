@@ -156,7 +156,7 @@ public class Drivetrain extends Subsystem {
 	/**
 	 * @return The speed of the center motor in feet per second
 	 */
-	public double getCenterEncoderRate() {
+	public double getCenterEncoderRate() {;
 		return encoderCenter.getRate();
 	}
 	
