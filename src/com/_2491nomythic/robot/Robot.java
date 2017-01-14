@@ -1,6 +1,7 @@
 
 package com._2491nomythic.robot;
 
+import com._2491nomythic.robot.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.robot.commands.drivetrain.ResetGyro;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -34,6 +35,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
         chooser = new SendableChooser();
         chooser.addObject("Reset Gyro", new ResetGyro());
+        chooser.addObject("Reset Encoders", new ResetEncoders());
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
         
