@@ -27,7 +27,7 @@ public class RotateDrivetrain extends CommandBase {
     protected void initialize() {
     	timer.start();
     	timer.reset();
-    	drivetrain.drive(speedAndDirection, -speedAndDirection, 0);
+    	drivetrain.driveCenter(speedAndDirection, -speedAndDirection);
     }
 
     // Called repeatedly when this Command is scheduled to run
