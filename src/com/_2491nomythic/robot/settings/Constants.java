@@ -1,5 +1,7 @@
 package com._2491nomythic.robot.settings;
 
+import com.kauailabs.navx.frc.AHRS;
+
 public class Constants {
 	
 	//Controllers
@@ -20,4 +22,6 @@ public class Constants {
 		
 	//Computation
 	public static final double driveEncoderToFeet = 1; //TODO change this value to something more accurate.
+	public AHRS gyro;
 }
+
