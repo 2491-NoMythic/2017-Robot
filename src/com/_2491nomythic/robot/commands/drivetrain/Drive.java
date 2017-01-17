@@ -32,7 +32,7 @@ public class Drive extends CommandBase {
     	leftPower = Math.min(1, Math.abs(leftPower)) * (leftPower > 0? 1: -1);
     	rightPower = Math.min(1, Math.abs(rightPower)) * (rightPower > 0? 1: -1);
     	
-    	drivetrain.drive(leftPower, rightPower, horizontalPower);
+    	drivetrain.drive(leftPower, rightPower, horizontalPower, horizontalPower);
     }
 
     // Make this return true when this Command no longer needs to run execute()

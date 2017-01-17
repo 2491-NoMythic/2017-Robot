@@ -33,7 +33,7 @@ public class DriveForTime extends CommandBase{
     protected void initialize() {
     	timer.start();
     	timer.reset();
-    	drivetrain.drive(leftPower, rightPower, 0);
+    	drivetrain.drive(leftPower, rightPower, 0, 0);
     }
 
     // Called repeatedly when this Command is scheduled to run
