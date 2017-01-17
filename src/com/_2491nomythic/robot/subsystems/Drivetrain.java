@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -17,6 +18,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Drivetrain extends Subsystem {
 	private CANTalon left1, left2, left3, centerLeft, centerRight, right1, right2, right3;
 	private Encoder encoderLeft, encoderRight, encoderCenter;
+	private Solenoid shifter;
 	private AHRS gyro;
 	
 	private static Drivetrain instance;
@@ -50,6 +52,8 @@ public class Drivetrain extends Subsystem {
 		encoderLeft.reset();
 		encoderRight.reset();
 		encoderCenter.reset();
+		
+		shifter = new Solenoid(Constants.driveSolenoidChannel);
 		
 		gyro = new AHRS(SerialPort.Port.kUSB);
 	}
