@@ -177,6 +177,27 @@ public class Drivetrain extends Subsystem {
 		return encoderCenter.getRate();
 	}
 	
+	/**
+	 * Shifts the drivetrain to high gear, giving it more speed but less torque
+	 */
+	public void shiftToHighGear() {
+		shifter.set(true);
+	}
+	
+	/**
+	 * Shifts the drivetrain to low gear, giving it more torque but less speed
+	 */
+	public void shiftToLowGear() {
+		shifter.set(false);
+	}
+	
+	/**
+	 * @return Whether the drive solenoid is extended
+	 */
+	public boolean getSolenoidValue() {
+		return shifter.get();
+	}
+	
 	public void resetGyro() {
 		gyro.reset();
 	}
