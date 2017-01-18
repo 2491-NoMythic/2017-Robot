@@ -7,19 +7,19 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  *
  */
-public class RotateDrivetrain extends CommandBase {
+public class RotateDrivetrainCentral extends CommandBase {
 	private Timer timer;
-	private double speedAndDirection;
+	private double motorPower;
 	private double rotateDuration;
 
-    public RotateDrivetrain(double speed,double time) {
+    public RotateDrivetrainCentral(double power,double time) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(drivetrain);
     	timer = new Timer();
     	
     	//Positive speed rotates clockwise and negative speed rotates counter-clockwise.
-    	speedAndDirection = speed;
+    	motorPower = power;
     	rotateDuration = time;
     }
 
@@ -27,7 +27,7 @@ public class RotateDrivetrain extends CommandBase {
     protected void initialize() {
     	timer.start();
     	timer.reset();
-    	drivetrain.drive(speedAndDirection, -speedAndDirection, 0, 0);
+    	drivetrain.driveCenter(motorPower, -1.0*motorPower);
     }
 
     // Called repeatedly when this Command is scheduled to run
