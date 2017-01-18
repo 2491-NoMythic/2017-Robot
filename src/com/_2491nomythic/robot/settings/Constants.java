@@ -26,6 +26,7 @@ public class Constants {
 	//Climber
 	public static final int climberTalonLeftChannel = 18;
 	public static final int climberTalonRightChannel = 19;
+	public static final int climberLimitSwitchChannel = 2;
 		
 	//Computation
 	public static final double driveEncoderToFeet = 1; //TODO change this value to something more accurate.

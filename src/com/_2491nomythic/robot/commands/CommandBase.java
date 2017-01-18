@@ -13,9 +13,11 @@ public abstract class CommandBase extends Command {
 	
 	protected static OI oi;
 	protected static Drivetrain drivetrain;
+	protected static Climber climber;
 	
 	public static void init() {
 		drivetrain = Drivetrain.getInstance();
+		climber = Climber.getInstance();
 		// This MUST be here. If the OI creates Commands (which it very likely
 		// will), constructing it during the construction of CommandBase (from
 		// which commands extend), subsystems are not guaranteed to be
@@ -26,6 +28,7 @@ public abstract class CommandBase extends Command {
 		
 		// Show what command your subsystem is running on the SmartDashboard
 		SmartDashboard.putData(drivetrain);
+		SmartDashboard.putData(climber);
 	}
 	
 	/**
