@@ -2,7 +2,7 @@ package com._2491nomythic.robot.subsystems;
 
 import com._2491nomythic.robot.settings.Constants;
 
-import edu.wpi.first.wpilibj.CANTalon;
+import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
