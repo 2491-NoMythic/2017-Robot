@@ -2,12 +2,14 @@ package com._2491nomythic.robot.commands.drivetrain;
 
 import com._2491nomythic.robot.commands.CommandBase;
 import com._2491nomythic.robot.settings.ControllerMap;
+import com._2491nomythic.robot.settings.Variables;
 
 /**
  *
  */
 public class Drive extends CommandBase {
 	double leftPower, rightPower, horizontalPower, turnPower;
+	boolean isShifted;
 	
     public Drive() {
         // Use requires() here to declare subsystem dependencies
@@ -17,10 +19,20 @@ public class Drive extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	isShifted = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if (isShifted && drivetrain.getLeftEncoderRate() < Variables.shiftDownSpeed && drivetrain.getRightEncoderRate() < Variables.shiftUpSpeed) {
+    		drivetrain.shiftToLowGear();
+    		isShifted = false;
+    	}
+    	else if (!isShifted && drivetrain.getLeftEncoderRate() > Variables.shiftUpSpeed && drivetrain.getRightEncoderRate() > Variables.shiftUpSpeed) {
+    		drivetrain.shiftToHighGear();
+    		isShifted = true;
+    	}
+    	
     	leftPower = -oi.getAxisDeadzonedSquared(ControllerMap.driveController, ControllerMap.driveVerticalAxis);
     	rightPower = leftPower;
     	horizontalPower = oi.getAxisDeadzonedSquared(ControllerMap.driveController, ControllerMap.driveHorizontalAxis);
