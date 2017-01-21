@@ -34,8 +34,8 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
         chooser = new SendableChooser<Command>();
-        chooser.addObject("Reset Gyro", new ResetGyro());
-        chooser.addObject("Reset Encoders", new ResetEncoders());
+        SmartDashboard.putData("Reset Gyro", new ResetGyro());
+        SmartDashboard.putData("Reset Encoders", new ResetEncoders());
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
         
