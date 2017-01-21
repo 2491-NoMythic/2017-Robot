@@ -7,14 +7,14 @@ public class Constants {
 	public static final int ControllerTwoPort = 1;
 	
 	//Drive
-	public static final int driveTalonLeft1Channel = 10;
-	public static final int driveTalonLeft2Channel = 11;
+	public static final int driveTalonLeft1Channel = 13;
+	public static final int driveTalonLeft2Channel = 15;
 	public static final int driveTalonLeft3Channel = 12;
-	public static final int driveTalonCenterLeftChannel = 13;
-	public static final int driveTalonCenterRightChannel = 14;
-	public static final int driveTalonRight1Channel = 15;
-	public static final int driveTalonRight2Channel = 16;
-	public static final int driveTalonRight3Channel = 17;
+	public static final int driveTalonCenterLeftChannel = 10;
+	public static final int driveTalonCenterRightChannel = 17;
+	public static final int driveTalonRight1Channel = 14;
+	public static final int driveTalonRight2Channel = 19;
+	public static final int driveTalonRight3Channel = 11;
 	public static final int driveEncoderLeftChannel1 = 3;
 	public static final int driveEncoderLeftChannel2 = 4;
 	public static final int driveEncoderCenterChannel1 = 5;
