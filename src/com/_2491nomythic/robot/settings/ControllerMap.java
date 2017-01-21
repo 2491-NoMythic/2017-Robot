@@ -6,5 +6,5 @@ public class ControllerMap {
 	public static final int turnDriveController = 1;
 	public static final int driveVerticalAxis = 1;
 	public static final int driveHorizontalAxis = 0;
-	public static final int driveTurnAxis = 2;
+	public static final int driveTurnAxis = 0;
 }
