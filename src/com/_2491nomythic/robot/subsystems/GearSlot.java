@@ -13,6 +13,15 @@ public class GearSlot extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+	private static GearSlot instance;
+	
+	public static GearSlot getInstance() {
+		if (instance == null) {
+			instance = new GearSlot();
+		}
+		return instance;
+	}
+	
 	private GearSlot() {
 		left = new Solenoid(Constants.leftGearSolenoidChannel);
 		right = new Solenoid(Constants.rightGearSolenoidChannel);
