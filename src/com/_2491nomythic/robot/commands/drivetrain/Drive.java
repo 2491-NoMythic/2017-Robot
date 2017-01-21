@@ -24,14 +24,14 @@ public class Drive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (isShifted && drivetrain.getLeftEncoderRate() < Variables.shiftDownSpeed && drivetrain.getRightEncoderRate() < Variables.shiftUpSpeed) {
-    		drivetrain.shiftToLowGear();
-    		isShifted = false;
-    	}
-    	else if (!isShifted && drivetrain.getLeftEncoderRate() > Variables.shiftUpSpeed && drivetrain.getRightEncoderRate() > Variables.shiftUpSpeed) {
-    		drivetrain.shiftToHighGear();
-    		isShifted = true;
-    	}
+//    	if (isShifted && drivetrain.getLeftEncoderRate() < Variables.shiftDownSpeed && drivetrain.getRightEncoderRate() < Variables.shiftUpSpeed) {
+//    		drivetrain.shiftToLowGear();
+//    		isShifted = false;
+//    	}
+//    	else if (!isShifted && drivetrain.getLeftEncoderRate() > Variables.shiftUpSpeed && drivetrain.getRightEncoderRate() > Variables.shiftUpSpeed) {
+//    		drivetrain.shiftToHighGear();
+//    		isShifted = true;
+//    	}
     	
     	leftPower = -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis);
     	rightPower = leftPower;
