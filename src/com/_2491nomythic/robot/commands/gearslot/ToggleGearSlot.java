@@ -24,7 +24,6 @@ public class ToggleGearSlot extends CommandBase {
     		gearslot.openDoors();
     		doorsOpened = true;
     	}
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
