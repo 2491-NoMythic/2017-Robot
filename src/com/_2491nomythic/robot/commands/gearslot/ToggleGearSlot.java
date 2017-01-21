@@ -16,13 +16,13 @@ public class ToggleGearSlot extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(!doorsOpened) {
-    		gearslot.openDoors();
-    		doorsOpened = true;
-    	}
-    	else if(doorsOpened) {
+    	if(doorsOpened) {
     		gearslot.closeDoors();
     		doorsOpened = false;
+    	}
+    	else {
+    		gearslot.openDoors();
+    		doorsOpened = true;
     	}
     	
     }
