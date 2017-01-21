@@ -33,10 +33,10 @@ public class Drive extends CommandBase {
     		isShifted = true;
     	}
     	
-    	leftPower = -oi.getAxisDeadzonedSquared(ControllerMap.driveController, ControllerMap.driveVerticalAxis);
+    	leftPower = -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis);
     	rightPower = leftPower;
-    	horizontalPower = oi.getAxisDeadzonedSquared(ControllerMap.driveController, ControllerMap.driveHorizontalAxis);
-    	turnPower = oi.getAxisDeadzonedSquared(ControllerMap.driveController, ControllerMap.driveHorizontalAxis);
+    	horizontalPower = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis);
+    	turnPower = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis);
     	
     	leftPower += turnPower;
     	rightPower -= turnPower;
