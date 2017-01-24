@@ -1,6 +1,7 @@
 
 package com._2491nomythic.robot;
 
+import com._2491nomythic.robot.commands.autonomous.DoNothing;
 import com._2491nomythic.robot.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.robot.commands.drivetrain.ResetGyro;
 
@@ -38,6 +39,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Reset Encoders", new ResetEncoders());
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
+        chooser.addObject("Do Nothing", new DoNothing());
         
         
     }
