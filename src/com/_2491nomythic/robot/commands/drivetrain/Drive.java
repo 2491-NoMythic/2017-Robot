@@ -38,7 +38,7 @@ public class Drive extends CommandBase {
     	horizontalPower = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis);
     	turnPower = oi.getAxisDeadzonedSquared(ControllerMap.turnDriveController, ControllerMap.driveHorizontalAxis);
     	
-    	leftPower += turnPower;
+    	leftPower -= turnPower;
     	rightPower -= turnPower;
     	
     	leftPower = Math.min(1, Math.abs(leftPower)) * (leftPower > 0? 1: -1);
