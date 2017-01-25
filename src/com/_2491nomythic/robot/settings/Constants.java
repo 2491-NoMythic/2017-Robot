@@ -32,6 +32,10 @@ public class Constants {
 	
 	public static final int leftGearSolenoidChannel = 7;
 	public static final int rightGearSolenoidChannel = 6;
+	
+	//Shooter
+	
+	public static final int shooterTalonChannel = 20;
 		
 	//Computation
 	public static final double driveEncoderToFeet = 1; //TODO change this value to something more accurate.
