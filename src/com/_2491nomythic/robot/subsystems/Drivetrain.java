@@ -53,7 +53,7 @@ public class Drivetrain extends Subsystem {
 		encoderRight.reset();
 		encoderCenter.reset();
 		
-		shifter = new Solenoid(Constants.driveSolenoidChannel);
+		//shifter = new Solenoid(Constants.driveSolenoidChannel);
 		
 		gyro = new AHRS(SerialPort.Port.kUSB);
 	}

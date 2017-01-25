@@ -30,8 +30,8 @@ public class Constants {
 	
 	//GearSlot
 	
-	public static final int leftGearSolenoidChannel = 20;
-	public static final int rightGearSolenoidChannel = 21;
+	public static final int leftGearSolenoidChannel = 7;
+	public static final int rightGearSolenoidChannel = 6;
 		
 	//Computation
 	public static final double driveEncoderToFeet = 1; //TODO change this value to something more accurate.

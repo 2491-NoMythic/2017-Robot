@@ -1,6 +1,7 @@
 
 package com._2491nomythic.robot;
 
+import com._2491nomythic.robot.commands.CommandBase;
 import com._2491nomythic.robot.commands.autonomous.DoNothing;
 import com._2491nomythic.robot.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.robot.commands.drivetrain.ResetGyro;
@@ -34,6 +35,7 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
+		CommandBase.init();
         chooser = new SendableChooser<Command>();
         SmartDashboard.putData("Reset Gyro", new ResetGyro());
         SmartDashboard.putData("Reset Encoders", new ResetEncoders());
