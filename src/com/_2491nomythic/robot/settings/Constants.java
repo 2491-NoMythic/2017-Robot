@@ -35,5 +35,8 @@ public class Constants {
 		
 	//Computation
 	public static final double driveEncoderToFeet = 1; //TODO change this value to something more accurate.
+	
+	//Autonomous (all measurements are in feet)
+	public static final int driveStraightAutoDistance = 10;
 }
 
