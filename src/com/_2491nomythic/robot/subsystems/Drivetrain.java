@@ -115,27 +115,6 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	/**
-	 * @return The left drive encoder
-	 */
-	public Encoder getLeftEncoder() {
-		return encoderLeft;
-	}
-	
-	/**
-	 * @return the right drive encoder
-	 */
-	public Encoder getRightEncoder() {
-		return encoderRight;
-	}
-	
-	/**
-	 * @return the right drive encoder
-	 */
-	public Encoder getCenterEncoder() {
-		return encoderCenter;
-	}
-	
-	/**
 	 * @return The value of the left drive encoder
 	 */
 	public double getLeftEncoderDistance() {
