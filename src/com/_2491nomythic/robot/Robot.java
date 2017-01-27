@@ -5,6 +5,7 @@ import com._2491nomythic.robot.commands.CommandBase;
 import com._2491nomythic.robot.commands.autonomous.DoNothing;
 import com._2491nomythic.robot.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.robot.commands.drivetrain.ResetGyro;
+import com._2491nomythic.robot.settings.Variables;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -42,6 +43,7 @@ public class Robot extends IterativeRobot {
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
         chooser.addObject("Do Nothing", new DoNothing());
+        SmartDashboard.putBoolean("Use Linear Acceleration",Variables.useLinearAcceleration);
         
         
     }
