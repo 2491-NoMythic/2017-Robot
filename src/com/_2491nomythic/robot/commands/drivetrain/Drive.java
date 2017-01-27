@@ -4,11 +4,14 @@ import com._2491nomythic.robot.commands.CommandBase;
 import com._2491nomythic.robot.settings.ControllerMap;
 import com._2491nomythic.robot.settings.Variables;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  *
  */
 public class Drive extends CommandBase {
-	double leftPower, rightPower, horizontalPower, turnPower;
+	double currentLeftPower, currentRightPower, lastLeftPower, lastRightPower, directionMultiplierLeft, directionMultiplierRight;
+	double /*leftPower, rightPower,*/ horizontalPower, turnPower;
 	boolean isShifted;
 	
     public Drive() {
@@ -24,27 +27,49 @@ public class Drive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	if (isShifted && drivetrain.getLeftEncoderRate() < Variables.shiftDownSpeed && drivetrain.getRightEncoderRate() < Variables.shiftUpSpeed) {
-//    		drivetrain.shiftToLowGear();
-//    		isShifted = false;
-//    	}
-//    	else if (!isShifted && drivetrain.getLeftEncoderRate() > Variables.shiftUpSpeed && drivetrain.getRightEncoderRate() > Variables.shiftUpSpeed) {
-//    		drivetrain.shiftToHighGear();
-//    		isShifted = true;
-//    	}
+    	lastLeftPower = currentLeftPower;
+		lastRightPower = currentRightPower;
+		currentLeftPower = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis);
+		currentRightPower = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis);
+		if (Variables.useLinearAcceleration) {
+			double leftAcceleration = (currentLeftPower - lastLeftPower);
+			double signOfLeftAcceleration = leftAcceleration / Math.abs(leftAcceleration);
+			if (Math.abs(leftAcceleration) > Variables.accelerationSpeed) { // otherwise the power is below accel and is fine
+				if (Math.abs(currentLeftPower) - Math.abs(lastLeftPower) > 0) {
+					System.out.println(currentLeftPower + " was too high, setting to " + (lastLeftPower + (Variables.accelerationSpeed * signOfLeftAcceleration)));
+					currentLeftPower = lastLeftPower + (Variables.accelerationSpeed * signOfLeftAcceleration);
+					
+				}
+				// if the difference between the numbers is positive it is going up
+				
+			}
+			double rightAcceleration = (currentRightPower - lastRightPower);
+			double signOfRightAcceleration = rightAcceleration / Math.abs(rightAcceleration);
+			if (Math.abs(rightAcceleration) > Variables.accelerationSpeed) { // otherwise the power is below 0.05 accel and is fine
+				if (Math.abs(currentRightPower) - Math.abs(lastRightPower) > 0) {
+					System.out.println(currentRightPower + " was too high, setting to " + (lastRightPower + (Variables.accelerationSpeed * signOfRightAcceleration)));
+					currentRightPower = lastRightPower + (Variables.accelerationSpeed * signOfRightAcceleration);
+				}
+				// if the difference between the numbers is positive it is going up
+			}
+		}
+//		drivetrain.drive(currentLeftPower, currentRightPower);
+		
+		SmartDashboard.putNumber("Right Encoder Distance", drivetrain.getRightEncoderDistance());
+		SmartDashboard.putNumber("Left Encoder Distance", drivetrain.getLeftEncoderDistance());
     	
-    	leftPower = -1.0 * oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis);
-    	rightPower = -1.0 * leftPower;
+//    	leftPower = -1.0 * oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis);
+//    	rightPower = -1.0 * leftPower;
     	horizontalPower = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis);
     	turnPower = oi.getAxisDeadzonedSquared(ControllerMap.turnDriveController, ControllerMap.driveHorizontalAxis);
     	
-    	leftPower -= turnPower;
-    	rightPower -= turnPower;
+    	currentLeftPower -= turnPower;
+    	currentRightPower -= turnPower;
     	
-    	leftPower = Math.min(1, Math.abs(leftPower)) * (leftPower > 0? 1: -1);
-    	rightPower = Math.min(1, Math.abs(rightPower)) * (rightPower > 0? 1: -1);
+    	currentLeftPower = Math.min(1, Math.abs(currentLeftPower)) * (currentLeftPower > 0? 1: -1);
+    	currentRightPower = Math.min(1, Math.abs(currentRightPower)) * (currentRightPower > 0? 1: -1);
     	
-    	drivetrain.drive(leftPower, rightPower, horizontalPower, horizontalPower);
+    	drivetrain.drive(currentLeftPower, currentRightPower, horizontalPower, horizontalPower);
     }
 
     // Make this return true when this Command no longer needs to run execute()
