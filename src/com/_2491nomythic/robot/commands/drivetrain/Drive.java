@@ -27,10 +27,12 @@ public class Drive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	turnPower = oi.getAxisDeadzonedSquared(ControllerMap.turnDriveController, ControllerMap.driveTurnAxis);
+    	
     	lastLeftPower = currentLeftPower;
 		lastRightPower = currentRightPower;
-		currentLeftPower = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis);
-		currentRightPower = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis);
+		currentLeftPower = -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) - turnPower;
+		currentRightPower = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) - turnPower;
 		if (Variables.useLinearAcceleration) {
 			double leftAcceleration = (currentLeftPower - lastLeftPower);
 			double signOfLeftAcceleration = leftAcceleration / Math.abs(leftAcceleration);
@@ -61,10 +63,10 @@ public class Drive extends CommandBase {
 //    	leftPower = -1.0 * oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis);
 //    	rightPower = -1.0 * leftPower;
     	horizontalPower = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis);
-    	turnPower = oi.getAxisDeadzonedSquared(ControllerMap.turnDriveController, ControllerMap.driveHorizontalAxis);
+//    	turnPower = oi.getAxisDeadzonedSquared(ControllerMap.turnDriveController, ControllerMap.driveTurnAxis);
     	
-    	currentLeftPower -= turnPower;
-    	currentRightPower -= turnPower;
+//    	currentLeftPower -= turnPower;
+//    	currentRightPower -= turnPower;
     	
     	currentLeftPower = Math.min(1, Math.abs(currentLeftPower)) * (currentLeftPower > 0? 1: -1);
     	currentRightPower = Math.min(1, Math.abs(currentRightPower)) * (currentRightPower > 0? 1: -1);
