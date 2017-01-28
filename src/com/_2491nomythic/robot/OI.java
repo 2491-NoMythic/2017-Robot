@@ -1,9 +1,12 @@
 package com._2491nomythic.robot;
 
+import com._2491nomythic.robot.commands.drivetrain.DriveLock;
 import com._2491nomythic.robot.settings.Constants;
+import com._2491nomythic.robot.settings.ControllerMap;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -12,11 +15,14 @@ import edu.wpi.first.wpilibj.buttons.Button;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
+	Button driveLock;
 	
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
 		controllers[1] = new Joystick(Constants.ControllerTwoPort);
 		
+		driveLock = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.driveLockButton);
+		driveLock.whileHeld(new DriveLock());
 	}
 	
 	/**

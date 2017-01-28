@@ -1,6 +1,7 @@
 package com._2491nomythic.robot.commands.drivetrain;
 
 import com._2491nomythic.robot.commands.CommandBase;
+import com._2491nomythic.robot.settings.ControllerMap;
 
 
 
@@ -8,6 +9,8 @@ import com._2491nomythic.robot.commands.CommandBase;
  *
  */
 public class DriveLock extends CommandBase {
+	private double yAxisValue;
+	private double xAxisValue;
 
     public DriveLock() {
         // Use requires() here to declare subsystem dependencies
@@ -21,6 +24,14 @@ public class DriveLock extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	yAxisValue = oi.getAxis(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis);
+    	xAxisValue = oi.getAxis(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis);
+    	if (Math.abs(yAxisValue) > Math.abs(xAxisValue)) {
+    		drivetrain.drive(yAxisValue);
+    	}
+    	else {
+    		drivetrain.drive(xAxisValue);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
