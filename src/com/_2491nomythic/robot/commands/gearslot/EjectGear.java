@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  *
  */
-public class ToggleGearSlot extends CommandBase {
-	private boolean doorsOpened = false;
+public class EjectGear extends CommandBase {
+	Timer timer;
 	
-    public ToggleGearSlot() {
+    public EjectGear() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(gearslot);
@@ -19,28 +19,26 @@ public class ToggleGearSlot extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(doorsOpened) {
-    		gearslot.closeDoors();
-    		doorsOpened = false;
-    	}
-    	else {
-    		gearslot.openDoors();
-    		doorsOpened = true;
-    	}
+    	timer.start();
+    	timer.reset();
+    	
+    	gearslot.ejectGear();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(timer.get() > Constants.timeToEjectGear) {
+    		gearslot.retractEjector();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return timer.get() > Constants.timeToEjectGear;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	
     }
 
     // Called when another command which requires one or more of the same
