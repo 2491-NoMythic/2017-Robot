@@ -30,8 +30,10 @@ public class Constants {
 	
 	//GearSlot
 	
-	public static final int leftGearSolenoidChannel = 7;
-	public static final int rightGearSolenoidChannel = 6;
+	public static final int gearOpenerSolenoidChannel = 7;
+	public static final int gearEjectorSolenoidChannel = 6;
+	public static final double timeToOpenGearSlot = 0.5;
+	public static final double timeToEjectGear = 0.25;
 	
 	//Shooter
 	
