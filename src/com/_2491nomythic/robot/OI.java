@@ -87,7 +87,7 @@ public class OI {
 	 */
 	public double getAxisDeadzonedSquared(int joystickID, int axisID) {
 		double result = controllers[joystickID].getRawAxis(axisID);
-		result = result * -Math.abs(result);
+		result = result * Math.abs(result);
 		return Math.abs(result) > 0.05 ? result : 0;
 	}
     //// CREATING BUTTONS

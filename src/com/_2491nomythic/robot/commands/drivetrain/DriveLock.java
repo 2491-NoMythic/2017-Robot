@@ -24,13 +24,13 @@ public class DriveLock extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	yAxisValue = oi.getAxis(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis);
-    	xAxisValue = oi.getAxis(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis);
+    	yAxisValue = -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis);
+    	xAxisValue = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis);
     	if (Math.abs(yAxisValue) > Math.abs(xAxisValue)) {
-    		drivetrain.drive(yAxisValue, -yAxisValue, 0, 0);
+    		drivetrain.drive(yAxisValue, yAxisValue, 0, 0);
     	}
     	else {
-    		drivetrain.drive(0, 0, -xAxisValue, -xAxisValue);
+    		drivetrain.drive(0, 0, xAxisValue, xAxisValue);
     	}
     }
 
