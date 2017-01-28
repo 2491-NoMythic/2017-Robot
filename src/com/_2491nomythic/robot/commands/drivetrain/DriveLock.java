@@ -27,10 +27,10 @@ public class DriveLock extends CommandBase {
     	yAxisValue = oi.getAxis(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis);
     	xAxisValue = oi.getAxis(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis);
     	if (Math.abs(yAxisValue) > Math.abs(xAxisValue)) {
-    		drivetrain.drive(yAxisValue);
+    		drivetrain.drive(yAxisValue, 0);
     	}
     	else {
-    		drivetrain.drive(xAxisValue);
+    		drivetrain.drive(0, xAxisValue);
     	}
     }
 
