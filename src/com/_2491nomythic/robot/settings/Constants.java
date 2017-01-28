@@ -40,7 +40,7 @@ public class Constants {
 	public static final int shooterTalonChannel = 20;
 		
 	//Computation
-	public static final double driveEncoderToFeet = 1; //TODO change this value to something more accurate.
+	public static final double driveEncoderToFeet = 0.00598740738248483559836600606686; //TODO change this value to something more accurate.
 	
 	//Autonomous (all measurements are in feet)
 	public static final int driveStraightAutoDistance = 10;

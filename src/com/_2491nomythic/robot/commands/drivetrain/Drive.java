@@ -31,8 +31,8 @@ public class Drive extends CommandBase {
     	
     	lastLeftPower = currentLeftPower;
 		lastRightPower = currentRightPower;
-		currentLeftPower = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) + turnPower;
-		currentRightPower = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) - turnPower;
+		currentLeftPower = -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) - turnPower;
+		currentRightPower = -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) + turnPower;
 		if (Variables.useLinearAcceleration) {
 			double leftAcceleration = (currentLeftPower - lastLeftPower);
 			double signOfLeftAcceleration = leftAcceleration / Math.abs(leftAcceleration);
