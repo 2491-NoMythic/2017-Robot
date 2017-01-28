@@ -2,6 +2,7 @@ package com._2491nomythic.robot.subsystems;
 
 import com._2491nomythic.robot.commands.drivetrain.Drive;
 import com._2491nomythic.robot.settings.Constants;
+import com._2491nomythic.robot.settings.Variables;
 import com._2491nomythic.robot.subsystems.Drivetrain;
 import com.kauailabs.navx.frc.AHRS;
 
@@ -10,12 +11,13 @@ import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
-public class Drivetrain extends Subsystem {
+public class Drivetrain extends PIDSubsystem {
 	private CANTalon left1, left2, left3, centerLeft, centerRight, right1, right2, right3;
 	private Encoder encoderLeft, encoderRight, encoderCenter;
 	private Solenoid shifter;
@@ -34,6 +36,7 @@ public class Drivetrain extends Subsystem {
 	 * The system used to move the robot
 	 */
 	private Drivetrain() {
+		super(Variables.drivetrainPID_P, Variables.drivetrainPID_I, Variables.drivetrainPID_D);
 		left1 = new CANTalon(Constants.driveTalonLeft1Channel);
 		left2 = new CANTalon(Constants.driveTalonLeft2Channel);
 		left3 = new CANTalon(Constants.driveTalonLeft3Channel);
@@ -194,5 +197,17 @@ public class Drivetrain extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     	setDefaultCommand(new Drive());
     }
+
+	@Override
+	protected double returnPIDInput() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
