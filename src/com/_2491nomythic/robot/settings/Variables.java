@@ -14,5 +14,8 @@ public class Variables {
 	public static double drivetrainPID_I = 0.0;
 	public static double drivetrainPID_D = 0.0;
 
+	//GearSlot stuff
+	public static double timeToOpenGearSlot = 0.5;
+	public static double timeToEjectGear = 0.25;
 
 }

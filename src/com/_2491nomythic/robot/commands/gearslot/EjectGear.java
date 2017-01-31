@@ -1,7 +1,7 @@
 package com._2491nomythic.robot.commands.gearslot;
 
 import com._2491nomythic.robot.commands.CommandBase;
-import com._2491nomythic.robot.settings.Constants;
+import com._2491nomythic.robot.settings.Variables;
 
 import edu.wpi.first.wpilibj.Timer;
 
@@ -27,14 +27,14 @@ public class EjectGear extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(timer.get() > Constants.timeToEjectGear) {
+    	if(timer.get() > Variables.timeToEjectGear) {
     		gearslot.retractEjector();
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return timer.get() > Constants.timeToEjectGear;
+        return timer.get() > Variables.timeToEjectGear;
     }
 
     // Called once after isFinished returns true
