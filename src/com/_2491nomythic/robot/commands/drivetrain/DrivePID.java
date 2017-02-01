@@ -1,40 +1,32 @@
-package com._2491nomythic.robot.commands.gearslot;
+package com._2491nomythic.robot.commands.drivetrain;
 
 import com._2491nomythic.robot.commands.CommandBase;
-import com._2491nomythic.robot.settings.Variables;
 
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDSource;
+import edu.wpi.first.wpilibj.PIDSourceType;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class EjectGear extends CommandBase {
-	Timer timer;
-	
-    public EjectGear() {
+public class DrivePID extends CommandBase {
+    public DrivePID() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(gearslot);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	timer.start();
-    	timer.reset();
-    	
-    	gearslot.ejectGear();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(timer.get() > Variables.timeToEjectGear) {
-    		gearslot.retractEjector();
-    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return timer.get() > Variables.timeToEjectGear;
+        return false;
     }
 
     // Called once after isFinished returns true
@@ -44,6 +36,5 @@ public class EjectGear extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
 }

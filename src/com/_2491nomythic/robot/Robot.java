@@ -42,6 +42,8 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Reset Encoders", new ResetEncoders());
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
+        SmartDashboard.putNumber("Time to open GearSlot doors",Variables.timeToOpenGearSlot);
+        SmartDashboard.putNumber("Time to eject Gear",Variables.timeToEjectGear);
         chooser.addObject("Do Nothing", new DoNothing());
         SmartDashboard.putBoolean("Use Linear Acceleration",Variables.useLinearAcceleration);
         
