@@ -1,9 +1,6 @@
 package com._2491nomythic.robot.commands.gearslot;
 
 import com._2491nomythic.robot.commands.CommandBase;
-import com._2491nomythic.robot.settings.Constants;
-
-import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
