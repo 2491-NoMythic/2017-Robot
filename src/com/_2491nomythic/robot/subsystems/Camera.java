@@ -36,16 +36,17 @@ public class Camera extends Subsystem {
 	public void camReset() {
 		pixy.reset();
 	}
-	//the following method turns raw data into integers
+	//the following method turns unprocessed data from packets into integers
+	//this thing is used in the larger, more important method and i don't think anyone should be using this in a command. ever.
 	public int datToInt(byte upper, byte lower) {
 		return (((int)upper & 0xff) << 8) | ((int)lower & 0xff);
 	}
 	//this method reads packets, how nice.
 	public CameraPacket readPacket(int signature) throws CameraException {
-		int checkSum;
+		int check;
 		int sig;
 		byte[] rawData = new byte[32];
-		try {
+		try {//this first bit makes sure the packet is long enough to be a valid packet
 			rawData = pixy.read(32);	
 		}
 		catch (RuntimeException e) {
@@ -61,7 +62,7 @@ public class Camera extends Subsystem {
 			if (startVal != 0xaa55) {
 				i -= 2;
 			}
-			checkSum = datToInt(rawData[i+5], rawData[i+4]);
+			check = datToInt(rawData[i+5], rawData[i+4]);
 			sig = datToInt(rawData[i+7], rawData[i+6]);
 			if (sig <= 0 || sig > packets.length) {
 				break;
@@ -71,7 +72,7 @@ public class Camera extends Subsystem {
 			packets[sig - 1].cameraY = datToInt(rawData[i+11], rawData[i+10]);
 			packets[sig - 1].cameraHeight = datToInt(rawData[i+13], rawData[i+12]);
 			packets[sig - 1].cameraWidth = datToInt(rawData[i+15], rawData[i+14]);
-			if (checkSum != sig + packets[sig - 1].cameraX + packets[sig - 1].cameraY + packets[sig - 1].cameraHeight + packets[sig - 1].cameraWidth) {
+			if (check != sig + packets[sig - 1].cameraX + packets[sig - 1].cameraY + packets[sig - 1].cameraHeight + packets[sig - 1].cameraWidth) {
 				packets[sig - 1] = null;
 				throw camExc;
 			}
