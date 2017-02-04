@@ -1,6 +1,8 @@
 package com._2491nomythic.watt.commands;
 
 
+import com._2491nomythic.watt.settings.Variables;
+
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -31,7 +33,10 @@ public class UpdateDriverstation extends CommandBase {
     	if (timer.get() > nextRun) {
 			nextRun = nextRun + 0.1;
 			
-			com._2491nomythic.watt.settings.Variables.useLinearAcceleration = SmartDashboard.getBoolean("Use Linear Acceleration", true);	
+			Variables.useLinearAcceleration = SmartDashboard.getBoolean("Use Linear Acceleration", true);
+			Variables.lowGearMaxSpeed = SmartDashboard.getNumber("Low Gear Max Speed (ft/s)", Variables.lowGearMaxSpeed);
+			SmartDashboard.putBoolean("Use Linear Acceleration", Variables.useLinearAcceleration);
+			SmartDashboard.putNumber("Low Gear Max Speed (ft/s)", Variables.lowGearMaxSpeed);
 		}
 			
     	
