@@ -6,6 +6,8 @@ import com._2491nomythic.watt.commands.autonomous.CenterGearSlot;
 import com._2491nomythic.watt.commands.autonomous.DoNothing;
 import com._2491nomythic.watt.commands.autonomous.LeftGearSlot;
 import com._2491nomythic.watt.commands.autonomous.RightGearSlot;
+import com._2491nomythic.watt.commands.drivetrain.DriveGyroPID;
+import com._2491nomythic.watt.commands.drivetrain.DriveSpeedTime;
 import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
 import com._2491nomythic.watt.settings.Variables;
@@ -47,12 +49,13 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Auto mode", chooser);
         SmartDashboard.putNumber("Time to open GearSlot doors",Variables.timeToOpenGearSlot);
         SmartDashboard.putNumber("Time to eject Gear",Variables.timeToEjectGear);
+        SmartDashboard.putData("Turn 90 Degrees", new DriveGyroPID(90));
         chooser.addObject("Do Nothing", new DoNothing());
         chooser.addObject("Right GearSlot", new RightGearSlot());
         chooser.addObject("Left GearSlot", new LeftGearSlot());
         chooser.addObject("Center GearSlot", new CenterGearSlot());
         SmartDashboard.putBoolean("Use Linear Acceleration",Variables.useLinearAcceleration);
-        
+        SmartDashboard.putData("Drive with speed for 2 secs", new DriveSpeedTime(30, 2));
         
     }
 	

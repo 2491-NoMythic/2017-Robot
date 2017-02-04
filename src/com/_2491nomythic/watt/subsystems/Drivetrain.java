@@ -214,13 +214,21 @@ public class Drivetrain extends PIDSubsystem {
 
 	@Override
 	protected double returnPIDInput() {
-		// TODO Auto-generated method stub
-		return 0;
+		return getGyroAngle();
 	}
 
 	@Override
 	protected void usePIDOutput(double output) {
-		// TODO Auto-generated method stub
+		left1.pidWrite(-output);
+		left2.pidWrite(-output);
+		left3.pidWrite(-output);
+		
+		right1.pidWrite(output);
+		right2.pidWrite(output);
+		right3.pidWrite(output);
+		
+		centerLeft.pidWrite(-output);
+		centerRight.pidWrite(output);
 		
 	}
 }
