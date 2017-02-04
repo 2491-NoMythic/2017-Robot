@@ -37,7 +37,8 @@ public class Camera extends Subsystem {
 		pixy.reset();
 	}
 	//the following method turns unprocessed data from packets into integers
-	//this thing is used in the larger, more important method and i don't think anyone should be using this in a command. ever.
+	//this thing is used in the larger, more important method and i don't think
+	//anyone should be using this in a command. ever.
 	public int datToInt(byte upper, byte lower) {
 		return (((int)upper & 0xff) << 8) | ((int)lower & 0xff);
 	}
@@ -46,14 +47,15 @@ public class Camera extends Subsystem {
 		int check;
 		int sig;
 		byte[] rawData = new byte[32];
-		try {//this first bit makes sure the packet is long enough to be a valid packet
+		try {//this first bit makes sure the packet is long enough to be valid
 			rawData = pixy.read(32);	
 		}
 		catch (RuntimeException e) {
 		}
 		if(rawData.length < 32) {
 			return null;
-		}//the following bit makes sure a packet is valid and readable by checking the first portion of the packet, which indicates that the rest is ok
+		}//the following bit makes sure a packet is valid and readable by checking the
+		//first portion of the packet, which indicates that the rest is ok
 		for (int i = 0; i <= 16;) {
 			int startVal = datToInt(rawData[i+1], rawData[i+0]);
 			if (startVal == 0xaa55) {
@@ -66,7 +68,8 @@ public class Camera extends Subsystem {
 			sig = datToInt(rawData[i+7], rawData[i+6]);
 			if (sig <= 0 || sig > packets.length) {
 				break;
-			}//after verifying that a valid packet has been detected, this assigns the packets data to globally accessible variables
+			}//after verifying that a valid packet has been detected, this assigns
+			//the packet's data to globally accessible variables
 			packets[sig - 1] = new CameraPacket();
 			packets[sig - 1].cameraX = datToInt(rawData[i+9], rawData[i+8]);
 			packets[sig - 1].cameraY = datToInt(rawData[i+11], rawData[i+10]);
@@ -82,7 +85,8 @@ public class Camera extends Subsystem {
 		packets[signature - 1] = null;
 		return packet;
 	}
-	//because of the nature of this method, we're probably gonna wanna run it constantly in a command and then continue checking the updated global variables
+	//because of the nature of this method, we're probably gonna wanna run it
+	//constantly in a command and then continue checking the updated global variables
 
 
     public void initDefaultCommand() {
