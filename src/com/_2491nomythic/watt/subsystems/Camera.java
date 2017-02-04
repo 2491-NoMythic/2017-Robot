@@ -50,9 +50,7 @@ public class Camera extends Subsystem {
 		}
 		catch (RuntimeException e) {
 		}
-		if(rawData.length < 32) {
-			System.out.println("invalid packet length");
-		}//the following bit makes sure a packet is valid and readable by checking the
+		//the following bit makes sure a packet is valid and readable by checking the
 		//first portion of the packet, which indicates that the rest is ok
 		for (int i = 0; i <= 16;) {
 			int startVal = datToInt(rawData[i+1], rawData[i+0]);
@@ -85,6 +83,13 @@ public class Camera extends Subsystem {
 			CameraPacket.cameraWidth = datToInt(rawData[i+15], rawData[i+14]);
 			if (check != sig + CameraPacket.cameraX + CameraPacket.cameraY + CameraPacket.cameraHeight + CameraPacket.cameraWidth) {
 				throw camExc;
+			}
+			if (rawData.length < 32) {
+				System.out.println("Invalid packet length");
+				CameraPacket.cameraX = 0;
+				CameraPacket.cameraY = 0;
+				CameraPacket.cameraHeight = 0;
+				CameraPacket.cameraWidth = 0;
 			}
 			break;
 		}
