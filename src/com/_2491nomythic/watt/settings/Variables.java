@@ -9,11 +9,11 @@ public class Variables {
 	
 	public static double lowGearMaxSpeed = 6.51;
 	public static double lowGearRatio = 17.36;
-	public static double lowGearMaxRPM = (lowGearMaxSpeed / wheelCircumference) * lowGearRatio;
+	public static double lowGearMaxRPM = (lowGearMaxSpeed / wheelCircumference) * lowGearRatio * 60;
 	
 	public static double highGearMaxSpeed = 23.94;
 	public static double highGearRatio = 4.72;
-	public static double highGearMaxRPM = (highGearMaxSpeed / wheelCircumference) * highGearRatio;
+	public static double highGearMaxRPM = (highGearMaxSpeed / wheelCircumference) * highGearRatio * 60;
 	
 	//Shifting Constants
 	public static double shiftUpSpeed = 1000;
