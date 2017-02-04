@@ -14,12 +14,10 @@ public class Camera extends Subsystem {
 	public static Camera instance;
 	private SerialPort pixy;
 	private Port port = Port.kMXP;
-	private CameraPacket[] packets;
 	private String print;
 	private CameraException camExc;
 	
 	private Camera() {
-		packets = new CameraPacket[7];
 		pixy = new SerialPort(19200, port);
 		pixy.setReadBufferSize(14);
 		camExc = new CameraException(print);	
@@ -43,7 +41,7 @@ public class Camera extends Subsystem {
 		return (((int)upper & 0xff) << 8) | ((int)lower & 0xff);
 	}
 	//this method reads packets, how nice.
-	public CameraPacket readPacket(int signature) throws CameraException {
+	public void readPacket(int signature) throws CameraException {
 		int check;
 		int sig;
 		byte[] rawData = new byte[32];
@@ -53,7 +51,7 @@ public class Camera extends Subsystem {
 		catch (RuntimeException e) {
 		}
 		if(rawData.length < 32) {
-			return null;
+			System.out.println("invalid packet length");
 		}//the following bit makes sure a packet is valid and readable by checking the
 		//first portion of the packet, which indicates that the rest is ok
 		for (int i = 0; i <= 16;) {
@@ -66,24 +64,30 @@ public class Camera extends Subsystem {
 			}
 			check = datToInt(rawData[i+5], rawData[i+4]);
 			sig = datToInt(rawData[i+7], rawData[i+6]);
-			if (sig <= 0 || sig > packets.length) {
+			if (sig <= 0 || sig > CameraPacket.cameraX) {
+				break;	
+			}
+			if (sig <= 0 || sig > CameraPacket.cameraY) {
 				break;
-			}//after verifying that a valid packet has been detected, this assigns
+			}
+			if (sig <= 0 || sig > CameraPacket.cameraHeight) {
+				break;
+			}
+			if (sig <= 0 || sig > CameraPacket.cameraWidth) {
+				break;
+			}
+			
+			//after verifying that a valid packet has been detected, this assigns
 			//the packet's data to globally accessible variables
-			packets[sig - 1] = new CameraPacket();
-			packets[sig - 1].cameraX = datToInt(rawData[i+9], rawData[i+8]);
-			packets[sig - 1].cameraY = datToInt(rawData[i+11], rawData[i+10]);
-			packets[sig - 1].cameraHeight = datToInt(rawData[i+13], rawData[i+12]);
-			packets[sig - 1].cameraWidth = datToInt(rawData[i+15], rawData[i+14]);
-			if (check != sig + packets[sig - 1].cameraX + packets[sig - 1].cameraY + packets[sig - 1].cameraHeight + packets[sig - 1].cameraWidth) {
-				packets[sig - 1] = null;
+			CameraPacket.cameraX = datToInt(rawData[i+9], rawData[i+8]);
+			CameraPacket.cameraY = datToInt(rawData[i+11], rawData[i+10]);
+			CameraPacket.cameraHeight = datToInt(rawData[i+13], rawData[i+12]);
+			CameraPacket.cameraWidth = datToInt(rawData[i+15], rawData[i+14]);
+			if (check != sig + CameraPacket.cameraX + CameraPacket.cameraY + CameraPacket.cameraHeight + CameraPacket.cameraWidth) {
 				throw camExc;
 			}
 			break;
 		}
-		CameraPacket packet = packets[signature - 1];
-		packets[signature - 1] = null;
-		return packet;
 	}
 	//because of the nature of this method, we're probably gonna wanna run it
 	//constantly in a command and then continue checking the updated global variables
