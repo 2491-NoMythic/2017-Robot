@@ -3,7 +3,7 @@ package com._2491nomythic.watt.settings;
 public class Variables {
 	
 	//Linear Acceleration
-	public static boolean useLinearAcceleration = true;
+	public static boolean useLinearAcceleration = false;
 	public static double accelerationSpeed = 0.07;
 	public static double wheelCircumference = 0.5 * Math.PI;
 	
