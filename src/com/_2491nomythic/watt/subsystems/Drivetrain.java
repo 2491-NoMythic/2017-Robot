@@ -1,11 +1,12 @@
 package com._2491nomythic.watt.subsystems;
 
-import com.kauailabs.navx.frc.AHRS;
 import com._2491nomythic.watt.commands.drivetrain.Drive;
 import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.Variables;
-import com._2491nomythic.watt.subsystems.Drivetrain;
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SerialPort;
@@ -60,14 +61,11 @@ public class Drivetrain extends PIDSubsystem {
 	}
 	
 	public void drive(double speed){
-		driveLeft(speed);
-		driveRight(speed);
+		drive(speed, speed, 0, 0);
 	}
 	
-	public void drive(double leftRightSpeed, double centerSpeed){
-		driveLeft(leftRightSpeed);
-		driveRight(leftRightSpeed);
-		driveCenter(centerSpeed, centerSpeed);
+	public void drive(double verticalSpeed, double centerSpeed){
+		drive(verticalSpeed, verticalSpeed, centerSpeed, centerSpeed);
 	}
 	
 	public void drive(double leftSpeed, double rightSpeed, double centerLeftSpeed, double centerRightSpeed){
@@ -95,6 +93,24 @@ public class Drivetrain extends PIDSubsystem {
 	
 	public void stop(){
 		drive(0, 0);
+	}
+	
+	public void changeVerticalToPercentVbus() {
+		left1.changeControlMode(TalonControlMode.PercentVbus);
+		left2.changeControlMode(TalonControlMode.PercentVbus);
+		left3.changeControlMode(TalonControlMode.PercentVbus);
+		right1.changeControlMode(TalonControlMode.PercentVbus);
+		right2.changeControlMode(TalonControlMode.PercentVbus);
+		right3.changeControlMode(TalonControlMode.PercentVbus);
+	}
+	
+	public void changeVerticalToSpeed() {
+		left1.changeControlMode(TalonControlMode.Speed);
+		left2.changeControlMode(TalonControlMode.Speed);
+		left3.changeControlMode(TalonControlMode.Speed);
+		right1.changeControlMode(TalonControlMode.Speed);
+		right2.changeControlMode(TalonControlMode.Speed);
+		right3.changeControlMode(TalonControlMode.Speed);
 	}
 	
 	public void resetLeftEncoder() {
