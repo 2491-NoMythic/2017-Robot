@@ -40,7 +40,7 @@ public class Camera extends Subsystem {
 	public int datToInt(byte upper, byte lower) {
 		return (((int)upper & 0xff) << 8) | ((int)lower & 0xff);
 	}
-	//this method reads packets, how nice. Assigns packet data to relevant global variables.
+	//this method reads packets, how nice.
 	public CameraPacket readPacket(int signature) throws CameraException {
 		int checkSum;
 		int sig;
@@ -52,20 +52,20 @@ public class Camera extends Subsystem {
 		}
 		if(rawData.length < 32) {
 			return null;
-		}
-		for (int i = 0; i <= 16;) {//the following bit makes sure a packet is valid and readable
-			int syncWord = datToInt(rawData[i+1], rawData[i+0]);
-			if (syncWord == 0xaa55) {
-				syncWord = datToInt(rawData[i+3], rawData[i+2]);
+		}//the following bit makes sure a packet is valid and readable by checking the first portion of the packet, which indicates that the rest is ok
+		for (int i = 0; i <= 16;) {
+			int startVal = datToInt(rawData[i+1], rawData[i+0]);
+			if (startVal == 0xaa55) {
+				startVal = datToInt(rawData[i+3], rawData[i+2]);
 			}
-			if (syncWord != 0xaa55) {
+			if (startVal != 0xaa55) {
 				i -= 2;
 			}
 			checkSum = datToInt(rawData[i+5], rawData[i+4]);
 			sig = datToInt(rawData[i+7], rawData[i+6]);
 			if (sig <= 0 || sig > packets.length) {
 				break;
-			}
+			}//after verifying that a valid packet has been detected, this assigns the packets data to globally accessible variables
 			packets[sig - 1] = new CameraPacket();
 			packets[sig - 1].cameraX = datToInt(rawData[i+9], rawData[i+8]);
 			packets[sig - 1].cameraY = datToInt(rawData[i+11], rawData[i+10]);
@@ -81,9 +81,8 @@ public class Camera extends Subsystem {
 		packets[signature - 1] = null;
 		return packet;
 	}
-	
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+	//because of the nature of this method, we're probably gonna wanna run it constantly in a command and then continue checking the updated global variables
+
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
