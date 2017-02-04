@@ -2,7 +2,10 @@
 package com._2491nomythic.robot;
 
 import com._2491nomythic.robot.commands.CommandBase;
+import com._2491nomythic.robot.commands.autonomous.CenterGearSlot;
 import com._2491nomythic.robot.commands.autonomous.DoNothing;
+import com._2491nomythic.robot.commands.autonomous.LeftGearSlot;
+import com._2491nomythic.robot.commands.autonomous.RightGearSlot;
 import com._2491nomythic.robot.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.robot.commands.drivetrain.ResetGyro;
 import com._2491nomythic.robot.settings.Variables;
@@ -45,6 +48,9 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Time to open GearSlot doors",Variables.timeToOpenGearSlot);
         SmartDashboard.putNumber("Time to eject Gear",Variables.timeToEjectGear);
         chooser.addObject("Do Nothing", new DoNothing());
+        chooser.addObject("Right GearSlot", new RightGearSlot());
+        chooser.addObject("Left GearSlot", new LeftGearSlot());
+        chooser.addObject("Center GearSlot", new CenterGearSlot());
         SmartDashboard.putBoolean("Use Linear Acceleration",Variables.useLinearAcceleration);
         
         

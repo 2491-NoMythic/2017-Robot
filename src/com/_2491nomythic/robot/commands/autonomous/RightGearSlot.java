@@ -2,7 +2,6 @@ package com._2491nomythic.robot.commands.autonomous;
 
 import com._2491nomythic.robot.commands.CommandBase;
 import com._2491nomythic.robot.commands.drivetrain.DriveStraightToPosition;
-import com._2491nomythic.robot.commands.drivetrain.DriveToPosition;
 import com._2491nomythic.robot.commands.drivetrain.RotateDrivetrainWithGyro;
 import com._2491nomythic.robot.commands.gearslot.OpenAndEjectGearSlot;
 
