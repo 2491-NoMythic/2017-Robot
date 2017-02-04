@@ -18,13 +18,13 @@ public class RightGearSlot extends CommandBase {
     public RightGearSlot() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	firstDrive = new DriveStraightToPosition(1,);
-    	secondDrive = new DriveStraightToPosition(1,);
-    	thirdDrive = new DriveStraightToPosition(-1,);
-    	fourthDrive = new DriveStraightToPosition(1,);
+    	firstDrive = new DriveStraightToPosition(1,8.75);
+    	secondDrive = new DriveStraightToPosition(1,2.92);
+    	thirdDrive = new DriveStraightToPosition(-1,2.92);
+    	fourthDrive = new DriveStraightToPosition(1,7.5);
     	gearEject = new OpenAndEjectGearSlot();
-    	rotateDrivetrain1 = new RotateDrivetrainWithGyro(0.75,);
-    	rotateDrivetrain2 = new RotateDrivetrainWithGyro(0.75,);
+    	rotateDrivetrain1 = new RotateDrivetrainWithGyro(0.75,-60);
+    	rotateDrivetrain2 = new RotateDrivetrainWithGyro(0.75,60);
     }
 
     // Called just before this Command runs the first time
