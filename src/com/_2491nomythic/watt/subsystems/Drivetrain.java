@@ -60,14 +60,11 @@ public class Drivetrain extends PIDSubsystem {
 	}
 	
 	public void drive(double speed){
-		driveLeft(speed);
-		driveRight(speed);
+		drive(speed, speed, 0, 0);
 	}
 	
 	public void drive(double verticalSpeed, double centerSpeed){
-		driveLeft(verticalSpeed);
-		driveRight(verticalSpeed);
-		driveCenter(centerSpeed, centerSpeed);
+		drive(verticalSpeed, verticalSpeed, centerSpeed, centerSpeed);
 	}
 	
 	public void drive(double leftSpeed, double rightSpeed, double centerLeftSpeed, double centerRightSpeed){
