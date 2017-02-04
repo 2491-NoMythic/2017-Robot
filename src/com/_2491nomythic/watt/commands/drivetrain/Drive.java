@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class Drive extends CommandBase {
-	double currentLeftPower, currentRightPower, lastLeftPower, lastRightPower, directionMultiplierLeft, directionMultiplierRight;
-	double /*leftPower, rightPower,*/ horizontalPower, turnPower;
+	double currentLeftSpeed, currentRightSpeed, lastLeftSpeed, lastRightSpeed, directionMultiplierLeft, directionMultiplierRight;
+	double /*leftPower, rightPower,*/ horizontalPower, turnSpeed;
 	boolean isShifted;
 	
     public Drive() {
@@ -27,35 +27,35 @@ public class Drive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	turnPower = oi.getAxisDeadzonedSquared(ControllerMap.turnDriveController, ControllerMap.driveTurnAxis);
+    	turnSpeed = oi.getAxisDeadzonedSquared(ControllerMap.turnDriveController, ControllerMap.driveTurnAxis);
     	
-    	lastLeftPower = currentLeftPower;
-		lastRightPower = currentRightPower;
-		currentLeftPower = -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) - turnPower;
-		currentRightPower = -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) + turnPower;
+    	lastLeftSpeed = currentLeftSpeed;
+		lastRightSpeed = currentRightSpeed;
+		currentLeftSpeed = Variables.lowGearMaxRPM * -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) - turnSpeed;
+		currentRightSpeed = Variables.lowGearMaxRPM * -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) + turnSpeed;
 		if (Variables.useLinearAcceleration) {
-			double leftAcceleration = (currentLeftPower - lastLeftPower);
+			double leftAcceleration = (currentLeftSpeed - lastLeftSpeed);
 			double signOfLeftAcceleration = leftAcceleration / Math.abs(leftAcceleration);
 			if (Math.abs(leftAcceleration) > Variables.accelerationSpeed) { // otherwise the power is below accel and is fine
-				if (Math.abs(currentLeftPower) - Math.abs(lastLeftPower) > 0) {
-					System.out.println(currentLeftPower + " was too high, setting to " + (lastLeftPower + (Variables.accelerationSpeed * signOfLeftAcceleration)));
-					currentLeftPower = lastLeftPower + (Variables.accelerationSpeed * signOfLeftAcceleration);
+				if (Math.abs(currentLeftSpeed) - Math.abs(lastLeftSpeed) > 0) {
+					System.out.println(currentLeftSpeed + " was too high, setting to " + (lastLeftSpeed + (Variables.accelerationSpeed * signOfLeftAcceleration)));
+					currentLeftSpeed = lastLeftSpeed + (Variables.accelerationSpeed * signOfLeftAcceleration);
 					
 				}
 				// if the difference between the numbers is positive it is going up
 				
 			}
-			double rightAcceleration = (currentRightPower - lastRightPower);
+			double rightAcceleration = (currentRightSpeed - lastRightSpeed);
 			double signOfRightAcceleration = rightAcceleration / Math.abs(rightAcceleration);
 			if (Math.abs(rightAcceleration) > Variables.accelerationSpeed) { // otherwise the power is below 0.05 accel and is fine
-				if (Math.abs(currentRightPower) - Math.abs(lastRightPower) > 0) {
-					System.out.println(currentRightPower + " was too high, setting to " + (lastRightPower + (Variables.accelerationSpeed * signOfRightAcceleration)));
-					currentRightPower = lastRightPower + (Variables.accelerationSpeed * signOfRightAcceleration);
+				if (Math.abs(currentRightSpeed) - Math.abs(lastRightSpeed) > 0) {
+					System.out.println(currentRightSpeed + " was too high, setting to " + (lastRightSpeed + (Variables.accelerationSpeed * signOfRightAcceleration)));
+					currentRightSpeed = lastRightSpeed + (Variables.accelerationSpeed * signOfRightAcceleration);
 				}
 				// if the difference between the numbers is positive it is going up
 			}
 		}
-//		drivetrain.drive(currentLeftPower, currentRightPower);
+//		drivetrain.drive(currentLeftSpeed, currentRightSpeed);
 		
 		SmartDashboard.putNumber("Right Encoder Distance", drivetrain.getRightEncoderDistance());
 		SmartDashboard.putNumber("Left Encoder Distance", drivetrain.getLeftEncoderDistance());
@@ -63,15 +63,15 @@ public class Drive extends CommandBase {
 //    	leftPower = -1.0 * oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis);
 //    	rightPower = -1.0 * leftPower;
     	horizontalPower = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis);
-//    	turnPower = oi.getAxisDeadzonedSquared(ControllerMap.turnDriveController, ControllerMap.driveTurnAxis);
+//    	turnSpeed = oi.getAxisDeadzonedSquared(ControllerMap.turnDriveController, ControllerMap.driveTurnAxis);
     	
-//    	currentLeftPower -= turnPower;
-//    	currentRightPower -= turnPower;
+//    	currentLeftSpeed -= turnSpeed;
+//    	currentRightSpeed -= turnSpeed;
     	
-    	currentLeftPower = Math.min(1, Math.abs(currentLeftPower)) * (currentLeftPower > 0? 1: -1);
-    	currentRightPower = Math.min(1, Math.abs(currentRightPower)) * (currentRightPower > 0? 1: -1);
+    	currentLeftSpeed = Math.min(Variables.lowGearMaxRPM, Math.abs(currentLeftSpeed)) * (currentLeftSpeed > 0? 1: -1);
+    	currentRightSpeed = Math.min(Variables.lowGearMaxRPM, Math.abs(currentRightSpeed)) * (currentRightSpeed > 0? 1: -1);
     	
-    	drivetrain.drive(currentLeftPower, currentRightPower, horizontalPower, horizontalPower);
+    	drivetrain.drive(currentLeftSpeed, currentRightSpeed, horizontalPower, horizontalPower);
     }
 
     // Make this return true when this Command no longer needs to run execute()
