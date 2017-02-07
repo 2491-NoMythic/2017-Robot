@@ -52,7 +52,15 @@ public class Camera extends Subsystem {
 		}
 		//the following bit makes sure a packet is valid and readable by checking the
 		//first portion of the packet, which indicates that the rest is ok
-		for (int i = 0; i <= 16;) {
+		for (int i = 0; i <= 16; i++) {
+			if (rawData.length < 32) {
+				System.out.println("Invalid packet length");
+				CameraPacket.cameraX = 0;
+				CameraPacket.cameraY = 0;
+				CameraPacket.cameraHeight = 0;
+				CameraPacket.cameraWidth = 0;
+				break;
+			}
 			int startVal = datToInt(rawData[i+1], rawData[i+0]);
 			if (startVal == 0xaa55) {
 				startVal = datToInt(rawData[i+3], rawData[i+2]);
@@ -84,16 +92,10 @@ public class Camera extends Subsystem {
 			if (check != sig + CameraPacket.cameraX + CameraPacket.cameraY + CameraPacket.cameraHeight + CameraPacket.cameraWidth) {
 				throw camExc;
 			}
-			if (rawData.length < 32) {
-				System.out.println("Invalid packet length");
-				CameraPacket.cameraX = 0;
-				CameraPacket.cameraY = 0;
-				CameraPacket.cameraHeight = 0;
-				CameraPacket.cameraWidth = 0;
+
 			}
-			break;
 		}
-	}
+	
 	//because of the nature of this method, we're probably gonna wanna run it
 	//constantly in a command and then continue checking the updated global variables
 
