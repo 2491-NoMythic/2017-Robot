@@ -21,8 +21,6 @@
 
   <!-- Any other property in build.properties can also be overridden. -->
 
-  <property name="target" value="roboRIO-2491-FRC.frc-robot.local"/>
-
   <property file="${user.home}/wpilib/wpilib.properties"/>
   <property file="build.properties"/>
   <property file="${user.home}/wpilib/java/${version}/ant/build.properties"/>
