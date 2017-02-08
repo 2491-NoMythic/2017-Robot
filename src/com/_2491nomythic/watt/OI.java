@@ -1,7 +1,9 @@
 package com._2491nomythic.watt;
 
+import com._2491nomythic.watt.commands.climber.Climb;
 import com._2491nomythic.watt.commands.drivetrain.DriveLock;
 import com._2491nomythic.watt.commands.drivetrain.FollowObject;
+import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.ControllerMap;
 
@@ -16,7 +18,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button driveLock, followObject;
+	Button driveLock, followObject, depositGear, climb;
 	
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
@@ -27,6 +29,13 @@ public class OI {
 		
 		followObject = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.followObjectButton);
 		followObject.whileHeld(new FollowObject(5, 10));
+		
+		depositGear = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.depositGearButton);
+		depositGear.whenPressed(new OpenAndEjectGearSlot());
+		
+		climb = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.climbButton);
+		climb.whenPressed(new Climb(1));
+		
 	}
 	
 	/**
