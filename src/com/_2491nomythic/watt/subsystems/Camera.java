@@ -20,7 +20,7 @@ public class Camera extends Subsystem {
 	private Camera() {
 		pixy = new SerialPort(19200, port);
 		pixy.setReadBufferSize(14);
-		camExc = new CameraException(print);	
+		camExc = new CameraException(print);
 		
 	}
 	
@@ -37,12 +37,12 @@ public class Camera extends Subsystem {
 	//the following method turns unprocessed data from packets into integers
 	//this thing is used in the larger, more important method and i don't think
 	//anyone should be using this in a command. ever.
-	public int datToInt(byte upper, byte lower) {
+	public int datToInt(byte lower, byte upper) {
 		return (((int)upper & 0xff) << 8) | ((int)lower & 0xff);
 	}
 	//this method reads packets, how nice.
-	public void readPacket(int signature) throws CameraException {
-		int check;
+	public void readPacket() throws CameraException {
+		int checkSum;
 		int sig;
 		byte[] rawData = new byte[32];
 		try {//this first bit makes sure the packet is long enough to be valid
@@ -61,40 +61,26 @@ public class Camera extends Subsystem {
 				CameraPacket.cameraWidth = 0;
 				break;
 			}
-			int startVal = datToInt(rawData[i+1], rawData[i+0]);
-			if (startVal == 0xaa55) {
-				startVal = datToInt(rawData[i+3], rawData[i+2]);
-			}
-			if (startVal != 0xaa55) {
+			int syncWord = datToInt(rawData[i+0], rawData[i+1]);
+			if (syncWord != 0xaa55) {
 				i -= 2;
 			}
-			check = datToInt(rawData[i+5], rawData[i+4]);
-			sig = datToInt(rawData[i+7], rawData[i+6]);
-			if (sig <= 0 || sig > CameraPacket.cameraX) {
-				break;	
-			}
-			if (sig <= 0 || sig > CameraPacket.cameraY) {
+			checkSum = datToInt(rawData[i+2], rawData[i+3]);
+			sig = datToInt(rawData[i+4], rawData[i+5]);
+			if (sig <= 0 || sig > 7) {
 				break;
 			}
-			if (sig <= 0 || sig > CameraPacket.cameraHeight) {
-				break;
-			}
-			if (sig <= 0 || sig > CameraPacket.cameraWidth) {
-				break;
-			}
-			
 			//after verifying that a valid packet has been detected, this assigns
 			//the packet's data to globally accessible variables
-			CameraPacket.cameraX = datToInt(rawData[i+9], rawData[i+8]);
-			CameraPacket.cameraY = datToInt(rawData[i+11], rawData[i+10]);
-			CameraPacket.cameraHeight = datToInt(rawData[i+12], rawData[i+13]);
+			CameraPacket.cameraX = datToInt(rawData[i+6], rawData[i+7]);
+			CameraPacket.cameraY = datToInt(rawData[i+8], rawData[i+9]);
 			CameraPacket.cameraWidth = datToInt(rawData[i+10], rawData[i+11]);
-			if (check != sig + CameraPacket.cameraX + CameraPacket.cameraY + CameraPacket.cameraHeight + CameraPacket.cameraWidth) {
+			CameraPacket.cameraHeight = datToInt(rawData[i+12], rawData[i+13]);
+			if (checkSum != sig + CameraPacket.cameraX + CameraPacket.cameraY + CameraPacket.cameraHeight + CameraPacket.cameraWidth) {
 				throw camExc;
-			}
-
-			}
+			}		
 		}
+	}
 	
 	//because of the nature of this method, we're probably gonna wanna run it
 	//constantly in a command and then continue checking the updated global variables
