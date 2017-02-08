@@ -10,11 +10,11 @@ import com._2491nomythic.watt.settings.CameraPacket;
 public class FollowObject extends CommandBase {
 	private int centerX, targetHeight, targetWidth, state;
 
-    public FollowObject(int width, int height) {
+    public FollowObject(int x, int width, int height) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(drivetrain);
-    	centerX = 320;
+    	centerX = x;
     	targetHeight = height;
     	targetWidth = width;
     }

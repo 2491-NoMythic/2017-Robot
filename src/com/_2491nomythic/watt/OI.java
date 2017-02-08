@@ -29,7 +29,7 @@ public class OI {
 		driveLock.whileHeld(new DriveLock());
 		
 		followObject = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.followObjectButton);
-		followObject.whileHeld(new FollowObject(5, 10));
+		followObject.whileHeld(new FollowObject(320, 5, 10));
 		
 		depositGear = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.depositGearButton);
 		depositGear.whenPressed(new OpenAndEjectGearSlot());

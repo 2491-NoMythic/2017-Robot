@@ -78,7 +78,7 @@ public class Camera extends Subsystem {
 			CameraPacket.cameraHeight = datToInt(rawData[i+12], rawData[i+13]);
 			if (checkSum != sig + CameraPacket.cameraX + CameraPacket.cameraY + CameraPacket.cameraHeight + CameraPacket.cameraWidth) {
 				throw camExc;
-			}		
+			}
 		}
 	}
 	
