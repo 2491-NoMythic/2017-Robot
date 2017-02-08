@@ -87,8 +87,8 @@ public class Drivetrain extends PIDSubsystem {
 	}
 	
 	public void driveCenter(double leftSpeed, double rightSpeed){
-		centerLeft.set(-leftSpeed);
-		centerRight.set(rightSpeed);
+		centerLeft.set(leftSpeed);
+		centerRight.set(-rightSpeed);
 	}
 	
 	public void stop(){
