@@ -102,6 +102,12 @@ public class LeftGearSlot extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
+    	firstDrive.cancel();
+    	secondDrive.cancel();
+    	thirdDrive.cancel();
+    	fourthDrive.cancel();
+    	ejectGear.cancel();
+    	rotateDrivetrain1.cancel();
+    	rotateDrivetrain2.cancel();
     }
 }
