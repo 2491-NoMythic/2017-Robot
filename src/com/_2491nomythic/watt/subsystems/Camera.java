@@ -87,8 +87,8 @@ public class Camera extends Subsystem {
 			//the packet's data to globally accessible variables
 			CameraPacket.cameraX = datToInt(rawData[i+9], rawData[i+8]);
 			CameraPacket.cameraY = datToInt(rawData[i+11], rawData[i+10]);
-			CameraPacket.cameraHeight = datToInt(rawData[i+13], rawData[i+12]);
-			CameraPacket.cameraWidth = datToInt(rawData[i+15], rawData[i+14]);
+			CameraPacket.cameraHeight = datToInt(rawData[i+12], rawData[i+13]);
+			CameraPacket.cameraWidth = datToInt(rawData[i+10], rawData[i+11]);
 			if (check != sig + CameraPacket.cameraX + CameraPacket.cameraY + CameraPacket.cameraHeight + CameraPacket.cameraWidth) {
 				throw camExc;
 			}

@@ -1,6 +1,7 @@
 package com._2491nomythic.watt;
 
 import com._2491nomythic.watt.commands.drivetrain.DriveLock;
+import com._2491nomythic.watt.commands.drivetrain.FollowObject;
 import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.ControllerMap;
 
@@ -15,7 +16,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button driveLock;
+	Button driveLock, followObject;
 	
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
@@ -23,6 +24,9 @@ public class OI {
 		
 		driveLock = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.driveLockButton);
 		driveLock.whileHeld(new DriveLock());
+		
+		followObject = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.followObjectButton);
+		followObject.whileHeld(new FollowObject(5, 10));
 	}
 	
 	/**

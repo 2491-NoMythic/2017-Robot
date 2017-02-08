@@ -8,4 +8,5 @@ public class ControllerMap {
 	public static final int driveHorizontalAxis = 0;
 	public static final int driveTurnAxis = 2;
 	public static final int driveLockButton = 3;
+	public static final int followObjectButton = 7;
 }
