@@ -56,18 +56,11 @@ public class Drive extends CommandBase {
 				// if the difference between the numbers is positive it is going up
 			}
 		}
-//		drivetrain.drive(currentLeftSpeed, currentRightSpeed);
 		
 		SmartDashboard.putNumber("Right Encoder Distance", drivetrain.getRightEncoderDistance());
 		SmartDashboard.putNumber("Left Encoder Distance", drivetrain.getLeftEncoderDistance());
     	
-//    	leftPower = -1.0 * oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis);
-//    	rightPower = -1.0 * leftPower;
     	horizontalPower = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis);
-//    	turnSpeed = oi.getAxisDeadzonedSquared(ControllerMap.turnDriveController, ControllerMap.driveTurnAxis);
-    	
-//    	currentLeftSpeed -= turnSpeed;
-//    	currentRightSpeed -= turnSpeed;
     	
     	currentLeftSpeed = Math.min(/*Variables.lowGearMaxRPM*/1, Math.abs(currentLeftSpeed)) * (currentLeftSpeed > 0? 1: -1);
     	currentRightSpeed = Math.min(/*Variables.lowGearMaxRPM*/1, Math.abs(currentRightSpeed)) * (currentRightSpeed > 0? 1: -1);
