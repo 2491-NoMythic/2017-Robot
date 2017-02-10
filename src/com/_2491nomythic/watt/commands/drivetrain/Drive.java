@@ -22,7 +22,7 @@ public class Drive extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	drivetrain.changeVerticalToSpeed();
+//    	drivetrain.changeVerticalToSpeed();
     	isShifted = false;
     }
 
@@ -32,8 +32,8 @@ public class Drive extends CommandBase {
     	
     	lastLeftSpeed = currentLeftSpeed;
 		lastRightSpeed = currentRightSpeed;
-		currentLeftSpeed = Variables.lowGearMaxRPM * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) + turnSpeed);
-		currentRightSpeed = Variables.lowGearMaxRPM * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) - turnSpeed);
+		currentLeftSpeed = /*Variables.lowGearMaxRPM * */(-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) + turnSpeed);
+		currentRightSpeed = /*Variables.lowGearMaxRPM * */(-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) - turnSpeed);
 		if (Variables.useLinearAcceleration) {
 			double leftAcceleration = (currentLeftSpeed - lastLeftSpeed);
 			double signOfLeftAcceleration = leftAcceleration / Math.abs(leftAcceleration);
@@ -62,8 +62,8 @@ public class Drive extends CommandBase {
     	
     	horizontalPower = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis);
     	
-    	currentLeftSpeed = Math.min(Variables.lowGearMaxRPM, Math.abs(currentLeftSpeed)) * (currentLeftSpeed > 0? 1: -1);
-    	currentRightSpeed = Math.min(Variables.lowGearMaxRPM, Math.abs(currentRightSpeed)) * (currentRightSpeed > 0? 1: -1);
+    	currentLeftSpeed = Math.min(/*Variables.lowGearMaxRPM*/1, Math.abs(currentLeftSpeed)) * (currentLeftSpeed > 0? 1: -1);
+    	currentRightSpeed = Math.min(/*Variables.lowGearMaxRPM*/1, Math.abs(currentRightSpeed)) * (currentRightSpeed > 0? 1: -1);
     	
     	drivetrain.drive(currentLeftSpeed, currentRightSpeed, horizontalPower, horizontalPower);
     }
@@ -75,7 +75,7 @@ public class Drive extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	drivetrain.changeVerticalToPercentVbus();
+//    	drivetrain.changeVerticalToPercentVbus();
     	drivetrain.stop();
     }
 
