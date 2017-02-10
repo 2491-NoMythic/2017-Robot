@@ -2,6 +2,7 @@ package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.Constants;
+import com._2491nomythic.watt.settings.Variables;
 
 /**
  *
@@ -23,7 +24,7 @@ public class DriveStraight extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	drivetrain.drive(speed);
+    	drivetrain.drive(speed * Variables.lowGearMaxSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

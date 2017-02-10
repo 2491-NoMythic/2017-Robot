@@ -1,6 +1,7 @@
 package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
+import com._2491nomythic.watt.settings.Variables;
 
 /**
  *
@@ -12,7 +13,7 @@ public class RotateDrivetrainCentralWithGyro extends CommandBase {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(drivetrain);
-    	this.speed = speed;
+    	this.speed = speed * Variables.lowGearMaxSpeed;
     	this.angle = angle;
     	initialAngle = drivetrain.getGyroAngle();
     }

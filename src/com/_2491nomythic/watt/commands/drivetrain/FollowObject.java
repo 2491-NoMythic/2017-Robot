@@ -3,6 +3,7 @@ package com._2491nomythic.watt.commands.drivetrain;
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.CameraException;
 import com._2491nomythic.watt.settings.CameraPacket;
+import com._2491nomythic.watt.settings.Variables;
 
 /**
  *
@@ -35,26 +36,26 @@ public class FollowObject extends CommandBase {
     	switch(state) {
     	case 0:
     		if (centerX < (CameraPacket.cameraX - 1) && CameraPacket.cameraX != 0) {
-    			drivetrain.driveLeft(.5);
-    			drivetrain.driveRight(-.5);
+    			drivetrain.driveLeft(.5 * Variables.lowGearMaxSpeed);
+    			drivetrain.driveRight(-.5 * Variables.lowGearMaxSpeed);
     		}
     		else {
     			state++;
     		}
     	case 1:
     		if (centerX > (CameraPacket.cameraX + 1) && CameraPacket.cameraX != 0) {
-    			drivetrain.driveLeft(-.5);
-    			drivetrain.driveRight(.5);
+    			drivetrain.driveLeft(-.5 * Variables.lowGearMaxSpeed);
+    			drivetrain.driveRight(.5  * Variables.lowGearMaxSpeed);
     		}
     		else state++;
     	case 2:
     		if (targetWidth < (CameraPacket.cameraWidth - 1) && targetHeight < (CameraPacket.cameraHeight - 1) && CameraPacket.cameraHeight != 0 && CameraPacket.cameraWidth !=0) {
-    			drivetrain.drive(.5);
+    			drivetrain.drive(.5 * Variables.lowGearMaxSpeed);
     		}
     		else state++;
     	case 3:
     		if (targetWidth > (CameraPacket.cameraWidth + 1) && targetHeight > (CameraPacket.cameraHeight + 1) && CameraPacket.cameraHeight != 0 && CameraPacket.cameraWidth != 0) {
-    			drivetrain.drive(-.5);
+    			drivetrain.drive(-.5 * Variables.lowGearMaxSpeed);
     		}
     	}
     }

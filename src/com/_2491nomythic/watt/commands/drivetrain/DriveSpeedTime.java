@@ -1,6 +1,7 @@
 package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
+import com._2491nomythic.watt.settings.Variables;
 
 import edu.wpi.first.wpilibj.Timer;
 
@@ -28,7 +29,7 @@ public class DriveSpeedTime extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	drivetrain.drive(speed);
+    	drivetrain.drive(speed * Variables.lowGearMaxSpeed);
     	
     }
 

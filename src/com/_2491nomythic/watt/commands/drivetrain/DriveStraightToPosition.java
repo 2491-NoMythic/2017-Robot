@@ -1,6 +1,7 @@
 package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
+import com._2491nomythic.watt.settings.Variables;
 
 /**
  *
@@ -20,7 +21,7 @@ public class DriveStraightToPosition extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
     	drivetrain.resetLeftEncoder();
-    	drivetrain.drive(speed);
+    	drivetrain.drive(speed * Variables.lowGearMaxSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run

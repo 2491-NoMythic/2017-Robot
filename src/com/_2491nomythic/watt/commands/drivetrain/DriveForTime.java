@@ -1,6 +1,7 @@
 package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
+import com._2491nomythic.watt.settings.Variables;
 
 import edu.wpi.first.wpilibj.Timer;
 
@@ -33,7 +34,7 @@ public class DriveForTime extends CommandBase{
     protected void initialize() {
     	timer.start();
     	timer.reset();
-    	drivetrain.drive(leftPower, rightPower, 0, 0);
+    	drivetrain.drive(leftPower * Variables.lowGearMaxSpeed, rightPower * Variables.lowGearMaxSpeed, 0, 0);
     }
 
     // Called repeatedly when this Command is scheduled to run
