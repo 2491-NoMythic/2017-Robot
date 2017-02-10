@@ -15,7 +15,7 @@ public class CenterGearSlot extends CommandBase {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	firstDrive = new DriveStraightToPosition(1, 7.7);
-    	secondDrive = new DriveStraightToPosition(-1, 1.5);
+    	secondDrive = new DriveStraightToPosition(-1, -1.5);
     	gearDeposit = new OpenAndEjectGearSlot();
     }
 
@@ -27,10 +27,10 @@ public class CenterGearSlot extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(!firstDrive.isRunning()) {
-    		gearDeposit.start();
-    		if(!gearDeposit.isRunning()) {
+//    		gearDeposit.start();
+//    		if(!gearDeposit.isRunning()) {
     			secondDrive.start();
-    		}
+//    		}
     	}	
     }
 
