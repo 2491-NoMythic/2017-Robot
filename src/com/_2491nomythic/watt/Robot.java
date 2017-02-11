@@ -7,7 +7,6 @@ import com._2491nomythic.watt.commands.autonomous.CenterGearSlot;
 import com._2491nomythic.watt.commands.autonomous.DoNothing;
 import com._2491nomythic.watt.commands.autonomous.LeftGearSlot;
 import com._2491nomythic.watt.commands.autonomous.RightGearSlot;
-import com._2491nomythic.watt.commands.climber.Climb;
 import com._2491nomythic.watt.commands.drivetrain.DriveGyroPID;
 import com._2491nomythic.watt.commands.drivetrain.DriveSpeedTime;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
@@ -49,7 +48,7 @@ public class Robot extends IterativeRobot {
         chooser = new SendableChooser<Command>();
         SmartDashboard.putData("Reset Gyro", new ResetGyro());
         SmartDashboard.putData("Reset Encoders", new ResetEncoders());
-        SmartDashboard.putData("Print Climber Values", new PrintCameraValues());
+        SmartDashboard.putData("Print Camera Values", new PrintCameraValues());
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
         SmartDashboard.putNumber("Time to open GearSlot doors",Variables.timeToOpenGearSlot);
