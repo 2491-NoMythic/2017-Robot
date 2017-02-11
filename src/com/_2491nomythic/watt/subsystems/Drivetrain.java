@@ -51,9 +51,6 @@ public class Drivetrain extends PIDSubsystem {
 		encoderLeft.setDistancePerPulse(Constants.driveEncoderToFeet);
 		encoderRight.setDistancePerPulse(Constants.driveEncoderToFeet);
 		encoderCenter.setDistancePerPulse(Constants.driveEncoderToFeet);
-		encoderLeft.reset();
-		encoderRight.reset();
-		encoderCenter.reset();
 		
 		//shifter = new Solenoid(Constants.driveSolenoidChannel);
 		
@@ -135,21 +132,21 @@ public class Drivetrain extends PIDSubsystem {
 	 * @return The value of the left drive encoder
 	 */
 	public double getLeftEncoderDistance() {
-		return encoderLeft.getDistance();
+		return -encoderLeft.getDistance();
 	}
 	
 	/**
 	 * @return The value of the right drive encoder
 	 */
 	public double getRightEncoderDistance() {
-		return encoderRight.getDistance();
+		return -encoderRight.getDistance();
 	}
 	
 	/**
 	 * @return The value of the center drive encoder
 	 */
 	public double getCenterEncoderDistance() {
-		return encoderCenter.getDistance();
+		return -encoderCenter.getDistance();
 	}
 	
 	/**

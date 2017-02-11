@@ -5,6 +5,7 @@ import com._2491nomythic.watt.commands.autonomous.LeftGearSlot;
 import com._2491nomythic.watt.commands.autonomous.RightGearSlot;
 import com._2491nomythic.watt.commands.climber.Climb;
 import com._2491nomythic.watt.commands.drivetrain.DriveLock;
+import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
 import com._2491nomythic.watt.commands.drivetrain.FollowObject;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 import com._2491nomythic.watt.settings.Constants;
@@ -21,7 +22,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button driveLock, followObject, depositGear, climb, autoLeftTest, autoRightTest, autoCenterTest;
+	Button driveLock, followObject, depositGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest;
 	
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
@@ -48,7 +49,8 @@ public class OI {
 		autoRightTest = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.autoTest3);
 		autoRightTest.whenPressed(new RightGearSlot());
 
-		
+		drive1FootTest = new JoystickButton(controllers[0], 6);
+		drive1FootTest.whenPressed(new DriveStraightToPosition(1, 1));
 	}
 	
 	/**
