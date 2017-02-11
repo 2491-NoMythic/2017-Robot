@@ -11,4 +11,7 @@ public class ControllerMap {
 	public static final int followObjectButton = 7;
 	public static final int depositGearButton = 12;
 	public static final int climbButton = 5;
+	public static final int autoTest1 = 9;
+	public static final int autoTest2 = 10;
+	public static final int autoTest3 = 11;
 }
