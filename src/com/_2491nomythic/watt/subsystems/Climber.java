@@ -30,7 +30,7 @@ public class Climber extends Subsystem {
 	
 	public void runClimberMotors(double power) {
 		left.set(power);
-		right.set(-power);
+		right.set(power);
 	}
 	
 	public boolean getLimitSwitch() {

@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
+
+/*
 public class GearSlot extends Subsystem {
 	private Solenoid opener, ejector;
 
@@ -48,4 +50,4 @@ public class GearSlot extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
 }
-
+*/

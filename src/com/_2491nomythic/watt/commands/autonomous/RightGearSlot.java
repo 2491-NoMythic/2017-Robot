@@ -55,16 +55,16 @@ public class RightGearSlot extends CommandBase {
     	
     	case 3:
     		if(!secondDrive.isRunning()) {
-    			gearEject.start();
+    			//gearEject.start();
     			state++;
     		}
     		break;
     		
     	case 4:
-    		if(!gearEject.isRunning()) {
+    		//if(!gearEject.isRunning()) {
     			thirdDrive.start();
     			state++;
-    		}
+    		//}
     		break;
     		
     	case 5:

@@ -34,7 +34,7 @@ public class OI {
 		depositGear.whenPressed(new OpenAndEjectGearSlot());
 		
 		climb = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.climbButton);
-		climb.whenPressed(new Climb(0.1));
+		climb.whileHeld(new Climb(1.0));
 
 		
 	}

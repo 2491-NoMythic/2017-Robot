@@ -10,5 +10,5 @@ public class ControllerMap {
 	public static final int driveLockButton = 3;
 	public static final int followObjectButton = 7;
 	public static final int depositGearButton = 1;
-	public static final int climbButton = 8;
+	public static final int climbButton = 5;
 }

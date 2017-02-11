@@ -55,16 +55,16 @@ public class LeftGearSlot extends CommandBase {
     		
     	case 3:
     		if(!secondDrive.isRunning()) {
-    			ejectGear.start();
+    			//ejectGear.start();
     			state++;
     		}
     		break;
     		
     	case 4:
-    		if(!ejectGear.isRunning()) {
+    		//if(!ejectGear.isRunning()) {
     			thirdDrive.start();
     			state++;
-    		}
+    		//}
     		break;
     		
     	case 5:
