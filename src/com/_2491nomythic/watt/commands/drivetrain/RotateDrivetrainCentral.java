@@ -1,7 +1,6 @@
 package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
-import com._2491nomythic.watt.settings.Variables;
 
 import edu.wpi.first.wpilibj.Timer;
 
@@ -20,7 +19,7 @@ public class RotateDrivetrainCentral extends CommandBase {
     	timer = new Timer();
     	
     	//Positive speed rotates clockwise and negative speed rotates counter-clockwise.
-    	motorPower = power * Variables.lowGearMaxSpeed;
+    	motorPower = power;
     	rotateDuration = time;
     }
 

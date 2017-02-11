@@ -2,7 +2,6 @@ package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.ControllerMap;
-import com._2491nomythic.watt.settings.Variables;
 
 
 
@@ -28,10 +27,10 @@ public class DriveLock extends CommandBase {
     	yAxisValue = -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis);
     	xAxisValue = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis);
     	if (Math.abs(yAxisValue) > Math.abs(xAxisValue)) {
-    		drivetrain.drive(yAxisValue * Variables.lowGearMaxSpeed, yAxisValue * Variables.lowGearMaxSpeed, 0, 0);
+    		drivetrain.drive(yAxisValue, yAxisValue, 0, 0);
     	}
     	else {
-    		drivetrain.drive(0, 0, xAxisValue * Variables.lowGearMaxSpeed, xAxisValue * Variables.lowGearMaxSpeed);
+    		drivetrain.drive(0, 0, xAxisValue, xAxisValue);
     	}
     }
 
