@@ -2,6 +2,7 @@
 package com._2491nomythic.watt;
 
 import com._2491nomythic.watt.commands.CommandBase;
+import com._2491nomythic.watt.commands.PrintCameraValues;
 import com._2491nomythic.watt.commands.autonomous.CenterGearSlot;
 import com._2491nomythic.watt.commands.autonomous.DoNothing;
 import com._2491nomythic.watt.commands.autonomous.LeftGearSlot;
@@ -45,6 +46,7 @@ public class Robot extends IterativeRobot {
         chooser = new SendableChooser<Command>();
         SmartDashboard.putData("Reset Gyro", new ResetGyro());
         SmartDashboard.putData("Reset Encoders", new ResetEncoders());
+        SmartDashboard.putData("Print Camera Values", new PrintCameraValues());
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
         SmartDashboard.putNumber("Time to open GearSlot doors",Variables.timeToOpenGearSlot);
