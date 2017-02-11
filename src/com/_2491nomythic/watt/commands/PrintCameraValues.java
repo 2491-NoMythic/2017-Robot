@@ -1,8 +1,6 @@
 package com._2491nomythic.watt.commands;
 
 import com._2491nomythic.watt.settings.CameraException;
-import com._2491nomythic.watt.settings.CameraPacket;
-
 import edu.wpi.first.wpilibj.Timer;
 
 /**
@@ -35,11 +33,11 @@ public class PrintCameraValues extends CommandBase {
     protected void end() {
     	timer.stop();
     	try {
-			camera.readPacket();
+			camera.readPacket(2);
 		} catch (CameraException e) {
 			e.printStackTrace();
 		}
-    	System.out.println("X:" + CameraPacket.cameraX + " Y:" + CameraPacket.cameraY + " Width:" + CameraPacket.cameraWidth + " Height" + CameraPacket.cameraHeight);
+    	System.out.println("X:" + camera.packet.cameraX + " Y:" + camera.packet.cameraY + " Width:" + camera.packet.cameraWidth + " Height" + camera.packet.cameraHeight);
     }
 
     // Called when another command which requires one or more of the same

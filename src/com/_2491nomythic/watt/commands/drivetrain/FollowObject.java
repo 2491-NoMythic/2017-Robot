@@ -2,21 +2,23 @@ package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.CameraException;
-import com._2491nomythic.watt.settings.CameraPacket;
 
 /**
  *
  */
 public class FollowObject extends CommandBase {
-	private int centerX, targetHeight, targetWidth, state;
+	private int centerX, targetHeight, targetWidth, actualX, actualHeight, actualWidth, state;
 
-    public FollowObject(int x, int width, int height) {
+    public FollowObject() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(drivetrain);
-    	centerX = x;
-    	targetHeight = height;
-    	targetWidth = width;
+    	centerX = 340;
+    	targetHeight = 100;
+    	targetWidth = 50;
+    	actualX = camera.packet.cameraX;
+    	actualHeight = camera.packet.cameraHeight;
+    	actualWidth = camera.packet.cameraWidth;
     }
 
     // Called just before this Command runs the first time
@@ -27,14 +29,14 @@ public class FollowObject extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	try {
-			camera.readPacket();
+			camera.readPacket(2);
 		} 
     	catch (CameraException e) {
 			e.printStackTrace();
 		}
     	switch(state) {
     	case 0:
-    		if (centerX < (CameraPacket.cameraX - 1) && CameraPacket.cameraX != 0) {
+    		if (centerX < (actualX - 1)) {
     			drivetrain.driveLeft(.5);
     			drivetrain.driveRight(-.5);
     		}
@@ -42,18 +44,18 @@ public class FollowObject extends CommandBase {
     			state++;
     		}
     	case 1:
-    		if (centerX > (CameraPacket.cameraX + 1) && CameraPacket.cameraX != 0) {
+    		if (centerX > (actualX + 1)) {
     			drivetrain.driveLeft(-.5);
     			drivetrain.driveRight(.5);
     		}
     		else state++;
     	case 2:
-    		if (targetWidth < (CameraPacket.cameraWidth - 1) && targetHeight < (CameraPacket.cameraHeight - 1) && CameraPacket.cameraHeight != 0 && CameraPacket.cameraWidth !=0) {
+    		if (targetWidth < (actualWidth - 1) && targetHeight < (actualHeight - 1)) {
     			drivetrain.drive(.5);
     		}
     		else state++;
     	case 3:
-    		if (targetWidth > (CameraPacket.cameraWidth + 1) && targetHeight > (CameraPacket.cameraHeight + 1) && CameraPacket.cameraHeight != 0 && CameraPacket.cameraWidth != 0) {
+    		if (targetWidth > (actualWidth + 1) && targetHeight > (actualHeight + 1)) {
     			drivetrain.drive(-.5);
     		}
     	}
@@ -61,7 +63,7 @@ public class FollowObject extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return centerX == CameraPacket.cameraX && targetWidth == CameraPacket.cameraWidth && targetHeight == CameraPacket.cameraHeight;
+        return centerX == actualX && targetWidth == actualWidth && targetHeight == actualHeight;
     }
 
     // Called once after isFinished returns true
