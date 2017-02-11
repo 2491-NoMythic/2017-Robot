@@ -66,6 +66,8 @@ public class Drive extends CommandBase {
     	currentRightSpeed = Math.min(/*Variables.lowGearMaxRPM*/1, Math.abs(currentRightSpeed)) * (currentRightSpeed > 0? 1: -1);
     	
     	drivetrain.drive(currentLeftSpeed, currentRightSpeed, horizontalPower, horizontalPower);
+    	
+    	System.out.println(drivetrain.getLeftEncoderDistance());
     }
 
     // Make this return true when this Command no longer needs to run execute()
