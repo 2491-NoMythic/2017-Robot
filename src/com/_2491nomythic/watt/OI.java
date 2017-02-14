@@ -7,6 +7,7 @@ import com._2491nomythic.watt.commands.climber.Climb;
 import com._2491nomythic.watt.commands.drivetrain.DriveLock;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
 import com._2491nomythic.watt.commands.drivetrain.FollowObject;
+import com._2491nomythic.watt.commands.drivetrain.ManualShift;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.ControllerMap;
@@ -22,7 +23,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button driveLock, followObject, depositGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest;
+	Button driveLock, followObject, depositGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift;
 	
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
@@ -31,8 +32,8 @@ public class OI {
 		driveLock = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.driveLockButton);
 		driveLock.whileHeld(new DriveLock());
 		
-		followObject = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.followObjectButton);
-		followObject.whileHeld(new FollowObject());
+//		followObject = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.followObjectButton);
+//		followObject.whileHeld(new FollowObject());
 		
 		depositGear = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.depositGearButton);
 		depositGear.whenPressed(new OpenAndEjectGearSlot());
@@ -40,17 +41,11 @@ public class OI {
 		climb = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.climbButton);
 		climb.whileHeld(new Climb(1.0));
 		
-		autoLeftTest = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.autoTest1);
-		autoLeftTest.whenPressed(new LeftGearSlot());
-		
-		autoCenterTest = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.autoTest2);
-		autoCenterTest.whenPressed(new CenterGearSlot());
-		
-		autoRightTest = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.autoTest3);
-		autoRightTest.whenPressed(new RightGearSlot());
-
 		drive1FootTest = new JoystickButton(controllers[0], 6);
 		drive1FootTest.whenPressed(new DriveStraightToPosition(1, 1));
+		
+		shift = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.driveShiftButton);
+		shift.whileHeld(new ManualShift());
 	}
 	
 	/**
