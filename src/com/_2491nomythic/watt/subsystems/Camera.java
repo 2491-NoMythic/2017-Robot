@@ -75,11 +75,11 @@ public class Camera extends Subsystem {
 			}
 			//after verifying that a valid packet has been detected, this assigns
 			//the packet's data to globally accessible variables
-			packets[sig - 1].cameraX = datToInt(rawData[i+7], rawData[i+8]);
-			packets[sig - 1].cameraY = datToInt(rawData[i+9], rawData[i+10]);
-			packets[sig - 1].cameraWidth = datToInt(rawData[i+11], rawData[i+12]);
-			packets[sig - 1].cameraHeight = datToInt(rawData[i+13], rawData[i+14]);
-			if (checkSum != sig + packets[sig - 1].cameraX + packets[sig - 1].cameraY + packets[sig - 1].cameraWidth + packets[sig - 1].cameraHeight) {
+			packets[sig - 1].pixX = datToInt(rawData[i+7], rawData[i+8]);
+			packets[sig - 1].pixY = datToInt(rawData[i+9], rawData[i+10]);
+			packets[sig - 1].pixWidth = datToInt(rawData[i+11], rawData[i+12]);
+			packets[sig - 1].pixHeight = datToInt(rawData[i+13], rawData[i+14]);
+			if (checkSum != sig + packets[sig - 1].pixX + packets[sig - 1].pixY + packets[sig - 1].pixWidth + packets[sig - 1].pixHeight) {
 				packets[sig - 1] = null;
 				throw camExc;
 			}
