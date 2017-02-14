@@ -7,11 +7,9 @@ public class ControllerMap {
 	public static final int driveVerticalAxis = 1;
 	public static final int driveHorizontalAxis = 0;
 	public static final int driveTurnAxis = 2;
+	public static final int driveShiftButton = 1;
 	public static final int driveLockButton = 3;
 	public static final int followObjectButton = 7;
 	public static final int depositGearButton = 12;
 	public static final int climbButton = 5;
-	public static final int autoTest1 = 9;
-	public static final int autoTest2 = 10;
-	public static final int autoTest3 = 11;
 }

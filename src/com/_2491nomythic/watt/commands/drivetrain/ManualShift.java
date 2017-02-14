@@ -1,23 +1,20 @@
-package com._2491nomythic.watt.commands;
+package com._2491nomythic.watt.commands.drivetrain;
 
-import com._2491nomythic.watt.settings.CameraException;
-import edu.wpi.first.wpilibj.Timer;
+import com._2491nomythic.watt.commands.CommandBase;
 
 /**
  *
  */
-public class PrintCameraValues extends CommandBase {
-	private Timer timer;
+public class ManualShift extends CommandBase {
 
-    public PrintCameraValues() {
+    public ManualShift() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	timer.reset();
-    	timer.start();
+    	drivetrain.shiftToHighGear();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -26,18 +23,12 @@ public class PrintCameraValues extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return timer.get() > 1;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	timer.stop();
-    	try {
-			camera.readPacket(2);
-		} catch (CameraException e) {
-			e.printStackTrace();
-		}
-    	System.out.println("X:" + camera.packet.pixX + " Y:" + camera.packet.pixY + " Width:" + camera.packet.pixWidth + " Height" + camera.packet.pixHeight);
+    	drivetrain.shiftToLowGear();
     }
 
     // Called when another command which requires one or more of the same
