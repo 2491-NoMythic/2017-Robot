@@ -16,9 +16,9 @@ public class FollowObject extends CommandBase {
     	centerX = 340;
     	targetHeight = 100;
     	targetWidth = 50;
-    	actualX = camera.packet.cameraX;
-    	actualHeight = camera.packet.cameraHeight;
-    	actualWidth = camera.packet.cameraWidth;
+    	actualX = camera.packet.pixX;
+    	actualHeight = camera.packet.pixHeight;
+    	actualWidth = camera.packet.pixWidth;
     }
 
     // Called just before this Command runs the first time

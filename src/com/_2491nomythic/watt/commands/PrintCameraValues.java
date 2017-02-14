@@ -37,7 +37,7 @@ public class PrintCameraValues extends CommandBase {
 		} catch (CameraException e) {
 			e.printStackTrace();
 		}
-    	System.out.println("X:" + camera.packet.cameraX + " Y:" + camera.packet.cameraY + " Width:" + camera.packet.cameraWidth + " Height" + camera.packet.cameraHeight);
+    	System.out.println("X:" + camera.packet.pixX + " Y:" + camera.packet.pixY + " Width:" + camera.packet.pixWidth + " Height" + camera.packet.pixHeight);
     }
 
     // Called when another command which requires one or more of the same
