@@ -32,8 +32,8 @@ public class OI {
 		driveLock = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.driveLockButton);
 		driveLock.whileHeld(new DriveLock());
 		
-		followObject = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.followObjectButton);
-		followObject.whileHeld(new FollowObject());
+//		followObject = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.followObjectButton);
+//		followObject.whileHeld(new FollowObject());
 		
 		depositGear = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.depositGearButton);
 		depositGear.whenPressed(new OpenAndEjectGearSlot());
@@ -41,15 +41,6 @@ public class OI {
 		climb = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.climbButton);
 		climb.whileHeld(new Climb(1.0));
 		
-		autoLeftTest = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.autoTest1);
-		autoLeftTest.whenPressed(new LeftGearSlot());
-		
-		autoCenterTest = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.autoTest2);
-		autoCenterTest.whenPressed(new CenterGearSlot());
-		
-		autoRightTest = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.autoTest3);
-		autoRightTest.whenPressed(new RightGearSlot());
-
 		drive1FootTest = new JoystickButton(controllers[0], 6);
 		drive1FootTest.whenPressed(new DriveStraightToPosition(1, 1));
 		
