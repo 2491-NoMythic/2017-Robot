@@ -34,6 +34,7 @@ public class UpdateDriverstation extends CommandBase {
 			nextRun = nextRun + 0.1;
 			
 			Variables.useLinearAcceleration = SmartDashboard.getBoolean("Use Linear Acceleration", true);
+			SmartDashboard.putNumber("Gyro in Degrees", drivetrain.getGyroAngle());
 			Variables.lowGearMaxSpeed = SmartDashboard.getNumber("Low Gear Max Speed (ft/s)", Variables.lowGearMaxSpeed);
 			SmartDashboard.putBoolean("Use Linear Acceleration", Variables.useLinearAcceleration);
 			SmartDashboard.putNumber("Low Gear Max Speed (ft/s)", Variables.lowGearMaxSpeed);
