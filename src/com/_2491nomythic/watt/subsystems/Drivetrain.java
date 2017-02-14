@@ -52,7 +52,7 @@ public class Drivetrain extends PIDSubsystem {
 		encoderRight.setDistancePerPulse(Constants.driveEncoderToFeet);
 		encoderCenter.setDistancePerPulse(Constants.driveEncoderToFeet);
 		
-		//shifter = new Solenoid(Constants.driveSolenoidChannel);
+		shifter = new Solenoid(Constants.driveSolenoidChannel);
 		
 		gyro = new AHRS(SerialPort.Port.kUSB);
 	}
