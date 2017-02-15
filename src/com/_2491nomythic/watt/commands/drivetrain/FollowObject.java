@@ -29,7 +29,7 @@ public class FollowObject extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	try {
-			camera.readPacket(2);
+			camera.readPacket();
 		} 
     	catch (CameraException e) {
 			e.printStackTrace();

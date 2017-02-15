@@ -18,6 +18,7 @@ public class Camera extends Subsystem {
 	private CameraException camExc;
 	private CameraPacket[] packets;
 	public CameraPacket packet;
+	private int sig;
 	
 	private Camera() {
 		packets = new CameraPacket[7];
@@ -44,9 +45,8 @@ public class Camera extends Subsystem {
 		return (((int)upper & 0xff) << 8) | ((int)lower & 0xff);
 	}
 	//this method reads packets, how nice.
-	public CameraPacket readPacket(int signature) throws CameraException {
+	public void readPacket() throws CameraException {
 		int checkSum;
-		int sig;
 		byte[] rawData = new byte[32];
 		try {//this first bit makes sure the packet is long enough to be valid
 			rawData = pixy.read(32);	
@@ -55,7 +55,7 @@ public class Camera extends Subsystem {
 		}
 		if (rawData.length < 32) {
 			System.out.println("Invalid packet length");
-			return null;
+			packet = null;
 		}
 		//the following bit makes sure a packet is valid and readable by checking the
 		//first portion of the packet, which indicates that the rest is ok
@@ -85,9 +85,8 @@ public class Camera extends Subsystem {
 			}
 			break;
 	}
-		packet = packets[signature - 1];
-		packets[signature - 1] = null;
-		return packet;
+		packet = packets[sig - 1];
+		packets[sig - 1] = null;
 }
 	
 	
