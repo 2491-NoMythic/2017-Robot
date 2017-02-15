@@ -15,6 +15,8 @@ public class Variables {
 	public static double highGearRatio = 4.72;
 	public static double highGearMaxRPM = (highGearMaxSpeed / wheelCircumference) * highGearRatio * 60;
 	
+	public static double driveRestriction = 1;
+	
 	//Shifting Constants
 	public static double shiftUpSpeed = 1000;
 	public static double shiftDownSpeed = 1000;
