@@ -18,8 +18,8 @@ public class Variables {
 	public static double driveRestriction = 1;
 	
 	//Shifting Constants
-	public static double shiftUpSpeed = 1000;
-	public static double shiftDownSpeed = 1000;
+	public static double shiftUpSpeed = lowGearMaxRPM * 3 / 4;
+	public static double shiftDownSpeed = highGearMaxRPM / 4;
 	
 	//PID Constants
 	public static double drivetrainPID_P = 1.0;

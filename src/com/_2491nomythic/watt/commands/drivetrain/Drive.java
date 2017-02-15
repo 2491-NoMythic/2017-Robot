@@ -30,6 +30,13 @@ public class Drive extends CommandBase {
     protected void execute() {
     	turnSpeed = 0.5 * oi.getAxisDeadzonedSquared(ControllerMap.turnDriveController, ControllerMap.driveTurnAxis);
     	
+    	if (Math.abs(drivetrain.getLeftEncoderRate()) > Variables.shiftUpSpeed && Math.abs(drivetrain.getRightEncoderRate()) > Variables.shiftUpSpeed && !isShifted) {
+    		drivetrain.shiftToHighGear();
+    	}
+    	else if (Math.abs(drivetrain.getLeftEncoderRate()) < Variables.shiftDownSpeed && Math.abs(drivetrain.getRightEncoderRate()) < Variables.shiftDownSpeed && isShifted) {
+    		drivetrain.shiftToLowGear();
+    	}
+    	
     	lastLeftSpeed = currentLeftSpeed;
 		lastRightSpeed = currentRightSpeed;
 		currentLeftSpeed = /*Variables.lowGearMaxRPM * */(-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) + turnSpeed);
