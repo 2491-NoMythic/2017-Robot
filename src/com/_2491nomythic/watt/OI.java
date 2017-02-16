@@ -95,9 +95,9 @@ public class OI {
 	 *            The id of the axis (for use in getRawAxis)
 	 * @return the deadzoned result from running getRawAxis
 	 */
-	public double getAxisDeadzoned(int joystickID, int axisID) {
+	public double getAxisDeadzoned(int joystickID, int axisID, double deadzone) {
 		double result = -controllers[joystickID].getRawAxis(axisID);
-		return Math.abs(result) > 0.05 ? result : 0;
+		return Math.abs(result) > deadzone ? result : 0;
 	}
 	
 	/**
@@ -109,10 +109,10 @@ public class OI {
 	 *            The id of the axis (for use in getRawAxis)
 	 * @return the squared, deadzoned result from running getRawAxis
 	 */
-	public double getAxisDeadzonedSquared(int joystickID, int axisID) {
+	public double getAxisDeadzonedSquared(int joystickID, int axisID, double deadzone) {
 		double result = controllers[joystickID].getRawAxis(axisID);
 		result = result * Math.abs(result);
-		return Math.abs(result) > 0.05 ? result : 0;
+		return Math.abs(result) > deadzone ? result : 0;
 	}
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
