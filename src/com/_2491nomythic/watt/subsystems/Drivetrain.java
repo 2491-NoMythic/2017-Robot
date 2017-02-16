@@ -56,8 +56,8 @@ public class Drivetrain extends PIDSubsystem {
 		right2.set(right1.getDeviceID());
 		right3.set(right1.getDeviceID());
 		
-		left1.setFeedbackDevice(FeedbackDevice.AnalogEncoder);
-		right1.setFeedbackDevice(FeedbackDevice.AnalogEncoder);
+		left1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		right1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		
 		encoderCenter = new Encoder(Constants.driveEncoderCenterChannel1, Constants.driveEncoderCenterChannel2, false, CounterBase.EncodingType.k1X);
 		encoderCenter.setDistancePerPulse(Constants.driveEncoderToFeet);
