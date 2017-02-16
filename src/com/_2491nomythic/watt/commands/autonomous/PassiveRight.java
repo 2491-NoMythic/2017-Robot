@@ -2,36 +2,59 @@ package com._2491nomythic.watt.commands.autonomous;
 
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
-import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
+import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 
 /**
  *
  */
-public class CenterGearSlot extends CommandBase {
+public class PassiveRight extends CommandBase {
 	private DriveStraightToPosition firstDrive, secondDrive;
-	private OpenAndEjectGearSlot gearDeposit;
+	private RotateDrivetrainWithGyro rotate1;
+	private int state;
 
-    public CenterGearSlot() {
+    public PassiveRight() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	firstDrive = new DriveStraightToPosition(1, 7.7);
-    	secondDrive = new DriveStraightToPosition(-1, -1.5);
-    	gearDeposit = new OpenAndEjectGearSlot();
+    	firstDrive = new DriveStraightToPosition(1,8.75);
+    	secondDrive = new DriveStraightToPosition(1,2.92);
+    	rotate1 = new RotateDrivetrainWithGyro(0.5,-60);
+    	state = 0;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	firstDrive.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(!firstDrive.isRunning()) {
-//    		gearDeposit.start();
-//    		if(!gearDeposit.isRunning()) {
+    	switch(state) {
+    	case 0:
+    		firstDrive.start();
+    		state++;
+    		break;
+    		
+    	case 1:
+    		if(!firstDrive.isRunning()) {
+    			rotate1.start();
+    			state++;
+    		}
+    		break;
+    	
+    	case 2:
+    		if(!rotate1.isRunning()) {
     			secondDrive.start();
-//    		}
-    	}	
+    			state++;
+    		}
+    		break;
+    		
+    	case 3:
+    		
+    		break;
+    		
+    	default:
+    		System.out.println("Error in auto switchcase. Case: " + state);
+    		break;
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -48,6 +71,6 @@ public class CenterGearSlot extends CommandBase {
     protected void interrupted() {
     	firstDrive.cancel();
     	secondDrive.cancel();
-    	gearDeposit.cancel();
+    	rotate1.cancel();
     }
 }

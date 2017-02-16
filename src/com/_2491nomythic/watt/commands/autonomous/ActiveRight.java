@@ -8,22 +8,22 @@ import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 /**
  *
  */
-public class LeftGearSlot extends CommandBase {
+public class ActiveRight extends CommandBase {
 	private DriveStraightToPosition firstDrive, secondDrive, thirdDrive, fourthDrive;
-	private OpenAndEjectGearSlot ejectGear;
+	private OpenAndEjectGearSlot gearEject;
 	private RotateDrivetrainWithGyro rotateDrivetrain1, rotateDrivetrain2;
 	private int state;
 
-    public LeftGearSlot() {
+    public ActiveRight() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	firstDrive = new DriveStraightToPosition(1, 8.75);
     	secondDrive = new DriveStraightToPosition(1, 2.92);
     	thirdDrive = new DriveStraightToPosition(-1, -2.92);
     	fourthDrive = new DriveStraightToPosition(1, 7.5);
-    	ejectGear = new OpenAndEjectGearSlot();
-    	rotateDrivetrain1 = new RotateDrivetrainWithGyro(0.75, 60);
-    	rotateDrivetrain2 = new RotateDrivetrainWithGyro(0.75, -60);
+    	gearEject = new OpenAndEjectGearSlot();
+    	rotateDrivetrain1 = new RotateDrivetrainWithGyro(0.50, -60);
+    	rotateDrivetrain2 = new RotateDrivetrainWithGyro(0.50, 60);
     }
 
     // Called just before this Command runs the first time
@@ -38,7 +38,7 @@ public class LeftGearSlot extends CommandBase {
     		firstDrive.start();
     		state++;
     		break;
-    	
+    		
     	case 1:
     		if(!firstDrive.isRunning()) {
     			rotateDrivetrain1.start();
@@ -52,19 +52,19 @@ public class LeftGearSlot extends CommandBase {
     			state++;
     		}
     		break;
-    		
+    	
     	case 3:
     		if(!secondDrive.isRunning()) {
-    			//ejectGear.start();
+    			gearEject.start();
     			state++;
     		}
     		break;
     		
     	case 4:
-    		//if(!ejectGear.isRunning()) {
+    		if (!gearEject.isRunning()) {
     			thirdDrive.start();
     			state++;
-    		//}
+    		}
     		break;
     		
     	case 5:
@@ -80,13 +80,12 @@ public class LeftGearSlot extends CommandBase {
     			state++;
     		}
     		break;
-    		
     	case 7:
     		
     		break;
-    		
+    	
     	default:
-    		System.out.println("Something went wrong in autonomous switchcase. State: " + state);
+    		System.out.println("Something wrong in auto switchcase. State: " + state);
     	}
     }
 
@@ -97,6 +96,7 @@ public class LeftGearSlot extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+    	
     }
 
     // Called when another command which requires one or more of the same
@@ -106,7 +106,7 @@ public class LeftGearSlot extends CommandBase {
     	secondDrive.cancel();
     	thirdDrive.cancel();
     	fourthDrive.cancel();
-    	ejectGear.cancel();
+    	gearEject.cancel();
     	rotateDrivetrain1.cancel();
     	rotateDrivetrain2.cancel();
     }
