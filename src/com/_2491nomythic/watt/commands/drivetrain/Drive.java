@@ -32,8 +32,29 @@ public class Drive extends CommandBase {
     	
     	lastLeftSpeed = currentLeftSpeed;
 		lastRightSpeed = currentRightSpeed;
-		currentLeftSpeed = /*Variables.lowGearMaxRPM * */(-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) + turnSpeed);
-		currentRightSpeed = /*Variables.lowGearMaxRPM * */(-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) - turnSpeed);
+    	
+    	if (lastLeftSpeed > Variables.shiftUpSpeed && lastRightSpeed > Variables.shiftUpSpeed && !isShifted) {
+    		drivetrain.shiftToHighGear();
+    		lastLeftSpeed *= Variables.shiftUpNewPower;
+    		lastRightSpeed *= Variables.shiftUpNewPower;
+    		isShifted = true;
+    	}
+    	else if (lastLeftSpeed < Variables.shiftDownSpeed && lastRightSpeed < Variables.shiftDownSpeed && isShifted) {
+    		drivetrain.shiftToLowGear();
+    		lastLeftSpeed *= Variables.shiftDownNewPower;
+    		lastRightSpeed *= Variables.shiftDownNewPower;
+    		isShifted = false;
+    	}
+    	
+		if (isShifted) {
+    		currentLeftSpeed = 0.25 + 0.75 * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) + turnSpeed);
+			currentRightSpeed = 0.25 + 0.75 * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) - turnSpeed);
+		}
+		else {
+    		currentLeftSpeed = 0.75 * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) + turnSpeed);
+			currentRightSpeed = 0.75 * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) - turnSpeed);
+		}
+		
 		if (Variables.useLinearAcceleration) {
 			double leftAcceleration = (currentLeftSpeed - lastLeftSpeed);
 			double signOfLeftAcceleration = leftAcceleration / Math.abs(leftAcceleration);

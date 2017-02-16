@@ -20,6 +20,8 @@ public class Variables {
 	//Shifting Constants
 	public static double shiftUpSpeed = 1000;
 	public static double shiftDownSpeed = 1000;
+	public static double shiftUpNewPower = 0.5;
+	public static double shiftDownNewPower = 0.9;
 	
 	//PID Constants
 	public static double drivetrainPID_P = 1.0;
