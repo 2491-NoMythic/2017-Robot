@@ -32,9 +32,11 @@ public class Drive extends CommandBase {
     	
     	if (Math.abs(drivetrain.getLeftEncoderRate()) > Variables.shiftUpSpeed && Math.abs(drivetrain.getRightEncoderRate()) > Variables.shiftUpSpeed && !isShifted) {
     		drivetrain.shiftToHighGear();
+    		isShifted = true;
     	}
     	else if (Math.abs(drivetrain.getLeftEncoderRate()) < Variables.shiftDownSpeed && Math.abs(drivetrain.getRightEncoderRate()) < Variables.shiftDownSpeed && isShifted) {
     		drivetrain.shiftToLowGear();
+    		isShifted = false;
     	}
     	
     	lastLeftSpeed = currentLeftSpeed;
