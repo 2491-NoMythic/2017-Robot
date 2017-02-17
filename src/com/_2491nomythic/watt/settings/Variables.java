@@ -29,5 +29,6 @@ public class Variables {
 	//GearSlot stuff
 	public static double timeToOpenGearSlot = 0.5;
 	public static double timeToEjectGear = 0.25;
+	public static boolean ejected = false;
 
 }
