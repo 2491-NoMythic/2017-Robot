@@ -40,7 +40,7 @@ public class OI {
 		depositGear.whenPressed(new OpenAndEjectGearSlot());
 		
 		climb = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.climbButton);
-		climb.whileHeld(new Climb(1.0));
+		climb.whileHeld(new Climb());
 		
 		shift = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.driveShiftButton);
 		shift.whileHeld(new ManualShift());
