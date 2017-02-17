@@ -3,10 +3,13 @@ package com._2491nomythic.watt;
 
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.commands.PrintCameraValues;
-import com._2491nomythic.watt.commands.autonomous.CenterGearSlot;
+import com._2491nomythic.watt.commands.autonomous.ActiveCenter;
 import com._2491nomythic.watt.commands.autonomous.DoNothing;
-import com._2491nomythic.watt.commands.autonomous.LeftGearSlot;
-import com._2491nomythic.watt.commands.autonomous.RightGearSlot;
+import com._2491nomythic.watt.commands.autonomous.PassiveCenter;
+import com._2491nomythic.watt.commands.autonomous.PassiveLeft;
+import com._2491nomythic.watt.commands.autonomous.PassiveRight;
+import com._2491nomythic.watt.commands.autonomous.ActiveLeft;
+import com._2491nomythic.watt.commands.autonomous.ActiveRight;
 import com._2491nomythic.watt.commands.drivetrain.DriveGyroPID;
 import com._2491nomythic.watt.commands.drivetrain.DriveSpeedTime;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
@@ -56,9 +59,12 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Turn 90 Degrees", new DriveGyroPID(90));
         chooser.addObject("Do Nothing", new DoNothing());
         chooser.addObject("Drive 1 Foot",new DriveStraightToPosition(1,1));
-        chooser.addObject("Right GearSlot", new RightGearSlot());
-        chooser.addObject("Left GearSlot", new LeftGearSlot());
-        chooser.addObject("Center GearSlot", new CenterGearSlot());
+        chooser.addObject("Active Right GearSlot", new ActiveRight());
+        chooser.addObject("Active Left GearSlot", new ActiveLeft());
+        chooser.addObject("Active Center GearSlot", new ActiveCenter());
+        chooser.addObject("Passive Right GearSlot", new PassiveRight());
+        chooser.addObject("Passive Center GearSlot", new PassiveCenter());
+        chooser.addObject("Passive Left GearSlot", new PassiveLeft());
         SmartDashboard.putBoolean("Use Linear Acceleration",Variables.useLinearAcceleration);
         SmartDashboard.putData("Drive with speed for 2 secs", new DriveSpeedTime(30, 2));
         

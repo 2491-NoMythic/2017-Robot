@@ -1,23 +1,23 @@
-package com._2491nomythic.watt.commands;
+package com._2491nomythic.watt.commands.autonomous;
 
-import com._2491nomythic.watt.settings.CameraException;
-import edu.wpi.first.wpilibj.Timer;
+import com._2491nomythic.watt.commands.CommandBase;
+import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
 
 /**
  *
  */
-public class PrintCameraValues extends CommandBase {
-	private Timer timer;
+public class PassiveCenter extends CommandBase {
+	private DriveStraightToPosition firstDrive;
 
-    public PrintCameraValues() {
+    public PassiveCenter() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	firstDrive = new DriveStraightToPosition(1,7.7);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	timer.reset();
-    	timer.start();
+    	firstDrive.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -26,23 +26,16 @@ public class PrintCameraValues extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return timer.get() > 1;
+        return !firstDrive.isRunning();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	timer.stop();
-    	try {
-			camera.readPacket();
-		} catch (CameraException e) {
-			e.printStackTrace();
-		}
-    	System.out.println("X:" + camera.packet.pixX + " Y:" + camera.packet.pixY + " Width:" + camera.packet.pixWidth + " Height" + camera.packet.pixHeight);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
+    	firstDrive.cancel();
     }
 }
