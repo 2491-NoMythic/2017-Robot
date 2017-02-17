@@ -1,12 +1,7 @@
 package com._2491nomythic.watt;
 
-import com._2491nomythic.watt.commands.autonomous.ActiveCenter;
-import com._2491nomythic.watt.commands.autonomous.ActiveLeft;
-import com._2491nomythic.watt.commands.autonomous.ActiveRight;
 import com._2491nomythic.watt.commands.climber.Climb;
 import com._2491nomythic.watt.commands.drivetrain.DriveLock;
-import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
-import com._2491nomythic.watt.commands.drivetrain.FollowObject;
 import com._2491nomythic.watt.commands.drivetrain.ManualShift;
 import com._2491nomythic.watt.commands.drivetrain.NoTurnLock;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
