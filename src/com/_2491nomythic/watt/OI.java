@@ -4,8 +4,6 @@ import com._2491nomythic.watt.commands.climber.Climb;
 import com._2491nomythic.watt.commands.drivetrain.DriveLock;
 import com._2491nomythic.watt.commands.drivetrain.ManualShift;
 import com._2491nomythic.watt.commands.drivetrain.NoTurnLock;
-import com._2491nomythic.watt.commands.gearslot.EjectGear;
-import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 import com._2491nomythic.watt.commands.gearslot.ToggleEjector;
 import com._2491nomythic.watt.commands.gearslot.ToggleGearSlot;
 import com._2491nomythic.watt.settings.Constants;
@@ -34,8 +32,8 @@ public class OI {
 //		followObject = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.followObjectButton);
 //		followObject.whileHeld(new FollowObject());
 		
-		climb = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.climbButton);
-		climb.whileHeld(new Climb(1.0));
+		climb = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.climbButton);
+		climb.whileHeld(new Climb());
 		
 		shift = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.driveShiftButton);
 		shift.whileHeld(new ManualShift());

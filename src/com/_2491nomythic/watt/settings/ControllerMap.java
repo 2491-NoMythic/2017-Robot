@@ -9,6 +9,7 @@ public class ControllerMap {
 	public static final int driveShiftButton = 1;
 	public static final int driveLockButton = 3;
 	public static final int followObjectButton = 7;
+	public static final int climbThrottleAxis = 3;
 	public static final int noTurnLockButton = 4;
 	
 	//Operator
