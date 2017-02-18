@@ -26,7 +26,6 @@ public class Constants {
 	//Climber
 	public static final int climberTalonLeftChannel = 18;
 	public static final int climberTalonRightChannel = 20;
-	public static final int climberLimitSwitchChannel = 2;
 	
 	//GearSlot
 	
