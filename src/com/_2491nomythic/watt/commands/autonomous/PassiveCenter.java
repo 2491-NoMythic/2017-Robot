@@ -2,12 +2,14 @@ package com._2491nomythic.watt.commands.autonomous;
 
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
+import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 
 /**
  *
  */
 public class PassiveCenter extends CommandBase {
 	private DriveStraightToPosition firstDrive;
+	private ResetEncoders reset;
 
     public PassiveCenter() {
         // Use requires() here to declare subsystem dependencies
@@ -17,6 +19,7 @@ public class PassiveCenter extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	reset.start();
     	firstDrive.start();
     }
 

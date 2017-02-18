@@ -2,6 +2,7 @@ package com._2491nomythic.watt.commands.autonomous;
 
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
+import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 
 /**
@@ -10,6 +11,7 @@ import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 public class PassiveRight extends CommandBase {
 	private DriveStraightToPosition firstDrive, secondDrive;
 	private RotateDrivetrainWithGyro rotate1;
+	private ResetEncoders reset;
 	private int state;
 
     public PassiveRight() {
@@ -23,6 +25,7 @@ public class PassiveRight extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	reset.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
