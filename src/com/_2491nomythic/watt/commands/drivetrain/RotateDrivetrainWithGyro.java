@@ -17,18 +17,18 @@ public class RotateDrivetrainWithGyro extends CommandBase {
     	requires(drivetrain);
     	this.speed = speed;
     	this.angle = angle;
-    	initialAngle = drivetrain.getGyroAngle();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	initialAngle = drivetrain.getGyroAngle();
     	if(angle > 0) {
     		direction = 1;
     	}
     	else if(angle < 0) {
     		direction = -1;
     	}
-    	drivetrain.drive(direction * speed, -direction * speed);
+    	drivetrain.drive(direction * speed, -direction * speed, 0, 0);
     }
 
     // Called repeatedly when this Command is scheduled to run
