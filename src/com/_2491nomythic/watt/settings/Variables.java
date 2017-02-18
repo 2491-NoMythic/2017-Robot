@@ -7,13 +7,13 @@ public class Variables {
 	public static double accelerationSpeed = 0.07;
 	public static double wheelCircumference = 0.5 * Math.PI;
 	
-	public static double lowGearMaxSpeed = 6.51;
+	public static double lowGearMaxSpeedFeetPerSecond = 6.51;
 	public static double lowGearRatio = 17.36;
-	public static double lowGearMaxRPM = (lowGearMaxSpeed / wheelCircumference) * lowGearRatio * 60;
+	public static double lowGearMaxSpeed = (lowGearMaxSpeedFeetPerSecond / wheelCircumference) * 256 / 10;
 	
-	public static double highGearMaxSpeed = 23.94;
+	public static double highGearMaxSpeedFeetPerSecond = 23.94;
 	public static double highGearRatio = 4.72;
-	public static double highGearMaxRPM = (highGearMaxSpeed / wheelCircumference) * highGearRatio * 60;
+	public static double highGearMaxSpeed = (highGearMaxSpeedFeetPerSecond / wheelCircumference) * highGearRatio * 60;
 	
 	public static double driveRestriction = 1;
 	

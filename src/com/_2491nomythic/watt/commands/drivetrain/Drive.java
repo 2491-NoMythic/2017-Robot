@@ -32,8 +32,8 @@ public class Drive extends CommandBase {
     	
     	lastLeftSpeed = currentLeftSpeed;
 		lastRightSpeed = currentRightSpeed;
-		currentLeftSpeed = /*Variables.lowGearMaxRPM * */(-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) + turnSpeed);
-		currentRightSpeed = /*Variables.lowGearMaxRPM * */(-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) - turnSpeed);
+		currentLeftSpeed = /*Variables.lowGearMaxSpeed * */(-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) + turnSpeed);
+		currentRightSpeed = /*Variables.lowGearMaxSpeed * */(-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) - turnSpeed);
 		if (Variables.useLinearAcceleration) {
 			double leftAcceleration = (currentLeftSpeed - lastLeftSpeed);
 			double signOfLeftAcceleration = leftAcceleration / Math.abs(leftAcceleration);
@@ -62,8 +62,8 @@ public class Drive extends CommandBase {
     	
     	horizontalPower = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, 0.05);
     	
-    	currentLeftSpeed = Math.min(/*Variables.lowGearMaxRPM*/1, Math.abs(currentLeftSpeed)) * (currentLeftSpeed > 0? 1: -1);
-    	currentRightSpeed = Math.min(/*Variables.lowGearMaxRPM*/1, Math.abs(currentRightSpeed)) * (currentRightSpeed > 0? 1: -1);
+    	currentLeftSpeed = Math.min(/*Variables.lowGearMaxSpeed*/1, Math.abs(currentLeftSpeed)) * (currentLeftSpeed > 0? 1: -1);
+    	currentRightSpeed = Math.min(/*Variables.lowGearMaxSpeed*/1, Math.abs(currentRightSpeed)) * (currentRightSpeed > 0? 1: -1);
     	
     	drivetrain.drive(currentLeftSpeed, currentRightSpeed, horizontalPower, horizontalPower);
     }
