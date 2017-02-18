@@ -1,6 +1,7 @@
 package com._2491nomythic.watt;
 
 import com._2491nomythic.util.JoystickPOVButton;
+import com._2491nomythic.watt.commands.autonomous.SpeedTest;
 import com._2491nomythic.watt.commands.climber.Climb;
 import com._2491nomythic.watt.commands.drivetrain.DriveLock;
 import com._2491nomythic.watt.commands.drivetrain.ManualShift;
@@ -22,7 +23,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button driveLock, followObject, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight;
+	Button driveLock, followObject, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest;
 	
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
@@ -55,6 +56,9 @@ public class OI {
 		
 		rotateRight = new JoystickPOVButton(controllers[ControllerMap.mainDriveController], ControllerMap.rotateDrivetrainRightPOV);
 		rotateRight.whenPressed(new RotateDrivetrainWithGyro(1, 47));
+		
+		speedTest = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.speedTestButton);
+		speedTest.whileHeld(new SpeedTest(12));
 	}
 	
 	/**
