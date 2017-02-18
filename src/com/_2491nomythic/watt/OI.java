@@ -1,7 +1,6 @@
 package com._2491nomythic.watt;
 
 import com._2491nomythic.util.JoystickPOVButton;
-import com._2491nomythic.watt.commands.autonomous.SpeedTest;
 import com._2491nomythic.watt.commands.climber.Climb;
 import com._2491nomythic.watt.commands.drivetrain.DriveLock;
 import com._2491nomythic.watt.commands.drivetrain.ManualShift;
@@ -57,8 +56,6 @@ public class OI {
 		rotateRight = new JoystickPOVButton(controllers[ControllerMap.mainDriveController], ControllerMap.rotateDrivetrainRightPOV);
 		rotateRight.whenPressed(new RotateDrivetrainWithGyro(1, 47));
 		
-		speedTest = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.speedTestButton);
-		speedTest.whileHeld(new SpeedTest(12));
 	}
 	
 	/**
