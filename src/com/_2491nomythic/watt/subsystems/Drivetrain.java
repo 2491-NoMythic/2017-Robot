@@ -4,6 +4,7 @@ import com._2491nomythic.watt.commands.drivetrain.Drive;
 import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.Variables;
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 import com.kauailabs.navx.frc.AHRS;
 
@@ -18,7 +19,7 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
  */
 public class Drivetrain extends PIDSubsystem {
 	private CANTalon left1, left2, left3, centerLeft, centerRight, right1, right2, right3;
-	private Encoder encoderLeft, encoderRight, encoderCenter;
+	private Encoder encoderCenter;
 	private Solenoid shifter;
 	private double currentPIDOutput;
 	private AHRS gyro;
@@ -48,11 +49,23 @@ public class Drivetrain extends PIDSubsystem {
 		right2 = new CANTalon(Constants.driveTalonRight2Channel);
 		right3 = new CANTalon(Constants.driveTalonRight3Channel);
 		
-		encoderLeft = new Encoder(Constants.driveEncoderLeftChannel1, Constants.driveEncoderLeftChannel2, false, CounterBase.EncodingType.k1X);
-		encoderRight = new Encoder(Constants.driveEncoderRightChannel1, Constants.driveEncoderRightChannel2, false, CounterBase.EncodingType.k1X);
+		left2.changeControlMode(TalonControlMode.Follower);
+		left3.changeControlMode(TalonControlMode.Follower);
+		right2.changeControlMode(TalonControlMode.Follower);
+		right3.changeControlMode(TalonControlMode.Follower);
+		
+		left2.set(left1.getDeviceID());
+		left3.set(left1.getDeviceID());
+		right2.set(right1.getDeviceID());
+		right3.set(right1.getDeviceID());
+		
+		left1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		right1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		
+		left1.configEncoderCodesPerRev(256);
+		right1.configEncoderCodesPerRev(256);
+		
 		encoderCenter = new Encoder(Constants.driveEncoderCenterChannel1, Constants.driveEncoderCenterChannel2, false, CounterBase.EncodingType.k1X);
-		encoderLeft.setDistancePerPulse(Constants.driveEncoderToFeet);
-		encoderRight.setDistancePerPulse(Constants.driveEncoderToFeet);
 		encoderCenter.setDistancePerPulse(Constants.driveEncoderToFeet);
 		
 		shifter = new Solenoid(Constants.driveSolenoidChannel);
@@ -76,14 +89,10 @@ public class Drivetrain extends PIDSubsystem {
 	
 	public void driveLeft(double speed){
 		left1.set(-speed);
-		left2.set(-speed);
-		left3.set(-speed);
 	}
 	
 	public void driveRight(double speed){
 		right1.set(speed);
-		right2.set(speed);
-		right3.set(speed);
 	}
 	
 	public void driveCenter(double leftSpeed, double rightSpeed){
@@ -97,31 +106,23 @@ public class Drivetrain extends PIDSubsystem {
 	
 	public void changeVerticalToPercentVbus() {
 		left1.changeControlMode(TalonControlMode.PercentVbus);
-		left2.changeControlMode(TalonControlMode.PercentVbus);
-		left3.changeControlMode(TalonControlMode.PercentVbus);
 		right1.changeControlMode(TalonControlMode.PercentVbus);
-		right2.changeControlMode(TalonControlMode.PercentVbus);
-		right3.changeControlMode(TalonControlMode.PercentVbus);
 	}
 	
 	public void changeVerticalToSpeed() {
 		left1.changeControlMode(TalonControlMode.Speed);
-		left2.changeControlMode(TalonControlMode.Speed);
-		left3.changeControlMode(TalonControlMode.Speed);
 		right1.changeControlMode(TalonControlMode.Speed);
-		right2.changeControlMode(TalonControlMode.Speed);
-		right3.changeControlMode(TalonControlMode.Speed);
 	}
 	
 	public void resetLeftEncoder() {
-		encoderLeft.reset();
+		left1.setEncPosition(0);
 	}
 	
 	/**
 	 * Resets the right drive encoder value to 0
 	 */
 	public void resetRightEncoder() {
-		encoderRight.reset();
+		right1.setEncPosition(0);
 	}
 	
 	/**
@@ -135,14 +136,14 @@ public class Drivetrain extends PIDSubsystem {
 	 * @return The value of the left drive encoder
 	 */
 	public double getLeftEncoderDistance() {
-		return -encoderLeft.getDistance();
+		return left1.getEncPosition() * Constants.driveEncoderToFeet;
 	}
 	
 	/**
 	 * @return The value of the right drive encoder
 	 */
 	public double getRightEncoderDistance() {
-		return -encoderRight.getDistance();
+		return right1.getEncPosition() * Constants.driveEncoderToFeet;
 	}
 	
 	/**
@@ -156,14 +157,14 @@ public class Drivetrain extends PIDSubsystem {
 	 * @return The speed of the left motor in feet per second
 	 */
 	public double getLeftEncoderRate() {
-		return encoderLeft.getRate();
+		return left1.getEncVelocity();
 	}
 	
 	/**
 	 * @return The speed of the right motor in feet per second
 	 */
 	public double getRightEncoderRate() {
-		return encoderRight.getRate();
+		return right1.getEncVelocity();
 	}
 	
 	/**

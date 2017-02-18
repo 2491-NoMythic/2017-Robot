@@ -1,39 +1,39 @@
-package com._2491nomythic.watt.commands.drivetrain;
+package com._2491nomythic.watt.commands.autonomous;
 
 import com._2491nomythic.watt.commands.CommandBase;
-
 
 /**
  *
  */
-public class DriveGyroPID extends CommandBase {
-	private double target;
-    public DriveGyroPID(double target) {
-        requires(drivetrain);
-    	this.target = target;
+public class SpeedTest extends CommandBase {
+	double speed;
+
+    public SpeedTest(double speed) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(drivetrain);
+    	this.speed = speed;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	drivetrain.enable();
-    	drivetrain.resetGyro();
-    	drivetrain.setSetpoint(target);
+    	drivetrain.changeVerticalToSpeed();
+    	drivetrain.drive(speed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("Motors Running at " + drivetrain.getPIDOutput() + " power.");
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return drivetrain.onTarget();
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	drivetrain.disable();
     	drivetrain.stop();
+    	drivetrain.changeVerticalToPercentVbus();
     }
 
     // Called when another command which requires one or more of the same
