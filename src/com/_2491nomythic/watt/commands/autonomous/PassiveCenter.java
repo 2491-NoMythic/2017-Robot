@@ -9,6 +9,7 @@ import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
  */
 public class PassiveCenter extends CommandBase {
 	private DriveStraightToPosition firstDrive;
+	private ResetEncoders reset;
 
     public PassiveCenter() {
         // Use requires() here to declare subsystem dependencies
@@ -18,7 +19,7 @@ public class PassiveCenter extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	drivetrain.resetLeftEncoder();
+    	reset.start();
     	firstDrive.start();
     }
 
