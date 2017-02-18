@@ -3,8 +3,8 @@ package com._2491nomythic.watt.settings;
 public class Variables {
 	
 	//Linear Acceleration
-	public static boolean useLinearAcceleration = false;
-	public static double accelerationSpeed = 0.07;
+	public static boolean useLinearAcceleration = true;
+	public static double accelerationSpeed = 0.1;
 	public static double wheelCircumference = 0.5 * Math.PI;
 	
 	public static double lowGearMaxSpeed = 6.51;
@@ -18,10 +18,10 @@ public class Variables {
 	public static double driveRestriction = 1;
 	
 	//Shifting Constants
-	public static double shiftUpSpeed = 1000;
-	public static double shiftDownSpeed = 1000;
-	public static double shiftUpNewPower = 0.5;
-	public static double shiftDownNewPower = 0.9;
+	public static double shiftUpSpeed = 0.7;
+	public static double shiftDownSpeed = 0.5;
+	public static double shiftUpNewPower = 0.7;
+	public static double shiftDownNewPower = 1.3;
 	
 	//PID Constants
 	public static double drivetrainPID_P = 0.001;

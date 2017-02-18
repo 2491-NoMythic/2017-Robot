@@ -4,6 +4,7 @@ import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.ControllerMap;
 import com._2491nomythic.watt.settings.Variables;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -11,19 +12,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Drive extends CommandBase {
 	double currentLeftSpeed, currentRightSpeed, lastLeftSpeed, lastRightSpeed, directionMultiplierLeft, directionMultiplierRight;
-	double /*leftPower, rightPower,*/ horizontalPower, turnSpeed;
-	boolean isShifted;
+	double /*leftPower, rightPower,*/ horizontalPower, turnSpeed, shiftingLeftSpeed, shiftingRightSpeed;
+	boolean isShifted, isShifting;
+	Timer timer;
 	
     public Drive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(drivetrain);
+    	timer = new Timer();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
 //    	drivetrain.changeVerticalToSpeed();
     	isShifted = false;
+    	timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -33,11 +37,13 @@ public class Drive extends CommandBase {
     	lastLeftSpeed = currentLeftSpeed;
 		lastRightSpeed = currentRightSpeed;
     	
-    	if (lastLeftSpeed > Variables.shiftUpSpeed && lastRightSpeed > Variables.shiftUpSpeed && !isShifted) {
+    	if (lastLeftSpeed > Variables.shiftUpSpeed && lastRightSpeed > Variables.shiftUpSpeed && !isShifted && !isShifting) {
     		drivetrain.shiftToHighGear();
-    		lastLeftSpeed *= Variables.shiftUpNewPower;
-    		lastRightSpeed *= Variables.shiftUpNewPower;
-    		isShifted = true;
+    		lastLeftSpeed *= 0.5;
+    		lastRightSpeed *= 0.5;
+    		isShifting = true;
+    		Variables.accelerationSpeed *= 0.5;
+    		timer.reset();
     	}
     	else if (lastLeftSpeed < Variables.shiftDownSpeed && lastRightSpeed < Variables.shiftDownSpeed && isShifted) {
     		drivetrain.shiftToLowGear();
@@ -46,7 +52,7 @@ public class Drive extends CommandBase {
     		isShifted = false;
     	}
     	
-		if (isShifted) {
+    	if (isShifted) {
     		currentLeftSpeed = 0.25 + 0.75 * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) + turnSpeed);
 			currentRightSpeed = 0.25 + 0.75 * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) - turnSpeed);
 		}
@@ -55,6 +61,25 @@ public class Drive extends CommandBase {
 			currentRightSpeed = 0.75 * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) - turnSpeed);
 		}
 		
+    	if (isShifting) {
+    		if (currentLeftSpeed < Variables.shiftUpSpeed && currentRightSpeed < Variables.shiftUpSpeed) {
+    			isShifting = false;
+    			lastLeftSpeed *= 2;
+    			lastRightSpeed *= 2;
+    		}
+    		
+    		currentLeftSpeed *= 0.5;
+    		currentRightSpeed *= 0.5;
+    		
+    		if (timer.get() > 0.5 && !isShifted) {
+    			drivetrain.shiftToHighGear();
+    			isShifted = true;
+    		}
+    		if (timer.get() > 1) {
+    			isShifting = false;
+    		}
+    	}
+    	
 		if (Variables.useLinearAcceleration) {
 			double leftAcceleration = (currentLeftSpeed - lastLeftSpeed);
 			double signOfLeftAcceleration = leftAcceleration / Math.abs(leftAcceleration);
@@ -87,6 +112,7 @@ public class Drive extends CommandBase {
     	currentRightSpeed = Math.min(/*Variables.lowGearMaxRPM*/1, Math.abs(currentRightSpeed)) * (currentRightSpeed > 0? 1: -1);
     	
     	drivetrain.drive(currentLeftSpeed, currentRightSpeed, horizontalPower, horizontalPower);
+    	System.out.println(drivetrain.getSolenoidValue());
     }
 
     // Make this return true when this Command no longer needs to run execute()
