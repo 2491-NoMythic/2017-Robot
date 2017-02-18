@@ -37,7 +37,7 @@ public class Drive extends CommandBase {
     	lastLeftSpeed = currentLeftSpeed;
 		lastRightSpeed = currentRightSpeed;
     	
-    	if (lastLeftSpeed > Variables.shiftUpSpeed && lastRightSpeed > Variables.shiftUpSpeed && !isShifted && !isShifting) {
+    	if (Math.abs(lastLeftSpeed) > Variables.shiftUpSpeed && Math.abs(lastRightSpeed) > Variables.shiftUpSpeed && !isShifted && !isShifting) {
     		drivetrain.shiftToHighGear();
     		lastLeftSpeed *= 0.5;
     		lastRightSpeed *= 0.5;
@@ -45,7 +45,7 @@ public class Drive extends CommandBase {
     		Variables.accelerationSpeed *= 0.5;
     		timer.reset();
     	}
-    	else if (lastLeftSpeed < Variables.shiftDownSpeed && lastRightSpeed < Variables.shiftDownSpeed && isShifted) {
+    	else if (Math.abs(lastLeftSpeed) < Variables.shiftDownSpeed && Math.abs(lastRightSpeed) < Variables.shiftDownSpeed && isShifted) {
     		drivetrain.shiftToLowGear();
     		lastLeftSpeed *= Variables.shiftDownNewPower;
     		lastRightSpeed *= Variables.shiftDownNewPower;
@@ -62,7 +62,7 @@ public class Drive extends CommandBase {
 		}
 		
     	if (isShifting) {
-    		if (currentLeftSpeed < Variables.shiftUpSpeed && currentRightSpeed < Variables.shiftUpSpeed) {
+    		if (Math.abs(currentLeftSpeed) < Variables.shiftUpSpeed && Math.abs(currentRightSpeed) < Variables.shiftUpSpeed) {
     			isShifting = false;
     			lastLeftSpeed *= 2;
     			lastRightSpeed *= 2;
