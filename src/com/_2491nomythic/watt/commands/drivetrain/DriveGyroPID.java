@@ -19,6 +19,7 @@ public class DriveGyroPID extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	drivetrain.enable();
     	drivetrain.resetGyro();
     	drivetrain.setSetpoint(target);
     }
@@ -35,6 +36,7 @@ public class DriveGyroPID extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+    	drivetrain.disable();
     	drivetrain.stop();
     }
 

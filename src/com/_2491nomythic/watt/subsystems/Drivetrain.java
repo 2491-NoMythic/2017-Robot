@@ -220,9 +220,9 @@ public class Drivetrain extends PIDSubsystem {
 	@Override
 	protected void usePIDOutput(double output) {
 		currentPIDOutput = output;
-		left1.pidWrite(-output);
-		left2.pidWrite(-output);
-		left3.pidWrite(-output);
+		left1.pidWrite(output);
+		left2.pidWrite(output);
+		left3.pidWrite(output);
 		
 		right1.pidWrite(output);
 		right2.pidWrite(output);
