@@ -33,10 +33,6 @@ public class Climber extends Subsystem {
 		right.set(power);
 	}
 	
-	public boolean getLimitSwitch() {
-		return limitSwitch.get();
-	}
-	
 	public void stop() {
 		runClimberMotors(0);
 	}
