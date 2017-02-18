@@ -20,11 +20,20 @@ public class DriveStraightToPosition extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
     	drivetrain.resetLeftEncoder();
-    	drivetrain.drive(speed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(distance - drivetrain.getLeftEncoderDistance() < 1) {
+    		drivetrain.drive(0.25 * speed);
+    	}
+    	else if(distance - drivetrain.getLeftEncoderDistance() < 2) {
+    		drivetrain.drive(0.5 * speed);
+    	}
+    	else {
+    		drivetrain.drive(speed);
+    	}
+    	
     	System.out.println(drivetrain.getLeftEncoderDistance());
     }
     // Make this return true when this Command no longer needs to run execute()
