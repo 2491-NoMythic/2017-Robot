@@ -2,6 +2,7 @@ package com._2491nomythic.watt.commands.autonomous;
 
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
+import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 
 /**
@@ -10,6 +11,7 @@ import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 public class ActiveCenter extends CommandBase {
 	private DriveStraightToPosition firstDrive, secondDrive;
 	private OpenAndEjectGearSlot gearDeposit;
+	private ResetEncoders reset;
 
     public ActiveCenter() {
         // Use requires() here to declare subsystem dependencies
@@ -21,6 +23,7 @@ public class ActiveCenter extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	reset.start();
     	firstDrive.start();
     }
 
