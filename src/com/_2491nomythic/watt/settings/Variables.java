@@ -19,8 +19,8 @@ public class Variables {
 	
 	//Shifting Constants
 	public static double shiftUpSpeed = 0.7;
-	public static double shiftDownSpeed = 0.5;
-	public static double shiftUpNewPower = 0.7;
+	public static double shiftDownSpeed = 0.3;
+	public static double shiftUpNewPower = 0.5;
 	public static double shiftDownNewPower = 1.3;
 	
 	//PID Constants

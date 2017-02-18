@@ -178,14 +178,14 @@ public class Drivetrain extends PIDSubsystem {
 	 * Shifts the drivetrain to high gear, giving it more speed but less torque
 	 */
 	public void shiftToHighGear() {
-		shifter.set(true);
+		shifter.set(false);
 	}
 	
 	/**
 	 * Shifts the drivetrain to low gear, giving it more torque but less speed
 	 */
 	public void shiftToLowGear() {
-		shifter.set(false);
+		shifter.set(true);
 	}
 	
 	/**
