@@ -34,8 +34,9 @@ public class OI {
 //		followObject = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.followObjectButton);
 //		followObject.whileHeld(new FollowObject());
 		
-		climb = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.climbButton);
+		climb = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.climbButton);
 		climb.whileHeld(new Climb());
+		
 		
 		shift = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.driveShiftButton);
 		shift.whileHeld(new ManualShift());
