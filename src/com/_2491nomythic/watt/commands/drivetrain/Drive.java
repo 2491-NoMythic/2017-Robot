@@ -22,7 +22,7 @@ public class Drive extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-//    	drivetrain.changeVerticalToSpeed();
+    	drivetrain.changeVerticalToSpeed();
     	isShifted = false;
     }
 
@@ -76,7 +76,7 @@ public class Drive extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-//    	drivetrain.changeVerticalToPercentVbus();
+    	drivetrain.changeVerticalToPercentVbus();
     	drivetrain.stop();
     }
 
