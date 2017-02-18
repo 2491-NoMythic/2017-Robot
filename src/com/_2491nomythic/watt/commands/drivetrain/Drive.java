@@ -28,7 +28,7 @@ public class Drive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	turnSpeed = 0.5 * oi.getAxisDeadzonedSquared(ControllerMap.turnDriveController, ControllerMap.driveTurnAxis);
+    	turnSpeed = 0.5 * oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveTurnAxis, 0.1);
     	
     	lastLeftSpeed = currentLeftSpeed;
 		lastRightSpeed = currentRightSpeed;
@@ -47,12 +47,12 @@ public class Drive extends CommandBase {
     	}
     	
 		if (isShifted) {
-    		currentLeftSpeed = 0.25 + 0.75 * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) + turnSpeed);
-			currentRightSpeed = 0.25 + 0.75 * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) - turnSpeed);
+    		currentLeftSpeed = 0.25 + 0.75 * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) + turnSpeed);
+			currentRightSpeed = 0.25 + 0.75 * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) - turnSpeed);
 		}
 		else {
-    		currentLeftSpeed = 0.75 * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) + turnSpeed);
-			currentRightSpeed = 0.75 * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis) - turnSpeed);
+    		currentLeftSpeed = 0.75 * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) + turnSpeed);
+			currentRightSpeed = 0.75 * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) - turnSpeed);
 		}
 		
 		if (Variables.useLinearAcceleration) {
@@ -81,14 +81,12 @@ public class Drive extends CommandBase {
 		SmartDashboard.putNumber("Right Encoder Distance", drivetrain.getRightEncoderDistance());
 		SmartDashboard.putNumber("Left Encoder Distance", drivetrain.getLeftEncoderDistance());
     	
-    	horizontalPower = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis);
+    	horizontalPower = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, 0.05);
     	
     	currentLeftSpeed = Math.min(/*Variables.lowGearMaxRPM*/1, Math.abs(currentLeftSpeed)) * (currentLeftSpeed > 0? 1: -1);
     	currentRightSpeed = Math.min(/*Variables.lowGearMaxRPM*/1, Math.abs(currentRightSpeed)) * (currentRightSpeed > 0? 1: -1);
     	
     	drivetrain.drive(currentLeftSpeed, currentRightSpeed, horizontalPower, horizontalPower);
-    	
-    	System.out.println(drivetrain.getLeftEncoderDistance());
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -24,12 +24,13 @@ public class Variables {
 	public static double shiftDownNewPower = 0.9;
 	
 	//PID Constants
-	public static double drivetrainPID_P = 1.0;
+	public static double drivetrainPID_P = 0.001;
 	public static double drivetrainPID_I = 0.0;
 	public static double drivetrainPID_D = 0.0;
 
 	//GearSlot stuff
 	public static double timeToOpenGearSlot = 0.5;
 	public static double timeToEjectGear = 0.25;
+	public static boolean ejected = false;
 
 }

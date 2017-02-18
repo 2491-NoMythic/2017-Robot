@@ -21,8 +21,8 @@ public class NoTurnLock extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	yAxisValue = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis);
-    	xAxisValue = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis);
+    	yAxisValue = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05);
+    	xAxisValue = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, 0.05);
     	drivetrain.drive(yAxisValue, yAxisValue, xAxisValue, xAxisValue);
     }
 

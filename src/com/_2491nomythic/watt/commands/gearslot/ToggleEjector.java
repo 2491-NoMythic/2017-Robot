@@ -1,34 +1,29 @@
-package com._2491nomythic.watt.commands.drivetrain;
+package com._2491nomythic.watt.commands.gearslot;
 
 import com._2491nomythic.watt.commands.CommandBase;
+import com._2491nomythic.watt.settings.Variables;
 
 /**
  *
  */
-public class RotateDrivetrainWithGyro extends CommandBase {
-	private double speed;
-	private double angle;
-	private double direction;
-	private double initialAngle;
+public class ToggleEjector extends CommandBase {
 
-    public RotateDrivetrainWithGyro(double speed, double angle) {
+    public ToggleEjector() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(drivetrain);
-    	this.speed = speed;
-    	this.angle = angle;
+    	requires(gearslot);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	initialAngle = drivetrain.getGyroAngle();
-    	if(angle > 0) {
-    		direction = 1;
+    	if(Variables.ejected) {
+    		gearslot.ejectGear();
+    		Variables.ejected = true;
     	}
-    	else if(angle < 0) {
-    		direction = -1;
+    	else {
+    		gearslot.retractEjector();
+    		Variables.ejected = false;
     	}
-    	drivetrain.drive(direction * speed, -direction * speed, 0, 0);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -38,12 +33,11 @@ public class RotateDrivetrainWithGyro extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Math.abs(drivetrain.getGyroAngle() - initialAngle) >= Math.abs(angle);
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	drivetrain.stop();
     }
 
     // Called when another command which requires one or more of the same
