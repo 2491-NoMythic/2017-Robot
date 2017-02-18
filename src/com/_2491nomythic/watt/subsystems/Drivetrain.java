@@ -226,6 +226,8 @@ public class Drivetrain extends PIDSubsystem {
 		left3.pidWrite(output);
 		
 		right1.pidWrite(output);
+		right2.pidWrite(output);
+		right3.pidWrite(output);
 		
 	}
 	public double getPIDOutput() {

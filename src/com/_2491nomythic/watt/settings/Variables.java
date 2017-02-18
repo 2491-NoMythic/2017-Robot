@@ -24,7 +24,7 @@ public class Variables {
 	public static double shiftDownNewPower = 1.3;
 	
 	//PID Constants
-	public static double drivetrainPID_P = 0.001;
+	public static double drivetrainPID_P = 0.005;
 	public static double drivetrainPID_I = 0.0;
 	public static double drivetrainPID_D = 0.0;
 
