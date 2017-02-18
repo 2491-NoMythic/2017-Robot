@@ -26,8 +26,8 @@ public class Climber extends Subsystem {
 	}
 	
 	public void runClimberMotors(double power) {
-		left.set(power);
-		right.set(power);
+		left.set(Math.abs(power));
+		right.set(Math.abs(power));
 	}
 	
 	public void stop() {

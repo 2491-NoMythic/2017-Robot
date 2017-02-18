@@ -1,27 +1,28 @@
-package com._2491nomythic.watt.commands.climber;
+package com._2491nomythic.watt.commands.autonomous;
 
 import com._2491nomythic.watt.commands.CommandBase;
-import com._2491nomythic.watt.settings.ControllerMap;
 
 /**
  *
  */
-public class Climb extends CommandBase {
+public class SpeedTest extends CommandBase {
+	double speed;
 
-    public Climb() {
+    public SpeedTest(double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(climber);
+    	requires(drivetrain);
+    	this.speed = speed;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	drivetrain.changeVerticalToSpeed();
+    	drivetrain.drive(speed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	climber.runClimberMotors(oi.getAxisDeadzonedSquared(ControllerMap.secondaryDriveController, ControllerMap.climbThrottleAxis, 0.05));
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -31,7 +32,8 @@ public class Climb extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	climber.stop();
+    	drivetrain.stop();
+    	drivetrain.changeVerticalToPercentVbus();
     }
 
     // Called when another command which requires one or more of the same
