@@ -54,6 +54,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Print Camera Values", new PrintCameraValues());
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
+        SmartDashboard.putNumber("PID P Value", 1.0);
         SmartDashboard.putNumber("Time to open GearSlot doors",Variables.timeToOpenGearSlot);
         SmartDashboard.putNumber("Time to eject Gear",Variables.timeToEjectGear);
         SmartDashboard.putData("Turn 90 Degrees", new DriveGyroPID(90));

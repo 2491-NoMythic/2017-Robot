@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Climber extends Subsystem {
 	private CANTalon left, right;
-	private DigitalInput limitSwitch;
 	
 	private static Climber instance;
 	
@@ -24,17 +23,11 @@ public class Climber extends Subsystem {
 	private Climber() {
 		left = new CANTalon(Constants.climberTalonLeftChannel);
 		right = new CANTalon(Constants.climberTalonRightChannel);
-		
-		limitSwitch = new DigitalInput(Constants.climberLimitSwitchChannel);
 	}
 	
 	public void runClimberMotors(double power) {
 		left.set(power);
 		right.set(power);
-	}
-	
-	public boolean getLimitSwitch() {
-		return limitSwitch.get();
 	}
 	
 	public void stop() {

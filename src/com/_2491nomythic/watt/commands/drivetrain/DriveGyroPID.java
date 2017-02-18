@@ -19,12 +19,14 @@ public class DriveGyroPID extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	drivetrain.enable();
     	drivetrain.resetGyro();
     	drivetrain.setSetpoint(target);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.out.println("Motors Running at " + drivetrain.getPIDOutput() + " power.");
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -34,6 +36,7 @@ public class DriveGyroPID extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+    	drivetrain.disable();
     	drivetrain.stop();
     }
 

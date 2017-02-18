@@ -21,6 +21,7 @@ public class Drivetrain extends PIDSubsystem {
 	private CANTalon left1, left2, left3, centerLeft, centerRight, right1, right2, right3;
 	private Encoder encoderCenter;
 	private Solenoid shifter;
+	private double currentPIDOutput;
 	private AHRS gyro;
 	
 	private static Drivetrain instance;
@@ -37,6 +38,8 @@ public class Drivetrain extends PIDSubsystem {
 	 */
 	private Drivetrain() {
 		super(Variables.drivetrainPID_P, Variables.drivetrainPID_I, Variables.drivetrainPID_D);
+		setAbsoluteTolerance(5);
+		
 		left1 = new CANTalon(Constants.driveTalonLeft1Channel);
 		left2 = new CANTalon(Constants.driveTalonLeft2Channel);
 		left3 = new CANTalon(Constants.driveTalonLeft3Channel);
@@ -214,13 +217,19 @@ public class Drivetrain extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		left1.pidWrite(-output);
+		currentPIDOutput = output;
+		left1.pidWrite(output);
+		left2.pidWrite(output);
+		left3.pidWrite(output);
 		
 		right1.pidWrite(output);
 		
 		centerLeft.pidWrite(-output);
 		centerRight.pidWrite(output);
 		
+	}
+	public double getPIDOutput() {
+		return currentPIDOutput;
 	}
 }
 
