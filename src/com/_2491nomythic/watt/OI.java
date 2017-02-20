@@ -3,7 +3,11 @@ package com._2491nomythic.watt;
 import com._2491nomythic.util.JoystickPOVButton;
 import com._2491nomythic.watt.commands.climber.Climb;
 import com._2491nomythic.watt.commands.drivetrain.DriveLock;
+<<<<<<< HEAD
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightGyroManual;
+=======
+import com._2491nomythic.watt.commands.drivetrain.FollowObject;
+>>>>>>> branch 'master' of https://github.com/2491-NoMythic/2017-Robot.git
 import com._2491nomythic.watt.commands.drivetrain.ManualShift;
 import com._2491nomythic.watt.commands.drivetrain.NoTurnLock;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
@@ -32,8 +36,8 @@ public class OI {
 		driveLock = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.driveLockButton);
 		driveLock.whileHeld(new DriveLock());
 		
-//		followObject = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.followObjectButton);
-//		followObject.whileHeld(new FollowObject());
+		followObject = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.followObjectButton);
+		followObject.whenPressed(new FollowObject());
 		
 		climb = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.climbButton);
 		climb.whileHeld(new Climb());
