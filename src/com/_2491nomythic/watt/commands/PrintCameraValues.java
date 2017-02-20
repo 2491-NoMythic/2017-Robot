@@ -33,7 +33,7 @@ public class PrintCameraValues extends CommandBase {
     protected void end() {
     	timer.stop();
     	try {
-			camera.readPacket();
+			camera.readPacket(2);
 		} catch (CameraException e) {
 			e.printStackTrace();
 		}

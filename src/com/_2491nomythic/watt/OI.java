@@ -33,8 +33,8 @@ public class OI {
 		driveLock = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.driveLockButton);
 		driveLock.whileHeld(new DriveLock());
 		
-		followObject = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.followObjectButton);
-		followObject.whenPressed(new FollowObject());
+//		followObject = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.followObjectButton);
+//		followObject.whenPressed(new FollowObject());
 		
 		climb = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.climbButton);
 		climb.whileHeld(new Climb());
