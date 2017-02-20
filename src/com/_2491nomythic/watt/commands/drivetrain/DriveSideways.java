@@ -1,34 +1,34 @@
 package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
-import com._2491nomythic.watt.settings.ControllerMap;
 
 /**
  *
  */
-public class NoTurnLock extends CommandBase {
-	private double xAxisValue, yAxisValue;
+public class DriveSideways extends CommandBase {
+	double power, distance;
 
-    public NoTurnLock() {
+    public DriveSideways(double power, double distance) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	this.power = power;
+    	this.distance = distance;
     	requires(drivetrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	drivetrain.resetCenterEncoder();
+    	drivetrain.drive(0, power);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	yAxisValue = -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05);
-    	xAxisValue = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, 0.05);
-    	drivetrain.drive(yAxisValue, yAxisValue, xAxisValue, xAxisValue);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Math.abs(drivetrain.getCenterEncoderDistance()) > distance;
     }
 
     // Called once after isFinished returns true

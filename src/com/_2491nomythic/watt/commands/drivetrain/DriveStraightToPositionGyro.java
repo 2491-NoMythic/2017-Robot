@@ -1,34 +1,41 @@
 package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
-import com._2491nomythic.watt.settings.ControllerMap;
 
 /**
  *
  */
-public class NoTurnLock extends CommandBase {
-	private double xAxisValue, yAxisValue;
-
-    public NoTurnLock() {
+public class DriveStraightToPositionGyro extends CommandBase {
+	double distance, speed, adjustment;
+	
+    public DriveStraightToPositionGyro(double speed, double distance) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	this.distance = distance;
+    	this.speed = speed;
     	requires(drivetrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	drivetrain.resetLeftEncoder();
+    	drivetrain.resetGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	yAxisValue = -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05);
-    	xAxisValue = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, 0.05);
-    	drivetrain.drive(yAxisValue, yAxisValue, xAxisValue, xAxisValue);
+    	adjustment = drivetrain.getGyroAngle() / 10;
+    	if (speed > 0) {
+			drivetrain.drive(Math.min(speed, speed + Math.max(-0.5 * speed, adjustment)), Math.min(speed, speed - Math.min(0.5 * speed, adjustment)), 0, 0);
+		}
+		else {
+			drivetrain.drive(Math.max(speed, speed + Math.min(-0.5 * speed, adjustment)), Math.max(speed, speed - Math.max(0.5 * speed, adjustment)), 0, 0);
+		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return drivetrain.getLeftEncoderDistance() > distance;
     }
 
     // Called once after isFinished returns true

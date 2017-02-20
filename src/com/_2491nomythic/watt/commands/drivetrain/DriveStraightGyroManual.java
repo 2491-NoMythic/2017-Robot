@@ -6,10 +6,10 @@ import com._2491nomythic.watt.settings.ControllerMap;
 /**
  *
  */
-public class NoTurnLock extends CommandBase {
-	private double xAxisValue, yAxisValue;
-
-    public NoTurnLock() {
+public class DriveStraightGyroManual extends CommandBase {
+	double distance, speed, adjustment;
+	
+    public DriveStraightGyroManual() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(drivetrain);
@@ -17,13 +17,19 @@ public class NoTurnLock extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	drivetrain.resetGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	yAxisValue = -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05);
-    	xAxisValue = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, 0.05);
-    	drivetrain.drive(yAxisValue, yAxisValue, xAxisValue, xAxisValue);
+    	adjustment = drivetrain.getGyroAngle() / 10;
+    	speed = -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05);
+    	if (speed > 0) {
+			drivetrain.drive(Math.min(speed, speed + Math.max(-0.5 * speed, adjustment)), Math.min(speed, speed - Math.min(0.5 * speed, adjustment)), 0, 0);
+		}
+		else {
+			drivetrain.drive(Math.max(speed, speed + Math.min(-0.5 * speed, adjustment)), Math.max(speed, speed - Math.max(0.5 * speed, adjustment)), 0, 0);
+		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -33,7 +39,6 @@ public class NoTurnLock extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	drivetrain.stop();
     }
 
     // Called when another command which requires one or more of the same
