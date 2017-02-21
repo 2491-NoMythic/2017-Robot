@@ -20,6 +20,7 @@ public class Camera {
 		packets = new CameraPacket[7];
 		pExc = new CameraException(print);
 		Signature = 1;
+		//ground signal(white, pin 10) rxd(red, pin 4) txd(black, pin 1)
 	}
 	//This method parses raw data from the pixy into readable integers
 	
