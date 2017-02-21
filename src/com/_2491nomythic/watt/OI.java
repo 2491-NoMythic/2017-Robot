@@ -3,6 +3,8 @@ package com._2491nomythic.watt;
 import com._2491nomythic.util.JoystickPOVButton;
 import com._2491nomythic.watt.commands.climber.Climb;
 import com._2491nomythic.watt.commands.drivetrain.DriveLock;
+import com._2491nomythic.watt.commands.drivetrain.DriveStraightGyroManual;
+import com._2491nomythic.watt.commands.drivetrain.FollowObject;
 import com._2491nomythic.watt.commands.drivetrain.ManualShift;
 import com._2491nomythic.watt.commands.drivetrain.NoTurnLock;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
@@ -22,7 +24,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button driveLock, followObject, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest;
+	Button driveLock, followObject, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, driveStraightGyro;
 	
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
@@ -32,7 +34,7 @@ public class OI {
 		driveLock.whileHeld(new DriveLock());
 		
 //		followObject = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.followObjectButton);
-//		followObject.whileHeld(new FollowObject());
+//		followObject.whenPressed(new FollowObject());
 		
 		climb = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.climbButton);
 		climb.whileHeld(new Climb());
@@ -56,6 +58,8 @@ public class OI {
 		rotateRight = new JoystickPOVButton(controllers[ControllerMap.mainDriveController], ControllerMap.rotateDrivetrainRightPOV);
 		rotateRight.whenPressed(new RotateDrivetrainWithGyro(1, 47));
 		
+		driveStraightGyro = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.driveStraightGyroButton);
+		driveStraightGyro.whileHeld(new DriveStraightGyroManual());
 	}
 	
 	/**

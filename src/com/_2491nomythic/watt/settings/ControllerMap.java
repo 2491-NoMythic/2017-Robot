@@ -9,7 +9,8 @@ public class ControllerMap {
 	public static final int driveShiftButton = 1;
 	public static final int driveLockButton = 3;
 	public static final int followObjectButton = 7;
-	public static final int noTurnLockButton = 4;
+	public static final int noTurnLockButton = 6;
+	public static final int driveStraightGyroButton = 4;
 	public static final int rotateDrivetrainLeftPOV = 270;
 	public static final int rotateDrivetrainRightPOV = 90;
 	public static final int speedTestButton = 5;
@@ -20,4 +21,5 @@ public class ControllerMap {
 	public static final int openDoorButton = 1; //x
 	public static final int ejectGearButton = 3; //b
 	public static final int climbButton = 7;
+	public static final int speedyClimbButton = 8;
 }

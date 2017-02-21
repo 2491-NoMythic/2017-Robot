@@ -7,13 +7,14 @@ import com._2491nomythic.watt.settings.CameraException;
  *
  */
 public class FollowObject extends CommandBase {
-	private int centerX, targetHeight, targetWidth, actualX, actualHeight, actualWidth, state;
+	private double centerX;
+	private int targetHeight, targetWidth, actualX, actualHeight, actualWidth, state;
 
     public FollowObject() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(drivetrain);
-    	centerX = 340;
+    	centerX = 119.5;
     	targetHeight = 100;
     	targetWidth = 50;
     	actualX = camera.packet.pixX;
@@ -63,7 +64,7 @@ public class FollowObject extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return centerX == actualX && targetWidth == actualWidth && targetHeight == actualHeight;
+        return centerX > (actualX - 1) && centerX < (actualX + 1) && targetWidth > (actualWidth - 1) && targetWidth < (actualWidth + 1) && targetHeight > (actualHeight - 1) && targetHeight < (actualHeight + 1);
     }
 
     // Called once after isFinished returns true

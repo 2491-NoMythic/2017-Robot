@@ -1,102 +1,84 @@
 package com._2491nomythic.watt.subsystems;
-
 import com._2491nomythic.watt.settings.CameraException;
 import com._2491nomythic.watt.settings.CameraPacket;
 
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.SerialPort.Port;
-import edu.wpi.first.wpilibj.command.Subsystem;
-
-/**
- *
- */
-public class Camera extends Subsystem {
-	public static Camera instance;
-	private SerialPort pixy;
-	private Port port = Port.kMXP;
-	private String print;
-	private CameraException camExc;
-	private CameraPacket[] packets;
+//Warning: if the pixy is plugged in through mini usb, this code WILL NOT WORK b/c the pixy is smart and detects where it should send data
+public class Camera {
+	SerialPort pixy;
+	Port port = Port.kMXP;
+	CameraPacket[] packets;
+	CameraException pExc;
+	String print;
+	int Signature;
 	public CameraPacket packet;
-	private int sig;
-	
-	private Camera() {
-		packets = new CameraPacket[7];
+	private static Camera instance;
+	public Camera() {
 		pixy = new SerialPort(19200, port);
 		pixy.setReadBufferSize(14);
-		camExc = new CameraException(print);
-		
+		packets = new CameraPacket[7];
+		pExc = new CameraException(print);
+		Signature = 1;
 	}
+	//This method parses raw data from the pixy into readable integers
 	
 	public static Camera getInstance() {
-    	if(instance == null) {
-    		instance = new Camera();
-    	}
-    	return instance;
-    }
-	
-	public void camReset() {
-		pixy.reset();
+		if (instance == null) {
+			instance = new Camera();
+		}
+		return instance;
 	}
-	//the following method turns unprocessed data from packets into integers
-	//this thing is used in the larger, more important method and i don't think
-	//anyone should be using this in a command. ever.
-	public int datToInt(byte lower, byte upper) {
+	
+	public int cvt(byte upper, byte lower) {
 		return (((int)upper & 0xff) << 8) | ((int)lower & 0xff);
 	}
-	//this method reads packets, how nice.
-	public void readPacket() throws CameraException {
-		int checkSum;
+	public void pixyReset(){
+		pixy.reset();
+	}
+	//This method gathers data, then parses that data, and assigns the ints to global variables
+	public CameraPacket readPacket() throws CameraException {
+		int Checksum;
+		int Sig;
 		byte[] rawData = new byte[32];
-		try {//this first bit makes sure the packet is long enough to be valid
-			rawData = pixy.read(32);	
+		try{
+			rawData = pixy.read(32);
+		} catch (RuntimeException e){
 		}
-		catch (RuntimeException e) {
+		if(rawData.length < 32){
+			System.out.println("byte array length is broken");
+			return null;
 		}
-		if (rawData.length < 32) {
-			System.out.println("Invalid packet length");
-			packet = null;
-		}
-		//the following bit makes sure a packet is valid and readable by checking the
-		//first portion of the packet, which indicates that the rest is ok
-		for (int i = 0; i <=16;) {
-			i++;
-			int syncWord = datToInt(rawData[i+0], rawData[i+1]);
-			if (syncWord == 0xaa55) {
-				syncWord = datToInt(rawData[i+2], rawData[i+3]);
-				if (syncWord != 0xaa55) {
-					i-=2;
+		for (int i = 0; i <= 16; i++) {
+			int syncWord = cvt(rawData[i+1], rawData[i+0]); //Parse first 2 bytes
+			if (syncWord == 0xaa55) { //Check is first 2 bytes equal a "sync word", which indicates the start of a packet of valid data
+				syncWord = cvt(rawData[i+3], rawData[i+2]); //Parse the next 2 bytes
+				if (syncWord != 0xaa55){ //Shifts everything in the case that one syncword is sent
+					i -= 2;
 				}
-			}
-			checkSum = datToInt(rawData[i+4], rawData[i+5]);
-			sig = datToInt(rawData[i+6], rawData[i+7]);
-			if (sig <= 0 || sig > packets.length) {
+				//This next block parses the rest of the data
+				Checksum = cvt(rawData[i+5], rawData[i+4]);
+				Sig = cvt(rawData[i+7], rawData[i+6]);
+				if(Sig <= 0 || Sig > packets.length){
+					break;
+				}
+				packets[Sig - 1] = new CameraPacket();
+				packets[Sig - 1].pixX = cvt(rawData[i+9], rawData[i+8]);
+				packets[Sig - 1].pixY = cvt(rawData[i+11], rawData[i+10]);
+				packets[Sig - 1].pixWidth = cvt(rawData[i+13], rawData[i+12]);
+				packets[Sig - 1].pixHeight = cvt(rawData[i+15], rawData[i+14]);
+				//Checks whether the data is valid using the checksum *This if block should never be entered*
+				if (Checksum != Sig + packets[Sig - 1].pixX + packets[Sig - 1].pixY + packets[Sig - 1].pixWidth + packets[Sig - 1].pixHeight) {
+					packets[Sig - 1] = null;
+					throw pExc;
+				}
 				break;
 			}
-			//after verifying that a valid packet has been detected, this assigns
-			//the packet's data to globally accessible variables
-			packets[sig - 1].pixX = datToInt(rawData[i+7], rawData[i+8]);
-			packets[sig - 1].pixY = datToInt(rawData[i+9], rawData[i+10]);
-			packets[sig - 1].pixWidth = datToInt(rawData[i+11], rawData[i+12]);
-			packets[sig - 1].pixHeight = datToInt(rawData[i+13], rawData[i+14]);
-			if (checkSum != sig + packets[sig - 1].pixX + packets[sig - 1].pixY + packets[sig - 1].pixWidth + packets[sig - 1].pixHeight) {
-				packets[sig - 1] = null;
-				throw camExc;
-			}
-			break;
+		}
+		//Assigns our packet to a temp packet, then deletes data so that we dont return old data
+		CameraPacket pkt = packets[Signature - 1];
+		packet = packets[Signature - 1];
+		packets[Signature - 1] = null;
+		return pkt;
 	}
-		packet = packets[sig - 1];
-		packets[sig - 1] = null;
-}
-	
-	
-	//because of the nature of this method, we're probably gonna wanna run it
-	//constantly in a command and then continue checking the updated global variables
-
-
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    }
-}
-
+}	
