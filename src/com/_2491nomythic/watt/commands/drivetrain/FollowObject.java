@@ -7,13 +7,14 @@ import com._2491nomythic.watt.settings.CameraException;
  *
  */
 public class FollowObject extends CommandBase {
-	private int centerX, targetHeight, targetWidth, actualX, actualHeight, actualWidth, state;
+	private int targetHeight, targetWidth, actualX, actualHeight, actualWidth, state;
+	private double centerX;
 
     public FollowObject() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(drivetrain);
-    	centerX = 340;
+    	centerX = 159.5;
     	targetHeight = 100;
     	targetWidth = 50;
     	actualX = camera.packet.pixX;
