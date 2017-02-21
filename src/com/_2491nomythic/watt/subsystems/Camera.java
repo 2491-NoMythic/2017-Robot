@@ -11,6 +11,7 @@ public class Camera {
 	CameraPacket[] packets;
 	CameraException pExc;
 	String print;
+	int Signature;
 	public CameraPacket packet;
 	private static Camera instance;
 	public Camera() {
@@ -18,6 +19,7 @@ public class Camera {
 		pixy.setReadBufferSize(14);
 		packets = new CameraPacket[7];
 		pExc = new CameraException(print);
+		Signature = 1;
 	}
 	//This method parses raw data from the pixy into readable integers
 	
@@ -35,7 +37,7 @@ public class Camera {
 		pixy.reset();
 	}
 	//This method gathers data, then parses that data, and assigns the ints to global variables
-	public CameraPacket readPacket(int Signature) throws CameraException {
+	public CameraPacket readPacket() throws CameraException {
 		int Checksum;
 		int Sig;
 		byte[] rawData = new byte[32];
