@@ -1,4 +1,4 @@
-
+	
 package com._2491nomythic.watt;
 
 import com._2491nomythic.watt.commands.CommandBase;
@@ -13,7 +13,6 @@ import com._2491nomythic.watt.commands.autonomous.ActiveRight;
 import com._2491nomythic.watt.commands.drivetrain.DriveGyroPID;
 import com._2491nomythic.watt.commands.drivetrain.DriveSpeedTime;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
-import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPositionGyro;
 import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
@@ -67,8 +66,6 @@ public class Robot extends IterativeRobot {
         chooser.addObject("Passive Right GearSlot", new PassiveRight());
         chooser.addObject("Passive Center GearSlot", new PassiveCenter());
         chooser.addObject("Passive Left GearSlot", new PassiveLeft());
-        chooser.addObject("Passive Center GearSlot With Gyro (untested)", new DriveStraightToPositionGyro(1, 7.3));
-        chooser.addObject("Cross Base Line", new DriveStraightToPosition(1, 12));
         SmartDashboard.putBoolean("Use Linear Acceleration",Variables.useLinearAcceleration);
         SmartDashboard.putData("Drive with speed for 2 secs", new DriveSpeedTime(30, 2));
         

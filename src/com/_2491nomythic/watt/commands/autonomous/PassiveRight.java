@@ -17,9 +17,8 @@ public class PassiveRight extends CommandBase {
     public PassiveRight() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	reset = new ResetEncoders();
-    	firstDrive = new DriveStraightToPosition(0.5,8.75);
-    	secondDrive = new DriveStraightToPosition(0.5,2.92);
+    	firstDrive = new DriveStraightToPosition(1,8.75);
+    	secondDrive = new DriveStraightToPosition(1,2.92);
     	rotate1 = new RotateDrivetrainWithGyro(0.5,-60);
     	state = 0;
     }

@@ -148,7 +148,7 @@ public class Drivetrain extends PIDSubsystem {
 	 * @return The value of the right drive encoder
 	 */
 	public double getRightEncoderDistance() {
-		return -right1.getEncPosition() * Constants.driveEncoderToFeet;
+		return right1.getEncPosition() * Constants.driveEncoderToFeet;
 	}
 	
 	/**

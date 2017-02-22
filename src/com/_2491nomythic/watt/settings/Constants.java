@@ -29,8 +29,8 @@ public class Constants {
 	
 	//GearSlot
 	
-	public static final int gearOpenerSolenoidChannel = 7;
-	public static final int gearEjectorSolenoidChannel = 6;
+	public static final int gearOpenerSolenoidChannel = 1;
+	public static final int gearEjectorSolenoidChannel = 2;
 	
 	//Shooter
 	
@@ -41,5 +41,10 @@ public class Constants {
 	
 	//Autonomous (all measurements are in feet)
 	public static final int driveStraightAutoDistance = 10;
+	
+	//Lights
+	public static final int redLightChannel = 1;
+	public static final int blueLightChannel = 2;
+	public static final int greenLightChannel =3;
 }
 
