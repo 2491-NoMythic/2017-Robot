@@ -2,7 +2,6 @@ package com._2491nomythic.watt.subsystems;
 
 import com._2491nomythic.watt.settings.Constants;
 import com.ctre.CANTalon;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
