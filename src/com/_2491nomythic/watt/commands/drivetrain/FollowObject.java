@@ -8,7 +8,7 @@ import com._2491nomythic.watt.settings.CameraException;
  */
 public class FollowObject extends CommandBase {
 	private int targetHeight, targetWidth, actualX, actualHeight, actualWidth, state;
-	private double centerX;
+	private double centerX, speed;
 
     public FollowObject() {
         // Use requires() here to declare subsystem dependencies
@@ -20,6 +20,7 @@ public class FollowObject extends CommandBase {
     	actualX = camera.packet.pixX;
     	actualHeight = camera.packet.pixHeight;
     	actualWidth = camera.packet.pixWidth;
+    	speed = .2;
     }
 
     // Called just before this Command runs the first time
@@ -46,18 +47,18 @@ public class FollowObject extends CommandBase {
     		}
     	case 1:
     		if (centerX > (actualX + 1)) {
-    			drivetrain.driveLeft(-.5);
-    			drivetrain.driveRight(.5);
+    			drivetrain.driveLeft(speed);
+    			drivetrain.driveRight(speed);
     		}
     		else state++;
     	case 2:
     		if (targetWidth < (actualWidth - 1) && targetHeight < (actualHeight - 1)) {
-    			drivetrain.drive(.5);
+    			drivetrain.drive(speed);
     		}
     		else state++;
     	case 3:
     		if (targetWidth > (actualWidth + 1) && targetHeight > (actualHeight + 1)) {
-    			drivetrain.drive(-.5);
+    			drivetrain.drive(speed);
     		}
     	}
     }
