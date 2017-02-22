@@ -19,6 +19,7 @@ public class ActiveCenter extends CommandBase {
     	firstDrive = new DriveStraightToPosition(1, 7.7);
     	secondDrive = new DriveStraightToPosition(-1, -1.5);
     	gearDeposit = new OpenAndEjectGearSlot();
+    	reset = new ResetEncoders();
     }
 
     // Called just before this Command runs the first time

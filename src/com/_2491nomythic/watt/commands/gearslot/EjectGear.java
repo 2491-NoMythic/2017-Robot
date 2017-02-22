@@ -15,6 +15,7 @@ public class EjectGear extends CommandBase {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(gearslot);
+    	timer = new Timer();
     }
 
     // Called just before this Command runs the first time

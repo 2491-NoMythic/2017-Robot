@@ -15,6 +15,7 @@ import com._2491nomythic.watt.commands.drivetrain.DriveSpeedTime;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
 import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
+import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
 import com._2491nomythic.watt.settings.Variables;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -56,7 +57,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("PID P Value", 1.0);
         SmartDashboard.putNumber("Time to open GearSlot doors",Variables.timeToOpenGearSlot);
         SmartDashboard.putNumber("Time to eject Gear",Variables.timeToEjectGear);
-        SmartDashboard.putData("Turn 90 Degrees", new DriveGyroPID(90));
+        SmartDashboard.putData("Turn 90 Degrees", new RotateDrivetrainWithGyroPID(90));
         chooser.addObject("Do Nothing", new DoNothing());
         chooser.addObject("Drive 1 Foot",new DriveStraightToPosition(1,1));
         chooser.addObject("Active Right GearSlot", new ActiveRight());
