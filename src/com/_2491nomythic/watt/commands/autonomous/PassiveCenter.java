@@ -15,6 +15,7 @@ public class PassiveCenter extends CommandBase {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	firstDrive = new DriveStraightToPosition(1,7.7);
+    	reset = new ResetEncoders();
     }
 
     // Called just before this Command runs the first time

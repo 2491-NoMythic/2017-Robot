@@ -21,6 +21,7 @@ public class PassiveLeft extends CommandBase {
     	secondDrive = new DriveStraightToPosition(1,2.92);
     	rotate1 = new RotateDrivetrainWithGyro(0.5,60);
     	state = 0;
+    	reset = new ResetEncoders();
     }
 
     // Called just before this Command runs the first time
