@@ -1,4 +1,4 @@
-
+	
 package com._2491nomythic.watt;
 
 import com._2491nomythic.watt.commands.CommandBase;
@@ -13,9 +13,9 @@ import com._2491nomythic.watt.commands.autonomous.ActiveRight;
 import com._2491nomythic.watt.commands.drivetrain.DriveGyroPID;
 import com._2491nomythic.watt.commands.drivetrain.DriveSpeedTime;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
-import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPositionGyro;
 import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
+import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
 import com._2491nomythic.watt.settings.Variables;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -57,7 +57,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("PID P Value", 1.0);
         SmartDashboard.putNumber("Time to open GearSlot doors",Variables.timeToOpenGearSlot);
         SmartDashboard.putNumber("Time to eject Gear",Variables.timeToEjectGear);
-        SmartDashboard.putData("Turn 90 Degrees", new DriveGyroPID(90));
+        SmartDashboard.putData("Turn 90 Degrees", new RotateDrivetrainWithGyroPID(90));
         chooser.addObject("Do Nothing", new DoNothing());
         chooser.addObject("Drive 1 Foot",new DriveStraightToPosition(1,1));
         chooser.addObject("Active Right GearSlot", new ActiveRight());
@@ -66,8 +66,6 @@ public class Robot extends IterativeRobot {
         chooser.addObject("Passive Right GearSlot", new PassiveRight());
         chooser.addObject("Passive Center GearSlot", new PassiveCenter());
         chooser.addObject("Passive Left GearSlot", new PassiveLeft());
-        chooser.addObject("Passive Center GearSlot With Gyro (untested)", new DriveStraightToPositionGyro(1, 7.3));
-        chooser.addObject("Cross Base Line", new DriveStraightToPosition(1, 12));
         SmartDashboard.putBoolean("Use Linear Acceleration",Variables.useLinearAcceleration);
         SmartDashboard.putData("Drive with speed for 2 secs", new DriveSpeedTime(30, 2));
         

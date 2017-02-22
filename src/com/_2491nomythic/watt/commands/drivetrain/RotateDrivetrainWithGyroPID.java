@@ -1,39 +1,48 @@
 package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
-import com._2491nomythic.watt.settings.ControllerMap;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class NoTurnLock extends CommandBase {
-	private double xAxisValue, yAxisValue;
+public class RotateDrivetrainWithGyroPID extends CommandBase {
+	private double  angle, initialAngle, direction;
 
-    public NoTurnLock() {
+    public RotateDrivetrainWithGyroPID(double angle) {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(drivetrain);
+      	requires(drivetrain);
+    	initialAngle = drivetrain.getGyroAngle();
+    	this.angle = angle + initialAngle;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if(angle > 0) {
+    		direction = 1;
+    	}
+    	else if(angle < 0) {
+    		direction = -1;
+    	}
+    	drivetrain.enable();
+    	drivetrain.setSetpoint(angle);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	yAxisValue = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05);
-    	xAxisValue = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, 0.05);
-    	drivetrain.drive(yAxisValue, yAxisValue, xAxisValue, xAxisValue);
+    	drivetrain.driveCenterPID(direction * drivetrain.getPIDOutput(), -direction * drivetrain.getPIDOutput());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return drivetrain.onTarget();
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	drivetrain.stop();
+    	drivetrain.disable();
     }
 
     // Called when another command which requires one or more of the same

@@ -3,11 +3,10 @@ package com._2491nomythic.watt;
 import com._2491nomythic.util.JoystickPOVButton;
 import com._2491nomythic.watt.commands.climber.Climb;
 import com._2491nomythic.watt.commands.drivetrain.DriveLock;
-import com._2491nomythic.watt.commands.drivetrain.DriveStraightGyroManual;
-import com._2491nomythic.watt.commands.drivetrain.FollowObject;
 import com._2491nomythic.watt.commands.drivetrain.ManualShift;
 import com._2491nomythic.watt.commands.drivetrain.NoTurnLock;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
+import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 import com._2491nomythic.watt.commands.gearslot.ToggleEjector;
 import com._2491nomythic.watt.commands.gearslot.ToggleGearSlot;
 import com._2491nomythic.watt.settings.Constants;
@@ -24,7 +23,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button driveLock, followObject, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, driveStraightGyro;
+	Button driveLock, followObject, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear;
 	
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
@@ -34,7 +33,7 @@ public class OI {
 		driveLock.whileHeld(new DriveLock());
 		
 //		followObject = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.followObjectButton);
-//		followObject.whenPressed(new FollowObject());
+//		followObject.whileHeld(new FollowObject());
 		
 		climb = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.climbButton);
 		climb.whileHeld(new Climb());
@@ -49,6 +48,9 @@ public class OI {
 		ejectGear = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.ejectGearButton);
 		ejectGear.whenPressed(new ToggleEjector());
 		
+		autoGear = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.autoGearButton);
+		autoGear.whenPressed(new OpenAndEjectGearSlot());
+		
 		noTurnLock = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.noTurnLockButton);
 		noTurnLock.whileHeld(new NoTurnLock());
 		
@@ -58,8 +60,6 @@ public class OI {
 		rotateRight = new JoystickPOVButton(controllers[ControllerMap.mainDriveController], ControllerMap.rotateDrivetrainRightPOV);
 		rotateRight.whenPressed(new RotateDrivetrainWithGyro(1, 47));
 		
-		driveStraightGyro = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.driveStraightGyroButton);
-		driveStraightGyro.whileHeld(new DriveStraightGyroManual());
 	}
 	
 	/**

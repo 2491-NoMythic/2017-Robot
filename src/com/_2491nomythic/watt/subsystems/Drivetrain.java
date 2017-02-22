@@ -38,7 +38,7 @@ public class Drivetrain extends PIDSubsystem {
 	 */
 	private Drivetrain() {
 		super(Variables.drivetrainPID_P, Variables.drivetrainPID_I, Variables.drivetrainPID_D);
-		setAbsoluteTolerance(5);
+		setAbsoluteTolerance(2);
 		
 		left1 = new CANTalon(Constants.driveTalonLeft1Channel);
 		left2 = new CANTalon(Constants.driveTalonLeft2Channel);
@@ -98,6 +98,11 @@ public class Drivetrain extends PIDSubsystem {
 	public void driveCenter(double leftSpeed, double rightSpeed){
 		centerLeft.set(leftSpeed);
 		centerRight.set(-rightSpeed);
+	}
+	
+	public void driveCenterPID(double leftSpeed, double rightSpeed){
+		centerLeft.pidWrite(leftSpeed);
+		centerRight.pidWrite(-rightSpeed);
 	}
 	
 	public void stop(){
@@ -161,7 +166,7 @@ public class Drivetrain extends PIDSubsystem {
 	 * @return The value of the right drive encoder
 	 */
 	public double getRightEncoderDistance() {
-		return -right1.getEncPosition() * Constants.driveEncoderToFeet;
+		return right1.getEncPosition() * Constants.driveEncoderToFeet;
 	}
 	
 	/**
@@ -239,14 +244,6 @@ public class Drivetrain extends PIDSubsystem {
 	@Override
 	protected void usePIDOutput(double output) {
 		currentPIDOutput = output;
-		left1.pidWrite(output);
-		left2.pidWrite(output);
-		left3.pidWrite(output);
-		
-		right1.pidWrite(output);
-		right2.pidWrite(output);
-		right3.pidWrite(output);
-		
 	}
 	public double getPIDOutput() {
 		return currentPIDOutput;
