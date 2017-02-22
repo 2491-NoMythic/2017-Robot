@@ -81,17 +81,16 @@ public class OpenAndEjectGearSlot extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	openDoors.cancel();
-    	closeDoors.cancel();
-    	extend.cancel();
-    	retract.cancel();
-    	backAway.cancel();
     	
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
+    	openDoors.cancel();
+    	closeDoors.cancel();
+    	extend.cancel();
+    	retract.cancel();
+    	backAway.cancel();
     }
 }
