@@ -4,7 +4,7 @@ public class Variables {
 	
 	//Linear Acceleration
 	public static boolean useLinearAcceleration = true;
-	public static double accelerationSpeed = 0.1;
+	public static double accelerationSpeed = 0.01;
 	public static double wheelCircumference = 0.5 * Math.PI;
 	
 	public static double lowGearMaxSpeedFeetPerSecond = 6.51;
@@ -20,8 +20,8 @@ public class Variables {
 	//Shifting Constants
 	public static double shiftUpSpeed = 0.7;
 	public static double shiftDownSpeed = 0.3;
-	public static double shiftUpNewPower = 0.5;
-	public static double shiftDownNewPower = 1.3;
+	public static double shiftUpNewPower = 1;
+	public static double shiftDownNewPower = 1;
 
 	//PID Constants
 	public static double drivetrainPID_P = 0.005;
