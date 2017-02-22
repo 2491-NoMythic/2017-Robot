@@ -20,5 +20,4 @@ public class ControllerMap {
 	public static final int openDoorButton = 1; //x
 	public static final int ejectGearButton = 3; //b
 	public static final int climbButton = 7;
-	public static final int comboGearButton = 2;
 }
