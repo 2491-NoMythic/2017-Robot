@@ -1,8 +1,9 @@
 package com._2491nomythic.watt.settings;
 
 public class CameraPacket {
-	public int pixX;
-	public int pixY;
-	public int pixHeight;
-	public int pixWidth;
+	public int signature;
+	public int x;
+	public int y;
+	public int height;
+	public int width;
 }

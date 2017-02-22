@@ -20,12 +20,12 @@ public class PrintCameraValues extends CommandBase {
     	timer.reset();
     	System.out.println("Starting...\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     	try {
-			camera.readPacket();
+			camera.readPacket(1);
 		} catch (CameraException e) {
 			e.printStackTrace();
 		}
-    	System.out.println("X:" + camera.packet.pixX + " Y:" + camera.packet.pixY + " Width:" + camera.packet.pixWidth + " Height" + camera.packet.pixHeight);
-    	System.out.println("Ending....\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    	System.out.println("X:" + camera.values.x + " Y:" + camera.values.y + " Width:" + camera.values.width + " Height" + camera.values.height);
+    	System.out.println("Ending...\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
 
     // Called repeatedly when this Command is scheduled to run

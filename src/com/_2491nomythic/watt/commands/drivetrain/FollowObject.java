@@ -17,9 +17,9 @@ public class FollowObject extends CommandBase {
     	centerX = 159.5;
     	targetHeight = 100;
     	targetWidth = 50;
-    	actualX = camera.packet.pixX;
-    	actualHeight = camera.packet.pixHeight;
-    	actualWidth = camera.packet.pixWidth;
+    	actualX = camera.values.x;
+    	actualHeight = camera.values.height;
+    	actualWidth = camera.values.width;
     	speed = .2;
     }
 
@@ -31,7 +31,7 @@ public class FollowObject extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	try {
-			camera.readPacket();
+			camera.readPacket(1);
 		} 
     	catch (CameraException e) {
 			e.printStackTrace();
