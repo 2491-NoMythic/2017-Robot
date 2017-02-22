@@ -26,6 +26,7 @@ public class ActiveLeft extends CommandBase {
     	ejectGear = new OpenAndEjectGearSlot();
     	rotateDrivetrain1 = new RotateDrivetrainWithGyro(0.50, 60);
     	rotateDrivetrain2 = new RotateDrivetrainWithGyro(0.50, -60);
+    	reset = new ResetEncoders();
     }
 
     // Called just before this Command runs the first time
