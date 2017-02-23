@@ -16,8 +16,16 @@ public class PrintCameraValues extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	timer.reset();
     	timer.start();
+    	timer.reset();
+    	System.out.println("Starting...\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    	try {
+			camera.readPacket(1);
+		} catch (CameraException e) {
+			e.printStackTrace();
+		}
+    	System.out.println("X:" + camera.values.x + " Y:" + camera.values.y + " Width:" + camera.values.width + " Height" + camera.values.height);
+    	System.out.println("Ending...\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -31,13 +39,6 @@ public class PrintCameraValues extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	timer.stop();
-    	try {
-			camera.readPacket();
-		} catch (CameraException e) {
-			e.printStackTrace();
-		}
-    	System.out.println("X:" + camera.packet.pixX + " Y:" + camera.packet.pixY + " Width:" + camera.packet.pixWidth + " Height" + camera.packet.pixHeight);
     }
 
     // Called when another command which requires one or more of the same
