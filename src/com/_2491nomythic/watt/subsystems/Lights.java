@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Lights extends Subsystem {
-	private PWM red, green, blue;
+	private PWM red;//, green, blue;
 	
 	private static Lights instance;
 	
@@ -21,13 +21,13 @@ public class Lights extends Subsystem {
 	}
 	private Lights() {
 		red = new PWM(Constants.redLightChannel);
-		green = new PWM(Constants.greenLightChannel);
-		blue = new PWM(Constants.blueLightChannel);
+		//green = new PWM(Constants.greenLightChannel);
+		//blue = new PWM(Constants.blueLightChannel);
 	}
 	public void setColors(int redColor,int blueColor, int greenColor){
 		red.setRaw(205);
-		green.setRaw(47);
-		blue.setRaw(205);
+		//green.setRaw(47);
+		//blue.setRaw(205);
 	}
 
     // Put methods for controlling this subsystem
