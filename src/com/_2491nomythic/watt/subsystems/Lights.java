@@ -24,10 +24,10 @@ public class Lights extends Subsystem {
 		//green = new PWM(Constants.greenLightChannel);
 		//blue = new PWM(Constants.blueLightChannel);
 	}
-	public void setColors(int redColor,int blueColor, int greenColor){
-		red.setRaw(205);
-		//green.setRaw(47);
-		//blue.setRaw(205);
+	public void setColors(int redColor){//,int blueColor, int greenColor){
+		red.setRaw(redColor);
+		//green.setRaw(greenColor);
+		//blue.setRaw(blueColor);
 	}
 
     // Put methods for controlling this subsystem
