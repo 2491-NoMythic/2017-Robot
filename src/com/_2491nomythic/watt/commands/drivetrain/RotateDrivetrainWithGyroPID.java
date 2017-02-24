@@ -31,7 +31,7 @@ public class RotateDrivetrainWithGyroPID extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	drivetrain.driveCenterPID(direction * drivetrain.getPIDOutput(), -direction * drivetrain.getPIDOutput());
+    	drivetrain.drivePID(direction * drivetrain.getPIDOutput(), -direction * drivetrain.getPIDOutput());
     }
 
     // Make this return true when this Command no longer needs to run execute()

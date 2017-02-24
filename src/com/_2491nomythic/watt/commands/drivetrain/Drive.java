@@ -65,7 +65,7 @@ public class Drive extends CommandBase {
     	currentLeftSpeed = Math.min(/*Variables.lowGearMaxSpeed*/1, Math.abs(currentLeftSpeed)) * (currentLeftSpeed > 0? 1: -1);
     	currentRightSpeed = Math.min(/*Variables.lowGearMaxSpeed*/1, Math.abs(currentRightSpeed)) * (currentRightSpeed > 0? 1: -1);
     	
-    	drivetrain.drive(-currentLeftSpeed, -currentRightSpeed, horizontalPower, horizontalPower);
+    	drivetrain.drive(-currentLeftSpeed, -currentRightSpeed, -horizontalPower, -horizontalPower);
     }
 
     // Make this return true when this Command no longer needs to run execute()

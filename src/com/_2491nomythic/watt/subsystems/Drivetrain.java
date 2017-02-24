@@ -105,6 +105,10 @@ public class Drivetrain extends PIDSubsystem {
 		centerRight.pidWrite(-rightSpeed);
 	}
 	
+	public void drivePID(double speed1, double speed2) {
+		left1.pidWrite(-speed1);
+		right1.pidWrite(speed2);
+	}
 	public void stop(){
 		drive(0, 0);
 	}
