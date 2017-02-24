@@ -45,7 +45,7 @@ public class OI {
 		openDoors = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.openDoorButton);
 		openDoors.whenPressed(new ToggleGearSlot());
 		
-		ejectGear = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.ejectGearButton);
+		ejectGear = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.pushGearButton);
 		ejectGear.whenPressed(new ToggleEjector());
 		
 		autoGear = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.autoGearButton);
