@@ -1,9 +1,9 @@
 package com._2491nomythic.watt.subsystems;
 
 import com._2491nomythic.watt.settings.Constants;
-
 import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import com._2491nomythic.watt.commands.lights.LightsDefault;
 
 /**
  *
@@ -26,9 +26,14 @@ public class Lights extends Subsystem {
 	}
 	public void setColors(int redColor){//,int blueColor, int greenColor){
 		red.setRaw(redColor);
-		//green.setRaw(greenColor);
-		//blue.setRaw(blueColor);
+		//blue.setRaw(greenColor);
+		//green.setRaw(blueColor);
 	}
+	public void shutOffRed(){
+		red.setDisabled();
+	}
+		
+	
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -36,6 +41,7 @@ public class Lights extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new LightsDefault());
     }
 }
 
