@@ -26,8 +26,8 @@ public class Lights extends Subsystem {
 	}
 	public void setColors(int redColor){//,int blueColor, int greenColor){
 		red.setRaw(redColor);
-		//green.setRaw(greenColor);
-		//blue.setRaw(blueColor);
+		//blue.setRaw(greenColor);
+		//green.setRaw(blueColor);
 	}
 	public void shutOffRed(){
 		red.setDisabled();
