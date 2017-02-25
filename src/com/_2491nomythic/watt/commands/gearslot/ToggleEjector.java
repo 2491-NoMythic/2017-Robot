@@ -19,7 +19,7 @@ public class ToggleEjector extends CommandBase {
     	System.out.println("ToggleEjector is running");
     	
     	if(gearslot.getPusher()) gearslot.retractEjector();
-    	else gearslot.retractEjector();
+    	else gearslot.ejectGear();
     }
 
     // Called repeatedly when this Command is scheduled to run

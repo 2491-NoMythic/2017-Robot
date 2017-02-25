@@ -131,9 +131,7 @@ public class Drive extends CommandBase {
     	
     	currentLeftSpeed = Math.min(/*Variables.lowGearMaxSpeed*/1, Math.abs(currentLeftSpeed)) * (currentLeftSpeed > 0? 1: -1);
     	currentRightSpeed = Math.min(/*Variables.lowGearMaxSpeed*/1, Math.abs(currentRightSpeed)) * (currentRightSpeed > 0? 1: -1);
-    	
-    	System.out.println(drivetrain.getLeftEncoderRate());
-    	
+    	    	
     	drivetrain.drive(currentLeftSpeed, currentRightSpeed, horizontalPower, horizontalPower);
     }
 

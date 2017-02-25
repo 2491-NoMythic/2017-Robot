@@ -34,54 +34,48 @@ public class OpenAndEjectGearSlot extends CommandBase {
     	case 0:
     		openDoors.start();
     		System.out.println("Case 0");
-    		state++;
-    	break;
-    	
+    		state = 1;
+    		break;
     	case 1:
     		if(!openDoors.isRunning()) {
     			extend.start();
     			System.out.println("Case 1");
-    			state++;
+    			state = 2;
     		}
     		break;
-    		
     	case 2:
     		if(!extend.isRunning()) {
     			retract.start();
     			System.out.println("Case 2");
-    			state++;
+    			state = 3;
     		}
     		break;
-    		
     	case 3:
     		if(!retract.isRunning()) {
     			backAway.start();
     			System.out.println("Case 3");
-    			state++;
+    			state = 4;
     		}
     		break;
     	case 4:
     		if(!backAway.isRunning()) {
     			closeDoors.start();
     			System.out.println("Case 4");
-    			state++;
+    			state = 5;
     		}
     		break;
-    		
     	case 5:
-    			System.out.println("Case 5");
+    		System.out.println("Case 5");
     		break;
-    		
     	default:
     		System.out.println("Something went wrong in OpenAndEjectGearSlot.java. State: " + state);
-    		break;
-    	
+    		break;	
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return !closeDoors.isRunning();
+    	return !closeDoors.isRunning() && state == 5;
     }
 
     // Called once after isFinished returns true
