@@ -18,25 +18,38 @@ public class ActiveCenter extends CommandBase {
         // eg. requires(chassis);
     	passiveCenter = new PassiveCenter();
     	gearDeposit = new OpenAndEjectGearSlot();
-    	state = 0;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	passiveCenter.start();
+    	state = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(passiveCenter.isRunning()) {
+    	switch(state) {
+    	case 0:
+    		passiveCenter.start();
     		state = 1;
-    		gearDeposit.start();
-    	}	
+    		break;
+    	case 1:
+    		if(!passiveCenter.isRunning()) {
+    			gearDeposit.start();
+    			state = 2;
+    		}
+    		break;
+    	case 2:
+    		break;
+    		
+    		default:
+    			System.out.println("Active Center GearSlot Auto. Case: " + state);	
+    		break;
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !gearDeposit.isRunning() && state == 1;
+        return !gearDeposit.isRunning() && state == 2;
     }
 
     // Called once after isFinished returns true

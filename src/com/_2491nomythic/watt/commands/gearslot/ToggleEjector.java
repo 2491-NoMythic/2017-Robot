@@ -1,21 +1,29 @@
 package com._2491nomythic.watt.commands.gearslot;
 
+
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.Variables;
+
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
  */
 public class ToggleEjector extends CommandBase {
+	private Timer timer;
 
     public ToggleEjector() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(gearslot);
+    	timer = new Timer();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	timer.start();
+    	timer.reset();
+    	
     	System.out.println("ToggleEjector is running");
     	
     	if(gearslot.getPusher()) gearslot.retractEjector();
@@ -29,7 +37,7 @@ public class ToggleEjector extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return timer.get() > 0.25;
     }
 
     // Called once after isFinished returns true

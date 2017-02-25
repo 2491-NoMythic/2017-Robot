@@ -26,7 +26,7 @@ public class DriveStraightToPosition extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	leftDistance = drivetrain.getLeftEncoderDistance();
-    	rightDistance = drivetrain.getRightEncoderDistance();
+    	rightDistance = -drivetrain.getRightEncoderDistance();
     	leftSpeed = speed;
     	rightSpeed = speed;
     	
@@ -48,10 +48,11 @@ public class DriveStraightToPosition extends CommandBase {
     	}
     	
     	System.out.println(drivetrain.getLeftEncoderDistance());
+    	System.out.println(drivetrain.getRightEncoderDistance());
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-		return leftDistance > distance && rightDistance > distance;
+		return Math.abs(leftDistance) > distance && Math.abs(rightDistance) > distance;
     }
 
     // Called once after isFinished returns true
