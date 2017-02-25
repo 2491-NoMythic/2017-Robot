@@ -40,61 +40,67 @@ public class Drive extends CommandBase {
     	lastLeftSpeed = currentLeftSpeed;
 		lastRightSpeed = currentRightSpeed;
     	
-    	if (Math.abs(lastLeftSpeed) > Variables.shiftUpSpeed && Math.abs(lastRightSpeed) > Variables.shiftUpSpeed && !isShifted && !isShifting && timer.get() > 1) {
-    		drivetrain.shiftToHighGear();
-    		isShifting = true;
-    		futureLeftSpeed = lastLeftSpeed * Variables.shiftUpNewPower;
-    		futureRightSpeed = lastRightSpeed * Variables.shiftUpNewPower;
-    		currentLeftSpeed = 0;
-    		currentRightSpeed = 0;
-    	}
-    	else if (Math.abs(lastLeftSpeed) < Variables.shiftDownSpeed && Math.abs(lastRightSpeed) < Variables.shiftDownSpeed && isShifted && timer.get() > 1) {
-    		drivetrain.shiftToLowGear();
-    		lastLeftSpeed *= Variables.shiftDownNewPower;
-    		lastRightSpeed *= Variables.shiftDownNewPower;
-    		timer.reset();
-    		isShifted = false;
-    	}
-    	
-		if (isShifted) {
-    		currentLeftSpeed = 0.25 + 0.75 * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) + turnSpeed);
-			currentRightSpeed = 0.25 + 0.75 * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) - turnSpeed);
-		}
-		else if (!isShifting){
-    		currentLeftSpeed = 0.75 * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) + turnSpeed);
-			currentRightSpeed = 0.75 * (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) - turnSpeed);
-		}
-		
-		if (isShifting) {
-			switch (state) {
-			case 0:
-				timer.reset();
-				drivetrain.enableCoastMode();
-				state = 1;
-				break;
-			case 1:
-				if (timer.get() > 0.1) {
-					drivetrain.shiftToHighGear();
+		if (Variables.useAutomaticTransmission) {
+			if (Math.abs(drivetrain.getLeftEncoderRate()) > Variables.shiftUpSpeed && Math.abs(drivetrain.getRightEncoderRate()) > Variables.shiftUpSpeed && !isShifted && !isShifting && timer.get() > 1) {
+				isShifting = true;
+				futureLeftSpeed = lastLeftSpeed * Variables.shiftUpNewPower;
+				futureRightSpeed = lastRightSpeed * Variables.shiftUpNewPower;
+				currentLeftSpeed = 0;
+				currentRightSpeed = 0;
+			}
+			else if (Math.abs(lastLeftSpeed) < Variables.shiftDownSpeed && Math.abs(lastRightSpeed) < Variables.shiftDownSpeed && isShifted && !isShifting && timer.get() > 1) {
+				isShifting = true;
+				futureLeftSpeed = lastLeftSpeed * Variables.shiftDownNewPower;
+				futureRightSpeed = lastRightSpeed * Variables.shiftDownNewPower;
+				currentLeftSpeed = 0;
+				currentRightSpeed = 0;
+			}
+			
+			if (isShifted) {
+				currentLeftSpeed = (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) + turnSpeed);
+				currentRightSpeed = (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) - turnSpeed);
+			}
+			else if (!isShifting){
+				currentLeftSpeed = (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) + turnSpeed);
+				currentRightSpeed = (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) - turnSpeed);
+			}
+			
+			if (isShifting) {
+				switch (state) {
+				case 0:
 					timer.reset();
-					state = 2;
+					drivetrain.enableCoastMode();
+					state = 1;
+					break;
+				case 1:
+					if (timer.get() > 0.02) {
+						if (isShifted) drivetrain.shiftToLowGear();
+						else drivetrain.shiftToHighGear();
+						state = 2;
+					}
+					break;
+				case 2:
+					if (timer.get() > 0.05) {
+						drivetrain.enableBrakeMode();
+						timer.reset();
+						state = 0;
+						lastLeftSpeed = futureLeftSpeed;
+						lastRightSpeed = futureRightSpeed;
+						isShifting = false;
+						if (isShifted) isShifted = false;
+						else isShifted = true;
+					}
+					break;
+				default:
+					System.out.println("Uh oh, something went wrong in Drive.java. State = " + state);
 				}
-				break;
-			case 2:
-				if (timer.get() > 0.1) {
-					drivetrain.enableBrakeMode();
-					timer.reset();
-					state = 0;
-					lastLeftSpeed = futureLeftSpeed;
-					lastRightSpeed = futureRightSpeed;
-					isShifting = false;
-					isShifted = true;
-				}
-				break;
-			default:
-				System.out.println("Uh oh, something went wrong in Drive.java. State = " + state);
 			}
 		}
-
+		else {
+			currentLeftSpeed = -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) + turnSpeed;
+			currentRightSpeed = -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) - turnSpeed;
+		}
+		
 		if (Variables.useLinearAcceleration) {
 			double leftAcceleration = (currentLeftSpeed - lastLeftSpeed);
 			double signOfLeftAcceleration = leftAcceleration / Math.abs(leftAcceleration);
@@ -125,6 +131,8 @@ public class Drive extends CommandBase {
     	
     	currentLeftSpeed = Math.min(/*Variables.lowGearMaxSpeed*/1, Math.abs(currentLeftSpeed)) * (currentLeftSpeed > 0? 1: -1);
     	currentRightSpeed = Math.min(/*Variables.lowGearMaxSpeed*/1, Math.abs(currentRightSpeed)) * (currentRightSpeed > 0? 1: -1);
+    	
+    	System.out.println(drivetrain.getLeftEncoderRate());
     	
     	drivetrain.drive(currentLeftSpeed, currentRightSpeed, horizontalPower, horizontalPower);
     }
