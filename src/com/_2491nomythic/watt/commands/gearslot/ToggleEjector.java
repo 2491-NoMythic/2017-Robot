@@ -16,14 +16,8 @@ public class ToggleEjector extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(!Variables.ejected) {
-    		gearslot.ejectGear();
-    		Variables.ejected = true;
-    	}
-    	else {
-    		gearslot.retractEjector();
-    		Variables.ejected = false;
-    	}
+    	if(gearslot.getPusher()) gearslot.retractEjector();
+    	else gearslot.retractEjector();
     }
 
     // Called repeatedly when this Command is scheduled to run

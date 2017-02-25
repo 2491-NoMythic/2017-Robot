@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.Timer;
  *
  */
 public class ToggleGearSlot extends CommandBase {
-	private boolean doorsOpened = false;
 	private Timer timer;
 	
     public ToggleGearSlot() {
@@ -23,14 +22,8 @@ public class ToggleGearSlot extends CommandBase {
     	timer.start();
     	timer.reset();
     	
-    	if(doorsOpened) {
-    		gearslot.closeDoors();
-    		doorsOpened = false;
-    	}
-    	else {
-    		gearslot.openDoors();
-    		doorsOpened = true;
-    	}
+    	if(gearslot.getDoors())	gearslot.closeDoors();
+    	else gearslot.openDoors();
     }
 
     // Called repeatedly when this Command is scheduled to run

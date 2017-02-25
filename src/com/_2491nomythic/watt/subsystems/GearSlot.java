@@ -43,6 +43,14 @@ public class GearSlot extends Subsystem {
 	public void retractEjector() {
 		pusher.set(false);
 	}
+	
+	public boolean getDoors () {
+		return door.get();
+	}
+	
+	public boolean getPusher() {
+		return pusher.get();
+	}
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
