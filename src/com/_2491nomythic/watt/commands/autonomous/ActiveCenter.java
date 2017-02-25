@@ -17,7 +17,6 @@ public class ActiveCenter extends CommandBase {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	firstDrive = new DriveStraightToPosition(1, 7.7);
-    	secondDrive = new DriveStraightToPosition(-1, -1.5);
     	gearDeposit = new OpenAndEjectGearSlot();
     	reset = new ResetEncoders();
     }
@@ -32,15 +31,12 @@ public class ActiveCenter extends CommandBase {
     protected void execute() {
     	if(!firstDrive.isRunning()) {
     		gearDeposit.start();
-    		if(!gearDeposit.isRunning()) {
-    			secondDrive.start();
-    		}
     	}	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !secondDrive.isRunning();
+        return !gearDeposit.isRunning();
     }
 
     // Called once after isFinished returns true
