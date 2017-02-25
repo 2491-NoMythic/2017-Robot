@@ -32,6 +32,28 @@ public class Camera {
     	}
     	return instance;
     }
+	
+	public void testCamera() {
+		for (int i = 0; i < packets.length; i++) 
+			packets[i] = null;
+		SmartDashboard.putString("hello pixy ", "working");
+		for (int i = 1; i < 8; i++) {
+			try {
+				packets[i-1] = readPacket(i);
+			} catch (CameraException e) {
+				SmartDashboard.putString("Pixy error: " + i, "exception");
+			}
+			if (packets[i-1] == null) {
+				SmartDashboard.putString("Pixy error: " + i, "True");
+				continue;
+			}
+			SmartDashboard.putNumber("X Value: " + i, packets[i-1].x);
+			SmartDashboard.putNumber("Y Value: " + i, packets[i-1].y);
+			SmartDashboard.putNumber("Height: " + i, packets[i-1].height);
+			SmartDashboard.putNumber("Width: " + i, packets[i-1].width);
+			SmartDashboard.putString("Pixy error" + i, "False");
+		}
+	}
 
 	// This method parses raw data from the pixy into readable integers
 	public int cvt(byte upper, byte lower) {
