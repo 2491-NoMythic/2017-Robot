@@ -1,13 +1,14 @@
 package com._2491nomythic.watt.commands.gearslot;
 
 import com._2491nomythic.watt.commands.CommandBase;
+import com._2491nomythic.watt.settings.Variables;
 
 /**
  *
  */
-public class ToggleDoors extends CommandBase {
+public class ToggleEjector extends CommandBase {
 
-    public ToggleDoors() {
+    public ToggleEjector() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(gearslot);
@@ -15,7 +16,14 @@ public class ToggleDoors extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	gearslot.toggleDoors();
+    	if(!Variables.ejected) {
+    		gearslot.ejectGear();
+    		Variables.ejected = true;
+    	}
+    	else {
+    		gearslot.retractEjector();
+    		Variables.ejected = false;
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run

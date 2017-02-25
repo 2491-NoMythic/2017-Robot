@@ -26,28 +26,23 @@ public class GearSlot extends Subsystem {
 	private GearSlot() {
 		door = new Solenoid(Constants.gearDoorSolenoidChannel);
 		pusher = new Solenoid(Constants.gearPusherSolenoidChannel);
+	}
+	
+	public void openDoors() {
+		door.set(true);
+	}
+	
+	public void closeDoors() {
 		door.set(false);
+	}
+	
+	public void ejectGear() {
+		pusher.set(true);
+	}
+	
+	public void retractEjector() {
 		pusher.set(false);
 	}
-	
-	public void toggleDoors() {
-		if (!door.get()) {
-		door.set(true);
-		}
-		else {
-			door.set(false);
-		}
-	}
-	
-	public void togglePusher() {
-		if (!pusher.get()) {
-			pusher.set(true);
-		}
-		else {
-			pusher.set(true);
-		}
-	}
-	
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

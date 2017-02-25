@@ -7,18 +7,18 @@ import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
  *
  */
 public class OpenAndEjectGearSlot extends CommandBase {
-	private TogglePusher openDoors, closeDoors;
-	private ToggleDoors extend, retract;
+	private ToggleGearSlot openDoors, closeDoors;
+	private ToggleEjector extend, retract;
 	private DriveStraightToPosition backAway;
 	private int state;
 
     public OpenAndEjectGearSlot() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	openDoors = new TogglePusher();
-    	closeDoors = new TogglePusher();
-    	extend = new ToggleDoors();
-    	retract = new ToggleDoors();
+    	openDoors = new ToggleGearSlot();
+    	closeDoors = new ToggleGearSlot();
+    	extend = new ToggleEjector();
+    	retract = new ToggleEjector();
     	backAway = new DriveStraightToPosition(-1, 2);
     }
 

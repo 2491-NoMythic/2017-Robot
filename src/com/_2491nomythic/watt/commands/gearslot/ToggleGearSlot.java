@@ -7,10 +7,11 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  *
  */
-public class TogglePusher extends CommandBase {
+public class ToggleGearSlot extends CommandBase {
+	private boolean doorsOpened = false;
 	private Timer timer;
 	
-    public TogglePusher() {
+    public ToggleGearSlot() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(gearslot);
@@ -21,7 +22,15 @@ public class TogglePusher extends CommandBase {
     protected void initialize() {
     	timer.start();
     	timer.reset();
-    	gearslot.togglePusher();
+    	
+    	if(doorsOpened) {
+    		gearslot.closeDoors();
+    		doorsOpened = false;
+    	}
+    	else {
+    		gearslot.openDoors();
+    		doorsOpened = true;
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
