@@ -13,6 +13,7 @@ public class ControllerMap {
 	public static final int rotateDrivetrainLeftPOV = 270;
 	public static final int rotateDrivetrainRightPOV = 90;
 	public static final int speedTestButton = 5;
+	public static final int lightTest = 10;
 	
 	//Operator
 	public static final int secondaryDriveController = 1;

@@ -20,17 +20,18 @@ public class LightsDefault extends CommandBase {
     protected void initialize() {
     	timer.reset();
     	timer.start();
-    	lights.setColors(127);
+    	;
     	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	lights.setColors(127);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return timer.get() >= 10;
+        return timer.get() >= 1000;
     }
 
     // Called once after isFinished returns true
