@@ -29,8 +29,8 @@ public class Constants {
 	
 	//GearSlot
 	
-	public static final int gearOpenerSolenoidChannel = 1;
-	public static final int gearEjectorSolenoidChannel = 2;
+	public static final int gearDoorSolenoidChannel = 1;
+	public static final int gearPusherSolenoidChannel = 2;
 	
 	//Shooter
 	

@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 
 public class GearSlot extends Subsystem {
-	private Solenoid opener, ejector;
+	private Solenoid door, pusher;
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -24,24 +24,24 @@ public class GearSlot extends Subsystem {
 	}
 	
 	private GearSlot() {
-		opener = new Solenoid(Constants.gearOpenerSolenoidChannel);
-		ejector = new Solenoid(Constants.gearEjectorSolenoidChannel);
+		door = new Solenoid(Constants.gearDoorSolenoidChannel);
+		pusher = new Solenoid(Constants.gearPusherSolenoidChannel);
 	}
 	
 	public void openDoors() {
-		opener.set(true);
+		door.set(true);
 	}
 	
 	public void closeDoors() {
-		opener.set(false);
+		door.set(false);
 	}
 	
 	public void ejectGear() {
-		ejector.set(true);
+		pusher.set(true);
 	}
 	
 	public void retractEjector() {
-		ejector.set(false);
+		pusher.set(false);
 	}
 
     public void initDefaultCommand() {

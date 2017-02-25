@@ -1,45 +1,42 @@
-package com._2491nomythic.watt.commands.gearslot;
+package com._2491nomythic.watt.commands.lights;
 
 import com._2491nomythic.watt.commands.CommandBase;
-import com._2491nomythic.watt.settings.Variables;
 
 import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
  */
-public class EjectGear extends CommandBase {
-	Timer timer;
-	
-    public EjectGear() {
+public class LightsDefault extends CommandBase {
+	private Timer timer;
+    public LightsDefault() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(gearslot);
+    	requires(lights);
     	timer = new Timer();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	timer.start();
     	timer.reset();
+    	timer.start();
+    	;
     	
-    	gearslot.ejectGear();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(timer.get() > Variables.timeToEjectGear) {
-    		gearslot.retractEjector();
-    	}
+    	lights.setColors(127);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return timer.get() > Variables.timeToEjectGear;
+        return timer.get() >= 1000;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	lights.shutOffRed();
     }
 
     // Called when another command which requires one or more of the same

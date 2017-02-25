@@ -9,6 +9,7 @@ import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 import com._2491nomythic.watt.commands.gearslot.ToggleEjector;
 import com._2491nomythic.watt.commands.gearslot.ToggleGearSlot;
+import com._2491nomythic.watt.commands.lights.LightsDefault;
 import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.ControllerMap;
 
@@ -23,7 +24,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button driveLock, followObject, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear;
+	Button driveLock, followObject, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, lightTest;
 	
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
@@ -45,7 +46,7 @@ public class OI {
 		openDoors = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.openDoorButton);
 		openDoors.whenPressed(new ToggleGearSlot());
 		
-		ejectGear = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.ejectGearButton);
+		ejectGear = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.pushGearButton);
 		ejectGear.whenPressed(new ToggleEjector());
 		
 		autoGear = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.autoGearButton);
@@ -59,6 +60,11 @@ public class OI {
 		
 		rotateRight = new JoystickPOVButton(controllers[ControllerMap.mainDriveController], ControllerMap.rotateDrivetrainRightPOV);
 		rotateRight.whenPressed(new RotateDrivetrainWithGyro(1, 47));
+		
+		lightTest = new JoystickPOVButton(controllers[ControllerMap.mainDriveController], ControllerMap.lightTest);
+		lightTest.whileHeld(new LightsDefault());
+		
+		
 		
 	}
 	
