@@ -2,26 +2,20 @@ package com._2491nomythic.watt.commands.gearslot;
 
 import com._2491nomythic.watt.commands.CommandBase;
 
-import edu.wpi.first.wpilibj.Timer;
-
 /**
  *
  */
 public class ToggleDoors extends CommandBase {
-	private Timer timer;
 
     public ToggleDoors() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(gearslot);
-    	timer = new Timer();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	gearslot.toggleDoors();
-    	timer.start();
-    	timer.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -31,7 +25,7 @@ public class ToggleDoors extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return timer.get() > 0.25;
+        return true;
     }
 
     // Called once after isFinished returns true
