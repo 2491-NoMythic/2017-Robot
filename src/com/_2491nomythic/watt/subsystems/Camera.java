@@ -13,15 +13,15 @@ public class Camera {
 	I2C pixy;
 	Port port = Port.kOnboard;
 	CameraPacket[] packets;
-	CameraException pExc;
+	CameraException exc;
 	String print;
 	private static Camera instance;
 	
 
 	public Camera() {
-		pixy = new I2C(port, 1);
+		pixy = new I2C(port, 0x55);
 		packets = new CameraPacket[7];
-		pExc = new CameraException(print);
+		exc = new CameraException(print);
 		values = new CameraPacket();
 		name = "Pixy";
 	}
@@ -94,7 +94,7 @@ public class Camera {
 				// block should never be entered*
 				if (Checksum != Sig + packets[Sig - 1].x + packets[Sig - 1].y + packets[Sig - 1].width + packets[Sig - 1].height) {
 					packets[Sig - 1] = null;
-					throw pExc;
+					throw exc;
 				}
 				break;
 			} else
