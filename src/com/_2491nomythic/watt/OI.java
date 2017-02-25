@@ -7,8 +7,8 @@ import com._2491nomythic.watt.commands.drivetrain.ManualShift;
 import com._2491nomythic.watt.commands.drivetrain.NoTurnLock;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
-import com._2491nomythic.watt.commands.gearslot.ToggleEjector;
-import com._2491nomythic.watt.commands.gearslot.ToggleGearSlot;
+import com._2491nomythic.watt.commands.gearslot.ToggleDoors;
+import com._2491nomythic.watt.commands.gearslot.TogglePusher;
 import com._2491nomythic.watt.commands.lights.LightsDefault;
 import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.ControllerMap;
@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button driveLock, followObject, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, lightTest;
+	Button driveLock, followObject, openDoors, pushGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, lightTest;
 	
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
@@ -44,10 +44,10 @@ public class OI {
 		shift.whileHeld(new ManualShift());
 		
 		openDoors = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.openDoorButton);
-		openDoors.whenPressed(new ToggleGearSlot());
+		openDoors.whenPressed(new TogglePusher());
 		
-		ejectGear = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.pushGearButton);
-		ejectGear.whenPressed(new ToggleEjector());
+		pushGear = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.pushGearButton);
+		pushGear.whenPressed(new ToggleDoors());
 		
 		autoGear = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.autoGearButton);
 		autoGear.whenPressed(new OpenAndEjectGearSlot());
