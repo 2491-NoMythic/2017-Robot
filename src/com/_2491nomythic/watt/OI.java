@@ -7,6 +7,7 @@ import com._2491nomythic.watt.commands.drivetrain.ManualShift;
 import com._2491nomythic.watt.commands.drivetrain.NoTurnLock;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
+import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlotWithoutMoving;
 import com._2491nomythic.watt.commands.gearslot.ToggleEjector;
 import com._2491nomythic.watt.commands.gearslot.ToggleGearSlot;
 import com._2491nomythic.watt.commands.lights.LightsDefault;
@@ -24,7 +25,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button driveLock, followObject, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, lightTest;
+	Button driveLock, followObject, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, almostAutoGear, lightTest;
 	
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
@@ -51,6 +52,9 @@ public class OI {
 		
 		autoGear = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.autoGearButton);
 		autoGear.whenPressed(new OpenAndEjectGearSlot());
+		
+		almostAutoGear = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.autoGearButtonWithoutMovement);
+		almostAutoGear.whenPressed(new OpenAndEjectGearSlotWithoutMoving());
 		
 		noTurnLock = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.noTurnLockButton);
 		noTurnLock.whileHeld(new NoTurnLock());
