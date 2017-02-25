@@ -7,14 +7,13 @@ import com._2491nomythic.watt.commands.CommandBase;
  */
 public class OpenAndEjectGearSlotWithoutMoving extends CommandBase {
 	private int state;
-	private ToggleGearSlot openDoors, closeDoors;
+	private ToggleGearSlot openDoors;
 	private ToggleEjector extend, retract;
 
     public OpenAndEjectGearSlotWithoutMoving() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	openDoors = new ToggleGearSlot();
-    	closeDoors = new ToggleGearSlot();
     	extend = new ToggleEjector();
     	retract = new ToggleEjector();
     }
@@ -47,14 +46,6 @@ public class OpenAndEjectGearSlotWithoutMoving extends CommandBase {
     		}
     		break;
     	case 3:
-    		if(!retract.isRunning()) {
-    			closeDoors.start();
-    			System.out.println("Case 3");
-    			state = 4;
-    		}
-    		break;
-    	case 4:
-    			System.out.println("Case 4");;
     		break;
     	default:
     		System.out.println("Something went wrong in OpenAndEjectGearSlot.java. State: " + state);
@@ -64,7 +55,7 @@ public class OpenAndEjectGearSlotWithoutMoving extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !closeDoors.isRunning() && state == 4;
+        return !retract.isRunning() && state == 3;
     }
 
     // Called once after isFinished returns true
@@ -75,7 +66,6 @@ public class OpenAndEjectGearSlotWithoutMoving extends CommandBase {
     // subsystems is scheduled to run
     protected void interrupted() {
     	openDoors.cancel();
-    	closeDoors.cancel();
     	extend.cancel();
     	retract.cancel();
     }
