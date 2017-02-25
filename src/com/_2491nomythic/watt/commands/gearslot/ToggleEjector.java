@@ -16,6 +16,8 @@ public class ToggleEjector extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	System.out.println("ToggleEjector is running");
+    	
     	if(gearslot.getPusher()) gearslot.retractEjector();
     	else gearslot.retractEjector();
     }
