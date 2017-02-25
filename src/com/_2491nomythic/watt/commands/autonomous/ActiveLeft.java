@@ -40,12 +40,14 @@ public class ActiveLeft extends CommandBase {
     	switch(state) {
     	case 0:
     		firstDrive.start();
+    		System.out.println("Case 0");
     		state++;
     		break;
     	
     	case 1:
     		if(!firstDrive.isRunning()) {
     			rotateDrivetrain1.start();
+    			System.out.println("Case 1");
     			state++;
     		}
     		break;
@@ -54,12 +56,14 @@ public class ActiveLeft extends CommandBase {
     		if(!rotateDrivetrain1.isRunning()) {
     			secondDrive.start();
     			state++;
+    			System.out.println("Case 2");
     		}
     		break;
     		
     	case 3:
     		if(!secondDrive.isRunning()) {
     			ejectGear.start();
+    			System.out.println("Case 3");
     			state++;
     		}
     		break;
@@ -67,6 +71,7 @@ public class ActiveLeft extends CommandBase {
     	case 4:
     		if(!ejectGear.isRunning()) {
     			thirdDrive.start();
+    			System.out.println("Case 4");
     			state++;
     		}
     		break;
@@ -74,6 +79,7 @@ public class ActiveLeft extends CommandBase {
     	case 5:
     		if(!thirdDrive.isRunning()) {
     			rotateDrivetrain2.start();
+    			System.out.println("Case 5");
     			state++;
     		}
     		break;
@@ -81,12 +87,13 @@ public class ActiveLeft extends CommandBase {
     	case 6:
     		if(!rotateDrivetrain2.isRunning()) {
     			fourthDrive.start();
+    			System.out.println("Case 6");
     			state++;
     		}
     		break;
     		
     	case 7:
-    		
+    		System.out.println("Case 7");
     		break;
     		
     	default:
