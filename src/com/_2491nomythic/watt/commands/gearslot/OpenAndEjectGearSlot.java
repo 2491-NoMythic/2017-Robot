@@ -33,12 +33,14 @@ public class OpenAndEjectGearSlot extends CommandBase {
     	switch(state) {
     	case 0:
     		openDoors.start();
+    		System.out.println("Case 0");
     		state++;
     	break;
     	
     	case 1:
     		if(!openDoors.isRunning()) {
     			extend.start();
+    			System.out.println("Case 1");
     			state++;
     		}
     		break;
@@ -46,6 +48,7 @@ public class OpenAndEjectGearSlot extends CommandBase {
     	case 2:
     		if(!extend.isRunning()) {
     			retract.start();
+    			System.out.println("Case 2");
     			state++;
     		}
     		break;
@@ -53,18 +56,20 @@ public class OpenAndEjectGearSlot extends CommandBase {
     	case 3:
     		if(!retract.isRunning()) {
     			backAway.start();
+    			System.out.println("Case 3");
     			state++;
     		}
     		break;
     	case 4:
     		if(!backAway.isRunning()) {
     			closeDoors.start();
+    			System.out.println("Case 4");
     			state++;
     		}
     		break;
     		
     	case 5:
-    		
+    			System.out.println("Case 5");
     		break;
     		
     	default:
