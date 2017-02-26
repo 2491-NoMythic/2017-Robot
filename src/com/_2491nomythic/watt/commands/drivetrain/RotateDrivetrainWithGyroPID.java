@@ -2,29 +2,29 @@ package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
 
-import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
 public class RotateDrivetrainWithGyroPID extends CommandBase {
-	private double  angle, initialAngle, direction;
+	private double  angle, initialAngle, inputAngle, direction;
 
     public RotateDrivetrainWithGyroPID(double angle) {
         // Use requires() here to declare subsystem dependencies
       	requires(drivetrain);
-    	initialAngle = drivetrain.getGyroAngle();
-    	this.angle = angle + initialAngle;
+    	inputAngle= angle;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(angle > 0) {
-    		direction = 1;
-    	}
-    	else if(angle < 0) {
+    	if(inputAngle > 0) {
     		direction = -1;
     	}
+    	else if(inputAngle < 0) {
+    		direction = 1;
+    	}
+    	initialAngle = drivetrain.getGyroAngle();
+    	this.angle = inputAngle + initialAngle;
     	drivetrain.enable();
     	drivetrain.setSetpoint(angle);
     }
@@ -41,6 +41,7 @@ public class RotateDrivetrainWithGyroPID extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+    	System.out.println(this.angle);
     	drivetrain.stop();
     	drivetrain.disable();
     }
