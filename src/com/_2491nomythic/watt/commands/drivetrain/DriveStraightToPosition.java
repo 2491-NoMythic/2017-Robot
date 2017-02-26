@@ -58,6 +58,8 @@ public class DriveStraightToPosition extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
     	drivetrain.stop();
+    	drivetrain.resetLeftEncoder();
+    	drivetrain.resetRightEncoder();
     }
 
     // Called when another command which requires one or more of the same

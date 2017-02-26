@@ -9,14 +9,14 @@ import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
  *
  */
 public class ActiveCenter extends CommandBase {
-	private PassiveCenter passiveCenter;
+	private DriveStraightToPosition firstDrive;
 	private OpenAndEjectGearSlot gearDeposit;
 	private int state;
 
     public ActiveCenter() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	passiveCenter = new PassiveCenter();
+    	firstDrive = new DriveStraightToPosition(0.5, 6.5);
     	gearDeposit = new OpenAndEjectGearSlot();
     }
 
@@ -29,19 +29,23 @@ public class ActiveCenter extends CommandBase {
     protected void execute() {
     	switch(state) {
     	case 0:
-    		passiveCenter.start();
-    		state = 1;
-    		break;
+        	drivetrain.resetLeftEncoder();
+        	drivetrain.resetRightEncoder();
+        	state = 1;
+        	break;
     	case 1:
-    		if(!passiveCenter.isRunning()) {
-    			gearDeposit.start();
-    			state = 2;
-    		}
+    		firstDrive.start();
+    		state = 2;
     		break;
     	case 2:
+    		if(!firstDrive.isRunning()) {
+    			gearDeposit.start();
+    			state = 3;
+    		}
     		break;
-    		
-    		default:
+    	case 3:
+    		break;
+    	default:
     			System.out.println("Active Center GearSlot Auto. Case: " + state);	
     		break;
     	}
@@ -49,7 +53,7 @@ public class ActiveCenter extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !gearDeposit.isRunning() && state == 2;
+        return !gearDeposit.isRunning() && state == 3;
     }
 
     // Called once after isFinished returns true
@@ -59,7 +63,7 @@ public class ActiveCenter extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	passiveCenter.cancel();
+    	firstDrive.cancel();
     	gearDeposit.cancel();
     }
 }
