@@ -1,13 +1,9 @@
 package com._2491nomythic.watt.commands;
 
-import com._2491nomythic.watt.settings.CameraException;
-import edu.wpi.first.wpilibj.Timer;
-
 /**
  *
  */
 public class PrintCameraValues extends CommandBase {
-	private Timer timer;
 
     public PrintCameraValues() {
         // Use requires() here to declare subsystem dependencies
@@ -16,15 +12,8 @@ public class PrintCameraValues extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	timer.start();
-    	timer.reset();
     	System.out.println("Starting...\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-    	try {
-			camera.readPacket(1);
-		} catch (CameraException e) {
-			e.printStackTrace();
-		}
-    	System.out.println("X:" + camera.values.x + " Y:" + camera.values.y + " Width:" + camera.values.width + " Height" + camera.values.height);
+    	camera.testCamera();
     	System.out.println("Ending...\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
 
@@ -34,7 +23,7 @@ public class PrintCameraValues extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return timer.get() > 1;
+        return true;
     }
 
     // Called once after isFinished returns true
