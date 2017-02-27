@@ -24,7 +24,7 @@ public class TogglePusher extends CommandBase {
     	timer.start();
     	timer.reset();
     	
-    	System.out.println("ToggleEjector is running");
+    	System.out.println("TogglePusher is running");
     	
     	if(gearslot.getPusher()) gearslot.retractEjector();
     	else gearslot.ejectGear();
