@@ -7,15 +7,15 @@ import com._2491nomythic.watt.commands.CommandBase;
  */
 public class OpenAndEjectGearSlotWithoutMoving extends CommandBase {
 	private int state;
-	private ToggleGearSlot openDoors;
-	private ToggleEjector extend, retract;
+	private ToggleDoors openDoors;
+	private TogglePusher extend, retract;
 
     public OpenAndEjectGearSlotWithoutMoving() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	openDoors = new ToggleGearSlot();
-    	extend = new ToggleEjector();
-    	retract = new ToggleEjector();
+    	openDoors = new ToggleDoors();
+    	extend = new TogglePusher();
+    	retract = new TogglePusher();
     }
 
     // Called just before this Command runs the first time

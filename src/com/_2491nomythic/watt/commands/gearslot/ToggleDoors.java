@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  *
  */
-public class ToggleGearSlot extends CommandBase {
+public class ToggleDoors extends CommandBase {
 	private Timer timer;
 	
-    public ToggleGearSlot() {
+    public ToggleDoors() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(gearslot);

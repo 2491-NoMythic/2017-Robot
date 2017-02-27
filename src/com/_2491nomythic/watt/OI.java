@@ -8,8 +8,8 @@ import com._2491nomythic.watt.commands.drivetrain.NoTurnLock;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlotWithoutMoving;
-import com._2491nomythic.watt.commands.gearslot.ToggleEjector;
-import com._2491nomythic.watt.commands.gearslot.ToggleGearSlot;
+import com._2491nomythic.watt.commands.gearslot.TogglePusher;
+import com._2491nomythic.watt.commands.gearslot.ToggleDoors;
 import com._2491nomythic.watt.commands.lights.LightsDefault;
 import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.ControllerMap;
@@ -45,10 +45,10 @@ public class OI {
 		shift.whileHeld(new ManualShift());
 		
 		openDoors = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.openDoorButton);
-		openDoors.whenPressed(new ToggleGearSlot());
+		openDoors.whenPressed(new ToggleDoors());
 		
 		ejectGear = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.pushGearButton);
-		ejectGear.whenPressed(new ToggleEjector());
+		ejectGear.whenPressed(new TogglePusher());
 		
 		autoGear = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.autoGearButton);
 		autoGear.whenPressed(new OpenAndEjectGearSlot());

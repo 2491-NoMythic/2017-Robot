@@ -9,10 +9,10 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  *
  */
-public class ToggleEjector extends CommandBase {
+public class TogglePusher extends CommandBase {
 	private Timer timer;
 
-    public ToggleEjector() {
+    public TogglePusher() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(gearslot);
