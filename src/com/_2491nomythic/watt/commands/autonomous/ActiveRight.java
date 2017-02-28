@@ -31,6 +31,7 @@ public class ActiveRight extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	drivetrain.resetLeftEncoder();
     	reset.start();
     	state = 0;
     }
@@ -100,7 +101,7 @@ public class ActiveRight extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	
+    	drivetrain.resetLeftEncoder();
     }
 
     // Called when another command which requires one or more of the same
