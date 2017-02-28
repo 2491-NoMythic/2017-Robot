@@ -26,7 +26,7 @@ public class DriveStraightToPosition extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	leftDistance = drivetrain.getLeftEncoderDistance() - leftStart;
-    	rightDistance = -drivetrain.getRightEncoderDistance() - rightStart;
+    	rightDistance = -(drivetrain.getRightEncoderDistance() - rightStart);
     	leftSpeed = speed;
     	rightSpeed = speed;
     	

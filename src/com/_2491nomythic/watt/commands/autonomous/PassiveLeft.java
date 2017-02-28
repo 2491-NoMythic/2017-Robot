@@ -11,22 +11,20 @@ import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 public class PassiveLeft extends CommandBase {
 	private DriveStraightToPosition firstDrive, secondDrive;
 	private RotateDrivetrainWithGyro rotate1;
-	private ResetEncoders reset;
 	private int state;
 
     public PassiveLeft() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	firstDrive = new DriveStraightToPosition(1,8.75);
-    	secondDrive = new DriveStraightToPosition(1,2.92);
-    	rotate1 = new RotateDrivetrainWithGyro(0.5,60);
+    	firstDrive = new DriveStraightToPosition(1,6.3);
+    	secondDrive = new DriveStraightToPosition(1,4.7);
+    	rotate1 = new RotateDrivetrainWithGyro(0.5,50);
     	state = 0;
-    	reset = new ResetEncoders();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	reset.start();
+
     }
 
     // Called repeatedly when this Command is scheduled to run

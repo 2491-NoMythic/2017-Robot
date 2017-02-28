@@ -19,7 +19,7 @@ public class ActiveRight extends CommandBase {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	firstDrive = new DriveStraightToPosition(1, 6.3);
-    	secondDrive = new DriveStraightToPosition(0.5, 4.7);
+    	secondDrive = new DriveStraightToPosition(0.7, 4.7);
     	thirdDrive = new DriveStraightToPosition(-1, -5.8);
     	fourthDrive = new DriveStraightToPosition(1, 7);
     	ejectGear = new OpenAndEjectGearSlot();
