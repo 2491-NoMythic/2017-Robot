@@ -13,7 +13,6 @@ public class ActiveLeft extends CommandBase {
 	private DriveStraightToPosition firstDrive, secondDrive, thirdDrive, fourthDrive;
 	private OpenAndEjectGearSlot ejectGear;
 	private RotateDrivetrainWithGyro rotateDrivetrain1, rotateDrivetrain2;
-	private ResetEncoders reset;
 	private int state;
 
     public ActiveLeft() {
@@ -26,12 +25,10 @@ public class ActiveLeft extends CommandBase {
     	ejectGear = new OpenAndEjectGearSlot();
     	rotateDrivetrain1 = new RotateDrivetrainWithGyro(0.25, 50);
     	rotateDrivetrain2 = new RotateDrivetrainWithGyro(0.25, -50);
-    	reset = new ResetEncoders();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	reset.start();
     	state = 0;
     }
 
@@ -39,12 +36,10 @@ public class ActiveLeft extends CommandBase {
     protected void execute() {
     	switch(state) {
     	case 0:
-    		if (!reset.isRunning()) {
-    			firstDrive.start();
-    			System.out.println("Case 0");
-    			state++;
-    			break;
-    		}
+    		firstDrive.start();
+    		System.out.println("Case 0");
+    		state++;
+    		break;
     	case 1:
     		if(!firstDrive.isRunning()) {
     			rotateDrivetrain1.start();
@@ -56,12 +51,12 @@ public class ActiveLeft extends CommandBase {
     	case 2:
     		if(!rotateDrivetrain1.isRunning()) {
     			secondDrive.start();
-    			state = 7;
+    			state++;
     			System.out.println("Case 2");
     		}
     		break;
     		
-    	/*case 3:
+    	case 3:
     		if(!secondDrive.isRunning()) {
     			ejectGear.start();
     			System.out.println("Case 3");
@@ -93,7 +88,7 @@ public class ActiveLeft extends CommandBase {
     		}
     		break;
     		
-    	*/case 7:
+    	case 7:
     		System.out.println("Case 7");
     		break;
     		
@@ -110,13 +105,11 @@ public class ActiveLeft extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	drivetrain.resetLeftEncoder();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	reset.cancel();
     	firstDrive.cancel();
     	secondDrive.cancel();
     	thirdDrive.cancel();

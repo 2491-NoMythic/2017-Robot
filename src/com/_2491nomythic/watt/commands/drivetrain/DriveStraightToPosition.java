@@ -7,7 +7,7 @@ import com._2491nomythic.watt.commands.CommandBase;
  */
 public class DriveStraightToPosition extends CommandBase {
 	private double speed, leftSpeed, rightSpeed;
-	private double distance, leftDistance, rightDistance;
+	private double distance, leftDistance, rightDistance, leftStart, rightStart;
 
     public DriveStraightToPosition(double speed, double distance) {
         // Use requires() here to declare subsystem dependencies
@@ -19,14 +19,14 @@ public class DriveStraightToPosition extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	drivetrain.resetLeftEncoder();
-    	drivetrain.resetRightEncoder();
+    	leftStart = drivetrain.getLeftEncoderDistance();
+    	rightStart = drivetrain.getRightEncoderDistance();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	leftDistance = drivetrain.getLeftEncoderDistance();
-    	rightDistance = -drivetrain.getRightEncoderDistance();
+    	leftDistance = drivetrain.getLeftEncoderDistance() - leftStart;
+    	rightDistance = -drivetrain.getRightEncoderDistance() - rightStart;
     	leftSpeed = speed;
     	rightSpeed = speed;
     	
@@ -56,8 +56,6 @@ public class DriveStraightToPosition extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
     	drivetrain.stop();
-    	drivetrain.resetLeftEncoder();
-    	drivetrain.resetRightEncoder();
     }
 
     // Called when another command which requires one or more of the same

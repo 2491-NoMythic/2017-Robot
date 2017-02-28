@@ -29,21 +29,16 @@ public class ActiveCenter extends CommandBase {
     protected void execute() {
     	switch(state) {
     	case 0:
-        	drivetrain.resetLeftEncoder();
-        	drivetrain.resetRightEncoder();
-        	state = 1;
-        	break;
-    	case 1:
     		firstDrive.start();
-    		state = 2;
+    		state = 1;
     		break;
-    	case 2:
+    	case 1:
     		if(!firstDrive.isRunning()) {
     			gearDeposit.start();
-    			state = 3;
+    			state = 2;
     		}
     		break;
-    	case 3:
+    	case 2:
     		break;
     	default:
     			System.out.println("Active Center GearSlot Auto. Case: " + state);	
@@ -53,7 +48,7 @@ public class ActiveCenter extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !gearDeposit.isRunning() && state == 3;
+        return !gearDeposit.isRunning() && state == 2;
     }
 
     // Called once after isFinished returns true

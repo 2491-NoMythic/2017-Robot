@@ -11,28 +11,24 @@ import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
  */
 public class ActiveRight extends CommandBase {
 	private DriveStraightToPosition firstDrive, secondDrive, thirdDrive, fourthDrive;
-	private OpenAndEjectGearSlot gearEject;
+	private OpenAndEjectGearSlot ejectGear;
 	private RotateDrivetrainWithGyro rotateDrivetrain1, rotateDrivetrain2;
-	private ResetEncoders reset;
 	private int state;
 
     public ActiveRight() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	firstDrive = new DriveStraightToPosition(1, 8.75);
-    	secondDrive = new DriveStraightToPosition(1, 2.92);
-    	thirdDrive = new DriveStraightToPosition(-1, -2.92);
-    	fourthDrive = new DriveStraightToPosition(1, 7.5);
-    	gearEject = new OpenAndEjectGearSlot();
-    	rotateDrivetrain1 = new RotateDrivetrainWithGyro(0.50, -60);
-    	rotateDrivetrain2 = new RotateDrivetrainWithGyro(0.50, 60);
-    	reset = new ResetEncoders();
+    	firstDrive = new DriveStraightToPosition(1, 6.3);
+    	secondDrive = new DriveStraightToPosition(0.5, 4.7);
+    	thirdDrive = new DriveStraightToPosition(-1, -5.8);
+    	fourthDrive = new DriveStraightToPosition(1, 7);
+    	ejectGear = new OpenAndEjectGearSlot();
+    	rotateDrivetrain1 = new RotateDrivetrainWithGyro(0.25, -50);
+    	rotateDrivetrain2 = new RotateDrivetrainWithGyro(0.25, 50);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	drivetrain.resetLeftEncoder();
-    	reset.start();
     	state = 0;
     }
 
@@ -41,12 +37,13 @@ public class ActiveRight extends CommandBase {
     	switch(state) {
     	case 0:
     		firstDrive.start();
+    		System.out.println("Case 0");
     		state++;
     		break;
-    		
     	case 1:
     		if(!firstDrive.isRunning()) {
     			rotateDrivetrain1.start();
+    			System.out.println("Case 1");
     			state++;
     		}
     		break;
@@ -55,19 +52,22 @@ public class ActiveRight extends CommandBase {
     		if(!rotateDrivetrain1.isRunning()) {
     			secondDrive.start();
     			state++;
+    			System.out.println("Case 2");
     		}
     		break;
-    	
+    		
     	case 3:
     		if(!secondDrive.isRunning()) {
-    			gearEject.start();
+    			ejectGear.start();
+    			System.out.println("Case 3");
     			state++;
     		}
     		break;
     		
     	case 4:
-    		if (!gearEject.isRunning()) {
+    		if(!ejectGear.isRunning()) {
     			thirdDrive.start();
+    			System.out.println("Case 4");
     			state++;
     		}
     		break;
@@ -75,6 +75,7 @@ public class ActiveRight extends CommandBase {
     	case 5:
     		if(!thirdDrive.isRunning()) {
     			rotateDrivetrain2.start();
+    			System.out.println("Case 5");
     			state++;
     		}
     		break;
@@ -82,26 +83,28 @@ public class ActiveRight extends CommandBase {
     	case 6:
     		if(!rotateDrivetrain2.isRunning()) {
     			fourthDrive.start();
+    			System.out.println("Case 6");
     			state++;
     		}
     		break;
-    	case 7:
     		
+    	case 7:
+    		System.out.println("Case 7");
     		break;
-    	
+    		
     	default:
-    		System.out.println("Something wrong in auto switchcase. State: " + state);
+    		System.out.println("Something went wrong in autonomous switchcase. State: " + state);
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !fourthDrive.isRunning() && state == 7;
+       // return !fourthDrive.isRunning() && state == 7;
+    	return !secondDrive.isRunning() && state == 7;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	drivetrain.resetLeftEncoder();
     }
 
     // Called when another command which requires one or more of the same
@@ -111,7 +114,7 @@ public class ActiveRight extends CommandBase {
     	secondDrive.cancel();
     	thirdDrive.cancel();
     	fourthDrive.cancel();
-    	gearEject.cancel();
+    	ejectGear.cancel();
     	rotateDrivetrain1.cancel();
     	rotateDrivetrain2.cancel();
     }
