@@ -47,8 +47,6 @@ public class DriveStraightToPosition extends CommandBase {
     		drivetrain.drive(leftSpeed, rightSpeed, 0, 0);
     	}
     	
-    	System.out.println(drivetrain.getLeftEncoderDistance());
-    	System.out.println(drivetrain.getRightEncoderDistance());
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

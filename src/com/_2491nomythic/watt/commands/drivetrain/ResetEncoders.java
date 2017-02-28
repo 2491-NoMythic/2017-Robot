@@ -18,7 +18,7 @@ public class ResetEncoders extends CommandBase {
     	drivetrain.resetCenterEncoder();
     	drivetrain.resetLeftEncoder();
     	drivetrain.resetRightEncoder();
-    	
+    	System.out.println("RESETING THE ENCODERS");
     }
 
     // Called repeatedly when this Command is scheduled to run

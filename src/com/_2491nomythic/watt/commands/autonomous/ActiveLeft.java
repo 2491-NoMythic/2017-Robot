@@ -19,13 +19,13 @@ public class ActiveLeft extends CommandBase {
     public ActiveLeft() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	firstDrive = new DriveStraightToPosition(1, 8.75);
-    	secondDrive = new DriveStraightToPosition(1, 2.92);
-    	thirdDrive = new DriveStraightToPosition(-1, -2.92);
-    	fourthDrive = new DriveStraightToPosition(1, 7.5);
+    	firstDrive = new DriveStraightToPosition(1, 6.3);
+    	secondDrive = new DriveStraightToPosition(0.5, 4.7);
+    	thirdDrive = new DriveStraightToPosition(-1, -5.8);
+    	fourthDrive = new DriveStraightToPosition(1, 7);
     	ejectGear = new OpenAndEjectGearSlot();
-    	rotateDrivetrain1 = new RotateDrivetrainWithGyro(0.50, 60);
-    	rotateDrivetrain2 = new RotateDrivetrainWithGyro(0.50, -60);
+    	rotateDrivetrain1 = new RotateDrivetrainWithGyro(0.25, 50);
+    	rotateDrivetrain2 = new RotateDrivetrainWithGyro(0.25, -50);
     	reset = new ResetEncoders();
     }
 
@@ -39,11 +39,12 @@ public class ActiveLeft extends CommandBase {
     protected void execute() {
     	switch(state) {
     	case 0:
-    		firstDrive.start();
-    		System.out.println("Case 0");
-    		state++;
-    		break;
-    	
+    		if (!reset.isRunning()) {
+    			firstDrive.start();
+    			System.out.println("Case 0");
+    			state++;
+    			break;
+    		}
     	case 1:
     		if(!firstDrive.isRunning()) {
     			rotateDrivetrain1.start();
@@ -55,12 +56,12 @@ public class ActiveLeft extends CommandBase {
     	case 2:
     		if(!rotateDrivetrain1.isRunning()) {
     			secondDrive.start();
-    			state++;
+    			state = 7;
     			System.out.println("Case 2");
     		}
     		break;
     		
-    	case 3:
+    	/*case 3:
     		if(!secondDrive.isRunning()) {
     			ejectGear.start();
     			System.out.println("Case 3");
@@ -92,7 +93,7 @@ public class ActiveLeft extends CommandBase {
     		}
     		break;
     		
-    	case 7:
+    	*/case 7:
     		System.out.println("Case 7");
     		break;
     		
@@ -103,16 +104,19 @@ public class ActiveLeft extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !fourthDrive.isRunning() && state == 7;
+       // return !fourthDrive.isRunning() && state == 7;
+    	return !secondDrive.isRunning() && state == 7;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	drivetrain.resetLeftEncoder();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	reset.cancel();
     	firstDrive.cancel();
     	secondDrive.cancel();
     	thirdDrive.cancel();
