@@ -15,8 +15,8 @@ public class FollowObject extends CommandBase {
         // eg. requires(chassis);
     	requires(drivetrain);
     	centerX = 159.5;
-    	targetHeight = 100;
-    	targetWidth = 50;
+    	targetHeight = 21;
+    	targetWidth = 17;
     	actualX = camera.values.x;
     	actualHeight = camera.values.height;
     	actualWidth = camera.values.width;
