@@ -2,6 +2,7 @@
 package com._2491nomythic.watt;
 
 import com._2491nomythic.watt.commands.CommandBase;
+import com._2491nomythic.watt.commands.InitCameraFeed;
 import com._2491nomythic.watt.commands.PrintCameraValues;
 import com._2491nomythic.watt.commands.autonomous.ActiveCenter;
 import com._2491nomythic.watt.commands.autonomous.DoNothing;
@@ -49,6 +50,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		CommandBase.init();
         chooser = new SendableChooser<Command>();
+        SmartDashboard.putData("Init Camera Feed", new InitCameraFeed());
         SmartDashboard.putData("Reset Gyro", new ResetGyro());
         SmartDashboard.putData("Reset Encoders", new ResetEncoders());
         SmartDashboard.putData("Print Camera Values", new PrintCameraValues());

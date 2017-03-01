@@ -1,15 +1,13 @@
 package com._2491nomythic.watt.subsystems;
 
-import com._2491nomythic.watt.commands.CameraDefault;
 import com._2491nomythic.watt.settings.CameraException;
 import com._2491nomythic.watt.settings.CameraPacket;
 
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.I2C.Port;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class Camera extends Subsystem {
+public class Camera {
 	String name;
 	public CameraPacket values;
 	I2C pixy;
@@ -20,7 +18,7 @@ public class Camera extends Subsystem {
 	private static Camera instance;
 	
 
-	private Camera() {
+	public Camera() {
 		pixy = new I2C(port, 0x55);
 		packets = new CameraPacket[7];
 		exc = new CameraException(print);
@@ -34,10 +32,6 @@ public class Camera extends Subsystem {
     	}
     	return instance;
     }
-	
-	public void initDefaultCommand() {
-		setDefaultCommand(new CameraDefault());
-	}
 	
 	public void testCamera() {
 		for (int i = 0; i < packets.length; i++) 

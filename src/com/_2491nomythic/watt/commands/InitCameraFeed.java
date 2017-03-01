@@ -5,10 +5,10 @@ import com._2491nomythic.watt.settings.CameraPacket;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class CameraDefault extends CommandBase {
+public class InitCameraFeed extends CommandBase {
 	private CameraPacket[] defaultPacket;
 
-    public CameraDefault() {
+    public InitCameraFeed() {
     	defaultPacket = new CameraPacket[7];
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
