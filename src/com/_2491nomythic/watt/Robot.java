@@ -58,7 +58,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Time to open GearSlot doors",Variables.timeToOpenGearSlot);
         SmartDashboard.putNumber("Time to eject Gear",Variables.timeToEjectGear);
         SmartDashboard.putData("Turn 90 Degrees", new RotateDrivetrainWithGyroPID(90));
-        chooser.addObject("Do Nothing", new DoNothing());
+        chooser.addDefault("Do Nothing", new DoNothing());
         chooser.addObject("Drive 1 Foot",new DriveStraightToPosition(1,1));
         chooser.addObject("Active Right GearSlot", new ActiveRight());
         chooser.addObject("Active Left GearSlot", new ActiveLeft());
