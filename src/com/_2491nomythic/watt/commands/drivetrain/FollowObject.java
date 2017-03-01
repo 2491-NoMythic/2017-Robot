@@ -1,7 +1,6 @@
 package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
-import com._2491nomythic.watt.settings.CameraException;
 
 /**
  *
@@ -30,12 +29,6 @@ public class FollowObject extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	try {
-			camera.readPacket(1);
-		} 
-    	catch (CameraException e) {
-			e.printStackTrace();
-		}
     	switch(state) {
     	case 0:
     		if (centerX < (actualX - 1)) {

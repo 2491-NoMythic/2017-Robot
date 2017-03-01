@@ -1,13 +1,15 @@
 package com._2491nomythic.watt.subsystems;
 
+import com._2491nomythic.watt.commands.CameraDefault;
 import com._2491nomythic.watt.settings.CameraException;
 import com._2491nomythic.watt.settings.CameraPacket;
 
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.I2C.Port;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class Camera {
+public class Camera extends Subsystem {
 	String name;
 	public CameraPacket values;
 	I2C pixy;
@@ -18,7 +20,7 @@ public class Camera {
 	private static Camera instance;
 	
 
-	public Camera() {
+	private Camera() {
 		pixy = new I2C(port, 0x55);
 		packets = new CameraPacket[7];
 		exc = new CameraException(print);
@@ -32,6 +34,10 @@ public class Camera {
     	}
     	return instance;
     }
+	
+	public void initDefaultCommand() {
+		setDefaultCommand(new CameraDefault());
+	}
 	
 	public void testCamera() {
 		for (int i = 0; i < packets.length; i++) 
@@ -56,7 +62,7 @@ public class Camera {
 	}
 
 	// This method parses raw data from the pixy into readable integers
-	public int cvt(byte upper, byte lower) {
+	public int datToInt(byte upper, byte lower) {
 		return (((int) upper & 0xff) << 8) | ((int) lower & 0xff);
 	}
 
@@ -71,9 +77,9 @@ public class Camera {
 	// object
 	// in
 	// pixymon you are trying to get data for
-	public CameraPacket readPacket(int Signature) throws CameraException {
-		int Checksum;
-		int Sig;
+	public CameraPacket readPacket(int objectSignature) throws CameraException {
+		int checkSum;
+		int sig;
 		byte[] rawData = new byte[32];
 		// SmartDashboard.putString("rawData", rawData[0] + " " + rawData[1] + "
 		// " + rawData[15] + " " + rawData[31]);
@@ -89,33 +95,33 @@ public class Camera {
 			return null;
 		}
 		for (int i = 0; i <= 16; i++) {
-			int syncWord = cvt(rawData[i + 1], rawData[i + 0]); // Parse first 2
+			int syncWord = datToInt(rawData[i + 1], rawData[i + 0]); // Parse first 2
 																// bytes
 			if (syncWord == 0xaa55) { // Check is first 2 bytes equal a "sync
 										// word", which indicates the start of a
 										// packet of valid data
-				syncWord = cvt(rawData[i + 3], rawData[i + 2]); // Parse the
+				syncWord = datToInt(rawData[i + 3], rawData[i + 2]); // Parse the
 																// next 2 bytes
 				if (syncWord != 0xaa55) { // Shifts everything in the case that
 											// one syncword is sent
 					i -= 2;
 				}
 				// This next block parses the rest of the data
-				Checksum = cvt(rawData[i + 5], rawData[i + 4]);
-				Sig = cvt(rawData[i + 7], rawData[i + 6]);
-				if (Sig <= 0 || Sig > packets.length) {
+				checkSum = datToInt(rawData[i + 5], rawData[i + 4]);
+				sig = datToInt(rawData[i + 7], rawData[i + 6]);
+				if (sig <= 0 || sig > packets.length) {
 					break;
 				}
 
-				packets[Sig - 1] = new CameraPacket();
-				packets[Sig - 1].x = cvt(rawData[i + 9], rawData[i + 8]);
-				packets[Sig - 1].y = cvt(rawData[i + 11], rawData[i + 10]);
-				packets[Sig - 1].width = cvt(rawData[i + 13], rawData[i + 12]);
-				packets[Sig - 1].height = cvt(rawData[i + 15], rawData[i + 14]);
+				packets[sig - 1] = new CameraPacket();
+				packets[sig - 1].x = datToInt(rawData[i + 9], rawData[i + 8]);
+				packets[sig - 1].y = datToInt(rawData[i + 11], rawData[i + 10]);
+				packets[sig - 1].width = datToInt(rawData[i + 13], rawData[i + 12]);
+				packets[sig - 1].height = datToInt(rawData[i + 15], rawData[i + 14]);
 				// Checks whether the data is valid using the checksum *This if
 				// block should never be entered*
-				if (Checksum != Sig + packets[Sig - 1].x + packets[Sig - 1].y + packets[Sig - 1].width + packets[Sig - 1].height) {
-					packets[Sig - 1] = null;
+				if (checkSum != sig + packets[sig - 1].x + packets[sig - 1].y + packets[sig - 1].width + packets[sig - 1].height) {
+					packets[sig - 1] = null;
 					throw exc;
 				}
 				break;
@@ -124,8 +130,8 @@ public class Camera {
 		}
 		// Assigns our packet to a temp packet, then deletes data so that we
 		// dont return old data
-		CameraPacket pkt = packets[Signature - 1];
-		packets[Signature - 1] = null;
+		CameraPacket pkt = packets[objectSignature - 1];
+		packets[objectSignature - 1] = null;
 		return pkt;
 	}
 
@@ -150,10 +156,10 @@ public class Camera {
 		if (data == null) {
 			return 0;
 		}
-		return cvt(data[1], data[0]);
+		return datToInt(data[1], data[0]);
 	}
 
-	private CameraPacket readBlock(int checksum) {
+	private CameraPacket readBlock(int checkSum) {
 		// See Object block format section in
 		// http://www.cmucam.org/projects/cmucam5/wiki/Porting_Guide#Object-block-format
 		// Each block is 14 bytes, but we already read 2 bytes for checksum in
@@ -164,17 +170,17 @@ public class Camera {
 			return null;
 		}
 		CameraPacket block = new CameraPacket();
-		block.signature = cvt(data[1], data[0]);
+		block.signature = datToInt(data[1], data[0]);
 		if (block.signature <= 0 || block.signature > 7) {
 			return null;
 		}
-		block.x = cvt(data[3], data[2]);
-		block.y = cvt(data[5], data[4]);
-		block.width = cvt(data[7], data[6]);
-		block.height = cvt(data[9], data[8]);
+		block.x = datToInt(data[3], data[2]);
+		block.y = datToInt(data[5], data[4]);
+		block.width = datToInt(data[7], data[6]);
+		block.height = datToInt(data[9], data[8]);
 
 		int sum = block.signature + block.x + block.y + block.width + block.height;
-		if (sum != checksum) {
+		if (sum != checkSum) {
 			return null;
 		}
 		return block;
@@ -232,19 +238,19 @@ public class Camera {
 			// Should we set to empty PixyPacket? To avoid having to check for
 			// null in callers?
 			blocks[i] = null;
-			int checksum = readWord();
-			if (checksum == START_WORD) {
+			int checkSum = readWord();
+			if (checkSum == START_WORD) {
 				// we've reached the beginning of the next frame
 				skipStart = true;
 				return blocks;
-			} else if (checksum == START_WORD_CC) {
+			} else if (checkSum == START_WORD_CC) {
 				// we've reached the beginning of the next frame
 				skipStart = true;
 				return blocks;
-			} else if (checksum == 0) {
+			} else if (checkSum == 0) {
 				return blocks;
 			}
-			blocks[i] = readBlock(checksum);
+			blocks[i] = readBlock(checkSum);
 		}
 		return blocks;
 	}
