@@ -2,8 +2,8 @@ package com._2491nomythic.watt;
 
 import com._2491nomythic.util.JoystickPOVButton;
 import com._2491nomythic.watt.commands.climber.Climb;
+import com._2491nomythic.watt.commands.drivetrain.CorrectX;
 import com._2491nomythic.watt.commands.drivetrain.DriveLock;
-import com._2491nomythic.watt.commands.drivetrain.FollowObject;
 import com._2491nomythic.watt.commands.drivetrain.ManualShift;
 import com._2491nomythic.watt.commands.drivetrain.NoTurnLock;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
@@ -26,7 +26,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button driveLock, followObject, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, almostAutoGear, lightTest;
+	Button driveLock, correctLineUp, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, almostAutoGear, lightTest;
 	
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
@@ -35,8 +35,8 @@ public class OI {
 		driveLock = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.driveLockButton);
 		driveLock.whileHeld(new DriveLock());
 		
-		followObject = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.followObjectButton);
-		followObject.whileHeld(new FollowObject());
+		correctLineUp = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.correctLineUpButton);
+		correctLineUp.whenPressed(new CorrectX(159.5, .2));
 		
 		climb = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.climbButton);
 		climb.whileHeld(new Climb());
