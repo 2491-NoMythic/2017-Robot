@@ -16,7 +16,7 @@ public class ActiveCenter extends CommandBase {
     public ActiveCenter() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	firstDrive = new DriveStraightToPosition(0.5, 6.5);
+    	firstDrive = new DriveStraightToPosition(0.5, 6.2);
     	gearDeposit = new OpenAndEjectGearSlot();
     }
 

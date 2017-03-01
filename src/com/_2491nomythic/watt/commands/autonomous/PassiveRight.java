@@ -17,14 +17,13 @@ public class PassiveRight extends CommandBase {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	firstDrive = new DriveStraightToPosition(1,6.3);
-    	secondDrive = new DriveStraightToPosition(1,4.7);
-    	rotate1 = new RotateDrivetrainWithGyro(0.5,-50);
-    	state = 0;
+    	secondDrive = new DriveStraightToPosition(1,5.1);
+    	rotate1 = new RotateDrivetrainWithGyro(0.25,-50);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	state = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -61,7 +60,7 @@ public class PassiveRight extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !secondDrive.isRunning();
+        return !secondDrive.isRunning() && state == 3;
     }
 
     // Called once after isFinished returns true

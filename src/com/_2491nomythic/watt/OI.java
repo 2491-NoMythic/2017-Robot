@@ -41,9 +41,8 @@ public class OI {
 		climb = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.climbButton);
 		climb.whileHeld(new Climb());
 		
-		
-		shift = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.driveShiftButton);
-		shift.whileHeld(new ManualShift());
+//		shift = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.driveShiftButton);
+//		shift.whileHeld(new ManualShift());
 		
 		openDoors = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.openDoorButton);
 		openDoors.whenPressed(new ToggleDoors());
