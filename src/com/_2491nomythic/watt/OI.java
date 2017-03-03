@@ -1,10 +1,10 @@
 package com._2491nomythic.watt;
 
 import com._2491nomythic.util.JoystickPOVButton;
+import com._2491nomythic.watt.commands.KillSwitch;
 import com._2491nomythic.watt.commands.climber.Climb;
 import com._2491nomythic.watt.commands.drivetrain.CorrectX;
-import com._2491nomythic.watt.commands.drivetrain.DriveLock;
-import com._2491nomythic.watt.commands.drivetrain.ManualShift;
+//import com._2491nomythic.watt.commands.drivetrain.ManualShift;
 import com._2491nomythic.watt.commands.drivetrain.NoTurnLock;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
@@ -26,23 +26,20 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button driveLock, correctLineUp, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, almostAutoGear, lightTest;
+	Button correctLineUp, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, almostAutoGear, lightTest, killSwitch;
 	
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
 		controllers[1] = new Joystick(Constants.ControllerTwoPort);
 		
-		driveLock = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.driveLockButton);
-		driveLock.whileHeld(new DriveLock());
+		noTurnLock = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.noTurnLockButton);
+		noTurnLock.whileHeld(new NoTurnLock());
 		
 		correctLineUp = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.correctLineUpButton);
 		correctLineUp.whenPressed(new CorrectX(159.5, .2));
 		
 		climb = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.climbButton);
 		climb.whileHeld(new Climb());
-		
-//		shift = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.driveShiftButton);
-//		shift.whileHeld(new ManualShift());
 		
 		openDoors = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.openDoorButton);
 		openDoors.whenPressed(new ToggleDoors());
@@ -56,9 +53,6 @@ public class OI {
 		almostAutoGear = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.autoGearButtonWithoutMovement);
 		almostAutoGear.whenPressed(new OpenAndEjectGearSlotWithoutMoving());
 		
-		noTurnLock = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.noTurnLockButton);
-		noTurnLock.whileHeld(new NoTurnLock());
-		
 		rotateLeft = new JoystickPOVButton(controllers[ControllerMap.mainDriveController], ControllerMap.rotateDrivetrainLeftPOV);
 		rotateLeft.whenPressed(new RotateDrivetrainWithGyro(1, -47));
 		
@@ -68,8 +62,8 @@ public class OI {
 		lightTest = new JoystickPOVButton(controllers[ControllerMap.mainDriveController], ControllerMap.lightTest);
 		lightTest.whileHeld(new LightsDefault());
 		
-		
-		
+		killSwitch = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.killSwitchButton);
+		killSwitch.whenPressed(new KillSwitch());
 	}
 	
 	/**

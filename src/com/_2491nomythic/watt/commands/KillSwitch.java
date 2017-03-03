@@ -1,41 +1,31 @@
-package com._2491nomythic.watt.commands.gearslot;
-
-
-import com._2491nomythic.watt.commands.CommandBase;
-import edu.wpi.first.wpilibj.Timer;
+package com._2491nomythic.watt.commands;
 
 /**
  *
  */
-public class TogglePusher extends CommandBase {
-	private Timer timer;
+public class KillSwitch extends CommandBase {
 
-    public TogglePusher() {
+    public KillSwitch() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(drivetrain);
+    	requires(climber);
     	requires(gearslot);
-    	timer = new Timer();
+    	requires(shooter);
+    	requires(lights);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	timer.start();
-    	timer.reset();
-    	
-    	System.out.println("TogglePusher is running");
-    	
-    	if(gearslot.getPusher()) gearslot.retractEjector();
-    	else gearslot.ejectGear();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return timer.get() > 0.25;
+        return true;
     }
 
     // Called once after isFinished returns true
@@ -45,6 +35,5 @@ public class TogglePusher extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
 }

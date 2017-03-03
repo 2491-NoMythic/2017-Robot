@@ -11,7 +11,7 @@ import com._2491nomythic.watt.commands.autonomous.PassiveLeft;
 import com._2491nomythic.watt.commands.autonomous.PassiveRight;
 import com._2491nomythic.watt.commands.autonomous.ActiveLeft;
 import com._2491nomythic.watt.commands.autonomous.ActiveRight;
-import com._2491nomythic.watt.commands.drivetrain.DriveGyroPID;
+//import com._2491nomythic.watt.commands.drivetrain.DriveGyroPID;
 import com._2491nomythic.watt.commands.drivetrain.DriveSpeedTime;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
 import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;

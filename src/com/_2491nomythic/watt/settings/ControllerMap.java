@@ -6,14 +6,12 @@ public class ControllerMap {
 	public static final int driveVerticalAxis = 1;
 	public static final int driveHorizontalAxis = 0;
 	public static final int driveTurnAxis = 2;
-	public static final int driveShiftButton = 1;
-	public static final int driveLockButton = 3; //remove
-	public static final int correctLineUpButton = 7;
-	public static final int noTurnLockButton = 4;
+	public static final int correctLineUpButton = 11;
+	public static final int noTurnLockButton = 3;
 	public static final int rotateDrivetrainLeftPOV = 270;
 	public static final int rotateDrivetrainRightPOV = 90;
-	public static final int speedTestButton = 5;
 	public static final int lightTest = 10;
+	public static final int killSwitchButton = 7;
 	
 	//Operator
 	public static final int secondaryDriveController = 1;
