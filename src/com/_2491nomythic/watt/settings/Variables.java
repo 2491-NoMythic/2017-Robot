@@ -33,5 +33,14 @@ public class Variables {
 	public static double timeToOpenGearSlot = 0.5;
 	public static double timeToEjectGear = 0.25;
 	public static boolean ejected = false;
+	
+	//Global Camera Variables
+	public static double x;
+	public static double y;
+	public static double height;
+	public static double width;
+	public static double avgHeight;
+	public static double avgWidth;
+	public static double avgX;
 
 }

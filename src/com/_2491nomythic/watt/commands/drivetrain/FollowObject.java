@@ -1,13 +1,14 @@
 package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
+import com._2491nomythic.watt.settings.Variables;
 
 /**
  *
  */
 public class FollowObject extends CommandBase {
-	private int targetHeight, targetWidth, actualX, actualHeight, actualWidth, state;
-	private double centerX, speed;
+	private double targetHeight, targetWidth, actualX, actualHeight, actualWidth, centerX, speed;
+	private int state;
 
     public FollowObject() {
         // Use requires() here to declare subsystem dependencies
@@ -16,9 +17,9 @@ public class FollowObject extends CommandBase {
     	centerX = 159.5;
     	targetHeight = 21;
     	targetWidth = 17;
-    	actualX = camera.values.x;
-    	actualHeight = camera.values.height;
-    	actualWidth = camera.values.width;
+    	actualX = Variables.x;
+    	actualHeight = Variables.height;
+    	actualWidth = Variables.width;
     	speed = .2;
     }
 

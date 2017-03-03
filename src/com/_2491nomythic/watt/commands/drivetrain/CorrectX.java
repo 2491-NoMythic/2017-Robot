@@ -1,6 +1,7 @@
 package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
+import com._2491nomythic.watt.settings.Variables;
 
 /**
  *
@@ -10,7 +11,7 @@ public class CorrectX extends CommandBase {
 	//for the central wheel drivetrain methods, positive = right.
 
     public CorrectX(double desiredX, double desiredSpeed) {
-    	actualX = camera.values.x;
+    	actualX = Variables.x;
     	targetX = desiredX;
     	speed = desiredSpeed;
     	requires(drivetrain);
