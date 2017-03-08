@@ -21,4 +21,6 @@ public class ControllerMap {
 	public static final int autoGearButton = 4; //y
 	public static final int autoGearButtonWithoutMovement = 2; //a
 	public static final int climbButton = 7;
+	public static final int safeMode = 6;
+	public static final int safeMode2 = 7; 
 }
