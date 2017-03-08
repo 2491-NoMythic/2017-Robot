@@ -57,8 +57,8 @@ public class Drive extends CommandBase {
 			}
 			
 			if (isShifted) {
-				currentLeftSpeed = (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) + 0.25 * turnSpeed);
-				currentRightSpeed = (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) - 0.25 * turnSpeed);
+				currentLeftSpeed = (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) + turnSpeed / 6);
+				currentRightSpeed = (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) - turnSpeed / 6);
 			}
 			else if (!isShifting){
 				currentLeftSpeed = (-oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) + 0.5 * turnSpeed);

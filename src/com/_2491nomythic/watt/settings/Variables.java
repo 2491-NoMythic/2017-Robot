@@ -28,6 +28,9 @@ public class Variables {
 	public static double drivetrainPID_P = 0.0028;
 	public static double drivetrainPID_I = 0.0;
 	public static double drivetrainPID_D = 0.0;
+	public static double encoderP = 0.0;
+	public static double encoderI = 0.0;
+	public static double encoderD = 0.0;
 
 	//GearSlot stuff
 	public static double timeToOpenGearSlot = 0.5;

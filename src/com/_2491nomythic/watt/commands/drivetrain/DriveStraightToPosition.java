@@ -37,10 +37,10 @@ public class DriveStraightToPosition extends CommandBase {
     		rightSpeed -= 0.05;
     	}
     	
-    	if(distance - leftDistance < 0.5) {
+    	if(distance - Math.abs(leftDistance) < 0.5 || distance - Math.abs(rightDistance) < 0.5) {
     		drivetrain.drive(0.25 * leftSpeed, 0.25 * rightSpeed, 0, 0);
     	}
-    	else if(distance - leftDistance < 1) {
+    	else if(distance - Math.abs(leftDistance) < 1 || distance - Math.abs(rightDistance) < 1) {
     		drivetrain.drive(0.5 * leftSpeed, 0.5 * rightSpeed, 0, 0);
     	}
     	else {

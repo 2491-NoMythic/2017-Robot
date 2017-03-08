@@ -16,7 +16,7 @@ public class PassiveRight extends CommandBase {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	firstDrive = new DriveStraightToPosition(1,6.3);
-    	secondDrive = new DriveStraightToPosition(1,5.1);
+    	secondDrive = new DriveStraightToPosition(1,5.7);
     	rotate1 = new RotateDrivetrainWithGyro(0.25,-50);
     }
 
