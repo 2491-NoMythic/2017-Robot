@@ -7,6 +7,7 @@ import com._2491nomythic.watt.commands.drivetrain.CorrectX;
 //import com._2491nomythic.watt.commands.drivetrain.ManualShift;
 import com._2491nomythic.watt.commands.drivetrain.NoTurnLock;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
+import com._2491nomythic.watt.commands.drivetrain.SafeMode;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlotWithoutMoving;
 import com._2491nomythic.watt.commands.gearslot.TogglePusher;
@@ -26,7 +27,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button correctLineUp, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, almostAutoGear, lightTest, killSwitch;
+	Button correctLineUp, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, almostAutoGear, lightTest, killSwitch, safeMode;
 	
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
@@ -64,6 +65,9 @@ public class OI {
 		
 		killSwitch = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.killSwitchButton);
 		killSwitch.whenPressed(new KillSwitch());
+		
+		safeMode = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.safeMode2);
+		safeMode.whileHeld(new SafeMode());
 	}
 	
 	/**
