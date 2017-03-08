@@ -12,6 +12,7 @@ public class ControllerMap {
 	public static final int rotateDrivetrainRightPOV = 90;
 	public static final int lightTest = 10;
 	public static final int killSwitchButton = 7;
+	public static final int safeModeAxisButton = 3;
 	
 	//Operator
 	public static final int secondaryDriveController = 1;
@@ -21,6 +22,4 @@ public class ControllerMap {
 	public static final int autoGearButton = 4; //y
 	public static final int autoGearButtonWithoutMovement = 2; //a
 	public static final int climbButton = 7;
-	public static final int safeMode = 6;
-	public static final int safeMode2 = 7; 
 }

@@ -1,5 +1,6 @@
 package com._2491nomythic.watt;
 
+import com._2491nomythic.util.JoystickAxisButton;
 import com._2491nomythic.util.JoystickPOVButton;
 import com._2491nomythic.watt.commands.KillSwitch;
 import com._2491nomythic.watt.commands.climber.Climb;
@@ -66,7 +67,7 @@ public class OI {
 		killSwitch = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.killSwitchButton);
 		killSwitch.whenPressed(new KillSwitch());
 		
-		safeMode = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.safeMode2);
+		safeMode = new JoystickAxisButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.safeModeAxisButton, 0.5);
 		safeMode.whileHeld(new SafeMode());
 	}
 	
