@@ -1,77 +1,22 @@
-package com._2491nomythic.watt.subsystems;
+package com._2491nomythic.util;
 
 import com._2491nomythic.watt.settings.CameraException;
 import com._2491nomythic.watt.settings.CameraPacket;
-import com._2491nomythic.watt.settings.Variables;
-
 import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class Camera {
+public class CameraI2CType {
 	String name;
-	I2C pixy;
-	Port port = Port.kOnboard;
+	I2C camera;
 	CameraPacket[] packets;
 	CameraException exc;
-	String print;
-	private static Camera instance;
 	
 
-	public Camera() {
-		pixy = new I2C(port, 0x55);
-		packets = new CameraPacket[7];
-		exc = new CameraException(print);
-		name = "Pixy";
-	}
-	
-	public static Camera getInstance() {
-    	if(instance == null) {
-    		instance = new Camera();
-    	}
-    	return instance;
-    }
-	
-	public void cameraFeed() {
-		for (int i = 1; i < 8; i++) {
-			packets[i - 1] = null;
-			try {
-				packets[i - 1] = readPacket(i - 1);
-			}
-			catch (CameraException e) {
-				SmartDashboard.putString("Pixy Error: ", "Exception");
-			}
-			if (packets[i - 1] == null) {
-				SmartDashboard.putString("Pixy Error: ", "Bad/Absent Data");
-				continue;
-			}
-			Variables.x = packets[i - 1].camX;
-			Variables.y = packets[i - 1].camY;
-			Variables.height = packets[i - 1].camHeight;
-			Variables.width = packets[i - 1].camWidth;
-		}
-	}
-	
-	public void testCamera() {
-		for (int i = 0; i < packets.length; i++) 
-			packets[i - 1] = null;
-		SmartDashboard.putString("hello pixy ", "working");
-		for (int i = 1; i < 8; i++) {
-			try {
-				packets[i - 1] = readPacket(i - 1);
-			} catch (CameraException e) {
-				SmartDashboard.putString("Pixy error: " + i, "exception");
-			}
-			if (packets[i - 1] == null) {
-				SmartDashboard.putString("Pixy error: " + i, "True");
-				continue;
-			}
-			SmartDashboard.putNumber("X Value: " + i, packets[i - 1].camX);
-			SmartDashboard.putNumber("Y Value: " + i, packets[i - 1].camY);
-			SmartDashboard.putNumber("Height: " + i, packets[i - 1].camHeight);
-			SmartDashboard.putNumber("Width: " + i, packets[i - 1].camWidth);
-			SmartDashboard.putString("Pixy error" + i, "False");
-		}
+	public CameraI2CType(String id, I2C pixyI2C, CameraPacket[] pixyPacket, CameraException pixyException) {
+		camera = pixyI2C;
+		packets = pixyPacket;
+		exc = pixyException;
+		name = id;
 	}
 
 	public int datToInt(byte upper, byte lower) {
@@ -83,7 +28,7 @@ public class Camera {
 		int sig;
 		byte[] rawData = new byte[32];
 		try {
-			pixy.readOnly(rawData, 32);
+			camera.readOnly(rawData, 32);
 		} catch (RuntimeException e) {
 			SmartDashboard.putString(name + "Status", e.toString());
 			System.out.println(name + "  " + e);
@@ -129,7 +74,7 @@ public class Camera {
 	private byte[] readData(int len) {
 		byte[] rawData = new byte[len];
 		try {
-			pixy.readOnly(rawData, len);
+			camera.readOnly(rawData, len);
 		} catch (RuntimeException e) {
 			SmartDashboard.putString(name + "Status", e.toString());
 			System.out.println(name + "  " + e);
