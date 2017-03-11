@@ -21,7 +21,7 @@ public class PivotDrive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	speed = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveTurnAxis, 0.1);
+    	speed = 0.5 * oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveTurnAxis, 0.1);
     	
     	drivetrain.driveCenter(-speed * Constants.pivotDriveRatio, -speed);
     }
