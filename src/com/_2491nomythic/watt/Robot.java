@@ -6,6 +6,7 @@ import com._2491nomythic.watt.commands.InitCameraFeed;
 import com._2491nomythic.watt.commands.PrintCameraValues;
 import com._2491nomythic.watt.commands.autonomous.ActiveCenter;
 import com._2491nomythic.watt.commands.autonomous.DoNothing;
+import com._2491nomythic.watt.commands.autonomous.HighlyExperimentalCenter;
 import com._2491nomythic.watt.commands.autonomous.PassiveCenter;
 import com._2491nomythic.watt.commands.autonomous.PassiveLeft;
 import com._2491nomythic.watt.commands.autonomous.PassiveRight;
@@ -69,6 +70,7 @@ public class Robot extends IterativeRobot {
         chooser.addObject("Passive Right GearSlot", new PassiveRight());
         chooser.addObject("Passive Center GearSlot", new PassiveCenter());
         chooser.addObject("Passive Left GearSlot", new PassiveLeft());
+        chooser.addObject("Experimental", new HighlyExperimentalCenter());
         SmartDashboard.putBoolean("Use Linear Acceleration",Variables.useLinearAcceleration);
         SmartDashboard.putData("Drive with speed for 2 secs", new DriveSpeedTime(30, 2));
         
