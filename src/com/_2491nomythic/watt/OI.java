@@ -7,7 +7,7 @@ import com._2491nomythic.watt.commands.climber.Climb;
 import com._2491nomythic.watt.commands.drivetrain.CorrectX;
 //import com._2491nomythic.watt.commands.drivetrain.ManualShift;
 import com._2491nomythic.watt.commands.drivetrain.NoTurnLock;
-import com._2491nomythic.watt.commands.drivetrain.PivotDrive;
+import com._2491nomythic.watt.commands.drivetrain.PivotFront;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 import com._2491nomythic.watt.commands.drivetrain.SafeMode;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
@@ -72,7 +72,7 @@ public class OI {
 		safeMode.whileHeld(new SafeMode());
 		
 		pivotDrive = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.pivotDriveButton);
-		pivotDrive.whileHeld(new PivotDrive());
+		pivotDrive.whileHeld(new PivotFront());
 	}
 	
 	/**

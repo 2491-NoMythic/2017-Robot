@@ -7,10 +7,10 @@ import com._2491nomythic.watt.settings.ControllerMap;
 /**
  *
  */
-public class PivotDrive extends CommandBase {
+public class PivotFront extends CommandBase {
 	private double speed;
 
-    public PivotDrive() {
+    public PivotFront() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
