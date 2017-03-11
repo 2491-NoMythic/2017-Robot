@@ -23,7 +23,7 @@ public class PivotBack extends CommandBase {
     protected void execute() {
     	speed = 0.5 * oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveTurnAxis, 0.1);
     	
-    	drivetrain.driveCenter(-speed,Constants.pivotDriveRatio * -speed);
+    	drivetrain.driveCenter(speed,Constants.pivotDriveRatio * speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
