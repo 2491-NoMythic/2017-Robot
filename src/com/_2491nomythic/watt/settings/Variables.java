@@ -19,7 +19,8 @@ public class Variables {
 	public static double driveRestriction = 1;
 	
 	//Shifting Constants
-	public static double shiftUpSpeed = lowGearMaxSpeed * 0.9;
+	public static double shiftUpPercentage = 0.9;
+	public static double shiftUpSpeed = lowGearMaxSpeed * shiftUpPercentage;
 	public static double shiftDownSpeed = 0.3;
 	public static double shiftUpNewPower = 1;
 	public static double shiftDownNewPower = 1;
