@@ -33,22 +33,22 @@ public class Camera {
     }
 	
 	public void cameraFeed() {
-		for (int i = 0; i < 7; i++) {
+		for (int i = 1; i < 8; i++) {
 			packets[i - 1] = null;
 			try {
-				packets[i] = readPacket(i);
+				packets[i - 1] = readPacket(i - 1);
 			}
 			catch (CameraException e) {
 				SmartDashboard.putString("Pixy Error: ", "Exception");
 			}
-			if (packets[i] == null) {
+			if (packets[i - 1] == null) {
 				SmartDashboard.putString("Pixy Error: ", "Bad/Absent Data");
 				continue;
 			}
-			Variables.x = packets[i].camX;
-			Variables.y = packets[i].camY;
-			Variables.height = packets[i].camHeight;
-			Variables.width = packets[i].camWidth;
+			Variables.x = packets[i - 1].camX;
+			Variables.y = packets[i - 1].camY;
+			Variables.height = packets[i - 1].camHeight;
+			Variables.width = packets[i - 1].camWidth;
 		}
 	}
 	
@@ -56,25 +56,24 @@ public class Camera {
 		for (int i = 0; i < packets.length; i++) 
 			packets[i - 1] = null;
 		SmartDashboard.putString("hello pixy ", "working");
-		for (int i = 0; i < 7; i++) {
+		for (int i = 1; i < 8; i++) {
 			try {
-				packets[i] = readPacket(i);
+				packets[i - 1] = readPacket(i - 1);
 			} catch (CameraException e) {
 				SmartDashboard.putString("Pixy error: " + i, "exception");
 			}
-			if (packets[i] == null) {
+			if (packets[i - 1] == null) {
 				SmartDashboard.putString("Pixy error: " + i, "True");
 				continue;
 			}
-			SmartDashboard.putNumber("X Value: " + i, packets[i].camX);
-			SmartDashboard.putNumber("Y Value: " + i, packets[i].camY);
-			SmartDashboard.putNumber("Height: " + i, packets[i].camHeight);
-			SmartDashboard.putNumber("Width: " + i, packets[i].camWidth);
+			SmartDashboard.putNumber("X Value: " + i, packets[i - 1].camX);
+			SmartDashboard.putNumber("Y Value: " + i, packets[i - 1].camY);
+			SmartDashboard.putNumber("Height: " + i, packets[i - 1].camHeight);
+			SmartDashboard.putNumber("Width: " + i, packets[i - 1].camWidth);
 			SmartDashboard.putString("Pixy error" + i, "False");
 		}
 	}
 
-	// This method parses raw data from the pixy into readable integers
 	public int datToInt(byte upper, byte lower) {
 		return (((int) upper & 0xff) << 8) | ((int) lower & 0xff);
 	}
@@ -83,8 +82,6 @@ public class Camera {
 		int checkSum;
 		int sig;
 		byte[] rawData = new byte[32];
-		// SmartDashboard.putString("rawData", rawData[0] + " " + rawData[1] + "
-		// " + rawData[15] + " " + rawData[31]);
 		try {
 			pixy.readOnly(rawData, 32);
 		} catch (RuntimeException e) {
@@ -97,18 +94,12 @@ public class Camera {
 			return null;
 		}
 		for (int i = 0; i <= 16; i++) {
-			int syncWord = datToInt(rawData[i + 1], rawData[i + 0]); // Parse first 2
-																// bytes
-			if (syncWord == 0xaa55) { // Check is first 2 bytes equal a "sync
-										// word", which indicates the start of a
-										// packet of valid data
-				syncWord = datToInt(rawData[i + 3], rawData[i + 2]); // Parse the
-																// next 2 bytes
-				if (syncWord != 0xaa55) { // Shifts everything in the case that
-											// one syncword is sent
+			int syncWord = datToInt(rawData[i + 1], rawData[i + 0]);
+			if (syncWord == 0xaa55) { 
+				syncWord = datToInt(rawData[i + 3], rawData[i + 2]);
+				if (syncWord != 0xaa55) { 
 					i -= 2;
 				}
-				// This next block parses the rest of the data
 				checkSum = datToInt(rawData[i + 5], rawData[i + 4]);
 				sig = datToInt(rawData[i + 7], rawData[i + 6]);
 				if (sig <= 0 || sig > packets.length) {
@@ -120,8 +111,7 @@ public class Camera {
 				packets[sig - 1].camY = datToInt(rawData[i + 11], rawData[i + 10]);
 				packets[sig - 1].camWidth = datToInt(rawData[i + 13], rawData[i + 12]);
 				packets[sig - 1].camHeight = datToInt(rawData[i + 15], rawData[i + 14]);
-				// Checks whether the data is valid using the checksum *This if
-				// block should never be entered*
+
 				if (checkSum != sig + packets[sig - 1].camX + packets[sig - 1].camY + packets[sig - 1].camWidth + packets[sig - 1].camHeight) {
 					packets[sig - 1] = null;
 					throw exc;
@@ -130,8 +120,7 @@ public class Camera {
 			} else
 				SmartDashboard.putNumber("syncword: ", syncWord);
 		}
-		// Assigns our packet to a temp packet, then deletes data so that we
-		// dont return old data
+
 		CameraPacket pkt = packets[objectSignature - 1];
 		packets[objectSignature - 1] = null;
 		return pkt;
@@ -193,12 +182,6 @@ public class Camera {
 	public boolean getStart() {
 		int numBytesRead = 0;
 		int lastWord = 0xffff;
-		// This while condition was originally true.. may not be a good idea if
-		// something goes wrong robot will be stuck in this loop forever. So
-		// let's read some number of bytes and give up so other stuff on robot
-		// can have a chance to run. What number of bytes to choose? Maybe size
-		// of a block * max number of signatures that can be detected? Or how
-		// about size of block and max number of blocks we are looking for?
 		while (numBytesRead < (OBJECT_SIZE * MAX_SIGNATURES)) {
 			int word = readWord();
 			numBytesRead += 2;
@@ -233,16 +216,12 @@ public class Camera {
 			skipStart = false;
 		}
 		for (int i = 0; i < maxBlocks; i++) {
-			// Should we set to empty PixyPacket? To avoid having to check for
-			// null in callers?
 			blocks[i] = null;
 			int checkSum = readWord();
 			if (checkSum == START_WORD) {
-				// we've reached the beginning of the next frame
 				skipStart = true;
 				return blocks;
 			} else if (checkSum == START_WORD_CC) {
-				// we've reached the beginning of the next frame
 				skipStart = true;
 				return blocks;
 			} else if (checkSum == 0) {
