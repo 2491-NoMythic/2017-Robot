@@ -59,7 +59,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("PID P Value", 1.0);
         SmartDashboard.putNumber("Time to open GearSlot doors",Variables.timeToOpenGearSlot);
         SmartDashboard.putNumber("Time to eject Gear",Variables.timeToEjectGear);
-        SmartDashboard.putNumber("Shift Up Speed", Variables.shiftUpPercentage);
+//        SmartDashboard.putNumber("Shift Up Speed", Variables.shiftUpPercentage);
         SmartDashboard.putData("Turn 90 Degrees", new RotateDrivetrainWithGyroPID(90));
         chooser.addDefault("Do Nothing", new DoNothing());
         chooser.addObject("Drive 1 Foot",new DriveStraightToPosition(1,1));
