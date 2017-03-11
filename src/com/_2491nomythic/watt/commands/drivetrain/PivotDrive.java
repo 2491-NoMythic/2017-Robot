@@ -13,7 +13,6 @@ public class PivotDrive extends CommandBase {
     public PivotDrive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(drivetrain);
     }
 
     // Called just before this Command runs the first time
