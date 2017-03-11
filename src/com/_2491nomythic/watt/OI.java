@@ -7,6 +7,7 @@ import com._2491nomythic.watt.commands.climber.Climb;
 import com._2491nomythic.watt.commands.drivetrain.CorrectX;
 //import com._2491nomythic.watt.commands.drivetrain.ManualShift;
 import com._2491nomythic.watt.commands.drivetrain.NoTurnLock;
+import com._2491nomythic.watt.commands.drivetrain.PivotBack;
 import com._2491nomythic.watt.commands.drivetrain.PivotFront;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 import com._2491nomythic.watt.commands.drivetrain.SafeMode;
@@ -29,7 +30,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button correctLineUp, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, almostAutoGear, lightTest, killSwitch, safeMode, pivotDrive;
+	Button correctLineUp, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, almostAutoGear, lightTest, killSwitch, safeMode, pivotFrontDrive, pivotBackDrive;
 	
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
@@ -71,8 +72,11 @@ public class OI {
 		safeMode = new JoystickAxisButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.safeModeAxisButton, 0.5);
 		safeMode.whileHeld(new SafeMode());
 		
-		pivotDrive = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.pivotDriveButton);
-		pivotDrive.whileHeld(new PivotFront());
+		pivotFrontDrive = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.pivotFrontButton);
+		pivotFrontDrive.whileHeld(new PivotFront());
+		
+		pivotBackDrive = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.pivotBackButton);
+		pivotBackDrive.whileHeld(new PivotBack());
 	}
 	
 	/**
