@@ -11,30 +11,29 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  *
  */
-public class HighlyExperimentalCenter extends CommandBase {
-	private DriveStraightToPosition firstDrive,secondDrive, thirdDrive;
+public class HighlyExperimentalRight extends CommandBase {
+	private DriveStraightToPosition firstDrive, secondDrive, thirdDrive;
 	private RotateDrivetrainWithGyro rotate1, rotate2;
+	private DriveSideways shimmy;
 	private OpenAndEjectGearSlot eject;
-	private DriveSideways shimmy1, shimmy2;
-	int state;
 	private Timer timer;
+	private int state;
 	
 	// Autonomous positioning numbers
-	// Left: As far to the left as possible (- inches from edge)
-	// Center: Lined up with peg
-	// Right: As far to the right as possible (- inches from center)
-	
-	public HighlyExperimentalCenter() {
+		// Left: As far to the left as possible (- inches from edge)
+		// Center: Lined up with peg
+		// Right: As far to the right as possible (- inches from center)
+
+    public HighlyExperimentalRight() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	firstDrive = new DriveStraightToPosition(0.5, 3.9);
-    	secondDrive = new DriveStraightToPosition(0.5, 2.1);
+    	firstDrive = new DriveStraightToPosition(0.5,6.5);
+    	secondDrive = new DriveStraightToPosition(0.5,5);
     	thirdDrive = new DriveStraightToPosition(0.5,0.35);
-    	rotate1 = new RotateDrivetrainWithGyro(0.25,20);
-    	rotate2 = new RotateDrivetrainWithGyro(0.25,-20);
+    	rotate1 = new RotateDrivetrainWithGyro(-0.25,80);
+    	rotate2 = new RotateDrivetrainWithGyro(0.25,20);
+    	shimmy = new DriveSideways(-0.5,0.5);
     	eject = new OpenAndEjectGearSlot();
-    	shimmy1 = new DriveSideways(-0.25,1);
-    	shimmy2 = new DriveSideways(0.25,1);
     	timer = new Timer();
     }
 
@@ -47,65 +46,58 @@ public class HighlyExperimentalCenter extends CommandBase {
     protected void execute() {
     	switch(state) {
     	case 0:
-    		timer.start();
-    		timer.reset();
-    		shimmy1.start();
+    		firstDrive.start();
     		state++;
     		break;
     	case 1:
-    		if(timer.get() > 0.3) {
-    			firstDrive.start();
-    			state++;
-    		}
-    		break;
-    	case 2:
     		if(!firstDrive.isRunning()) {
     			rotate1.start();
     			state++;
     		}
     		break;
-    	case 3:
+    	case 2:
     		if(!rotate1.isRunning()) {
     			secondDrive.start();
     			state++;
     		}
     		break;
-    	case 4:
+    	case 3:
     		if(!secondDrive.isRunning()) {
     			rotate2.start();
     			state++;
     		}
     		break;
-    	case 5:
+    	case 4:
     		if(!rotate2.isRunning()) {
+    			timer.start();
     			timer.reset();
-    			shimmy2.start();
+    			shimmy.start();
     			state++;
     		}
     		break;
-    	case 6:
+    	case 5:
     		if(timer.get() > 0.4) {
-    			shimmy2.cancel();
+    			shimmy.cancel();
     			thirdDrive.start();
     			state++;
     		}
     		break;
-    	case 7:
+    	case 6:
     		if(!thirdDrive.isRunning()) {
     			eject.start();
     			state++;
     		}
     		break;
-    	case 8:
+    	case 7:
     		break;
     	default:
-    		System.out.println("Error in autonomous. State: " + state);
+    		System.out.println("Something went wrong in auto switchcase. State: " + state);
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !eject.isRunning() && state == 8;
+        return state == 7 && !eject.isRunning();
     }
 
     // Called once after isFinished returns true
@@ -120,8 +112,7 @@ public class HighlyExperimentalCenter extends CommandBase {
     	thirdDrive.cancel();
     	rotate1.cancel();
     	rotate2.cancel();
-    	shimmy1.cancel();
-    	shimmy2.cancel();
+    	shimmy.cancel();
     	eject.cancel();
     }
 }
