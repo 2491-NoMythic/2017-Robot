@@ -17,6 +17,7 @@ import com._2491nomythic.watt.commands.autonomous.ActiveRight;
 //import com._2491nomythic.watt.commands.drivetrain.DriveGyroPID;
 import com._2491nomythic.watt.commands.drivetrain.DriveSpeedTime;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
+import com._2491nomythic.watt.commands.drivetrain.EnableCoastMode;
 import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
@@ -64,6 +65,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Time to eject Gear",Variables.timeToEjectGear);
         SmartDashboard.putNumber("Shift Up Speed", Variables.shiftUpPercentage);
         SmartDashboard.putData("Turn 90 Degrees", new RotateDrivetrainWithGyroPID(90));
+        SmartDashboard.putData("Coast Mode", new EnableCoastMode());
         chooser.addDefault("Do Nothing", new DoNothing());
         chooser.addObject("Active Right GearSlot", new ActiveRight());
         chooser.addObject("Active Left GearSlot", new ActiveLeft());

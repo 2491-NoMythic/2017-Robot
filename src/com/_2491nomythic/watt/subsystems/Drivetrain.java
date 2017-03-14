@@ -117,7 +117,7 @@ public class Drivetrain extends PIDSubsystem {
 		right1.changeControlMode(TalonControlMode.Speed);
 	}
 	
-	public void enableCoastMode() {
+	public void enableVerticalCoastMode() {
 		left1.enableBrakeMode(false);
 		left2.enableBrakeMode(false);
 		left3.enableBrakeMode(false);
@@ -126,13 +126,23 @@ public class Drivetrain extends PIDSubsystem {
 		right3.enableBrakeMode(false);
 	}
 	
-	public void enableBrakeMode() {
+	public void enableHorizontalCoastMode() {
+		centerLeft.enableBrakeMode(false);
+		centerRight.enableBrakeMode(false);
+	}
+	
+	public void enableVerticalBrakeMode() {
 		left1.enableBrakeMode(true);
 		left2.enableBrakeMode(true);
 		left3.enableBrakeMode(true);
 		right1.enableBrakeMode(true);
 		right2.enableBrakeMode(true);
 		right3.enableBrakeMode(true);
+	}
+	
+	public void enableHorizontalBrakeMode() {
+		centerLeft.enableBrakeMode(true);
+		centerRight.enableBrakeMode(true);
 	}
 	
 	public void resetLeftEncoder() {

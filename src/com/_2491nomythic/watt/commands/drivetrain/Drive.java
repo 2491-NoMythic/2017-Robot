@@ -69,7 +69,7 @@ public class Drive extends CommandBase {
 				switch (state) {
 				case 0:
 					timer.reset();
-					drivetrain.enableCoastMode();
+					drivetrain.enableVerticalCoastMode();
 					state = 1;
 					break;
 				case 1:
