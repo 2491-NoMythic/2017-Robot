@@ -7,6 +7,8 @@ import com._2491nomythic.watt.commands.PrintCameraValues;
 import com._2491nomythic.watt.commands.autonomous.ActiveCenter;
 import com._2491nomythic.watt.commands.autonomous.DoNothing;
 import com._2491nomythic.watt.commands.autonomous.HighlyExperimentalCenter;
+import com._2491nomythic.watt.commands.autonomous.HighlyExperimentalLeft;
+import com._2491nomythic.watt.commands.autonomous.HighlyExperimentalRight;
 import com._2491nomythic.watt.commands.autonomous.PassiveCenter;
 import com._2491nomythic.watt.commands.autonomous.PassiveLeft;
 import com._2491nomythic.watt.commands.autonomous.PassiveRight;
@@ -63,14 +65,15 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Shift Up Speed", Variables.shiftUpPercentage);
         SmartDashboard.putData("Turn 90 Degrees", new RotateDrivetrainWithGyroPID(90));
         chooser.addDefault("Do Nothing", new DoNothing());
-        chooser.addObject("Drive 1 Foot",new DriveStraightToPosition(1,1));
         chooser.addObject("Active Right GearSlot", new ActiveRight());
         chooser.addObject("Active Left GearSlot", new ActiveLeft());
         chooser.addObject("Active Center GearSlot", new ActiveCenter());
         chooser.addObject("Passive Right GearSlot", new PassiveRight());
         chooser.addObject("Passive Center GearSlot", new PassiveCenter());
         chooser.addObject("Passive Left GearSlot", new PassiveLeft());
-        chooser.addObject("Experimental", new HighlyExperimentalCenter());
+        chooser.addObject("Experimental Center", new HighlyExperimentalCenter());
+        chooser.addObject("Experimental Left", new HighlyExperimentalLeft());
+        chooser.addObject("Experimental Right", new HighlyExperimentalRight());
         SmartDashboard.putBoolean("Use Linear Acceleration",Variables.useLinearAcceleration);
         SmartDashboard.putData("Drive with speed for 2 secs", new DriveSpeedTime(30, 2));
         
