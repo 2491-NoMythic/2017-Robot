@@ -19,7 +19,6 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
  */
 public class Drivetrain extends PIDSubsystem {
 	private CANTalon left1, left2, left3, centerLeft, centerRight, right1, right2, right3;
-	private Encoder encoderCenter;
 	private Solenoid shifter;
 	private double currentPIDOutput;
 	private AHRS gyro;
@@ -61,12 +60,11 @@ public class Drivetrain extends PIDSubsystem {
 		
 		left1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		right1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		centerLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		
 		left1.configEncoderCodesPerRev(256);
 		right1.configEncoderCodesPerRev(256);
-		
-		encoderCenter = new Encoder(Constants.driveEncoderCenterChannel1, Constants.driveEncoderCenterChannel2, false, CounterBase.EncodingType.k1X);
-		encoderCenter.setDistancePerPulse(Constants.driveEncoderToFeet);
+		centerLeft.configEncoderCodesPerRev(256);
 		
 		shifter = new Solenoid(Constants.driveSolenoidChannel);
 		
@@ -152,7 +150,7 @@ public class Drivetrain extends PIDSubsystem {
 	 * Resets the center drive encoder value to 0
 	 */
 	public void resetCenterEncoder() {
-		encoderCenter.reset();
+		centerLeft.setEncPosition(0);
 	}
 	
 	/**
@@ -173,7 +171,7 @@ public class Drivetrain extends PIDSubsystem {
 	 * @return The value of the center drive encoder
 	 */
 	public double getCenterEncoderDistance() {
-		return -encoderCenter.getDistance();
+		return -centerLeft.getEncPosition() * Constants.driveEncoderToFeet;
 	}
 	
 	/**
@@ -194,7 +192,7 @@ public class Drivetrain extends PIDSubsystem {
 	 * @return The speed of the center motor in feet per second
 	 */
 	public double getCenterEncoderRate() {;
-		return encoderCenter.getRate();
+		return centerLeft.getEncVelocity();
 	}
 	
 	/**
