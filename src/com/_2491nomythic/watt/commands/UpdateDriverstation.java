@@ -40,6 +40,7 @@ public class UpdateDriverstation extends CommandBase {
 			SmartDashboard.putBoolean("Use Linear Acceleration", Variables.useLinearAcceleration);
 			//Variables.drivetrainPID_P = SmartDashboard.getNumber("PID P Value", 20);
 			SmartDashboard.putNumber("Low Gear Max Speed (ft/s)", Variables.lowGearMaxSpeedFeetPerSecond);
+			//TODO Make an update for camera values
 			
 			Variables.shiftUpSpeed = Variables.lowGearMaxSpeed * Variables.shiftUpPercentage;
 		}

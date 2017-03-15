@@ -1,6 +1,7 @@
 package com._2491nomythic.watt.subsystems;
 
 import com._2491nomythic.util.CameraI2CType;
+import com._2491nomythic.watt.commands.InitCameraFeed;
 import com._2491nomythic.watt.settings.CameraException;
 import com._2491nomythic.watt.settings.CameraPacket;
 import com._2491nomythic.watt.settings.Variables;
@@ -79,7 +80,7 @@ public class Vision extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new InitCameraFeed());
     }
     
 }
