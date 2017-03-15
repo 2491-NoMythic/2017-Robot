@@ -81,7 +81,7 @@ public class Drive extends CommandBase {
 					break;
 				case 2:
 					if (timer.get() > 0.05) {
-						drivetrain.enableBrakeMode();
+						drivetrain.enableVerticalBrakeMode();
 						timer.reset();
 						state = 0;
 						lastLeftSpeed = futureLeftSpeed;
