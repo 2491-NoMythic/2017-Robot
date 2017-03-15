@@ -56,6 +56,7 @@ public class HighlyExperimentalCenter extends CommandBase {
     		break;
     	case 1:
     		if(timer.get() > 0.3) {
+    			offCenterAtStart.cancel();
     			drivePastPeg.start();
     			state++;
     		}
