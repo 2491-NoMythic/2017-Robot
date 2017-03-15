@@ -12,9 +12,9 @@ import edu.wpi.first.wpilibj.Timer;
  *
  */
 public class HighlyExperimentalLeft extends CommandBase {
-	private DriveStraightToPosition firstDrive, secondDrive, thirdDrive;
-	private RotateDrivetrainWithGyro rotate1, rotate2;
-	private DriveSideways shimmy;
+	private DriveStraightToPosition drivePastPeg, landPeg, impalePeg;
+	private RotateDrivetrainWithGyro aimForPeg, straightenPeg;
+	private DriveSideways squareUp;
 	private OpenAndEjectGearSlot eject;
 	private Timer timer;
 	private int state;
@@ -27,12 +27,12 @@ public class HighlyExperimentalLeft extends CommandBase {
     public HighlyExperimentalLeft() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	firstDrive = new DriveStraightToPosition(0.75,7.75);
-    	secondDrive = new DriveStraightToPosition(0.6,4.8);
-    	thirdDrive = new DriveStraightToPosition(0.5,0.35);
-    	rotate1 = new RotateDrivetrainWithGyro(0.4,55);
-    	rotate2 = new RotateDrivetrainWithGyro(-0.4,10);
-    	shimmy = new DriveSideways(0.5,2);
+    	drivePastPeg = new DriveStraightToPosition(0.75,7.75);
+    	landPeg = new DriveStraightToPosition(0.6,4.8);
+    	impalePeg = new DriveStraightToPosition(0.5,0.35);
+    	aimForPeg = new RotateDrivetrainWithGyro(0.4,55);
+    	straightenPeg = new RotateDrivetrainWithGyro(-0.4,10);
+    	squareUp = new DriveSideways(0.5,2);
     	eject = new OpenAndEjectGearSlot();
     	timer = new Timer();
     }
@@ -46,44 +46,44 @@ public class HighlyExperimentalLeft extends CommandBase {
     protected void execute() {
     	switch(state) {
     	case 0:
-    		firstDrive.start();
+    		drivePastPeg.start();
     		state++;
     		break;
     	case 1:
-    		if(!firstDrive.isRunning()) {
-    			rotate1.start();
+    		if(!drivePastPeg.isRunning()) {
+    			aimForPeg.start();
     			state++;
     		}
     		break;
     	case 2:
-    		if(!rotate1.isRunning()) {
-    			secondDrive.start();
+    		if(!aimForPeg.isRunning()) {
+    			landPeg.start();
     			state++;
     		}
     		break;
     	case 3:
-    		if(!secondDrive.isRunning()) {
-    			rotate2.start();
+    		if(!landPeg.isRunning()) {
+    			straightenPeg.start();
     			state++;
     		}
     		break;
     	case 4:
-    		if(!rotate2.isRunning()) {
+    		if(!straightenPeg.isRunning()) {
     			timer.start();
     			timer.reset();
-    			shimmy.start();
+    			squareUp.start();
     			state++;
     		}
     		break;
     	case 5:
     		if(timer.get() > 0.4) {
-    			shimmy.cancel();
-    			thirdDrive.start();
+    			squareUp.cancel();
+    			impalePeg.start();
     			state++;
     		}
     		break;
     	case 6:
-    		if(!thirdDrive.isRunning()) {
+    		if(!impalePeg.isRunning()) {
     			eject.start();
     			state++;
     		}
@@ -107,12 +107,12 @@ public class HighlyExperimentalLeft extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	firstDrive.cancel();
-    	secondDrive.cancel();
-    	thirdDrive.cancel();
-    	rotate1.cancel();
-    	rotate2.cancel();
-    	shimmy.cancel();
+    	drivePastPeg.cancel();
+    	landPeg.cancel();
+    	impalePeg.cancel();
+    	aimForPeg.cancel();
+    	straightenPeg.cancel();
+    	squareUp.cancel();
     	eject.cancel();
     }
 }
