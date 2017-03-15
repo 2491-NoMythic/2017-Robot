@@ -27,12 +27,12 @@ public class HighlyExperimentalLeft extends CommandBase {
     public HighlyExperimentalLeft() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	firstDrive = new DriveStraightToPosition(0.5,6.5);
-    	secondDrive = new DriveStraightToPosition(0.5,5);
+    	firstDrive = new DriveStraightToPosition(0.75,7.75);
+    	secondDrive = new DriveStraightToPosition(0.6,4.8);
     	thirdDrive = new DriveStraightToPosition(0.5,0.35);
-    	rotate1 = new RotateDrivetrainWithGyro(0.25,80);
-    	rotate2 = new RotateDrivetrainWithGyro(-0.25,20);
-    	shimmy = new DriveSideways(0.5,0.5);
+    	rotate1 = new RotateDrivetrainWithGyro(0.4,55);
+    	rotate2 = new RotateDrivetrainWithGyro(-0.4,10);
+    	shimmy = new DriveSideways(0.5,2);
     	eject = new OpenAndEjectGearSlot();
     	timer = new Timer();
     }
