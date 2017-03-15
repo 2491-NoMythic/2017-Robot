@@ -18,9 +18,11 @@ import com._2491nomythic.watt.commands.autonomous.ActiveRight;
 import com._2491nomythic.watt.commands.drivetrain.DriveSpeedTime;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
 import com._2491nomythic.watt.commands.drivetrain.EnableCoastMode;
+import com._2491nomythic.watt.commands.drivetrain.PivotFrontAUTOONLY;
 import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
+import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.Variables;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -76,6 +78,7 @@ public class Robot extends IterativeRobot {
         chooser.addObject("Experimental Center", new HighlyExperimentalCenter());
         chooser.addObject("Experimental Left", new HighlyExperimentalLeft());
         chooser.addObject("Experimental Right", new HighlyExperimentalRight());
+        chooser.addObject("Experimental Auto Pivot", new PivotFrontAUTOONLY(Constants.pivotDriveRatio * 0.5, 0.5, 3));
         SmartDashboard.putBoolean("Use Linear Acceleration",Variables.useLinearAcceleration);
         SmartDashboard.putData("Drive with speed for 2 secs", new DriveSpeedTime(30, 2));
         
