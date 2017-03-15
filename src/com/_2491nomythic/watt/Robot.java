@@ -78,7 +78,7 @@ public class Robot extends IterativeRobot {
         chooser.addObject("Experimental Center", new HighlyExperimentalCenter());
         chooser.addObject("Experimental Left", new HighlyExperimentalLeft());
         chooser.addObject("Experimental Right", new HighlyExperimentalRight());
-        chooser.addObject("Experimental Auto Pivot", new PivotFrontAUTOONLY(Constants.pivotDriveRatio * 0.5, 0.5, 3));
+        chooser.addObject("Experimental Auto Pivot", new PivotFrontAUTOONLY(0.5, 0.5, 10));
         SmartDashboard.putBoolean("Use Linear Acceleration",Variables.useLinearAcceleration);
         SmartDashboard.putData("Drive with speed for 2 secs", new DriveSpeedTime(30, 2));
         

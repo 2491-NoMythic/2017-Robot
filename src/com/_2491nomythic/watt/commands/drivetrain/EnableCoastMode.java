@@ -13,12 +13,14 @@ public class EnableCoastMode extends CommandBase {
     public EnableCoastMode() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	setRunWhenDisabled(true);
     	timer = new Timer();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	drivetrain.enableVerticalCoastMode();
+    	drivetrain.enableHorizontalCoastMode();
     	
     	timer.start();
     	timer.reset();
@@ -40,6 +42,7 @@ public class EnableCoastMode extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
     	drivetrain.enableVerticalBrakeMode();
+    	drivetrain.enableHorizontalBrakeMode();
     }
 
     // Called when another command which requires one or more of the same

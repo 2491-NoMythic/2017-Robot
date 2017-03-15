@@ -1,19 +1,20 @@
 package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
+import com._2491nomythic.watt.settings.Constants;
 
 /**
  *
  */
 public class PivotFrontAUTOONLY extends CommandBase {
-	private double leftSpeed, rightSpeed, distance, initialPosition;
+	private double frontSpeed, backSpeed, distance, initialPosition;
 
-    public PivotFrontAUTOONLY(double frontSpeed, double rightSpeed, double distance) {
+    public PivotFrontAUTOONLY(double frontSpeed, double backSpeed, double distance) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(drivetrain);
-    	this.leftSpeed = leftSpeed;
-    	this.rightSpeed = rightSpeed;
+    	this.frontSpeed = frontSpeed;
+    	this.backSpeed = backSpeed;
     	this.distance = distance;
     }
 
@@ -24,7 +25,9 @@ public class PivotFrontAUTOONLY extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	drivetrain.driveCenter(leftSpeed, rightSpeed);
+    	System.out.println(drivetrain.getCenterEncoderDistance());
+    	
+    	drivetrain.driveCenter(Constants.pivotDriveRatio * frontSpeed, backSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
