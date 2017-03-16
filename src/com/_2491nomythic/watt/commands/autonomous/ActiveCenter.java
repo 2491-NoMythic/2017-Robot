@@ -8,14 +8,14 @@ import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
  *
  */
 public class ActiveCenter extends CommandBase {
-	private DriveStraightToPosition firstDrive;
+	private DriveStraightToPosition impalePeg;
 	private OpenAndEjectGearSlot gearDeposit;
 	private int state;
 
     public ActiveCenter() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	firstDrive = new DriveStraightToPosition(0.5, 6.2);
+    	impalePeg = new DriveStraightToPosition(0.5, 6.2);
     	gearDeposit = new OpenAndEjectGearSlot();
     }
 
@@ -28,11 +28,11 @@ public class ActiveCenter extends CommandBase {
     protected void execute() {
     	switch(state) {
     	case 0:
-    		firstDrive.start();
+    		impalePeg.start();
     		state = 1;
     		break;
     	case 1:
-    		if(!firstDrive.isRunning()) {
+    		if(!impalePeg.isRunning()) {
     			gearDeposit.start();
     			state = 2;
     		}
@@ -57,7 +57,7 @@ public class ActiveCenter extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	firstDrive.cancel();
+    	impalePeg.cancel();
     	gearDeposit.cancel();
     }
 }
