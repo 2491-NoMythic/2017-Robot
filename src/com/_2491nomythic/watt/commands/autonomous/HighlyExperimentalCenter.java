@@ -33,7 +33,7 @@ public class HighlyExperimentalCenter extends CommandBase {
     	aimForPeg = new RotateDrivetrainWithGyro(0.25,20);
     	straightenPeg = new RotateDrivetrainWithGyro(0.25,-20);
     	eject = new OpenAndEjectGearSlot();
-    	offCenterAtStart = new DriveSideways(-0.25,1);
+    	offCenterAtStart = new DriveSideways(-0.25,30);
     	squareUp = new DriveSideways(0.25,1);
     	timer = new Timer();
     }
