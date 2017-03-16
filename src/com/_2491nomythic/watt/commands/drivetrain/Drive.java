@@ -73,14 +73,14 @@ public class Drive extends CommandBase {
 					state = 1;
 					break;
 				case 1:
-					if (timer.get() > 0.02) {
+					if (timer.get() > Variables.shiftEngagePneumaticsTime) {
 						if (isShifted) drivetrain.shiftToLowGear();
 						else drivetrain.shiftToHighGear();
 						state = 2;
 					}
 					break;
 				case 2:
-					if (timer.get() > 0.05) {
+					if (timer.get() > Variables.shiftTotalTime) {
 						drivetrain.enableVerticalBrakeMode();
 						timer.reset();
 						state = 0;
