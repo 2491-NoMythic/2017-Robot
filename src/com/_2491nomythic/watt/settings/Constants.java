@@ -46,5 +46,11 @@ public class Constants {
 	public static final int redLightChannel = 0;
 	public static final int blueLightChannel = 1;
 	public static final int greenLightChannel =2;
+	
+	//Dustpan
+	public static final int dustpanTalonChannel=21;
+	public static final int dustpanLimitSwitchChannel=1;
+	public static final int dustpanSolenoidChannel1=3;
+	public static final int dustpanSolenoidChannel2=4;
 }
 
