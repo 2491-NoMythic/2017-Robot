@@ -13,6 +13,9 @@ public class ControllerMap {
 	public static final int lightTest = 10;
 	public static final int killSwitchButton = 7;
 	public static final int safeModeAxisButton = 3;
+	public static final int pivotFrontButton = 1;
+	public static final int pivotBackButton = 2;
+	public static final int manualShiftButton = 4;
 	
 	//Operator
 	public static final int secondaryDriveController = 1;

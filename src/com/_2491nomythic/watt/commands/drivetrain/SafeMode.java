@@ -7,6 +7,20 @@ import com._2491nomythic.watt.settings.Variables;
  *
  */
 public class SafeMode extends CommandBase {
+	// The SafeMode button is bound to the B button on the blue controller by the way.
+	// However, it is under the "Driver" heading in ControllerMap.
+	// But, if it is supposed to be for the driver, that is the NoTurnLock button.
+	// I also think that SafeMode should really be in the Drivetrain initDefaultCommand.
+	
+	// Example: 	if(Variables.inSafeMode) {
+	//					setDefaultCommand(new SafeMode());
+	//				}
+	//				else {
+	//					setDefaultCommand(new Drive());
+	//				}
+	
+	// Maybe Variables.inSafeMode is determined from the SmartDashboard.
+	// But I am pretty sure the button is the problem.
 
     public SafeMode() {
         // Use requires() here to declare subsystem dependencies

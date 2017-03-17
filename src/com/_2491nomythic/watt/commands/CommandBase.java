@@ -17,8 +17,8 @@ public abstract class CommandBase extends Command {
 	protected static GearSlot gearslot;
 	protected static Shooter shooter;
 	protected static UpdateDriverstationSubsystem updateDriverstationSubsystem;
-	protected static Camera camera;
 	protected static Lights lights;
+	protected static Vision vision;
 	
 	public static void init() {
 		drivetrain = Drivetrain.getInstance();
@@ -26,8 +26,8 @@ public abstract class CommandBase extends Command {
 		gearslot = GearSlot.getInstance();
 		shooter = Shooter.getInstance();
 		updateDriverstationSubsystem = UpdateDriverstationSubsystem.getInstance();
-		camera = Camera.getInstance();
 		lights = Lights.getInstance();
+		vision = Vision.getInstance();
 		// This MUST be here. If the OI creates Commands (which it very likely
 		// will), constructing it during the construction of CommandBase (from
 		// which commands extend), subsystems are not guaranteed to be

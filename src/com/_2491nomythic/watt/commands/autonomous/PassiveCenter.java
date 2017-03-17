@@ -7,17 +7,17 @@ import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
  *
  */
 public class PassiveCenter extends CommandBase {
-	private DriveStraightToPosition firstDrive;
+	private DriveStraightToPosition impalePeg;
 	
 	public PassiveCenter() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	firstDrive = new DriveStraightToPosition(0.5, 6.5);
+    	impalePeg = new DriveStraightToPosition(0.5, 6.5);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	firstDrive.start();
+    	impalePeg.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -26,7 +26,7 @@ public class PassiveCenter extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !firstDrive.isRunning();
+        return !impalePeg.isRunning();
     }
 
     // Called once after isFinished returns true
@@ -36,6 +36,6 @@ public class PassiveCenter extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	firstDrive.cancel();
+    	impalePeg.cancel();
     }
 }

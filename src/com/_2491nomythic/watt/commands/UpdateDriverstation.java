@@ -34,11 +34,16 @@ public class UpdateDriverstation extends CommandBase {
 			nextRun = nextRun + 0.1;
 			
 			Variables.useLinearAcceleration = SmartDashboard.getBoolean("Use Linear Acceleration", true);
+			Variables.shiftUpPercentage = SmartDashboard.getNumber("Shift Up Speed", Variables.shiftUpPercentage);
+			Variables.shiftEngagePneumaticsTime = SmartDashboard.getNumber("Time To Engage Pneumatics For Shifter (in seconds)", Variables.shiftEngagePneumaticsTime);
+			Variables.shiftTotalTime = SmartDashboard.getNumber("Total Shift Time (in seconds)", Variables.shiftTotalTime);
 			SmartDashboard.putNumber("Gyro in Degrees", drivetrain.getGyroAngle());
 			Variables.lowGearMaxSpeedFeetPerSecond = SmartDashboard.getNumber("Low Gear Max Speed (ft/s)", Variables.lowGearMaxSpeedFeetPerSecond);
 			SmartDashboard.putBoolean("Use Linear Acceleration", Variables.useLinearAcceleration);
 			//Variables.drivetrainPID_P = SmartDashboard.getNumber("PID P Value", 20);
 			SmartDashboard.putNumber("Low Gear Max Speed (ft/s)", Variables.lowGearMaxSpeedFeetPerSecond);
+			
+			Variables.shiftUpSpeed = Variables.lowGearMaxSpeed * Variables.shiftUpPercentage;
 		}
 			
     	

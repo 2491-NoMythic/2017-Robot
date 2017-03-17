@@ -6,6 +6,9 @@ import com._2491nomythic.watt.commands.InitCameraFeed;
 import com._2491nomythic.watt.commands.PrintCameraValues;
 import com._2491nomythic.watt.commands.autonomous.ActiveCenter;
 import com._2491nomythic.watt.commands.autonomous.DoNothing;
+import com._2491nomythic.watt.commands.autonomous.HighlyExperimentalCenter;
+import com._2491nomythic.watt.commands.autonomous.HighlyExperimentalLeft;
+import com._2491nomythic.watt.commands.autonomous.HighlyExperimentalRight;
 import com._2491nomythic.watt.commands.autonomous.PassiveCenter;
 import com._2491nomythic.watt.commands.autonomous.PassiveLeft;
 import com._2491nomythic.watt.commands.autonomous.PassiveRight;
@@ -14,9 +17,12 @@ import com._2491nomythic.watt.commands.autonomous.ActiveRight;
 //import com._2491nomythic.watt.commands.drivetrain.DriveGyroPID;
 import com._2491nomythic.watt.commands.drivetrain.DriveSpeedTime;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
+import com._2491nomythic.watt.commands.drivetrain.EnableCoastMode;
+import com._2491nomythic.watt.commands.drivetrain.PivotFrontAUTOONLY;
 import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
+import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.Variables;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -59,15 +65,22 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("PID P Value", 1.0);
         SmartDashboard.putNumber("Time to open GearSlot doors",Variables.timeToOpenGearSlot);
         SmartDashboard.putNumber("Time to eject Gear",Variables.timeToEjectGear);
+        SmartDashboard.putNumber("Shift Up Speed", Variables.shiftUpPercentage);
+        SmartDashboard.putNumber("Time To Engage Pneumatics For Shifter (in seconds)", Variables.shiftEngagePneumaticsTime);
+        SmartDashboard.putNumber("Total Shift Time (in seconds)", Variables.shiftTotalTime);
         SmartDashboard.putData("Turn 90 Degrees", new RotateDrivetrainWithGyroPID(90));
+        SmartDashboard.putData("Coast Mode", new EnableCoastMode());
         chooser.addDefault("Do Nothing", new DoNothing());
-        chooser.addObject("Drive 1 Foot",new DriveStraightToPosition(1,1));
         chooser.addObject("Active Right GearSlot", new ActiveRight());
         chooser.addObject("Active Left GearSlot", new ActiveLeft());
         chooser.addObject("Active Center GearSlot", new ActiveCenter());
         chooser.addObject("Passive Right GearSlot", new PassiveRight());
         chooser.addObject("Passive Center GearSlot", new PassiveCenter());
         chooser.addObject("Passive Left GearSlot", new PassiveLeft());
+        chooser.addObject("Experimental Center", new HighlyExperimentalCenter());
+        chooser.addObject("Experimental Left", new HighlyExperimentalLeft());
+        chooser.addObject("Experimental Right", new HighlyExperimentalRight());
+        chooser.addObject("Experimental Auto Pivot", new PivotFrontAUTOONLY(0.5, 0.5, 10));
         SmartDashboard.putBoolean("Use Linear Acceleration",Variables.useLinearAcceleration);
         SmartDashboard.putData("Drive with speed for 2 secs", new DriveSpeedTime(30, 2));
         
@@ -133,6 +146,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        System.out.println(Variables.shiftUpPercentage);
     }
     
     /**

@@ -1,29 +1,37 @@
 package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
-import com._2491nomythic.watt.settings.ControllerMap;
+
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
  */
-public class NoTurnLock extends CommandBase {
-	private double xAxisValue, yAxisValue;
+public class EnableCoastMode extends CommandBase {
+	Timer timer;
 
-    public NoTurnLock() {
+    public EnableCoastMode() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(drivetrain);
+    	setRunWhenDisabled(true);
+    	timer = new Timer();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	drivetrain.enableVerticalCoastMode();
+    	drivetrain.enableHorizontalCoastMode();
+    	
+    	timer.start();
+    	timer.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	yAxisValue = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05);
-    	xAxisValue = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, 0.05);
-    	drivetrain.drive(-yAxisValue, -yAxisValue, xAxisValue, xAxisValue);
+    	if (timer.get() > 1) {
+        	System.out.println("THE ROBOT IS IN COAST MODE. CLICK CANCEL NEXT TO \'Coast Mode\' ON THE SmartDashboard TO TURN COAST MODE OFF.");
+        	timer.reset();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -33,7 +41,8 @@ public class NoTurnLock extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	drivetrain.stop();
+    	drivetrain.enableVerticalBrakeMode();
+    	drivetrain.enableHorizontalBrakeMode();
     }
 
     // Called when another command which requires one or more of the same

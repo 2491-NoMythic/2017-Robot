@@ -8,16 +8,16 @@ import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
  *
  */
 public class PassiveLeft extends CommandBase {
-	private DriveStraightToPosition firstDrive, secondDrive;
-	private RotateDrivetrainWithGyro rotate1;
+	private DriveStraightToPosition drivePastBaseLine, impalePeg;
+	private RotateDrivetrainWithGyro aimForPeg;
 	private int state;
 
     public PassiveLeft() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	firstDrive = new DriveStraightToPosition(1,6.3);
-    	secondDrive = new DriveStraightToPosition(1,5.7);
-    	rotate1 = new RotateDrivetrainWithGyro(0.25,50);
+    	drivePastBaseLine = new DriveStraightToPosition(1,6.3);
+    	impalePeg = new DriveStraightToPosition(1,5.7);
+    	aimForPeg = new RotateDrivetrainWithGyro(0.25,50);
     }
 
     // Called just before this Command runs the first time
@@ -29,20 +29,20 @@ public class PassiveLeft extends CommandBase {
     protected void execute() {
     	switch(state) {
     	case 0:
-    		firstDrive.start();
+    		drivePastBaseLine.start();
     		state++;
     		break;
     	
     	case 1:
-    		if(!firstDrive.isRunning()) {
-    			rotate1.start();
+    		if(!drivePastBaseLine.isRunning()) {
+    			aimForPeg.start();
     			state++;
     		}
     		break;
     		
     	case 2:
-    		if(!rotate1.isRunning()) {
-    			secondDrive.start();
+    		if(!aimForPeg.isRunning()) {
+    			impalePeg.start();
     			state++;
     		}
     		break;
@@ -60,7 +60,7 @@ public class PassiveLeft extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !secondDrive.isRunning() && state == 3;
+        return !impalePeg.isRunning() && state == 3;
     }
 
     // Called once after isFinished returns true
@@ -70,8 +70,8 @@ public class PassiveLeft extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	firstDrive.cancel();
-    	secondDrive.cancel();
-    	rotate1.cancel();
+    	drivePastBaseLine.cancel();
+    	impalePeg.cancel();
+    	aimForPeg.cancel();
     }
 }

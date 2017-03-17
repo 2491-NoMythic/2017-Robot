@@ -1,18 +1,18 @@
 package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
+import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.ControllerMap;
 
 /**
  *
  */
-public class NoTurnLock extends CommandBase {
-	private double xAxisValue, yAxisValue;
+public class PivotFront extends CommandBase {
+	private double speed;
 
-    public NoTurnLock() {
+    public PivotFront() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(drivetrain);
     }
 
     // Called just before this Command runs the first time
@@ -21,9 +21,9 @@ public class NoTurnLock extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	yAxisValue = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05);
-    	xAxisValue = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, 0.05);
-    	drivetrain.drive(-yAxisValue, -yAxisValue, xAxisValue, xAxisValue);
+    	speed = 0.5 * oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveTurnAxis, 0.1);
+    	
+    	drivetrain.driveCenter(-speed * Constants.pivotDriveRatio, -speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

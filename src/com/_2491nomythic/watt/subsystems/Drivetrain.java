@@ -19,7 +19,6 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
  */
 public class Drivetrain extends PIDSubsystem {
 	private CANTalon left1, left2, left3, centerLeft, centerRight, right1, right2, right3;
-	private Encoder encoderCenter;
 	private Solenoid shifter;
 	private double currentPIDOutput;
 	private AHRS gyro;
@@ -61,12 +60,11 @@ public class Drivetrain extends PIDSubsystem {
 		
 		left1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		right1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		centerLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		
 		left1.configEncoderCodesPerRev(256);
 		right1.configEncoderCodesPerRev(256);
-		
-		encoderCenter = new Encoder(Constants.driveEncoderCenterChannel1, Constants.driveEncoderCenterChannel2, false, CounterBase.EncodingType.k1X);
-		encoderCenter.setDistancePerPulse(Constants.driveEncoderToFeet);
+		centerLeft.configEncoderCodesPerRev(256);
 		
 		shifter = new Solenoid(Constants.driveSolenoidChannel);
 		
@@ -119,7 +117,7 @@ public class Drivetrain extends PIDSubsystem {
 		right1.changeControlMode(TalonControlMode.Speed);
 	}
 	
-	public void enableCoastMode() {
+	public void enableVerticalCoastMode() {
 		left1.enableBrakeMode(false);
 		left2.enableBrakeMode(false);
 		left3.enableBrakeMode(false);
@@ -128,13 +126,23 @@ public class Drivetrain extends PIDSubsystem {
 		right3.enableBrakeMode(false);
 	}
 	
-	public void enableBrakeMode() {
+	public void enableHorizontalCoastMode() {
+		centerLeft.enableBrakeMode(false);
+		centerRight.enableBrakeMode(false);
+	}
+	
+	public void enableVerticalBrakeMode() {
 		left1.enableBrakeMode(true);
 		left2.enableBrakeMode(true);
 		left3.enableBrakeMode(true);
 		right1.enableBrakeMode(true);
 		right2.enableBrakeMode(true);
 		right3.enableBrakeMode(true);
+	}
+	
+	public void enableHorizontalBrakeMode() {
+		centerLeft.enableBrakeMode(true);
+		centerRight.enableBrakeMode(true);
 	}
 	
 	public void resetLeftEncoder() {
@@ -152,7 +160,7 @@ public class Drivetrain extends PIDSubsystem {
 	 * Resets the center drive encoder value to 0
 	 */
 	public void resetCenterEncoder() {
-		encoderCenter.reset();
+		centerLeft.setEncPosition(0);
 	}
 	
 	/**
@@ -173,7 +181,7 @@ public class Drivetrain extends PIDSubsystem {
 	 * @return The value of the center drive encoder
 	 */
 	public double getCenterEncoderDistance() {
-		return -encoderCenter.getDistance();
+		return -centerLeft.getEncPosition() * Constants.driveEncoderToFeet;
 	}
 	
 	/**
@@ -194,7 +202,7 @@ public class Drivetrain extends PIDSubsystem {
 	 * @return The speed of the center motor in feet per second
 	 */
 	public double getCenterEncoderRate() {;
-		return encoderCenter.getRate();
+		return centerLeft.getEncVelocity();
 	}
 	
 	/**

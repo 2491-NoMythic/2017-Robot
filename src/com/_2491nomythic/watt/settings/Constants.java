@@ -23,6 +23,8 @@ public class Constants {
 	public static final int driveEncoderRightChannel2 = 8;
 	public static final int driveSolenoidChannel = 0;
 	
+	public static final double pivotDriveRatio = 0.4;
+	
 	//Climber
 	public static final int climberTalonLeftChannel = 18;
 	public static final int climberTalonRightChannel = 20;

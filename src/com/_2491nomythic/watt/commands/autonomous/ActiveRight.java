@@ -9,21 +9,21 @@ import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
  *
  */
 public class ActiveRight extends CommandBase {
-	private DriveStraightToPosition firstDrive, secondDrive, thirdDrive, fourthDrive;
+	private DriveStraightToPosition drivePastBaseLine, impalePeg, backOffOfPeg, driveToMiddleLine;
 	private OpenAndEjectGearSlot ejectGear;
-	private RotateDrivetrainWithGyro rotateDrivetrain1, rotateDrivetrain2;
+	private RotateDrivetrainWithGyro aimForPeg, aimForMiddleLine;
 	private int state;
 
     public ActiveRight() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	firstDrive = new DriveStraightToPosition(1, 6.3);
-    	secondDrive = new DriveStraightToPosition(0.7, 4.7);
-    	thirdDrive = new DriveStraightToPosition(-1, -5.8);
-    	fourthDrive = new DriveStraightToPosition(1, 7);
+    	drivePastBaseLine = new DriveStraightToPosition(1, 6.3);
+    	impalePeg = new DriveStraightToPosition(0.7, 4.7);
+    	backOffOfPeg = new DriveStraightToPosition(-1, -5.8);
+    	driveToMiddleLine = new DriveStraightToPosition(1, 7);
     	ejectGear = new OpenAndEjectGearSlot();
-    	rotateDrivetrain1 = new RotateDrivetrainWithGyro(0.25, -50);
-    	rotateDrivetrain2 = new RotateDrivetrainWithGyro(0.25, 50);
+    	aimForPeg = new RotateDrivetrainWithGyro(0.25, -50);
+    	aimForMiddleLine = new RotateDrivetrainWithGyro(0.25, 50);
     }
 
     // Called just before this Command runs the first time
@@ -35,28 +35,28 @@ public class ActiveRight extends CommandBase {
     protected void execute() {
     	switch(state) {
     	case 0:
-    		firstDrive.start();
+    		drivePastBaseLine.start();
     		System.out.println("Case 0");
     		state++;
     		break;
     	case 1:
-    		if(!firstDrive.isRunning()) {
-    			rotateDrivetrain1.start();
+    		if(!drivePastBaseLine.isRunning()) {
+    			aimForPeg.start();
     			System.out.println("Case 1");
     			state++;
     		}
     		break;
     	
     	case 2:
-    		if(!rotateDrivetrain1.isRunning()) {
-    			secondDrive.start();
+    		if(!aimForPeg.isRunning()) {
+    			impalePeg.start();
     			state++;
     			System.out.println("Case 2");
     		}
     		break;
     		
     	case 3:
-    		if(!secondDrive.isRunning()) {
+    		if(!impalePeg.isRunning()) {
     			ejectGear.start();
     			System.out.println("Case 3");
     			state++;
@@ -65,23 +65,23 @@ public class ActiveRight extends CommandBase {
     		
     	case 4:
     		if(!ejectGear.isRunning()) {
-    			thirdDrive.start();
+    			backOffOfPeg.start();
     			System.out.println("Case 4");
     			state++;
     		}
     		break;
     		
     	case 5:
-    		if(!thirdDrive.isRunning()) {
-    			rotateDrivetrain2.start();
+    		if(!backOffOfPeg.isRunning()) {
+    			aimForMiddleLine.start();
     			System.out.println("Case 5");
     			state++;
     		}
     		break;
     		
     	case 6:
-    		if(!rotateDrivetrain2.isRunning()) {
-    			fourthDrive.start();
+    		if(!aimForMiddleLine.isRunning()) {
+    			driveToMiddleLine.start();
     			System.out.println("Case 6");
     			state++;
     		}
@@ -99,7 +99,7 @@ public class ActiveRight extends CommandBase {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
        // return !fourthDrive.isRunning() && state == 7;
-    	return !secondDrive.isRunning() && state == 7;
+    	return !impalePeg.isRunning() && state == 7;
     }
 
     // Called once after isFinished returns true
@@ -109,12 +109,12 @@ public class ActiveRight extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	firstDrive.cancel();
-    	secondDrive.cancel();
-    	thirdDrive.cancel();
-    	fourthDrive.cancel();
+    	drivePastBaseLine.cancel();
+    	impalePeg.cancel();
+    	backOffOfPeg.cancel();
+    	driveToMiddleLine.cancel();
     	ejectGear.cancel();
-    	rotateDrivetrain1.cancel();
-    	rotateDrivetrain2.cancel();
+    	aimForPeg.cancel();
+    	aimForMiddleLine.cancel();
     }
 }
