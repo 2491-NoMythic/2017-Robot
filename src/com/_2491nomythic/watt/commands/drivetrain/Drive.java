@@ -41,14 +41,14 @@ public class Drive extends CommandBase {
 		lastRightSpeed = currentRightSpeed;
     	
 		if (Variables.useAutomaticTransmission) {
-			if (Math.abs(drivetrain.getLeftEncoderRate()) > Variables.shiftUpSpeed && Math.abs(drivetrain.getRightEncoderRate()) > Variables.shiftUpSpeed && !isShifted && !isShifting && timer.get() > 1) {
+			if (((Math.abs(drivetrain.getLeftEncoderRate()) > Variables.shiftUpSpeed && Math.abs(drivetrain.getRightEncoderRate()) > Variables.shiftUpSpeed) || oi.getButton(ControllerMap.mainDriveController, ControllerMap.manualShiftButton)) && !isShifted && !isShifting && timer.get() > 1) {
 				isShifting = true;
 				futureLeftSpeed = lastLeftSpeed * Variables.shiftUpNewPower;
 				futureRightSpeed = lastRightSpeed * Variables.shiftUpNewPower;
 				currentLeftSpeed = 0;
 				currentRightSpeed = 0;
 			}
-			else if (Math.abs(lastLeftSpeed) < Variables.shiftDownSpeed && Math.abs(lastRightSpeed) < Variables.shiftDownSpeed && isShifted && !isShifting && timer.get() > 1) {
+			else if (Math.abs(lastLeftSpeed) < Variables.shiftDownSpeed && Math.abs(lastRightSpeed) < Variables.shiftDownSpeed && isShifted && !isShifting && timer.get() > 1 && !oi.getButton(ControllerMap.mainDriveController, ControllerMap.manualShiftButton)) {
 				isShifting = true;
 				futureLeftSpeed = lastLeftSpeed * Variables.shiftDownNewPower;
 				futureRightSpeed = lastRightSpeed * Variables.shiftDownNewPower;
