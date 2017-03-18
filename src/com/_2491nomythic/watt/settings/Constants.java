@@ -52,7 +52,7 @@ public class Constants {
 	//Dustpan
 	public static final int dustpanTalonChannel=21;
 	public static final int dustpanLimitSwitchChannel=1;
-	public static final int dustpanSolenoidChannel1=3;
-	public static final int dustpanSolenoidChannel2=4;
+	public static final int dustpanSolenoid1Channel=3;
+	public static final int dustpanSolenoid2Channel=4;
 }
 

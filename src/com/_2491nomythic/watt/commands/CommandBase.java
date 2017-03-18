@@ -19,6 +19,7 @@ public abstract class CommandBase extends Command {
 	protected static UpdateDriverstationSubsystem updateDriverstationSubsystem;
 	protected static Lights lights;
 	protected static Vision vision;
+	protected static Dustpan dustpan;
 	
 	public static void init() {
 		drivetrain = Drivetrain.getInstance();
@@ -28,6 +29,7 @@ public abstract class CommandBase extends Command {
 		updateDriverstationSubsystem = UpdateDriverstationSubsystem.getInstance();
 		lights = Lights.getInstance();
 		vision = Vision.getInstance();
+		dustpan = Dustpan.getInstance();
 		// This MUST be here. If the OI creates Commands (which it very likely
 		// will), constructing it during the construction of CommandBase (from
 		// which commands extend), subsystems are not guaranteed to be
