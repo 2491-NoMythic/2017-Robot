@@ -1,5 +1,6 @@
 package com._2491nomythic.watt.commands;
 
+import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.CameraException;
 import com._2491nomythic.watt.settings.CameraPacket;
 
@@ -8,10 +9,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class PrintCameraValues extends CommandBase {
+public class GearPegVisionLineup extends CommandBase {
 	private CameraPacket[] dacket;
 
-    public PrintCameraValues() {
+    public GearPegVisionLineup() {
     	dacket = new CameraPacket[7];
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -37,17 +38,21 @@ public class PrintCameraValues extends CommandBase {
 				SmartDashboard.putString("Pixy error: " + i, "True");
 				continue;
 			}
-			SmartDashboard.putNumber("X Value: " + i, dacket[i - 1].camX);
-			SmartDashboard.putNumber("Y Value: " + i, dacket[i - 1].camY);
-			SmartDashboard.putNumber("Height: " + i, dacket[i - 1].camHeight);
-			SmartDashboard.putNumber("Width: " + i, dacket[i - 1].camWidth);
-			SmartDashboard.putString("Pixy error" + i, "False");
+		}
+		if (dacket[0].camX > 276) {
+			drivetrain.driveCenter(-0.2, -0.2);
+		}
+		else if (dacket[0].camX < 276) {
+			drivetrain.driveCenter(0.2, 0.2);
+		}
+		else {
+			drivetrain.stop();
 		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return dacket[0].camX == 276;
     }
 
     // Called once after isFinished returns true

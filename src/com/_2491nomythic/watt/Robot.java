@@ -2,8 +2,6 @@
 package com._2491nomythic.watt;
 
 import com._2491nomythic.watt.commands.CommandBase;
-import com._2491nomythic.watt.commands.InitCameraFeed;
-import com._2491nomythic.watt.commands.PrintCameraValues;
 import com._2491nomythic.watt.commands.autonomous.ActiveCenter;
 import com._2491nomythic.watt.commands.autonomous.DoNothing;
 import com._2491nomythic.watt.commands.autonomous.HighlyExperimentalCenter;
@@ -22,6 +20,8 @@ import com._2491nomythic.watt.commands.drivetrain.PivotFrontAUTOONLY;
 import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
+import com._2491nomythic.watt.commands.vision.InitCameraFeed;
+import com._2491nomythic.watt.commands.vision.PrintCameraValues;
 import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.Variables;
 

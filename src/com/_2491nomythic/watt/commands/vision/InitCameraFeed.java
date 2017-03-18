@@ -1,4 +1,6 @@
-package com._2491nomythic.watt.commands;
+package com._2491nomythic.watt.commands.vision;
+
+import com._2491nomythic.watt.commands.CommandBase;
 
 public class InitCameraFeed extends CommandBase {
 
