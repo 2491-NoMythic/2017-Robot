@@ -20,6 +20,11 @@ public class PrintCameraValues extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
+    }
+
+    // Called repeatedly when this Command is scheduled to run
+    protected void execute() {
     	for (int i = 0; i < dacket.length; i++) 
 			dacket[i] = null;
 		SmartDashboard.putString("hello pixy ", "working");
@@ -39,10 +44,6 @@ public class PrintCameraValues extends CommandBase {
 			SmartDashboard.putNumber("Width: " + i, dacket[i - 1].camWidth);
 			SmartDashboard.putString("Pixy error" + i, "False");
 		}
-    }
-
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
     }
 
     // Make this return true when this Command no longer needs to run execute()
