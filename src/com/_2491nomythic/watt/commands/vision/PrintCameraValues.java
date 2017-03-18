@@ -39,10 +39,18 @@ public class PrintCameraValues extends CommandBase {
 				continue;
 			}
 		}
-		SmartDashboard.putNumber("X Value: " + 1, dacket[0].camX);
-		SmartDashboard.putNumber("Y Value: " + 1, dacket[0].camY);
-		SmartDashboard.putNumber("Height: " + 1, dacket[0].camHeight);
-		SmartDashboard.putNumber("Width: " + 1, dacket[0].camWidth);
+		try {
+			SmartDashboard.putNumber("X Value: 1", dacket[0].camX);
+			SmartDashboard.putNumber("Y Value: 1", dacket[0].camY);
+			SmartDashboard.putNumber("Height: 1", dacket[0].camHeight);
+			SmartDashboard.putNumber("Width: 1", dacket[0].camWidth);
+		}
+		catch (NullPointerException e) {
+			SmartDashboard.putNumber("X Value: 1", -1);
+			SmartDashboard.putNumber("Y Value: 1", -1);
+			SmartDashboard.putNumber("Height: 1", -1);
+			SmartDashboard.putNumber("Width: 1", -1);
+		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
