@@ -33,10 +33,10 @@ public class UpdateCameraValues extends CommandBase {
 				SmartDashboard.putString("Pixy error: " + i, "True");
 				continue;
 			}
-			Variables.cameraX = dacket[i-1].camX;
-			Variables.cameraY = dacket[i-1].camY;
-			Variables.cameraHeight = dacket[i-1].camHeight;
-			Variables.cameraWidth = dacket[i-1].camWidth;
+			Variables.x = dacket[i-1].camX;
+			Variables.y = dacket[i-1].camY;
+			Variables.height = dacket[i-1].camHeight;
+			Variables.width = dacket[i-1].camWidth;
 			SmartDashboard.putString("Pixy error" + i, "False");
 		}
     }

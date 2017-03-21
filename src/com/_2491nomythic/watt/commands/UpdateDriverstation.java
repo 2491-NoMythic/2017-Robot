@@ -41,10 +41,10 @@ public class UpdateDriverstation extends CommandBase {
 			SmartDashboard.putBoolean("Use Linear Acceleration", Variables.useLinearAcceleration);
 			//Variables.drivetrainPID_P = SmartDashboard.getNumber("PID P Value", 20);
 			SmartDashboard.putNumber("Low Gear Max Speed (ft/s)", Variables.lowGearMaxSpeedFeetPerSecond);
-			SmartDashboard.putNumber("X Pixels", Variables.cameraX);
-			SmartDashboard.putNumber("Y Pixels", Variables.cameraY);
-			SmartDashboard.putNumber("Height of Object", Variables.cameraHeight);
-			SmartDashboard.putNumber("Width of Object", Variables.cameraWidth);
+			SmartDashboard.putNumber("X Pixels", Variables.x);
+			SmartDashboard.putNumber("Y Pixels", Variables.y);
+			SmartDashboard.putNumber("Height of Object", Variables.height);
+			SmartDashboard.putNumber("Width of Object", Variables.width);
 			
 			Variables.shiftUpSpeed = Variables.lowGearMaxSpeed * Variables.shiftUpPercentage;
 		}
