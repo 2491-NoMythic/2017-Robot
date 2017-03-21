@@ -1,22 +1,19 @@
 package com._2491nomythic.watt.commands.autonomous;
 
 import com._2491nomythic.watt.commands.CommandBase;
-import com._2491nomythic.watt.commands.drivetrain.DriveSideways;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
+import com._2491nomythic.watt.commands.drivetrain.PivotFrontAUTOONLY;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
-
-import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
  */
 public class HighlyExperimentalLeft extends CommandBase {
 	private DriveStraightToPosition drivePastPeg, landPeg, impalePeg;
-	private RotateDrivetrainWithGyro aimForPeg, straightenPeg;
-	private DriveSideways squareUp;
+	private RotateDrivetrainWithGyro aimForPeg;
 	private OpenAndEjectGearSlot eject;
-	private Timer timer;
+	private PivotFrontAUTOONLY squareUp;
 	private int state;
 	
 	// Autonomous positioning numbers
@@ -31,10 +28,8 @@ public class HighlyExperimentalLeft extends CommandBase {
     	landPeg = new DriveStraightToPosition(0.6,4.8);
     	impalePeg = new DriveStraightToPosition(0.5,0.35);
     	aimForPeg = new RotateDrivetrainWithGyro(0.4,60);
-    	straightenPeg = new RotateDrivetrainWithGyro(-0.4,10);
-    	squareUp = new DriveSideways(0.5,2);
+    	squareUp = new PivotFrontAUTOONLY(0.25,0.25,0.25,5);
     	eject = new OpenAndEjectGearSlot();
-    	timer = new Timer();
     }
 
     // Called just before this Command runs the first time
@@ -63,32 +58,23 @@ public class HighlyExperimentalLeft extends CommandBase {
     		break;
     	case 3:
     		if(!landPeg.isRunning()) {
-    			straightenPeg.start();
-    			state++;
-    		}
-    		break;
-    	case 4:
-    		if(!straightenPeg.isRunning()) {
-    			timer.start();
-    			timer.reset();
     			squareUp.start();
     			state++;
     		}
     		break;
-    	case 5:
-    		if(timer.get() > 0.4) {
-    			squareUp.cancel();
+    	case 4:
+    		if(!squareUp.isRunning()) {
     			impalePeg.start();
     			state++;
     		}
     		break;
-    	case 6:
+    	case 5:
     		if(!impalePeg.isRunning()) {
     			eject.start();
     			state++;
     		}
     		break;
-    	case 7:
+    	case 6:
     		break;
     	default:
     		System.out.println("Something went wrong in auto switchcase. State: " + state);
@@ -97,7 +83,7 @@ public class HighlyExperimentalLeft extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return state == 7 && !eject.isRunning();
+        return state == 6 && !eject.isRunning();
     }
 
     // Called once after isFinished returns true
@@ -111,7 +97,6 @@ public class HighlyExperimentalLeft extends CommandBase {
     	landPeg.cancel();
     	impalePeg.cancel();
     	aimForPeg.cancel();
-    	straightenPeg.cancel();
     	squareUp.cancel();
     	eject.cancel();
     }
