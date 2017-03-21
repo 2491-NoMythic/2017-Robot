@@ -47,6 +47,8 @@ public class HighlyExperimentalCenter extends CommandBase {
     protected void execute() {
     	System.out.println("Center Encoder Value: " + drivetrain.getCenterEncoderDistance());
     	
+    	System.out.println("State: " + state);
+    	
     	switch(state) {
     	case 0:
     		timer.start();
