@@ -2,16 +2,17 @@ package com._2491nomythic.watt.commands;
 
 import com._2491nomythic.watt.settings.CameraException;
 import com._2491nomythic.watt.settings.CameraPacket;
+import com._2491nomythic.watt.settings.Variables;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class PrintCameraValues extends CommandBase {
+public class UpdateCameraValues extends CommandBase {
 	private CameraPacket[] dacket;
 
-    public PrintCameraValues() {
+    public UpdateCameraValues() {
     	dacket = new CameraPacket[7];
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -32,10 +33,10 @@ public class PrintCameraValues extends CommandBase {
 				SmartDashboard.putString("Pixy error: " + i, "True");
 				continue;
 			}
-			SmartDashboard.putNumber("X Value: " + i, dacket[i - 1].camX);
-			SmartDashboard.putNumber("Y Value: " + i, dacket[i - 1].camY);
-			SmartDashboard.putNumber("Height: " + i, dacket[i - 1].camHeight);
-			SmartDashboard.putNumber("Width: " + i, dacket[i - 1].camWidth);
+			Variables.cameraX = dacket[i-1].camX;
+			Variables.cameraY = dacket[i-1].camY;
+			Variables.cameraHeight = dacket[i-1].camHeight;
+			Variables.cameraWidth = dacket[i-1].camWidth;
 			SmartDashboard.putString("Pixy error" + i, "False");
 		}
     }

@@ -1,6 +1,7 @@
 package com._2491nomythic.watt.commands;
 
 
+import com._2491nomythic.watt.settings.CameraPacket;
 import com._2491nomythic.watt.settings.Variables;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -40,7 +41,10 @@ public class UpdateDriverstation extends CommandBase {
 			SmartDashboard.putBoolean("Use Linear Acceleration", Variables.useLinearAcceleration);
 			//Variables.drivetrainPID_P = SmartDashboard.getNumber("PID P Value", 20);
 			SmartDashboard.putNumber("Low Gear Max Speed (ft/s)", Variables.lowGearMaxSpeedFeetPerSecond);
-			//TODO Make an update for camera values
+			SmartDashboard.putNumber("X Pixels", Variables.cameraX);
+			SmartDashboard.putNumber("Y Pixels", Variables.cameraY);
+			SmartDashboard.putNumber("Height of Object", Variables.cameraHeight);
+			SmartDashboard.putNumber("Width of Object", Variables.cameraWidth);
 			
 			Variables.shiftUpSpeed = Variables.lowGearMaxSpeed * Variables.shiftUpPercentage;
 		}

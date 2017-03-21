@@ -39,10 +39,10 @@ public class Variables {
 	public static boolean ejected = false;
 	
 	//Global Camera Variables
-	public static double x;
-	public static double y;
-	public static double height;
-	public static double width;
+	public static double cameraX;
+	public static double cameraY;
+	public static double cameraHeight;
+	public static double cameraWidth;
 	public static double avgHeight;
 	public static double avgWidth;
 	public static double avgX;
