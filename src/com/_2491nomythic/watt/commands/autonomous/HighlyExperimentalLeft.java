@@ -30,7 +30,7 @@ public class HighlyExperimentalLeft extends CommandBase {
     	drivePastPeg = new DriveStraightToPosition(0.75,7.75);
     	landPeg = new DriveStraightToPosition(0.6,4.8);
     	impalePeg = new DriveStraightToPosition(0.5,0.35);
-    	aimForPeg = new RotateDrivetrainWithGyro(0.4,55);
+    	aimForPeg = new RotateDrivetrainWithGyro(0.4,60);
     	straightenPeg = new RotateDrivetrainWithGyro(-0.4,10);
     	squareUp = new DriveSideways(0.5,2);
     	eject = new OpenAndEjectGearSlot();
