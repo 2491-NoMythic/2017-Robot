@@ -7,15 +7,16 @@ import com._2491nomythic.watt.settings.Constants;
  *
  */
 public class PivotFrontAUTOONLY extends CommandBase {
-	private double frontSpeed, backSpeed, distance, initialPosition;
+	private double frontSpeed, backSpeed, distance, leftRightSpeed, initialPosition;
 
-    public PivotFrontAUTOONLY(double frontSpeed, double backSpeed, double distance) {
+    public PivotFrontAUTOONLY(double frontSpeed, double backSpeed, double leftRightSpeed, double distance) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(drivetrain);
     	this.frontSpeed = frontSpeed;
     	this.backSpeed = backSpeed;
     	this.distance = distance;
+    	this.leftRightSpeed = leftRightSpeed;
     }
 
     // Called just before this Command runs the first time
@@ -27,7 +28,11 @@ public class PivotFrontAUTOONLY extends CommandBase {
     protected void execute() {
     	System.out.println(drivetrain.getCenterEncoderDistance());
     	
-    	drivetrain.driveCenter(Constants.pivotDriveRatio * frontSpeed, backSpeed);
+    	if(leftRightSpeed > 0) {
+    		drivetrain.drive(-leftRightSpeed, leftRightSpeed, frontSpeed * Constants.pivotDriveRatio, backSpeed);
+    	} else if(leftRightSpeed < 0) {
+        	drivetrain.drive(leftRightSpeed, -leftRightSpeed, -frontSpeed * Constants.pivotDriveRatio, -backSpeed);
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
