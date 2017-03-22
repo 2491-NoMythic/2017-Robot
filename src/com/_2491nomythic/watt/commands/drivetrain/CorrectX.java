@@ -8,12 +8,14 @@ import com._2491nomythic.watt.settings.Variables;
  */
 public class CorrectX extends CommandBase {
 	private double actualX, targetX, speed;
+	private int errorMargin;
 	//for the central wheel drivetrain methods, positive = right.
 
     public CorrectX(double desiredSpeed, double desiredX) {
     	actualX = Variables.x;
     	targetX = desiredX;
     	speed = desiredSpeed;
+    	errorMargin = 10;
     	requires(drivetrain);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -35,7 +37,7 @@ public class CorrectX extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (targetX < (actualX + 1)) && (targetX > (actualX - 1));
+        return (targetX < (actualX + errorMargin)) && (targetX > (actualX - errorMargin));
     }
 
     // Called once after isFinished returns true

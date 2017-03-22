@@ -39,7 +39,7 @@ public class OI {
 		noTurnLock.whileHeld(new NoTurnLock());
 		
 		correctLineUp = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.correctLineUpButton);
-		correctLineUp.whenPressed(new CorrectX(.2,212));
+		correctLineUp.whenPressed(new CorrectX(.2, 212));
 		
 		climb = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.climbButton);
 		climb.whileHeld(new Climb());
