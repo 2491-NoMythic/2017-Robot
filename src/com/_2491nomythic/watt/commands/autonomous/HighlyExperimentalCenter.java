@@ -24,6 +24,8 @@ public class HighlyExperimentalCenter extends CommandBase {
 	// Center: Lined up with peg
 	// Right: As far to the right as possible (- inches from center)
 	
+	//LINUX NUMBER 2 IS REQUIRED
+	
 	public HighlyExperimentalCenter() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
