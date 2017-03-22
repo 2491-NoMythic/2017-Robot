@@ -3,6 +3,7 @@ package com._2491nomythic.watt.commands.autonomous;
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.commands.drivetrain.DriveSideways;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
+import com._2491nomythic.watt.commands.drivetrain.PivotFrontAUTOONLY;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 
@@ -12,12 +13,11 @@ import edu.wpi.first.wpilibj.Timer;
  *
  */
 public class HighlyExperimentalCenter extends CommandBase {
-	private DriveStraightToPosition drivePastPeg,landPeg, impalePeg;
-	private RotateDrivetrainWithGyro aimForPeg, straightenPeg;
+	private DriveStraightToPosition driveNearPeg,landPeg, impalePeg;
+	private RotateDrivetrainWithGyro aimForPeg;
+	private PivotFrontAUTOONLY squareUp;
 	private OpenAndEjectGearSlot eject;
-	private DriveSideways offCenterAtStart, squareUp;
 	int state;
-	private Timer timer;
 	
 	// Autonomous positioning numbers
 	// Left: As far to the left as possible (- inches from edge)
@@ -29,20 +29,17 @@ public class HighlyExperimentalCenter extends CommandBase {
 	public HighlyExperimentalCenter() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	drivePastPeg = new DriveStraightToPosition(0.5, 3.9);
-    	landPeg = new DriveStraightToPosition(0.5, 2.1);
-    	impalePeg = new DriveStraightToPosition(0.5,0.35);
-    	aimForPeg = new RotateDrivetrainWithGyro(0.25,20);
-    	straightenPeg = new RotateDrivetrainWithGyro(0.25,-20);
+    	driveNearPeg = new DriveStraightToPosition(0.75, 3.9);
+    	landPeg = new DriveStraightToPosition(0.75, 2.3);
+    	impalePeg = new DriveStraightToPosition(0.75,0.45);
+    	aimForPeg = new RotateDrivetrainWithGyro(0.25,25);
+    	squareUp = new PivotFrontAUTOONLY(0.35,0.35,0.35,0.65);
     	eject = new OpenAndEjectGearSlot();
-    	offCenterAtStart = new DriveSideways(-0.25,30);
-    	squareUp = new DriveSideways(0.25,1);
-    	timer = new Timer();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	state = 0;
+    	state = 1;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -52,21 +49,12 @@ public class HighlyExperimentalCenter extends CommandBase {
     	System.out.println("State: " + state);
     	
     	switch(state) {
-    	case 0:
-    		timer.start();
-    		timer.reset();
-    		offCenterAtStart.start();
-    		state++;
-    		break;
     	case 1:
-    		if(timer.get() > 0.3) {
-    			offCenterAtStart.cancel();
-    			drivePastPeg.start();
+    			driveNearPeg.start();
     			state++;
-    		}
     		break;
     	case 2:
-    		if(!drivePastPeg.isRunning()) {
+    		if(!driveNearPeg.isRunning()) {
     			aimForPeg.start();
     			state++;
     		}
@@ -79,31 +67,23 @@ public class HighlyExperimentalCenter extends CommandBase {
     		break;
     	case 4:
     		if(!landPeg.isRunning()) {
-    			straightenPeg.start();
-    			state++;
-    		}
-    		break;
-    	case 5:
-    		if(!straightenPeg.isRunning()) {
-    			timer.reset();
     			squareUp.start();
     			state++;
     		}
     		break;
-    	case 6:
-    		if(timer.get() > 0.4) {
-    			squareUp.cancel();
+    	case 5:
+    		if(!squareUp.isRunning()) {
     			impalePeg.start();
     			state++;
     		}
     		break;
-    	case 7:
+    	case 6:
     		if(!impalePeg.isRunning()) {
     			eject.start();
     			state++;
     		}
     		break;
-    	case 8:
+    	case 7:
     		break;
     	default:
     		System.out.println("Error in autonomous. State: " + state);
@@ -112,7 +92,7 @@ public class HighlyExperimentalCenter extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !eject.isRunning() && state == 8;
+        return !eject.isRunning() && state == 7;
     }
 
     // Called once after isFinished returns true
@@ -122,12 +102,10 @@ public class HighlyExperimentalCenter extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	drivePastPeg.cancel();
+    	driveNearPeg.cancel();
     	landPeg.cancel();
     	impalePeg.cancel();
     	aimForPeg.cancel();
-    	straightenPeg.cancel();
-    	offCenterAtStart.cancel();
     	squareUp.cancel();
     	eject.cancel();
     }
