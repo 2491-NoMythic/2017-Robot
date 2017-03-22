@@ -118,25 +118,25 @@ public class CameraI2CType {
 		return block;
 	}
 
-	private final int MAX_SIGNATURES = 7;
-	private final int OBJECT_SIZE = 14;
-	private final int START_WORD = 0xaa55;
-	private final int START_WORD_CC = 0xaa5;
-	private final int START_WORD_X = 0x55aa;
+	private final int maxSignatures = 7;
+	private final int objectSize = 14;
+	private final int startWord = 0xaa55;
+	private final int startWordCC = 0xaa5;
+	private final int startWordX = 0x55aa;
 
 	public boolean getStart() {
 		int numBytesRead = 0;
 		int lastWord = 0xffff;
-		while (numBytesRead < (OBJECT_SIZE * MAX_SIGNATURES)) {
+		while (numBytesRead < (objectSize * maxSignatures)) {
 			int word = readWord();
 			numBytesRead += 2;
 			if (word == 0 && lastWord == 0) {
 				return false;
-			} else if (word == START_WORD && lastWord == START_WORD) {
+			} else if (word == startWord && lastWord == startWord) {
 				return true;
-			} else if (word == START_WORD_CC && lastWord == START_WORD) {
+			} else if (word == startWordCC && lastWord == startWord) {
 				return true;
-			} else if (word == START_WORD_X) {
+			} else if (word == startWordX) {
 				@SuppressWarnings("unused")
 				byte[] data = readData(1);
 				numBytesRead += 1;
@@ -163,10 +163,10 @@ public class CameraI2CType {
 		for (int i = 0; i < maxBlocks; i++) {
 			blocks[i] = null;
 			int checkSum = readWord();
-			if (checkSum == START_WORD) {
+			if (checkSum == startWord) {
 				skipStart = true;
 				return blocks;
-			} else if (checkSum == START_WORD_CC) {
+			} else if (checkSum == startWordCC) {
 				skipStart = true;
 				return blocks;
 			} else if (checkSum == 0) {
