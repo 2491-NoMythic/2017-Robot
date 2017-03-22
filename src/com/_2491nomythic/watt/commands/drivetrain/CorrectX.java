@@ -10,7 +10,7 @@ public class CorrectX extends CommandBase {
 	private double actualX, targetX, speed;
 	//for the central wheel drivetrain methods, positive = right.
 
-    public CorrectX(double desiredX, double desiredSpeed) {
+    public CorrectX(double desiredSpeed, double desiredX) {
     	actualX = Variables.x;
     	targetX = desiredX;
     	speed = desiredSpeed;
