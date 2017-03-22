@@ -14,7 +14,7 @@ import com._2491nomythic.watt.commands.autonomous.ActiveLeft;
 import com._2491nomythic.watt.commands.autonomous.ActiveRight;
 //import com._2491nomythic.watt.commands.drivetrain.DriveGyroPID;
 import com._2491nomythic.watt.commands.drivetrain.DriveSpeedTime;
-import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
+//import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
 import com._2491nomythic.watt.commands.drivetrain.EnableCoastMode;
 import com._2491nomythic.watt.commands.drivetrain.PivotFrontAUTOONLY;
 import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
@@ -22,7 +22,7 @@ import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
 import com._2491nomythic.watt.commands.vision.InitCameraFeed;
 import com._2491nomythic.watt.commands.vision.PrintCameraValues;
-import com._2491nomythic.watt.settings.Constants;
+//import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.Variables;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
