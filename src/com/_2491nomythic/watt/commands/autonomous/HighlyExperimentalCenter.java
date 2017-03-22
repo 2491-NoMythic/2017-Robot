@@ -6,6 +6,7 @@ import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
 import com._2491nomythic.watt.commands.drivetrain.PivotFrontAUTOONLY;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
+import com._2491nomythic.watt.commands.gearslot.TogglePusher;
 
 import edu.wpi.first.wpilibj.Timer;
 
@@ -13,10 +14,11 @@ import edu.wpi.first.wpilibj.Timer;
  *
  */
 public class HighlyExperimentalCenter extends CommandBase {
-	private DriveStraightToPosition driveNearPeg,landPeg, impalePeg;
+	private DriveStraightToPosition driveNearPeg, landPeg, impalePeg;
 	private RotateDrivetrainWithGyro aimForPeg;
 	private PivotFrontAUTOONLY squareUp;
 	private OpenAndEjectGearSlot eject;
+	private TogglePusher extend, retract;
 	int state;
 	
 	// Autonomous positioning numbers
@@ -35,6 +37,8 @@ public class HighlyExperimentalCenter extends CommandBase {
     	aimForPeg = new RotateDrivetrainWithGyro(0.25,25);
     	squareUp = new PivotFrontAUTOONLY(0.35,0.35,0.35,0.65);
     	eject = new OpenAndEjectGearSlot();
+    	extend = new TogglePusher();
+    	retract = new TogglePusher();
     }
 
     // Called just before this Command runs the first time
@@ -84,6 +88,18 @@ public class HighlyExperimentalCenter extends CommandBase {
     		}
     		break;
     	case 7:
+    		if(!eject.isRunning()) {
+    			extend.start();
+    			state++;
+    		}
+    		break;
+    	case 8:
+    		if(!extend.isRunning()) {
+    			retract.start();
+    			state++;
+    		}
+    		break;
+    	case 9:
     		break;
     	default:
     		System.out.println("Error in autonomous. State: " + state);
@@ -92,7 +108,7 @@ public class HighlyExperimentalCenter extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !eject.isRunning() && state == 7;
+        return !retract.isRunning() && state == 9;
     }
 
     // Called once after isFinished returns true
@@ -108,5 +124,7 @@ public class HighlyExperimentalCenter extends CommandBase {
     	aimForPeg.cancel();
     	squareUp.cancel();
     	eject.cancel();
+    	extend.cancel();
+    	retract.cancel();
     }
 }

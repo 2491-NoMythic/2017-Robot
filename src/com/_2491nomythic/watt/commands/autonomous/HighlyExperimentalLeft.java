@@ -5,6 +5,7 @@ import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
 import com._2491nomythic.watt.commands.drivetrain.PivotFrontAUTOONLY;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
+import com._2491nomythic.watt.commands.gearslot.TogglePusher;
 
 /**
  *
@@ -14,6 +15,7 @@ public class HighlyExperimentalLeft extends CommandBase {
 	private RotateDrivetrainWithGyro aimForPeg;
 	private OpenAndEjectGearSlot eject;
 	private PivotFrontAUTOONLY squareUp;
+	private TogglePusher extend, retract;
 	private int state;
 	
 	// Autonomous positioning numbers
@@ -30,6 +32,8 @@ public class HighlyExperimentalLeft extends CommandBase {
     	aimForPeg = new RotateDrivetrainWithGyro(0.4,60);
     	squareUp = new PivotFrontAUTOONLY(0.35,0.35,0.35,0.5);
     	eject = new OpenAndEjectGearSlot();
+    	extend = new TogglePusher();
+    	retract = new TogglePusher();
     }
 
     // Called just before this Command runs the first time
@@ -75,6 +79,18 @@ public class HighlyExperimentalLeft extends CommandBase {
     		}
     		break;
     	case 6:
+    		if(!eject.isRunning()) {
+    			extend.start();
+    			state++;
+    		}
+    		break;
+    	case 7:
+    		if(!extend.isRunning()) {
+    			retract.start();
+    			state++;
+    		}
+    		break;
+    	case 8:
     		break;
     	default:
     		System.out.println("Something went wrong in auto switchcase. State: " + state);
@@ -83,7 +99,7 @@ public class HighlyExperimentalLeft extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return state == 6 && !eject.isRunning();
+        return state == 8 && !retract.isRunning();
     }
 
     // Called once after isFinished returns true
@@ -99,5 +115,7 @@ public class HighlyExperimentalLeft extends CommandBase {
     	aimForPeg.cancel();
     	squareUp.cancel();
     	eject.cancel();
+    	extend.cancel();
+    	retract.cancel();
     }
 }
