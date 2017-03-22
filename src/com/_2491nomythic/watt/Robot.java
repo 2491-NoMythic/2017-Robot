@@ -20,6 +20,7 @@ import com._2491nomythic.watt.commands.drivetrain.PivotFrontAUTOONLY;
 import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
+import com._2491nomythic.watt.commands.vision.CenterOnPeg;
 import com._2491nomythic.watt.commands.vision.InitCameraFeed;
 import com._2491nomythic.watt.commands.vision.PrintCameraValues;
 import com._2491nomythic.watt.settings.Constants;
@@ -57,6 +58,7 @@ public class Robot extends IterativeRobot {
 		CommandBase.init();
         chooser = new SendableChooser<Command>();
         SmartDashboard.putData("Init Camera Feed", new InitCameraFeed());
+        SmartDashboard.putData("Line Up To Peg", new CenterOnPeg());
         SmartDashboard.putData("Reset Gyro", new ResetGyro());
         SmartDashboard.putData("Reset Encoders", new ResetEncoders());
         SmartDashboard.putData("Print Camera Values", new PrintCameraValues());

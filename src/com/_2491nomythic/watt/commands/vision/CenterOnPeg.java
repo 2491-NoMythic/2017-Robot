@@ -1,48 +1,54 @@
-package com._2491nomythic.watt.commands.dustpan;
+package com._2491nomythic.watt.commands.vision;
 
 import com._2491nomythic.watt.commands.CommandBase;
+import com._2491nomythic.watt.settings.Constants;
+import com._2491nomythic.watt.settings.Variables;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
+
 
 /**
  *
  */
-public class PushOut extends CommandBase{
-Timer timer;
-
-    public PushOut() {
+public class CenterOnPeg extends CommandBase {
+	private boolean isDone;
+	private Timer timer;
+    public CenterOnPeg() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(dustpan);
+    	requires(vision);
+    	timer = new Timer();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	dustpan.flipUp();
-    	timer = new Timer();
+    	isDone = false;
     	timer.reset();
     	timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	dustpan.runMotor(1);
+    	vision.cameraFeed();
+    	if (Constants.xPerfectValue >= Variables.x + 5){
+    		drivetrain.driveCenter(-0.35, -0.35);
+    	}
+    	else if (Constants.xPerfectValue <= Variables.x - 5){
+    		drivetrain.driveCenter(0.35, 0.35);
+    	}
+    	else if((Constants.xPerfectValue >= (Variables.x - 5)) && (Constants.xPerfectValue <= (Variables.x + 5))) {
+    		drivetrain.stop();
+    	}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (timer.get() >= 5){
-        	return true;
-        }
-        else{
-        	return false;
-        }
+        return isDone;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	dustpan.stop();
     }
 
     // Called when another command which requires one or more of the same

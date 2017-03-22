@@ -54,5 +54,8 @@ public class Constants {
 	public static final int dustpanLimitSwitchChannel=1;
 	public static final int dustpanSolenoid1Channel=3;
 	public static final int dustpanSolenoid2Channel=4;
+	
+	//Vision
+	public static final int xPerfectValue=276;
 }
 
