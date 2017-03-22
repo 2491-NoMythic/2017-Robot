@@ -50,3 +50,5 @@ Temporary Items
 .classpath
 *.class
 /bin/
+
+.classpath
