@@ -43,13 +43,14 @@ public class Vision extends Subsystem {
 			}
 			if (packet[i - 1] == null) {
 				SmartDashboard.putString("Pixy error: " + i, "True");
-				continue;
+			} 
+			else {
+				SmartDashboard.putNumber("X Value: " + i, packet[i - 1].camX);
+				SmartDashboard.putNumber("Y Value: " + i, packet[i - 1].camY);
+				SmartDashboard.putNumber("Height: " + i, packet[i - 1].camHeight);
+				SmartDashboard.putNumber("Width: " + i, packet[i - 1].camWidth);
+				SmartDashboard.putString("Pixy error" + i, "False");
 			}
-			SmartDashboard.putNumber("X Value: " + i, packet[i - 1].camX);
-			SmartDashboard.putNumber("Y Value: " + i, packet[i - 1].camY);
-			SmartDashboard.putNumber("Height: " + i, packet[i - 1].camHeight);
-			SmartDashboard.putNumber("Width: " + i, packet[i - 1].camWidth);
-			SmartDashboard.putString("Pixy error" + i, "False");
 		}
 	}
 	
