@@ -10,6 +10,9 @@ import com._2491nomythic.watt.commands.autonomous.HighlyExperimentalRight;
 import com._2491nomythic.watt.commands.autonomous.PassiveCenter;
 import com._2491nomythic.watt.commands.autonomous.PassiveLeft;
 import com._2491nomythic.watt.commands.autonomous.PassiveRight;
+import com._2491nomythic.watt.commands.autonomous.VisionCenter;
+import com._2491nomythic.watt.commands.autonomous.VisionLeft;
+import com._2491nomythic.watt.commands.autonomous.VisionRight;
 import com._2491nomythic.watt.commands.autonomous.ActiveLeft;
 import com._2491nomythic.watt.commands.autonomous.ActiveRight;
 import com._2491nomythic.watt.commands.drivetrain.DriveSpeedTime;
@@ -76,6 +79,9 @@ public class Robot extends IterativeRobot {
         chooser.addObject("Experimental Center", new HighlyExperimentalCenter());
         chooser.addObject("Experimental Left", new HighlyExperimentalLeft());
         chooser.addObject("Experimental Right", new HighlyExperimentalRight());
+        chooser.addObject("Vision Left", new VisionLeft());
+        chooser.addObject("Vision Center", new VisionCenter());
+        chooser.addObject("Vision Right", new VisionRight());
         SmartDashboard.putBoolean("Use Linear Acceleration",Variables.useLinearAcceleration);
         SmartDashboard.putData("Drive with speed for 2 secs", new DriveSpeedTime(30, 2));
         
