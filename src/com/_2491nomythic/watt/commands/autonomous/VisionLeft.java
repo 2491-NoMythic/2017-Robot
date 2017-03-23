@@ -25,7 +25,7 @@ public class VisionLeft extends Command {
     	driveToBaseLine = new DriveStraightToPosition(1,6.3);
     	approachPeg = new DriveStraightToPosition(1,4.5);
     	impalePeg = new DriveStraightToPosition(0.85,2);
-    	lineUp = new CorrectX(0.2,212);
+    	lineUp = new CorrectX(0.2);
     	aimForPeg = new RotateDrivetrainWithGyro(0.25,50);
     	eject = new OpenAndEjectGearSlot();
     }

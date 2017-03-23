@@ -13,11 +13,13 @@ import edu.wpi.first.wpilibj.Timer;
 public class CenterOnPeg extends CommandBase {
 	private boolean isDone;
 	private Timer timer;
+	private int margin;
     public CenterOnPeg() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(vision);
+    	requires(drivetrain);
     	timer = new Timer();
+    	margin = Constants.errorMargin;
     }
 
     // Called just before this Command runs the first time
@@ -29,15 +31,15 @@ public class CenterOnPeg extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	vision.cameraFeed();
-    	if (Constants.xPerfectValue >= Variables.x + 5){
+    	if (Constants.xPerfectValue >= Variables.x + margin){
     		drivetrain.driveCenter(-0.35, -0.35);
     	}
-    	else if (Constants.xPerfectValue <= Variables.x - 5){
+    	else if (Constants.xPerfectValue <= Variables.x - margin){
     		drivetrain.driveCenter(0.35, 0.35);
     	}
     	else {
     		drivetrain.stop();
+    		isDone = true;
     	}
     	
     }

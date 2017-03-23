@@ -22,7 +22,7 @@ public class VisionCenter extends Command {
     	//Values inaccurate
     	approachPeg = new DriveStraightToPosition(0.85,4);
     	impalePeg = new DriveStraightToPosition(0.85,2);
-    	lineUp = new CorrectX(0.2,212);
+    	lineUp = new CorrectX(0.2);
     	eject = new OpenAndEjectGearSlot();
     }
 

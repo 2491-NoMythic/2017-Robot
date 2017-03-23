@@ -7,6 +7,7 @@ public class InitCameraFeed extends CommandBase {
     public InitCameraFeed() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(vision);
     }
 
     // Called just before this Command runs the first time

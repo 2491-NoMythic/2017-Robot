@@ -1,6 +1,7 @@
 package com._2491nomythic.watt.subsystems;
 
 import com._2491nomythic.util.CameraI2CType;
+import com._2491nomythic.watt.commands.vision.InitCameraFeed;
 import com._2491nomythic.watt.settings.CameraException;
 import com._2491nomythic.watt.settings.CameraPacket;
 import com._2491nomythic.watt.settings.Variables;
@@ -56,7 +57,7 @@ public class Vision extends Subsystem {
 	
 	public void cameraFeed() {
 		for (int i = 1; i < 8; i++) {
-			packet[i] = null;
+			packet[i - 1] = null;
 			try {
 				packet[i - 1] = pixy.readPacket(i);
 			}
@@ -65,12 +66,15 @@ public class Vision extends Subsystem {
 			}
 			if (packet[i - 1] == null) {
 				SmartDashboard.putString("Pixy Error: ", "Bad/Absent Data");
-				continue;
+				
+			} 
+			else {
+				Variables.x = packet[i - 1].camX;
+				Variables.y = packet[i - 1].camY;
+				Variables.height = packet[i - 1].camHeight;
+				Variables.width = packet[i - 1].camWidth;
+				SmartDashboard.putString("Pixy Error: ", "None");
 			}
-			Variables.x = packet[i - 1].camX;
-			Variables.y = packet[i - 1].camY;
-			Variables.height = packet[i - 1].camHeight;
-			Variables.width = packet[i - 1].camWidth;
 		}
 	}
 	
@@ -80,7 +84,7 @@ public class Vision extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new InitCameraFeed());
     }
     
 }

@@ -1,6 +1,5 @@
 package com._2491nomythic.watt;
 
-import com._2491nomythic.util.JoystickAxisButton;
 import com._2491nomythic.util.JoystickPOVButton;
 import com._2491nomythic.watt.commands.KillSwitch;
 import com._2491nomythic.watt.commands.climber.Climb;
@@ -38,7 +37,7 @@ public class OI {
 		noTurnLock.whileHeld(new NoTurnLock());
 		
 		correctLineUp = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.correctLineUpButton);
-		correctLineUp.whenPressed(new CorrectX(.2, 212));
+		correctLineUp.whenPressed(new CorrectX(.2));
 		
 		climb = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.climbButton);
 		climb.whileHeld(new Climb());
@@ -64,8 +63,8 @@ public class OI {
 		killSwitch = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.killSwitchButton);
 		killSwitch.whenPressed(new KillSwitch());
 		
-		safeMode = new JoystickAxisButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.safeModeAxisButton, 0.5);
-		safeMode.whileHeld(new SafeMode());
+		safeMode = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.safeModeButton);
+		safeMode.whenPressed(new SafeMode());
 		
 		pivotFrontDrive = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.pivotFrontButton);
 		pivotFrontDrive.whileHeld(new PivotFront());
