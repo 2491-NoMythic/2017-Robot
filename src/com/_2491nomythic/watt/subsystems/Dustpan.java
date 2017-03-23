@@ -40,10 +40,10 @@ public class Dustpan extends Subsystem {
 	}
 
 	public void runLeverAxis() {
-		if (turner1.get() == false && turner2.get() == false) {
+		if (turner1.get() == true && turner2.get() == true) {
 			flipDown();
 		}
-		else if (turner1.get() == true && turner2.get() == true) {
+		else if (turner1.get() == false && turner2.get() == false) {
 			flipUp();
 		}
 		else {
@@ -52,13 +52,13 @@ public class Dustpan extends Subsystem {
 	}
 
 	public void flipUp() {
-		turner1.set(false);
-		turner2.set(false);
+		turner1.set(true);
+		turner2.set(true);
 	}
 
 	public void flipDown() {
-		turner1.set(true);
-		turner2.set(true);
+		turner1.set(false);
+		turner2.set(false);
 	}
 
 	public void stop() {

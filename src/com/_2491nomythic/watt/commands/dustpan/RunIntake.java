@@ -1,42 +1,36 @@
-package com._2491nomythic.watt.commands.lights;
+package com._2491nomythic.watt.commands.dustpan;
 
 import com._2491nomythic.watt.commands.CommandBase;
-
-import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
  */
-public class LightsDefault extends CommandBase {
-	private Timer timer;
-    public LightsDefault() {
+public class RunIntake extends CommandBase {
+	//pew pew
+
+    public RunIntake() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(lights);
-    	timer = new Timer();
+    	requires(dustpan);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	timer.reset();
-    	timer.start();
-    	;
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	lights.setColors(127,0,0);
+    	dustpan.runMotor(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return timer.get() >= 1000;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	lights.shutOffRed();
+    	dustpan.runMotor(0);
     }
 
     // Called when another command which requires one or more of the same
