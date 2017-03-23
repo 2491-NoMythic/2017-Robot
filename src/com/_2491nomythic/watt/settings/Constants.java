@@ -57,5 +57,6 @@ public class Constants {
 	
 	//Vision
 	public static final int xPerfectValue=276;
+	public static final int errorMargin = 10;
 }
 
