@@ -3,7 +3,6 @@ package com._2491nomythic.watt.commands.dustpan;
 import com._2491nomythic.watt.commands.CommandBase;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *

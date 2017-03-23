@@ -1,6 +1,5 @@
 package com._2491nomythic.watt;
 
-import com._2491nomythic.util.JoystickAxisButton;
 import com._2491nomythic.util.JoystickPOVButton;
 import com._2491nomythic.watt.commands.KillSwitch;
 import com._2491nomythic.watt.commands.climber.Climb;
