@@ -1,6 +1,7 @@
 package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
+import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.Variables;
 
 /**
@@ -11,9 +12,9 @@ public class CorrectX extends CommandBase {
 	private int errorMargin;
 	//for the central wheel drivetrain methods, positive = right.
 
-    public CorrectX(double desiredSpeed, double desiredX) {
+    public CorrectX(double desiredSpeed) {
     	actualX = Variables.x;
-    	targetX = desiredX;
+    	targetX = Constants.xPerfectValue;
     	speed = desiredSpeed;
     	errorMargin = 10;
     	requires(drivetrain);
