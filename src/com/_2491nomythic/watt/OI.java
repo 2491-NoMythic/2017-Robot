@@ -64,8 +64,8 @@ public class OI {
 		killSwitch = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.killSwitchButton);
 		killSwitch.whenPressed(new KillSwitch());
 		
-		safeMode = new JoystickAxisButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.safeModeAxisButton, 0.5);
-		safeMode.whileHeld(new SafeMode());
+		safeMode = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.safeModeButton);
+		safeMode.whenPressed(new SafeMode());
 		
 		pivotFrontDrive = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.pivotFrontButton);
 		pivotFrontDrive.whileHeld(new PivotFront());
