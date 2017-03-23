@@ -36,7 +36,7 @@ public class CenterOnPeg extends CommandBase {
     	else if (Constants.xPerfectValue <= Variables.x - 5){
     		drivetrain.driveCenter(0.35, 0.35);
     	}
-    	else if((Constants.xPerfectValue >= (Variables.x - 5)) && (Constants.xPerfectValue <= (Variables.x + 5))) {
+    	else {
     		drivetrain.stop();
     	}
     	
