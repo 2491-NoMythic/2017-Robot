@@ -56,7 +56,7 @@ public class Constants {
 	public static final int dustpanSolenoid2Channel=4;
 	
 	//Vision
-	public static final int xPerfectValue=276;
+	public static final int xPerfectValue = 162;
 	public static final int errorMargin = 10;
 }
 
