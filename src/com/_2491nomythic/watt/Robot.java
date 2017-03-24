@@ -71,6 +71,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Total Shift Time (in seconds)", Variables.shiftTotalTime);
         SmartDashboard.putData("Turn 90 Degrees", new RotateDrivetrainWithGyroPID(90));
         SmartDashboard.putData("Coast Mode", new EnableCoastMode());
+        SmartDashboard.putBoolean("Automatic Transmission", Variables.useAutomaticTransmission);
         chooser.addDefault("Do Nothing", new DoNothing());
         chooser.addObject("Active Right GearSlot", new ActiveRight());
         chooser.addObject("Active Left GearSlot", new ActiveLeft());

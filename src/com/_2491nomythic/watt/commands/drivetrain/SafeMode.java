@@ -7,12 +7,11 @@ import com._2491nomythic.watt.settings.Variables;
  *
  */
 public class SafeMode extends CommandBase {
-	boolean enabled;
+	boolean enabled = false;
 	
     public SafeMode() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	enabled = false;
     }
 
     // Called just before this Command runs the first time

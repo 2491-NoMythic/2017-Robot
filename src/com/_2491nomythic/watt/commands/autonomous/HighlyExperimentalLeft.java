@@ -26,8 +26,8 @@ public class HighlyExperimentalLeft extends CommandBase {
     public HighlyExperimentalLeft() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	drivePastPeg = new DriveStraightToPosition(0.75,7.5);
-    	landPeg = new DriveStraightToPosition(0.6,4.8);
+    	drivePastPeg = new DriveStraightToPosition(0.75,7.9);
+    	landPeg = new DriveStraightToPosition(0.6,4.6);
     	impalePeg = new DriveStraightToPosition(0.85,0.35);
     	aimForPeg = new RotateDrivetrainWithGyro(0.4,60);
     	squareUp = new PivotFrontAUTOONLY(0.35,0.35,0.35,0.5);
