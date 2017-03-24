@@ -89,7 +89,7 @@ public class Vision extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new InitCameraFeed());
+//        setDefaultCommand(new InitCameraFeed());
     }
     
 }
