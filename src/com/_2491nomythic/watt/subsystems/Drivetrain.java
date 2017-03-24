@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 /**
- *
+ * The system of motors, solenoids, encoders, and a gyro that allows us to drive the robot
  */
 public class Drivetrain extends PIDSubsystem {
 	private CANTalon left1, left2, left3, centerLeft, centerRight, right1, right2, right3;
@@ -33,7 +33,7 @@ public class Drivetrain extends PIDSubsystem {
 	}
 	
 	/**
-	 * The system used to move the robot
+	 * The system of motors, solenoids, encoders, and a gyro that allows us to drive the robot
 	 */
 	private Drivetrain() {
 		super(Variables.drivetrainPID_P, Variables.drivetrainPID_I, Variables.drivetrainPID_D);
@@ -71,52 +71,98 @@ public class Drivetrain extends PIDSubsystem {
 		gyro = new AHRS(SerialPort.Port.kUSB);
 	}
 	
+	/**
+	 * Drives the robot forward or backward only
+	 * @param speed The power fed to the vertical drive motors, ranging from -1 to 1, where negative values run the motors backwards
+	 */
 	public void drive(double speed){
 		drive(speed, speed, 0, 0);
 	}
 	
+	/**
+	 * Drives the robot vertically and horizontally
+	 * @param verticalSpeed The power fed to the vertical drive motors, ranging from -1 to 1, where negative values move the robot backwards
+	 * @param centerSpeed The power fed to the horizontal drive motors, ranging from -1 to 1, where negative values move the robot to the left
+	 */
 	public void drive(double verticalSpeed, double centerSpeed){
 		drive(verticalSpeed, verticalSpeed, centerSpeed, centerSpeed);
 	}
 	
+	/**
+	 * Drives the robot with each set of motors recieving an individual specific speed
+	 * @param leftSpeed The power fed to the left drive motors, ranging from -1 to 1, where negative values run the motors backwards
+	 * @param rightSpeed The power fed to the right drive motors, ranging from -1 to 1, where negative values run the motors backwards
+	 * @param centerLeftSpeed The power fed to the front (or left) center drive motor, ranging from -1 to 1, where negative values move the robot to the left
+	 * @param centerRightSpeed The power fed to the back (or right) center drive motor, ranging from -1 to 1, where negative values move the robot to the left
+	 */
 	public void drive(double leftSpeed, double rightSpeed, double centerLeftSpeed, double centerRightSpeed){
 		driveLeft(leftSpeed * Variables.driveRestriction);
 		driveRight(rightSpeed * Variables.driveRestriction);
 		driveCenter(centerLeftSpeed * Variables.driveRestriction, centerRightSpeed * Variables.driveRestriction);
 	}
 	
+	/**
+	 * Drives the left side of the robot
+	 * @param speed The power fed to the motors, ranging from -1 to 1, where negative values run the motors backwards
+	 */
 	public void driveLeft(double speed){
 		left1.set(-speed);
 	}
 	
+	/**
+	 * Drives the right side of the robot
+	 * @param speed The power fed to the motors, ranging from -1 to 1, where negative values run the motors backwards
+	 */
 	public void driveRight(double speed){
 		right1.set(speed);
 	}
 	
+	/**
+	 * Drives the center motors on the robot
+	 * @param leftSpeed The power fed to the front (or left) center drive motor, ranging from -1 to 1, where negative values move the robot to the left
+	 * @param rightSpeed The power fed to the back (or right) center drive motor, ranging from -1 to 1, where negative values move the robot to the left
+	 */
 	public void driveCenter(double leftSpeed, double rightSpeed){
 		centerLeft.set(leftSpeed);
 		centerRight.set(-rightSpeed);
 	}
 	
+	/**
+	 * Drives the center motors on the robot using PID
+	 * @param leftSpeed The desired speed for the left motor
+	 * @param rightSpeed The desired speed for the right motor
+	 */
 	public void driveCenterPID(double leftSpeed, double rightSpeed){
 		centerLeft.pidWrite(leftSpeed);
 		centerRight.pidWrite(-rightSpeed);
 	}
 	
+	/**
+	 * Stops all drive motion
+	 */
 	public void stop(){
 		drive(0, 0);
 	}
 	
+	/**
+	 * Changes vertical drive motors to PercentVBus mode
+	 */
 	public void changeVerticalToPercentVbus() {
 		left1.changeControlMode(TalonControlMode.PercentVbus);
 		right1.changeControlMode(TalonControlMode.PercentVbus);
 	}
 	
+	/**
+	 * Changes vertical drive motors to Speed mode
+	 */
 	public void changeVerticalToSpeed() {
 		left1.changeControlMode(TalonControlMode.Speed);
 		right1.changeControlMode(TalonControlMode.Speed);
 	}
 	
+	/**
+	 * Changes vertical drive motors to Coast mode
+	 */
 	public void enableVerticalCoastMode() {
 		left1.enableBrakeMode(false);
 		left2.enableBrakeMode(false);
@@ -126,11 +172,17 @@ public class Drivetrain extends PIDSubsystem {
 		right3.enableBrakeMode(false);
 	}
 	
+	/**
+	 * Changes horizontal drive motors to Coast mode
+	 */
 	public void enableHorizontalCoastMode() {
 		centerLeft.enableBrakeMode(false);
 		centerRight.enableBrakeMode(false);
 	}
 	
+	/**
+	 * Changes vertical drive motors to Brake mode
+	 */
 	public void enableVerticalBrakeMode() {
 		left1.enableBrakeMode(true);
 		left2.enableBrakeMode(true);
@@ -140,11 +192,17 @@ public class Drivetrain extends PIDSubsystem {
 		right3.enableBrakeMode(true);
 	}
 	
+	/**
+	 * Changes horizontal drive motors to Brake mode
+	 */
 	public void enableHorizontalBrakeMode() {
 		centerLeft.enableBrakeMode(true);
 		centerRight.enableBrakeMode(true);
 	}
 	
+	/**
+	 * Resets the left drive encoder value to 0
+	 */
 	public void resetLeftEncoder() {
 		left1.setEncPosition(0);
 	}
@@ -226,10 +284,16 @@ public class Drivetrain extends PIDSubsystem {
 		return shifter.get();
 	}
 	
+	/**
+	 * Resets the value of the gyro to 0
+	 */
 	public void resetGyro() {
 		gyro.reset();
 	}
 	
+	/**
+	 * @return The value of the gyro
+	 */
 	public double getGyroAngle(){
 		return gyro.getAngle();
 	}
@@ -253,6 +317,10 @@ public class Drivetrain extends PIDSubsystem {
 	protected void usePIDOutput(double output) {
 		currentPIDOutput = output;
 	}
+	
+	/**
+	 * @return The output for the PID loop
+	 */
 	public double getPIDOutput() {
 		return currentPIDOutput;
 	}
