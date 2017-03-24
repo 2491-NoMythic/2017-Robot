@@ -23,12 +23,11 @@ public class PrintCameraValues extends CommandBase {
     protected void initialize() {
     	for (int i = 0; i < dacket.length; i++) 
 			dacket[i] = null;
-		SmartDashboard.putString("hello pixy ", "working");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-		for (int i = 1; i < 8; i++) {
+		for (int i = 0; i < dacket.length; i++) {
 			try {
 				dacket[i - 1] = vision.pixy.readPacket(i);
 			} catch (CameraException e) {

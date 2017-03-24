@@ -31,17 +31,21 @@ public class CenterOnPeg extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (Constants.xPerfectValue >= Variables.x + margin){
-    		drivetrain.driveCenter(-0.35, -0.35);
-    	}
-    	else if (Constants.xPerfectValue <= Variables.x - margin){
-    		drivetrain.driveCenter(0.35, 0.35);
+    	if (Variables.hasTarget) {
+    		if (Constants.xPerfectValue >= Variables.x + margin){
+    			drivetrain.driveCenter(-0.35, -0.35);
+    		}
+    		else if (Constants.xPerfectValue <= Variables.x - margin){
+    			drivetrain.driveCenter(0.35, 0.35);
+    		}
+    		else {
+    			drivetrain.stop();
+    			isDone = true;
+    		}
     	}
     	else {
     		drivetrain.stop();
-    		isDone = true;
     	}
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

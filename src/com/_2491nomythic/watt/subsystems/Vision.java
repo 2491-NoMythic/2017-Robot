@@ -20,7 +20,6 @@ public class Vision extends Subsystem {
 	private String print;
 	private CameraPacket[] packet = new CameraPacket[7];
 	public static Vision instance;
-	
 	private Vision() {
 		pixy = new CameraI2CType("Pixy", new I2C(port, 0x55), packet, new CameraException(print));
 	}
@@ -43,6 +42,7 @@ public class Vision extends Subsystem {
 				SmartDashboard.putString("Pixy error: " + i, "exception");
 			}
 			if (packet[i - 1] == null) {
+				Variables.hasTarget = false;
 				SmartDashboard.putString("Pixy error: " + i, "True");
 			} 
 			else {
@@ -56,8 +56,8 @@ public class Vision extends Subsystem {
 	}
 	
 	public void cameraFeed() {
-		for (int i = 1; i < 8; i++) {
-			packet[i - 1] = null;
+		for (int i = 0; i < packet.length; i++) {
+			packet[i] = null;
 			try {
 				packet[i - 1] = pixy.readPacket(i);
 			}
@@ -65,6 +65,7 @@ public class Vision extends Subsystem {
 				SmartDashboard.putString("Pixy Error: ", "Exception");
 			}
 			if (packet[i - 1] == null) {
+				
 				SmartDashboard.putString("Pixy Error: ", "Bad/Absent Data");
 				
 			} 

@@ -1,4 +1,4 @@
-package com._2491nomythic.watt.commands.drivetrain;
+package com._2491nomythic.watt.commands.vision;
 
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.Constants;
@@ -28,11 +28,16 @@ public class CorrectX extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (targetX < actualX) {
-    		drivetrain.driveCenter(-speed, -speed);
+    	if (Variables.hasTarget) {
+    		if (targetX < actualX) {
+    			drivetrain.driveCenter(-speed, -speed);
+    		}
+    		else if (targetX > actualX) {
+    			drivetrain.driveCenter(speed, speed);
+    		}
     	}
-    	else if (targetX > actualX) {
-    		drivetrain.driveCenter(speed, speed);
+    	else {
+    		drivetrain.stop();
     	}
     }
 

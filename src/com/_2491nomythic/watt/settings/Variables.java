@@ -48,5 +48,6 @@ public class Variables {
 	public static double avgHeight;
 	public static double avgWidth;
 	public static double avgX;
+	public static boolean hasTarget;
 
 }

@@ -1,9 +1,9 @@
 package com._2491nomythic.watt.commands.autonomous;
 
-import com._2491nomythic.watt.commands.drivetrain.CorrectX;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
+import com._2491nomythic.watt.commands.vision.CorrectX;
 
 import edu.wpi.first.wpilibj.command.Command;
 
