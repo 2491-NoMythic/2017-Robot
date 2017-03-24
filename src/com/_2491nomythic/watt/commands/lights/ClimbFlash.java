@@ -1,6 +1,7 @@
 package com._2491nomythic.watt.commands.lights;
 
 import com._2491nomythic.watt.commands.CommandBase;
+import com._2491nomythic.watt.subsystems.Lights;
 
 import edu.wpi.first.wpilibj.Timer;
 
@@ -27,7 +28,7 @@ public class ClimbFlash extends CommandBase {
     	
     	climbTime = false;
     	
-    	lights.setColors(148, 0, 211);
+    	Lights.activateLights();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -41,15 +42,13 @@ public class ClimbFlash extends CommandBase {
     		switch(state) {
     		case 0:
     			if(timer.get() >= 0.5) {
-    				lights.shutOffBlue();
-    				lights.shutOffGreen();
-    				lights.shutOffRed();
+    				Lights.deactivateLights();
     				state = 1;
     			}
     			break;
     		case 1:
     			if(timer.get() >= 1) {
-    				lights.setColors(148, 0, 211);
+    				Lights.activateLights();
     				timer.reset();
     				state = 0;
     			}
@@ -67,9 +66,7 @@ public class ClimbFlash extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	lights.shutOffBlue();
-    	lights.shutOffGreen();
-    	lights.shutOffRed();
+    	Lights.deactivateLights();
     }
 
     // Called when another command which requires one or more of the same

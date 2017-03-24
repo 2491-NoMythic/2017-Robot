@@ -2,6 +2,7 @@ package com._2491nomythic.watt.subsystems;
 
 import com._2491nomythic.watt.settings.Constants;
 import edu.wpi.first.wpilibj.PWM;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com._2491nomythic.watt.commands.lights.ClimbFlash;
@@ -11,6 +12,7 @@ import com._2491nomythic.watt.commands.lights.ClimbFlash;
  */
 public class Lights extends Subsystem {
 	private PWM red, green, blue;
+	private static Solenoid activator;
 	
 	private static Lights instance;
 	
@@ -24,7 +26,18 @@ public class Lights extends Subsystem {
 		red = new PWM(Constants.redLightChannel);
 		green = new PWM(Constants.greenLightChannel);
 		blue = new PWM(Constants.blueLightChannel);
+		
+		activator = new Solenoid(Constants.lightSolenoidChannel);
 	}
+	
+	public static void activateLights() {
+		activator.set(true);
+	}
+	
+	public static void deactivateLights() {
+		activator.set(false);
+	}
+	
 	public void setColors(int redColor, int blueColor, int greenColor) {
 		red.setRaw(redColor);
 		blue.setRaw(greenColor);
