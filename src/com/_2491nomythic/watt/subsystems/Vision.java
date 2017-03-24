@@ -56,8 +56,8 @@ public class Vision extends Subsystem {
 	}
 	
 	public void cameraFeed() {
-		for (int i = 0; i < packet.length; i++) {
-			packet[i] = null;
+		for (int i = 1; i < 8; i++) {
+			packet[i - 1] = null;
 			try {
 				packet[i - 1] = pixy.readPacket(i);
 			}
