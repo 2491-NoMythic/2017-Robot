@@ -33,7 +33,7 @@ public class Vision extends Subsystem {
 	
 	public void testVision() {
 		for (int i = 0; i < packet.length; i++) 
-			packet[i] = null;
+			packet[i - 1] = null;
 		SmartDashboard.putString("hello pixy ", "working");
 		for (int i = 1; i < 8; i++) {
 			try {
@@ -44,13 +44,17 @@ public class Vision extends Subsystem {
 			if (packet[i - 1] == null) {
 				Variables.hasTarget = false;
 				SmartDashboard.putString("Pixy error: " + i, "True");
+				SmartDashboard.putNumber("X Value: " + i, 0);
+				SmartDashboard.putNumber("Y Value: " + i, 0);
+				SmartDashboard.putNumber("Height: " + i, 0);
+				SmartDashboard.putNumber("Width: " + i, 0);
 			} 
 			else {
 				SmartDashboard.putNumber("X Value: " + i, packet[i - 1].camX);
 				SmartDashboard.putNumber("Y Value: " + i, packet[i - 1].camY);
 				SmartDashboard.putNumber("Height: " + i, packet[i - 1].camHeight);
 				SmartDashboard.putNumber("Width: " + i, packet[i - 1].camWidth);
-				SmartDashboard.putString("Pixy error" + i, "False");
+				SmartDashboard.putString("Pixy error: " + i, "False");
 			}
 		}
 	}
@@ -65,11 +69,11 @@ public class Vision extends Subsystem {
 				SmartDashboard.putString("Pixy Error: ", "Exception");
 			}
 			if (packet[i - 1] == null) {
-				
 				SmartDashboard.putString("Pixy Error: ", "Bad/Absent Data");
-				
+				Variables.hasTarget = false;
 			} 
 			else {
+				Variables.hasTarget = true;
 				Variables.x = packet[i - 1].camX;
 				Variables.y = packet[i - 1].camY;
 				Variables.height = packet[i - 1].camHeight;
