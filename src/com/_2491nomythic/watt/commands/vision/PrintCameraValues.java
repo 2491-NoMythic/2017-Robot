@@ -21,8 +21,9 @@ public class PrintCameraValues extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	for (int i = 1; i < 8; i++) 
-			dacket[i - 1] = null;
+    	for (int i = 0; i < dacket.length; i++) {
+			dacket[i] = null;
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -31,10 +32,10 @@ public class PrintCameraValues extends CommandBase {
 			try {
 				dacket[i - 1] = vision.pixy.readPacket(i);
 			} catch (CameraException e) {
-				SmartDashboard.putString("Pixy error: " + i, "exception");
+				SmartDashboard.putString("Pixy error: " + i, "Exception");
 			}
 			if (dacket[i - 1] == null) {
-				SmartDashboard.putString("Pixy error: " + i, "True");
+				SmartDashboard.putString("Pixy error: " + i, "Bad/Absent Data");
 				continue;
 			}
 		}

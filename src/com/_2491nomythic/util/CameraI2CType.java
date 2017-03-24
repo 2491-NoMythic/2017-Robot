@@ -66,9 +66,9 @@ public class CameraI2CType {
 				SmartDashboard.putNumber("syncword: ", syncWord);
 		}
 
-		CameraPacket pkt = packets[objectSignature - 1];
+		CameraPacket packet = packets[objectSignature - 1];
 		packets[objectSignature - 1] = null;
-		return pkt;
+		return packet;
 	}
 
 	private byte[] readData(int len) {

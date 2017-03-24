@@ -32,36 +32,39 @@ public class Vision extends Subsystem {
     }
 	
 	public void testVision() {
-		for (int i = 0; i < packet.length; i++) 
-			packet[i - 1] = null;
-		SmartDashboard.putString("hello pixy ", "working");
+		for (int i = 0; i < packet.length; i++) {
+			packet[i] = null;
+		}
 		for (int i = 1; i < 8; i++) {
 			try {
 				packet[i - 1] = pixy.readPacket(i);
 			} catch (CameraException e) {
-				SmartDashboard.putString("Pixy error: " + i, "exception");
+				SmartDashboard.putString("Pixy error: " + i, "Exception");
 			}
 			if (packet[i - 1] == null) {
 				Variables.hasTarget = false;
-				SmartDashboard.putString("Pixy error: " + i, "True");
+				SmartDashboard.putString("Pixy error: " + i, "Bad/Absent Data");
 				SmartDashboard.putNumber("X Value: " + i, 0);
 				SmartDashboard.putNumber("Y Value: " + i, 0);
 				SmartDashboard.putNumber("Height: " + i, 0);
 				SmartDashboard.putNumber("Width: " + i, 0);
 			} 
 			else {
+				Variables.hasTarget = true;
 				SmartDashboard.putNumber("X Value: " + i, packet[i - 1].camX);
 				SmartDashboard.putNumber("Y Value: " + i, packet[i - 1].camY);
 				SmartDashboard.putNumber("Height: " + i, packet[i - 1].camHeight);
 				SmartDashboard.putNumber("Width: " + i, packet[i - 1].camWidth);
-				SmartDashboard.putString("Pixy error: " + i, "False");
+				SmartDashboard.putString("Pixy error: " + i, "None");
 			}
 		}
 	}
 	
 	public void cameraFeed() {
+		for (int i = 0; i < packet.length; i++) {
+			packet[i] = null;
+		}
 		for (int i = 1; i < 8; i++) {
-			packet[i - 1] = null;
 			try {
 				packet[i - 1] = pixy.readPacket(i);
 			}
