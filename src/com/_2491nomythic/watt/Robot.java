@@ -24,6 +24,7 @@ import com._2491nomythic.watt.commands.vision.CenterOnPeg;
 import com._2491nomythic.watt.commands.vision.InitCameraFeed;
 import com._2491nomythic.watt.commands.vision.PrintCameraValues;
 import com._2491nomythic.watt.settings.Variables;
+import com._2491nomythic.watt.subsystems.Lights;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -114,6 +115,8 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
         autonomousCommand = (Command) chooser.getSelected();
+        
+        Lights.activateLights();
         
 		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		switch(autoSelected) {
