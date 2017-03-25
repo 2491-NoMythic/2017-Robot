@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * The system that shoots balls
+ * @deprecated
  */
 public class Shooter extends Subsystem {
 	private CANTalon motor;
@@ -22,6 +23,7 @@ public class Shooter extends Subsystem {
 	
 	/**
 	 * The system that shoots balls
+	 * @deprecated
 	 */
 	private Shooter() {
 		motor = new CANTalon(Constants.shooterTalonChannel);
