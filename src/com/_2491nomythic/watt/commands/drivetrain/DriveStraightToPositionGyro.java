@@ -4,6 +4,7 @@ import com._2491nomythic.watt.commands.CommandBase;
 
 /**
  * Drives straight using the gyro for a specified distance at a specified speed
+ * @deprecated
  */
 public class DriveStraightToPositionGyro extends CommandBase {
 	double distance, speed, adjustment;
@@ -12,6 +13,7 @@ public class DriveStraightToPositionGyro extends CommandBase {
 	 * Drives straight using the gyro for a specified distance at a specified speed
 	 * @param speed The power fed to the vertical drive motors, ranging from 0 to 1, where negative values run the motors backwards
 	 * @param distance The distance (in feet) for the robot to drive
+	 * @deprecated
 	 */
     public DriveStraightToPositionGyro(double speed, double distance) {
         // Use requires() here to declare subsystem dependencies
