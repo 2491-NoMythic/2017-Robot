@@ -5,8 +5,6 @@ import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import com._2491nomythic.watt.commands.lights.ClimbFlash;
-
 /**
  *
  */

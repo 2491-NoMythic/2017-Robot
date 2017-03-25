@@ -1,6 +1,9 @@
 package com._2491nomythic.watt.settings;
 
 public class Variables {
+	public static double frontPivotCoefficient = 1;
+	public static double backPivotCoefficient = 1;
+	public static double pivotCoefficientAmount = 0;
 	
 	//Linear Acceleration
 	public static boolean useLinearAcceleration = true;
