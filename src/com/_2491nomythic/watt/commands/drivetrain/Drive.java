@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * Drives the robot using an automatic transmission and linear acceleration as specified by the driver
  */
 public class Drive extends CommandBase {
 	double currentLeftSpeed, currentRightSpeed, lastLeftSpeed, lastRightSpeed, directionMultiplierLeft, directionMultiplierRight, futureLeftSpeed, futureRightSpeed;
@@ -17,6 +17,9 @@ public class Drive extends CommandBase {
 	boolean isShifted, isShifting;
 	Timer timer;
 	
+	/**
+	 * Drives the robot using an automatic transmission and linear acceleration as specified by the driver
+	 */
     public Drive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
