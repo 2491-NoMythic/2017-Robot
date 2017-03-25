@@ -35,8 +35,9 @@ public class PrintCameraValues extends CommandBase {
 				SmartDashboard.putString("Pixy error: " + i, "Exception");
 			}
 			if (dacket[i - 1] == null) {
-				SmartDashboard.putString("Pixy error: " + i, "Bad/Absent Data");
-				continue;
+				SmartDashboard.putString("Pixy error: " + i, "Absent Data");
+			} else {
+				SmartDashboard.putString("Pixy error: " + i, "None");
 			}
 		}
 		try {
@@ -44,7 +45,7 @@ public class PrintCameraValues extends CommandBase {
 			SmartDashboard.putNumber("Y Value: 1", dacket[0].camY);
 			SmartDashboard.putNumber("Height: 1", dacket[0].camHeight);
 			SmartDashboard.putNumber("Width: 1", dacket[0].camWidth);
-		}
+			}
 		catch (NullPointerException e) {
 			SmartDashboard.putNumber("X Value: 1", -1);
 			SmartDashboard.putNumber("Y Value: 1", -1);
