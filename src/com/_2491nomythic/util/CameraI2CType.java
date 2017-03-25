@@ -5,13 +5,18 @@ import com._2491nomythic.watt.settings.CameraPacket;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+/**
+ * Some stuff needed for vision
+ */
 public class CameraI2CType {
 	String name;
 	I2C camera;
 	CameraPacket[] packets;
 	CameraException exc;
 	
-
+	/**
+	 * Some stuff needed for vision
+	 */
 	public CameraI2CType(String id, I2C pixyI2C, CameraPacket[] pixyPacket, CameraException pixyException) {
 		camera = pixyI2C;
 		packets = pixyPacket;

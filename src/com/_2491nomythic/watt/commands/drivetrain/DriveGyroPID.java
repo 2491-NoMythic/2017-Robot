@@ -4,10 +4,15 @@ import com._2491nomythic.watt.commands.CommandBase;
 
 
 /**
- *
+ * Drives the robot based on the gyro using PID
  */
 public class DriveGyroPID extends CommandBase {
 	private double target;
+	
+	/**
+	 * Drives the robot based on the gyro using PID
+	 * @param target The target position used for the PID
+	 */
     public DriveGyroPID(double target) {
         requires(drivetrain);
     	this.target = target;

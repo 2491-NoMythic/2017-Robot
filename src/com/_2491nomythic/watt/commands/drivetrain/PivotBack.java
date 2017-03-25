@@ -5,11 +5,14 @@ import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.ControllerMap;
 
 /**
- *
+ * Rotates the robot around the center of the back edge
  */
 public class PivotBack extends CommandBase {
 	private double speed;
 
+	/**
+	 * Rotates the robot around the center of the back edge
+	 */
     public PivotBack() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

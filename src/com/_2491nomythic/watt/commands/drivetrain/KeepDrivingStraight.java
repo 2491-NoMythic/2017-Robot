@@ -3,11 +3,16 @@ package com._2491nomythic.watt.commands.drivetrain;
 import com._2491nomythic.watt.commands.CommandBase;
 
 /**
- *
+ * Drives straight vertically at a given speed
  */
 public class KeepDrivingStraight extends CommandBase {
 	private double speed;
-    public KeepDrivingStraight(double speed) {
+	
+	/**
+	 * Drives straight vertically at a given speed
+	 * @param speed The power fed to the vertical drive motors, ranging from -1 to 1, where negative values run the motors backwards
+	 */
+	public KeepDrivingStraight(double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(drivetrain);

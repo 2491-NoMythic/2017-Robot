@@ -1,13 +1,19 @@
-package com._2491nomythic.watt.commands.autonomous;
+package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
 
 /**
- *
+ * Drives at a given velocity in Speed mode
+ * @deprecated
  */
 public class SpeedTest extends CommandBase {
 	double speed;
 
+	/**
+	 * Drives at a given velocity in Speed mode
+	 * @param speed The velocity (in RPM) at which to drive the motors
+	 * @deprecated
+	 */
     public SpeedTest(double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

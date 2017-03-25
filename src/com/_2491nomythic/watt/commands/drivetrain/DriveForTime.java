@@ -5,13 +5,20 @@ import com._2491nomythic.watt.commands.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- *
+ * Drives the left and right motors at specified velocities for a specified amount of time
  */
 public class DriveForTime extends CommandBase{
 	private Timer timer;
 	double timeOut;
 	double leftPower;
 	double rightPower;
+	
+	/**
+	 * Drives the left and right motors at specified velocities for a specified amount of time
+	 * @param timeOut Amount of time to run the motors
+	 * @param leftPower Power at which to run the left motors, ranging from -1 to 1, where negative values run the motors backwards
+	 * @param rightPower Power at which to run the right motors, ranging from -1 to 1, where negative values run the motors backwards
+	 */
     public DriveForTime(double timeOut, double leftPower, double rightPower) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -21,6 +28,12 @@ public class DriveForTime extends CommandBase{
     	this.rightPower = rightPower;
     	timer = new Timer();
     }
+    
+    /**
+     * Drives the left and right motors at specified velocities for a specified amount of time
+     * @param timeOut Amount of time to run the motors
+     * @param power Power at which to run the vertical drive motors, ranging from -1 to 1, where negative values run the motors backwards
+     */
     public DriveForTime(double timeOut, double power) {
 		requires(drivetrain);
 		this.timeOut = timeOut;

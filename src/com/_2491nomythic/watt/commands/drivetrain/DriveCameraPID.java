@@ -6,7 +6,8 @@ import com._2491nomythic.watt.commands.CommandBase;
 //import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Drives based on the camera using PID
+ * @deprecated
  */
 public class DriveCameraPID extends CommandBase {
 

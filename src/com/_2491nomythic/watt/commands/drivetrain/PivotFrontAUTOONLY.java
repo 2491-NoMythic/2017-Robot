@@ -4,12 +4,19 @@ import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.Constants;
 
 /**
- *
+ * Rotates the robot around its front edge for a specified distance at a specified speed
  */
 public class PivotFrontAUTOONLY extends CommandBase {
 	private double frontSpeed, backSpeed, distance, leftSpeed, rightSpeed, initialPosition;
 
-    public PivotFrontAUTOONLY(double frontSpeed, double backSpeed, double leftSpeed, double rightSpeed, double distance) {
+	/**
+	 * Rotates the robot around its front edge for a specified distance at a specified speed
+	 * @param frontSpeed The power fed to the front motor, before multiplication by Constants.pivotDriveRatio, ranging from -1 to 1, where negative values run the motor backwards
+	 * @param backSpeed The power fed to the back motor, ranging from -1 to 1, where negative values run the motor backwards
+	 * @param leftRightSpeed The power fed to the left and right motors, ranging from -1 to 1, where all values rotate the robot counterclockwise
+	 * @param distance The distance that the robot moves horizontally before stopping
+	 */
+	public PivotFrontAUTOONLY(double frontSpeed, double backSpeed, double leftSpeed, double rightSpeed, double distance) { //TODO fix javadoc
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(drivetrain);

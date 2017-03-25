@@ -6,7 +6,7 @@ import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 
 /**
- *
+ * Drives to the right gear peg and deposits a gear
  */
 public class ActiveRight extends CommandBase {
 	private DriveStraightToPosition drivePastBaseLine, impalePeg, backOffOfPeg, driveToMiddleLine;
@@ -14,6 +14,9 @@ public class ActiveRight extends CommandBase {
 	private RotateDrivetrainWithGyro aimForPeg, aimForMiddleLine;
 	private int state;
 
+	/**
+	 * Drives to the right gear peg and deposits a gear
+	 */
     public ActiveRight() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

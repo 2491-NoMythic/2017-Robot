@@ -5,13 +5,16 @@ import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 
 /**
- *
+ * Drives to the left gear peg
  */
 public class PassiveLeft extends CommandBase {
 	private DriveStraightToPosition drivePastBaseLine, impalePeg;
 	private RotateDrivetrainWithGyro aimForPeg;
 	private int state;
 
+	/**
+	 * Drives to the left gear peg
+	 */
     public PassiveLeft() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

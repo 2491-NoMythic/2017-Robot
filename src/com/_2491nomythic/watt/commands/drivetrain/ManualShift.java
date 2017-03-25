@@ -6,12 +6,17 @@ import com._2491nomythic.watt.settings.Variables;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- *
+ * Shifts the drivetrain's transmission manually
+ * @deprecated
  */
 public class ManualShift extends CommandBase {
 	private Timer timer;
 	private int state;
 
+	/**
+	 * Shifts the drivetrain's transmission manually
+	 * @deprecated
+	 */
     public ManualShift() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

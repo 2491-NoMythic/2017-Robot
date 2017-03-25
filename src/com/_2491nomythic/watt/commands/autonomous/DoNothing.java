@@ -3,10 +3,13 @@ package com._2491nomythic.watt.commands.autonomous;
 import com._2491nomythic.watt.commands.CommandBase;
 
 /**
- *
+ * Does nothing
  */
 public class DoNothing extends CommandBase {
 
+	/**
+	 * Does nothing
+	 */
     public DoNothing() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

@@ -5,11 +5,14 @@ import com._2491nomythic.watt.commands.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- *
+ * Puts the robot in coast mode, meaning the motors will not brake when their power is set to 0
  */
 public class EnableCoastMode extends CommandBase {
 	Timer timer;
 
+	/**
+	 * Puts the robot in coast mode, meaning the motors will not brake when their power is set to 0
+	 */
     public EnableCoastMode() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

@@ -4,11 +4,14 @@ import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.ControllerMap;
 
 /**
- *
+ * Drives the robot based on driver control, but turning is disabled
  */
 public class NoTurnLock extends CommandBase {
 	private double xAxisValue, yAxisValue;
 
+	/**
+	 * Drives the robot based on driver control, but turning is disabled
+	 */
     public NoTurnLock() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

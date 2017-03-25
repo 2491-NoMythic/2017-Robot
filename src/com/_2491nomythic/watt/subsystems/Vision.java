@@ -1,7 +1,7 @@
 package com._2491nomythic.watt.subsystems;
 
 import com._2491nomythic.util.CameraI2CType;
-import com._2491nomythic.watt.commands.vision.InitCameraFeed;
+import com._2491nomythic.watt.commands.vision.CameraFeed;
 import com._2491nomythic.watt.settings.CameraException;
 import com._2491nomythic.watt.settings.CameraPacket;
 import com._2491nomythic.watt.settings.Variables;
@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * The system that controls the pixy and its outputs
  */
 public class Vision extends Subsystem {
 	public CameraI2CType pixy;
@@ -20,6 +20,10 @@ public class Vision extends Subsystem {
 	private String print;
 	private CameraPacket[] packet = new CameraPacket[7];
 	public static Vision instance;
+	
+	/**
+	 * The system that controls the pixy and its outputs
+	 */
 	private Vision() {
 		pixy = new CameraI2CType("Pixy", new I2C(port, 0x55), packet, new CameraException(print));
 	}
@@ -31,6 +35,9 @@ public class Vision extends Subsystem {
     	return instance;
     }
 	
+	/**
+	 * Puts values from the pixy in Variables.java and on the SmartDashboard
+	 */
 	public void cameraFeed() {
 		for (int i = 1; i < 8; i++) {
 			try {
@@ -70,7 +77,7 @@ public class Vision extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new InitCameraFeed());
+        setDefaultCommand(new CameraFeed());
     }
     
 }

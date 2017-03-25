@@ -5,7 +5,7 @@ import com._2491nomythic.watt.commands.UpdateDriverstation;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * The system whose sole purpose is to run UpdateDriverstation.java as its default command
  */
 public class UpdateDriverstationSubsystem extends Subsystem {
 	private static UpdateDriverstationSubsystem instance;
@@ -17,6 +17,9 @@ public class UpdateDriverstationSubsystem extends Subsystem {
 		return instance;
 	}
 	
+	/**
+	 * The system whose sole purpose is to run UpdateDriverstation.java as its default command
+	 */
 	private UpdateDriverstationSubsystem() {
 		
 	}

@@ -6,12 +6,15 @@ import com._2491nomythic.watt.settings.ControllerMap;
 
 
 /**
- *
+ * Drives the robot only vertically or horizontally based on driver control
  */
 public class DriveLock extends CommandBase {
 	private double yAxisValue;
 	private double xAxisValue;
 
+	/**
+	 * Drives the robot only vertically or horizontally based on driver control
+	 */
     public DriveLock() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
