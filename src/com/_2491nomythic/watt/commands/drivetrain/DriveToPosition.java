@@ -3,7 +3,7 @@ package com._2491nomythic.watt.commands.drivetrain;
 import com._2491nomythic.watt.commands.CommandBase;
 
 /**
- *
+ * Drives a specified distance vertically at a specified speed
  */
 public class DriveToPosition extends CommandBase {
 	//setting up variables for use in command
@@ -11,6 +11,11 @@ public class DriveToPosition extends CommandBase {
 	double initialEncoderFeetPos, currentEncoderFeetPos;
 	double speed;
 	
+	/**
+	 * Drives a specified distance vertically at a specified speed
+	 * @param feet The distance (in feet) to drive the robot
+	 * @param power The power fed to the vertical drive motors, ranging from -1 to 1, where negative values run the motors backwards
+	 */
     public DriveToPosition(double feet,double power) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
