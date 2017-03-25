@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import com._2491nomythic.watt.commands.lights.ClimbFlash;
 
 /**
- *
+ * The system that controls the lights
  */
 public class Lights extends Subsystem {
 	private PWM red, green, blue;
@@ -22,6 +22,10 @@ public class Lights extends Subsystem {
 		}
 		return instance;
 	}
+	
+	/**
+	 * The system that controls the lights
+	 */
 	private Lights() {
 		red = new PWM(Constants.redLightChannel);
 		green = new PWM(Constants.greenLightChannel);
@@ -30,27 +34,49 @@ public class Lights extends Subsystem {
 		activator = new Solenoid(Constants.lightSolenoidChannel);
 	}
 	
+	/**
+	 * Activates the lights
+	 */
 	public static void activateLights() {
 		activator.set(true);
 	}
 	
+	/**
+	 * Deactivates the lights
+	 */
 	public static void deactivateLights() {
 		activator.set(false);
 	}
 	
+	/**
+	 * Changes the colors on the lights
+	 * @param redColor Sets the amount of red, ranging from 0 to 255
+	 * @param blueColor Sets the amount of blue, ranging from 0 to 255
+	 * @param greenColor Sets the amount of green, ranging from 0 to 255
+	 */
 	public void setColors(int redColor, int blueColor, int greenColor) {
 		red.setRaw(redColor);
 		blue.setRaw(greenColor);
 		green.setRaw(blueColor);
 	}
+	
+	/**
+	 * Disables red color in the lights
+	 */
 	public void shutOffRed(){
 		red.setDisabled();
 	}
 	
+	/**
+	 * Disables blue color in the lights
+	 */
 	public void shutOffBlue(){
 		blue.setDisabled();
 	}
 	
+	/**
+	 * Disables green color in the lights
+	 */
 	public void shutOffGreen(){
 		green.setDisabled();
 	}
