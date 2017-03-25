@@ -4,6 +4,7 @@ import com._2491nomythic.watt.commands.CommandBase;
 
 /**
  * Drives at a given velocity in Speed mode
+ * @deprecated
  */
 public class SpeedTest extends CommandBase {
 	double speed;
@@ -11,6 +12,7 @@ public class SpeedTest extends CommandBase {
 	/**
 	 * Drives at a given velocity in speed mode
 	 * @param speed The velocity (in RPM) at which to drive the motors
+	 * @deprecated
 	 */
     public SpeedTest(double speed) {
         // Use requires() here to declare subsystem dependencies
