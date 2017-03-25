@@ -7,12 +7,15 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * Updates values in the code from editable values on the SmartDashboard
  */
 public class UpdateDriverstation extends CommandBase {
 	private Timer timer;
 	private double nextRun;
 
+	/**
+	 * Updates values in the code from editable values on the SmartDashboard
+	 */
     public UpdateDriverstation() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
