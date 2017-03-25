@@ -32,25 +32,25 @@ public class PrintCameraValues extends CommandBase {
 			try {
 				dacket[i - 1] = vision.pixy.readPacket(i);
 			} catch (CameraException e) {
-				SmartDashboard.putString("Pixy error: " + i, "Exception");
+				SmartDashboard.putString("Pixy test: " + i, "Exception");
 			}
 			if (dacket[i - 1] == null) {
-				SmartDashboard.putString("Pixy error: " + i, "Absent Data");
+				SmartDashboard.putString("Pixy test: " + i, "Absent Data");
 			} else {
-				SmartDashboard.putString("Pixy error: " + i, "None");
+				SmartDashboard.putString("Pixy test: " + i, "None");
 			}
 		}
 		try {
-			SmartDashboard.putNumber("X Value: 1", dacket[0].camX);
-			SmartDashboard.putNumber("Y Value: 1", dacket[0].camY);
-			SmartDashboard.putNumber("Height: 1", dacket[0].camHeight);
-			SmartDashboard.putNumber("Width: 1", dacket[0].camWidth);
+			SmartDashboard.putNumber("X Value: ", dacket[0].camX);
+			SmartDashboard.putNumber("Y Value: ", dacket[0].camY);
+			SmartDashboard.putNumber("Height: ", dacket[0].camHeight);
+			SmartDashboard.putNumber("Width: ", dacket[0].camWidth);
 			}
 		catch (NullPointerException e) {
-			SmartDashboard.putNumber("X Value: 1", -1);
-			SmartDashboard.putNumber("Y Value: 1", -1);
-			SmartDashboard.putNumber("Height: 1", -1);
-			SmartDashboard.putNumber("Width: 1", -1);
+			SmartDashboard.putNumber("X Value: ", -1);
+			SmartDashboard.putNumber("Y Value: ", -1);
+			SmartDashboard.putNumber("Height: ", -1);
+			SmartDashboard.putNumber("Width: ", -1);
 		}
     }
 
