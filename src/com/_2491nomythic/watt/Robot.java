@@ -57,7 +57,6 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Reset Encoders", new ResetEncoders());
         SmartDashboard.putData("Print Camera Values", new PrintCameraValues());
 //        chooser.addObject("My Auto", new MyAutoCommand());
-        SmartDashboard.putData("Auto mode", chooser);
         SmartDashboard.putNumber("PID P Value", 1.0);
         SmartDashboard.putNumber("Time to open GearSlot doors",Variables.timeToOpenGearSlot);
         SmartDashboard.putNumber("Time to eject Gear",Variables.timeToEjectGear);
@@ -78,7 +77,8 @@ public class Robot extends IterativeRobot {
         chooser.addObject("Vision Right", new VisionRight());
         SmartDashboard.putBoolean("Use Linear Acceleration",Variables.useLinearAcceleration);
         SmartDashboard.putData("Drive with speed for 2 secs", new DriveSpeedTime(30, 2));
-        
+        SmartDashboard.putData("Auto mode", chooser);
+
     }
 	
 	/**
