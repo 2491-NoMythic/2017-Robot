@@ -10,7 +10,7 @@ public class SpeedTest extends CommandBase {
 	double speed;
 
 	/**
-	 * Drives at a given velocity in speed mode
+	 * Drives at a given velocity in Speed mode
 	 * @param speed The velocity (in RPM) at which to drive the motors
 	 * @deprecated
 	 */
