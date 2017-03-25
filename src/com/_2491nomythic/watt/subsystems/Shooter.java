@@ -6,7 +6,7 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * The system that shoots balls
  */
 public class Shooter extends Subsystem {
 	private CANTalon motor;
@@ -20,14 +20,24 @@ public class Shooter extends Subsystem {
 		return instance;
 	}
 	
+	/**
+	 * The system that shoots balls
+	 */
 	private Shooter() {
 		motor = new CANTalon(Constants.shooterTalonChannel);
 	}
 	
+	/**
+	 * Runs the shooter motor
+	 * @param motorPower The power fed to the motor, ranging from -1 to 1, where negative values run the motor backwards
+	 */
 	public void shoot(double motorPower) {
 		motor.set(motorPower);
 	}
 	
+	/**
+	 * Stops the shooter motor
+	 */
 	public void stopShooter() {
 		shoot(0);
 	}
