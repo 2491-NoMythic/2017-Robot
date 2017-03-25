@@ -11,11 +11,13 @@ import com._2491nomythic.watt.settings.Variables;
 public class CenterOnPeg extends CommandBase {
 	private boolean isDone;
 	private int margin;
-    public CenterOnPeg() {
+	private double speed;
+    public CenterOnPeg(double desiredSpeed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(drivetrain);
     	margin = Constants.errorMargin;
+    	speed = desiredSpeed;
     }
 
     // Called just before this Command runs the first time
@@ -27,10 +29,10 @@ public class CenterOnPeg extends CommandBase {
     protected void execute() {
     	//if (Variables.hasTarget) {
     		if (Constants.xPerfectValue >= Variables.x + margin){
-    			drivetrain.driveCenter(-0.35, -0.35);
+    			drivetrain.driveCenter(-speed, -speed);
     		}
     		else if (Constants.xPerfectValue <= Variables.x - margin){
-    			drivetrain.driveCenter(0.35, 0.35);
+    			drivetrain.driveCenter(speed, speed);
     		//}
     		//else {
     		//	drivetrain.stop();

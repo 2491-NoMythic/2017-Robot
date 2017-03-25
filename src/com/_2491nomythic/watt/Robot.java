@@ -51,7 +51,8 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		CommandBase.init();
         chooser = new SendableChooser<Command>();
-        SmartDashboard.putData("Line Up To Peg", new CenterOnPeg());
+        SmartDashboard.putData("Line Up To Peg", new CenterOnPeg(0.25));
+        SmartDashboard.putBoolean("Target: ", Variables.hasTarget);
         SmartDashboard.putData("Reset Gyro", new ResetGyro());
         SmartDashboard.putData("Reset Encoders", new ResetEncoders());
         SmartDashboard.putNumber("PID P Value", 1.0);
