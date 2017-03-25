@@ -54,7 +54,6 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Line Up To Peg", new CenterOnPeg());
         SmartDashboard.putData("Reset Gyro", new ResetGyro());
         SmartDashboard.putData("Reset Encoders", new ResetEncoders());
-//        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
         SmartDashboard.putNumber("PID P Value", 1.0);
         SmartDashboard.putNumber("Time to open GearSlot doors",Variables.timeToOpenGearSlot);
