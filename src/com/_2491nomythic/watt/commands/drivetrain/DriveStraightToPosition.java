@@ -11,7 +11,7 @@ public class DriveStraightToPosition extends CommandBase {
 
 	/**
 	 * Drives straight using encoders for a specified distance at a specified speed
-	 * @param speed The power fed to the vertical drive motors, ranging from 0 to 1, where negative values run the motors backwards
+	 * @param speed The power fed to the vertical drive motors, ranging from -1 to 1, where negative values run the motors backwards
 	 * @param distance The distance (in feet) for the robot to drive
 	 */
     public DriveStraightToPosition(double speed, double distance) {
