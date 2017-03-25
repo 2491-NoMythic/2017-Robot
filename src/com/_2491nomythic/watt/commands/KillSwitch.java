@@ -1,10 +1,13 @@
 package com._2491nomythic.watt.commands;
 
 /**
- *
+ * Interrupts all commands on the drivetrain, climber, gearslot, shooter, and lights subsystems
  */
 public class KillSwitch extends CommandBase {
 
+	/**
+	 * Interrupts all commands on the drivetrain, climber, gearslot, shooter, and lights subsystems
+	 */
     public KillSwitch() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
