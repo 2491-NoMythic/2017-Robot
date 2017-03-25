@@ -8,7 +8,7 @@ import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 import com._2491nomythic.watt.commands.gearslot.TogglePusher;
 
 /**
- *
+ * Attempts to deposit a gear onto the center gear peg by approaching it diagonally
  */
 public class HighlyExperimentalCenter extends CommandBase {
 	private DriveStraightToPosition driveNearPeg, landPeg, impalePeg;
@@ -25,6 +25,9 @@ public class HighlyExperimentalCenter extends CommandBase {
 	
 	//LINUX NUMBER 2 IS REQUIRED
 	
+	/**
+	 * Attempts to deposit a gear onto the center gear peg by approaching it diagonally
+	 */
 	public HighlyExperimentalCenter() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
