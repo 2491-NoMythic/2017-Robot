@@ -9,6 +9,7 @@ import com._2491nomythic.watt.commands.lights.ClimbFlash;
 
 /**
  * The system that controls the lights
+ * @deprecated
  */
 public class Lights extends Subsystem {
 	private PWM red, green, blue;
@@ -25,6 +26,7 @@ public class Lights extends Subsystem {
 	
 	/**
 	 * The system that controls the lights
+	 * @deprecated
 	 */
 	private Lights() {
 		red = new PWM(Constants.redLightChannel);
