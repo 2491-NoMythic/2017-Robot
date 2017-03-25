@@ -28,7 +28,7 @@ public class HighlyExperimentalCenter extends CommandBase {
 	public HighlyExperimentalCenter() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	driveNearPeg = new DriveStraightToPosition(0.75, 3.9);
+    	driveNearPeg = new DriveStraightToPosition(0.75, 4.1);
     	landPeg = new DriveStraightToPosition(0.75, 2.3);
     	impalePeg = new DriveStraightToPosition(0.75,0.45);
     	aimForPeg = new RotateDrivetrainWithGyro(0.25,25);
