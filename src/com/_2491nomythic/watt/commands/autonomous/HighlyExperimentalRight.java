@@ -33,7 +33,7 @@ public class HighlyExperimentalRight extends CommandBase {
     	landPeg = new DriveStraightToPosition(0.6,4.6);
     	impalePeg = new DriveStraightToPosition(0.85,0.35);
     	aimForPeg = new RotateDrivetrainWithGyro(-0.4,60);
-    	squareUp = new PivotFrontAUTOONLY(0.35,0.35,-0.35,0.5);
+    	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, 0.35, -0.35, 0.5);
     	eject = new OpenAndEjectGearSlot();
     	extend = new TogglePusher();
     	retract = new TogglePusher();

@@ -35,7 +35,7 @@ public class HighlyExperimentalCenter extends CommandBase {
     	landPeg = new DriveStraightToPosition(0.75, 2.3);
     	impalePeg = new DriveStraightToPosition(0.75,0.45);
     	aimForPeg = new RotateDrivetrainWithGyro(0.25,25);
-    	squareUp = new PivotFrontAUTOONLY(0.35,0.35,0.35,0.65);
+    	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, -0.35, 0.35, 0.65);
     	eject = new OpenAndEjectGearSlot();
     	extend = new TogglePusher();
     	retract = new TogglePusher();
