@@ -19,7 +19,6 @@ public class Vision extends Subsystem {
 	private Port port = Port.kOnboard;
 	private String print;
 	private CameraPacket[] packet = new CameraPacket[7];
-	private CameraPacket[] tPacket = new CameraPacket[7];
 	public static Vision instance;
 	private Vision() {
 		pixy = new CameraI2CType("Pixy", new I2C(port, 0x55), packet, new CameraException(print));
@@ -31,29 +30,6 @@ public class Vision extends Subsystem {
     	}
     	return instance;
     }
-	
-	public void testVision() {
-		for (int t = 1; t < 8; t++) {
-			tPacket[t - 1] = null;
-		}
-		for (int t = 1; t < 8; t++) {
-			try {
-				tPacket[t - 1] = pixy.readPacket(t);
-			} catch (CameraException e) {
-				SmartDashboard.putString("Pixy test: " + t, "Exception");
-			}
-			if (tPacket[t - 1] == null) {
-				SmartDashboard.putString("Pixy test: " + t, "Absent Data");
-			} else {
-				SmartDashboard.putBoolean("Target test:", Variables.hasTarget);
-				SmartDashboard.putNumber("X Value: " + t, tPacket[t - 1].camX);
-				SmartDashboard.putNumber("Y Value: " + t,tPacket[t - 1].camY);
-				SmartDashboard.putNumber("Height: " + t, tPacket[t - 1].camHeight);
-				SmartDashboard.putNumber("Width: " + t, tPacket[t - 1].camWidth);
-				SmartDashboard.putString("Pixy test: " + t, "None");
-			}
-		}
-	}
 	
 	public void cameraFeed() {
 		for (int i = 1; i < 8; i++) {
@@ -74,9 +50,17 @@ public class Vision extends Subsystem {
 			Variables.y = packet[0].camY;
 			Variables.height = packet[0].camHeight;
 			Variables.width = packet[0].camWidth;
-			}
+			SmartDashboard.putNumber("X Value: ", packet[0].camX);
+			SmartDashboard.putNumber("Y Value: ", packet[0].camY);
+			SmartDashboard.putNumber("Height: ", packet[0].camHeight);
+			SmartDashboard.putNumber("Width: ", packet[0].camWidth);
+		}
 		catch (NullPointerException e) {
 			Variables.hasTarget = false;
+			SmartDashboard.putNumber("X Value: ", -1);
+			SmartDashboard.putNumber("Y Value: ", -1);
+			SmartDashboard.putNumber("Height: ", -1);
+			SmartDashboard.putNumber("Width: ", -1);
 		}
 	}
 	
