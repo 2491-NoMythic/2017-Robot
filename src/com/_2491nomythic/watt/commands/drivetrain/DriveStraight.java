@@ -4,11 +4,15 @@ import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.Constants;
 
 /**
- *
+ * Drives straight vertically at a given velocity
  */
 public class DriveStraight extends CommandBase {
 	private double speed;
 
+	/**
+	 * Drives straight vertically at a given velocity
+	 * @param speed The power fed to the vertical drive motors, ranging from 0 to 1, where negative values run the motors backwards
+	 */
     public DriveStraight(double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
