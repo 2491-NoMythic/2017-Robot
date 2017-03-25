@@ -14,7 +14,9 @@ public class CameraI2CType {
 	CameraPacket[] packets;
 	CameraException exc;
 	
-
+	/**
+	 * Some stuff needed for vision
+	 */
 	public CameraI2CType(String id, I2C pixyI2C, CameraPacket[] pixyPacket, CameraException pixyException) {
 		camera = pixyI2C;
 		packets = pixyPacket;
