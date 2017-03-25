@@ -5,12 +5,18 @@ import com._2491nomythic.watt.commands.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- *
+ * Drives the left and right motors at specified velocities for a specified amount of time in Speed mode
  */
 public class DriveSpeedTime extends CommandBase {
 	private double time;
 	private double speed;
 	private Timer timer;
+	
+	/**
+	 * Drives the left and right motors at specified velocities for a specified amount of time in Speed mode
+	 * @param speed The velocity (in RPM) at which to drive the motors
+	 * @param time The time for which to drive the motors
+	 */
     public DriveSpeedTime(double speed, double time) {
     	requires(drivetrain);
       	this.time = Math.abs(time);
