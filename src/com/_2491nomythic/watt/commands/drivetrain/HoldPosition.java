@@ -3,11 +3,14 @@ package com._2491nomythic.watt.commands.drivetrain;
 import com._2491nomythic.watt.commands.CommandBase;
 
 /**
-*
-*/
+ * Attempts to hold the robot still vertically
+ */
 public class HoldPosition extends CommandBase {
 	double speed;
 	
+	/**
+	 * Attempts to hold the robot still vertically
+	 */
 	public HoldPosition() {
 		// Use requires() here to declare subsystem dependencies
 		requires(drivetrain);
