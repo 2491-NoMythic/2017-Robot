@@ -8,7 +8,7 @@ import com._2491nomythic.watt.commands.vision.CorrectX;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Places the gear on the right peg using vision
  */
 public class VisionRight extends Command {
 	private DriveStraightToPosition driveToBaseLine, approachPeg, impalePeg;
@@ -17,6 +17,9 @@ public class VisionRight extends Command {
 	private OpenAndEjectGearSlot eject;
 	private int state;
 
+	/**
+	 * Places the gear on the right peg using vision
+	 */
     public VisionRight() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
