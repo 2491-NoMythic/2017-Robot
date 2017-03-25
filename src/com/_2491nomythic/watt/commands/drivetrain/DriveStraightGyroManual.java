@@ -4,11 +4,14 @@ import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.ControllerMap;
 
 /**
- *
+ * Drives straight using the gyro at a velocity dictated by the driver
  */
 public class DriveStraightGyroManual extends CommandBase {
 	double distance, speed, adjustment;
 	
+	/**
+	 * Drives straight using the gyro at a velocity dictated by the driver
+	 */
     public DriveStraightGyroManual() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
