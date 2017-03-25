@@ -2,7 +2,6 @@
 package com._2491nomythic.watt;
 
 import com._2491nomythic.watt.commands.CommandBase;
-import com._2491nomythic.watt.commands.autonomous.ActiveCenter;
 import com._2491nomythic.watt.commands.autonomous.DoNothing;
 import com._2491nomythic.watt.commands.autonomous.HighlyExperimentalCenter;
 import com._2491nomythic.watt.commands.autonomous.HighlyExperimentalLeft;
@@ -13,8 +12,6 @@ import com._2491nomythic.watt.commands.autonomous.PassiveRight;
 import com._2491nomythic.watt.commands.autonomous.VisionCenter;
 import com._2491nomythic.watt.commands.autonomous.VisionLeft;
 import com._2491nomythic.watt.commands.autonomous.VisionRight;
-import com._2491nomythic.watt.commands.autonomous.ActiveLeft;
-import com._2491nomythic.watt.commands.autonomous.ActiveRight;
 import com._2491nomythic.watt.commands.drivetrain.DriveSpeedTime;
 import com._2491nomythic.watt.commands.drivetrain.EnableCoastMode;
 import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
@@ -74,12 +71,12 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Coast Mode", new EnableCoastMode());
         SmartDashboard.putBoolean("Automatic Transmission", Variables.useAutomaticTransmission);
         chooser.addDefault("Do Nothing", new DoNothing());
-        chooser.addObject("Passive Right", new PassiveRight());
-        chooser.addObject("Passive Center", new PassiveCenter());
         chooser.addObject("Passive Left", new PassiveLeft());
-        chooser.addObject("Active Center", new HighlyExperimentalCenter());
-        chooser.addObject("Active Left", new HighlyExperimentalLeft());
-        chooser.addObject("Active Right", new HighlyExperimentalRight());
+        chooser.addObject("Passive Center", new PassiveCenter());
+        chooser.addObject("Passive Right", new PassiveRight());
+        chooser.addObject("Angled Left", new HighlyExperimentalLeft());
+        chooser.addObject("Angled Center", new HighlyExperimentalCenter());
+        chooser.addObject("Angled Right", new HighlyExperimentalRight());
         chooser.addObject("Vision Left", new VisionLeft());
         chooser.addObject("Vision Center", new VisionCenter());
         chooser.addObject("Vision Right", new VisionRight());

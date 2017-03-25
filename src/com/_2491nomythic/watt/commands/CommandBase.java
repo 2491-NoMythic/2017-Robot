@@ -43,6 +43,7 @@ public abstract class CommandBase extends Command {
 		SmartDashboard.putData(climber);
 		SmartDashboard.putData(gearslot);
 		SmartDashboard.putData(shooter);
+		SmartDashboard.putData(vision);
 	}
 	
 	/**
