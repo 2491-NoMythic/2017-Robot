@@ -3,11 +3,16 @@ package com._2491nomythic.watt.commands.drivetrain;
 import com._2491nomythic.watt.commands.CommandBase;
 
 /**
- *
+ * Drives the robot sideways a specified distance at a specified power
  */
 public class DriveSideways extends CommandBase {
 	double power, distance;
 
+	/**
+	 * Drives the robot sideways a specified distance at a specified power
+	 * @param power The power fed to the center motors, ranging from -1 to 1, where negative values run move the robot to the left
+	 * @param distance The distance (in feet) for the robot to move
+	 */
     public DriveSideways(double power, double distance) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
