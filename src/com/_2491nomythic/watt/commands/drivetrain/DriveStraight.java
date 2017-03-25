@@ -4,13 +4,13 @@ import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.Constants;
 
 /**
- * Drives straight vertically at a given velocity
+ * Drives straight vertically at a given velocity for a distance specified by Constants.driveStraightAutoDistance
  */
 public class DriveStraight extends CommandBase {
 	private double speed;
 
 	/**
-	 * Drives straight vertically at a given velocity
+	 * Drives straight vertically at a given velocity for a  distance specified by Constants.driveStraightAutoDistance
 	 * @param speed The power fed to the vertical drive motors, ranging from 0 to 1, where negative values run the motors backwards
 	 */
     public DriveStraight(double speed) {
