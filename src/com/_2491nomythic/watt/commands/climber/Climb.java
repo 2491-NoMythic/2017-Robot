@@ -4,10 +4,13 @@ import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.ControllerMap;
 
 /**
- *
+ * Runs the climber motors at a speed specified by a driver
  */
 public class Climb extends CommandBase {
 
+	/**
+	 * Runs the climber motors at a speed specified by a driver
+	 */
     public Climb() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
