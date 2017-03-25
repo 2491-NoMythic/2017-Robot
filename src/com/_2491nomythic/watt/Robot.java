@@ -16,9 +16,7 @@ import com._2491nomythic.watt.commands.drivetrain.DriveSpeedTime;
 import com._2491nomythic.watt.commands.drivetrain.EnableCoastMode;
 import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
-import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
 import com._2491nomythic.watt.commands.vision.CenterOnPeg;
-import com._2491nomythic.watt.commands.vision.InitCameraFeed;
 import com._2491nomythic.watt.commands.vision.PrintCameraValues;
 import com._2491nomythic.watt.settings.Variables;
 import com._2491nomythic.watt.subsystems.Lights;
@@ -54,7 +52,6 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		CommandBase.init();
         chooser = new SendableChooser<Command>();
-        SmartDashboard.putData("Init Camera Feed", new InitCameraFeed());
         SmartDashboard.putData("Line Up To Peg", new CenterOnPeg());
         SmartDashboard.putData("Reset Gyro", new ResetGyro());
         SmartDashboard.putData("Reset Encoders", new ResetEncoders());
@@ -67,7 +64,6 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Shift Up Speed", Variables.shiftUpPercentage);
         SmartDashboard.putNumber("Time To Engage Pneumatics For Shifter (in seconds)", Variables.shiftEngagePneumaticsTime);
         SmartDashboard.putNumber("Total Shift Time (in seconds)", Variables.shiftTotalTime);
-        SmartDashboard.putData("Turn 90 Degrees", new RotateDrivetrainWithGyroPID(90));
         SmartDashboard.putData("Coast Mode", new EnableCoastMode());
         SmartDashboard.putBoolean("Automatic Transmission", Variables.useAutomaticTransmission);
         chooser.addDefault("Do Nothing", new DoNothing());
