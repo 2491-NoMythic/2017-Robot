@@ -36,6 +36,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * 
  * 
  */
+@SuppressWarnings("deprecation")
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
@@ -52,7 +53,7 @@ public class Robot extends IterativeRobot {
 		CommandBase.init();
         chooser = new SendableChooser<Command>();
         SmartDashboard.putData("Line Up To Peg", new CenterOnPeg(0.25));
-        SmartDashboard.putBoolean("Target: ", Variables.hasTarget);
+        SmartDashboard.putBoolean("Has Target: ", Variables.hasTarget);
         SmartDashboard.putData("Reset Gyro", new ResetGyro());
         SmartDashboard.putData("Reset Encoders", new ResetEncoders());
         SmartDashboard.putNumber("PID P Value", 1.0);

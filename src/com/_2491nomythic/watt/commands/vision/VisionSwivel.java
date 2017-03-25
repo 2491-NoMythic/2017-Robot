@@ -7,12 +7,12 @@ import com._2491nomythic.watt.settings.Variables;
 /**
  *
  */
-public class CorrectX extends CommandBase {
+public class VisionSwivel extends CommandBase {
 	private double actualX, targetX, speed;
 	private int margin;
 	//for the central wheel drivetrain methods, positive = right.
 
-    public CorrectX(double desiredSpeed) {
+    public VisionSwivel(double desiredSpeed) {
     	actualX = Variables.x;
     	targetX = Constants.xPerfectValue;
     	speed = desiredSpeed;
@@ -30,10 +30,12 @@ public class CorrectX extends CommandBase {
     protected void execute() {
     	if (Variables.hasTarget) {
     		if (targetX < actualX) {
-    			drivetrain.driveCenter(-speed, -speed);
+    			drivetrain.driveLeft(-speed);
+    			drivetrain.driveRight(speed);
     		}
     		else if (targetX > actualX) {
-    			drivetrain.driveCenter(speed, speed);
+    			drivetrain.driveLeft(speed);
+    			drivetrain.driveRight(-speed);
     		}
     	}
     	else {

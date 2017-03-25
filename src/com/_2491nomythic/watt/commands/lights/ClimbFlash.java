@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  *
  */
+@SuppressWarnings("deprecation")
 public class ClimbFlash extends CommandBase {
 	private Timer timer;
 	private boolean climbTime;

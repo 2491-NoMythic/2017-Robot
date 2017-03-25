@@ -5,6 +5,7 @@ import com._2491nomythic.watt.commands.CommandBase;
 /**
  *
  */
+@SuppressWarnings("deprecation")
 public class Shoot extends CommandBase {
 
     public Shoot() {
