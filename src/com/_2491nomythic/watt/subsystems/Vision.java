@@ -1,7 +1,6 @@
 package com._2491nomythic.watt.subsystems;
 
 import com._2491nomythic.util.CameraI2CType;
-import com._2491nomythic.watt.commands.vision.InitCameraFeed;
 import com._2491nomythic.watt.settings.CameraException;
 import com._2491nomythic.watt.settings.CameraPacket;
 import com._2491nomythic.watt.settings.Variables;
