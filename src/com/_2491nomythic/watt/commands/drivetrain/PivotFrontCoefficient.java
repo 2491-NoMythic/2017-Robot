@@ -9,7 +9,7 @@ import com._2491nomythic.watt.settings.Variables;
  *
  */
 public class PivotFrontCoefficient extends CommandBase {
-
+	private double speed;
     public PivotFrontCoefficient() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -28,6 +28,8 @@ public class PivotFrontCoefficient extends CommandBase {
     	if (oi.getAxis(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis) > 0) {
     		Variables.pivotCoefficientAmount = -.5;
     	}
+    	speed = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveTurnAxis, .1);
+    	drivetrain.driveCenter(Constants.pivotDriveRatio * speed, speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -9,6 +9,7 @@ import com._2491nomythic.watt.settings.Variables;
  *
  */
 public class PivotBackCoefficient extends CommandBase {
+	private double speed;
 
     public PivotBackCoefficient() {
         // Use requires() here to declare subsystem dependencies
@@ -22,12 +23,14 @@ public class PivotBackCoefficient extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (oi.getAxis(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis) < 0) {
+    	if (oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, .1) < 0) {
     		Variables.pivotCoefficientAmount = -.5;
     	}
-    	if (oi.getAxis(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis) > 0) {
+    	if (oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, .1) > 0) {
     		Variables.pivotCoefficientAmount = .5;
     	}
+    	speed = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveTurnAxis, .1);
+    	drivetrain.driveCenter(speed, Constants.pivotDriveRatio * speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
