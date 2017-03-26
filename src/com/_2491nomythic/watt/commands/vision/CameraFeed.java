@@ -22,19 +22,17 @@ public class CameraFeed extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	for (int i = 1; i < 8; i++) {
 			try {
-				packet[i - 1] = vision.pixy.readPacket(i);
+				packet[0] = vision.pixy.readPacket(1);
 			} catch (CameraException e) {
-				SmartDashboard.putString("Pixy error: " + i, "Exception");
+				SmartDashboard.putString("Pixy error: ", "Exception");
 			}
-			if (packet[i - 1] == null) {
-				SmartDashboard.putString("Pixy error: " + i, "Absent Data");
+			if (packet[0] == null) {
+				SmartDashboard.putString("Pixy error: ", "Absent Data");
 			} else {
-				SmartDashboard.putString("Pixy error: " + i, "None");
+				SmartDashboard.putString("Pixy error: ", "None");
 				Variables.hasTarget = true;
 			}
-		}
 		try {
 			Variables.x = packet[0].camX;
 			Variables.y = packet[0].camY;
@@ -52,7 +50,8 @@ public class CameraFeed extends CommandBase {
 			SmartDashboard.putNumber("Height: ", -1);
 			SmartDashboard.putNumber("Width: ", -1);
 		}
-    }
+		SmartDashboard.putBoolean("Target: ", Variables.hasTarget);
+}
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

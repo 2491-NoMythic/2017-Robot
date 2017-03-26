@@ -69,6 +69,7 @@ public class Vision extends Subsystem {
 			SmartDashboard.putNumber("Height: ", -1);
 			SmartDashboard.putNumber("Width: ", -1);
 		}
+		SmartDashboard.putBoolean("Target: ", Variables.hasTarget);
 	}
 	
 
