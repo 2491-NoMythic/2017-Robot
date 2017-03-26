@@ -11,7 +11,7 @@ import com._2491nomythic.watt.commands.drivetrain.SafeMode;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlotWithoutMoving;
 import com._2491nomythic.watt.commands.gearslot.TogglePusher;
-import com._2491nomythic.watt.commands.vision.VisionSwivel;
+import com._2491nomythic.watt.commands.vision.AngleOnPeg;
 import com._2491nomythic.watt.commands.gearslot.ToggleDoors;
 import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.ControllerMap;
@@ -37,7 +37,7 @@ public class OI {
 		noTurnLock.whileHeld(new NoTurnLock());
 		
 		correctLineUp = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.correctLineUpButton);
-		correctLineUp.whenPressed(new VisionSwivel(.2));
+		correctLineUp.whenPressed(new AngleOnPeg(.2));
 		
 		climb = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.climbButton);
 		climb.whileHeld(new Climb());

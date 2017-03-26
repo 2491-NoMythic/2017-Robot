@@ -2,7 +2,7 @@ package com._2491nomythic.watt.commands.autonomous;
 
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
-import com._2491nomythic.watt.commands.vision.VisionSwivel;
+import com._2491nomythic.watt.commands.vision.AngleOnPeg;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class VisionCenter extends Command {
 	private DriveStraightToPosition approachPeg, impalePeg;
-	private VisionSwivel lineUp;
+	private AngleOnPeg lineUp;
 	private OpenAndEjectGearSlot eject;
 	private int state;
 
@@ -25,7 +25,7 @@ public class VisionCenter extends Command {
     	//Values inaccurate
     	approachPeg = new DriveStraightToPosition(0.85,4);
     	impalePeg = new DriveStraightToPosition(0.85,2);
-    	lineUp = new VisionSwivel(0.2);
+    	lineUp = new AngleOnPeg(0.2);
     	eject = new OpenAndEjectGearSlot();
     }
 

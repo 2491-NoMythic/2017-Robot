@@ -7,12 +7,12 @@ import com._2491nomythic.watt.settings.Variables;
 /**
  *
  */
-public class VisionSwivel extends CommandBase {
+public class AngleOnPeg extends CommandBase {
 	private double actualX, targetX, speed;
 	private int margin;
 	//for the central wheel drivetrain methods, positive = right.
 
-    public VisionSwivel(double desiredSpeed) {
+    public AngleOnPeg(double desiredSpeed) {
     	actualX = Variables.x;
     	targetX = Constants.xPerfectValue;
     	speed = desiredSpeed;
