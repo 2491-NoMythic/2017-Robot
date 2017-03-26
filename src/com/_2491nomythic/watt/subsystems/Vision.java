@@ -38,7 +38,7 @@ public class Vision extends Subsystem {
 	/**
 	 * Puts values from the pixy in Variables.java and on the SmartDashboard
 	 */
-	public void cameraFeed() {
+	public void oneTargetCameraFeed() {
 		for (int i = 1; i < 8; i++) {
 			try {
 				packet[i - 1] = pixy.readPacket(i);
@@ -53,10 +53,10 @@ public class Vision extends Subsystem {
 			}
 		}
 		try {
-			Variables.x = packet[0].camX;
-			Variables.y = packet[0].camY;
-			Variables.height = packet[0].camHeight;
-			Variables.width = packet[0].camWidth;
+			Variables.x1 = packet[0].camX;
+			Variables.y1 = packet[0].camY;
+			Variables.height1 = packet[0].camHeight;
+			Variables.width1 = packet[0].camWidth;
 			SmartDashboard.putNumber("X Value: ", packet[0].camX);
 			SmartDashboard.putNumber("Y Value: ", packet[0].camY);
 			SmartDashboard.putNumber("Height: ", packet[0].camHeight);
@@ -72,6 +72,28 @@ public class Vision extends Subsystem {
 		SmartDashboard.putBoolean("Target: ", Variables.hasTarget);
 	}
 	
+	public CameraPacket[] getPegPosition() {
+		CameraPacket[] blocks = pixy.readBlocks();
+		if (blocks == null)
+			return null;
+		SmartDashboard.putString("Gear Target 0", (blocks[0] == null) ? "null" : blocks[0].toString());
+		SmartDashboard.putString("Gear Target 1", (blocks[1] == null) ? "null" : blocks[1].toString());
+		return blocks;
+	}
+	
+	public CameraPacket getGearTarget(int desiredTarget) {
+		CameraPacket[] packet = getPegPosition();
+		if (packet == null || packet[0] == null && packet[1] == null) {
+			return null;
+		}
+		if (packet[0] == null && packet[1] != null) {
+			packet[0] = packet[1];
+		}
+		if (packet[1] == null && packet[0] != null) {
+			packet[1] = packet[0];
+		}
+		return packet[desiredTarget];
+	}
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

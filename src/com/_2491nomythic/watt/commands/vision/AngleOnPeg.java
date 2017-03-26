@@ -13,7 +13,7 @@ public class AngleOnPeg extends CommandBase {
 	//for the central wheel drivetrain methods, positive = right.
 
     public AngleOnPeg(double desiredSpeed) {
-    	actualX = Variables.x;
+    	actualX = Variables.x1;
     	targetX = Constants.xPerfectValue;
     	speed = desiredSpeed;
     	margin = Constants.errorMargin;

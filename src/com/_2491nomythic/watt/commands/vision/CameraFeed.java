@@ -34,10 +34,10 @@ public class CameraFeed extends CommandBase {
 				Variables.hasTarget = true;
 			}
 		try {
-			Variables.x = packet[0].camX;
-			Variables.y = packet[0].camY;
-			Variables.height = packet[0].camHeight;
-			Variables.width = packet[0].camWidth;
+			Variables.x1 = packet[0].camX;
+			Variables.y1 = packet[0].camY;
+			Variables.height1 = packet[0].camHeight;
+			Variables.width1 = packet[0].camWidth;
 			SmartDashboard.putNumber("X Value: ", packet[0].camX);
 			SmartDashboard.putNumber("Y Value: ", packet[0].camY);
 			SmartDashboard.putNumber("Height: ", packet[0].camHeight);

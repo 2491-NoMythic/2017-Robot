@@ -6,4 +6,13 @@ public class CameraPacket {
 	public int camY;
 	public int camHeight;
 	public int camWidth;
+
+	public String toString() {
+		return "" +
+				" S:" + objectSignature +
+				" X:" + camX + 
+				" Y:" + camY +
+				" W:" + camWidth + 
+				" H:" + camHeight;
+		}
 }
