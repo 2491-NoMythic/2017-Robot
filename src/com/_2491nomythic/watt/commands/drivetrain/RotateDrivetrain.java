@@ -15,7 +15,7 @@ public class RotateDrivetrain extends CommandBase {
 	/**
 	 * Rotates the drivetrain at a specified speed for a specified time
 	 * @param speed The power fed to the drive motors, ranging from -1 to 1, where negative values rotate the robot counterclockwise
-	 * @param time The time that the robot rotates for, in seconds
+	 * @param time The amount of time for the robot to rotate, in seconds
 	 */
     public RotateDrivetrain(double speed,double time) {
         // Use requires() here to declare subsystem dependencies
