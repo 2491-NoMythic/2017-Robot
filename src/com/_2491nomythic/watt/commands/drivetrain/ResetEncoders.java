@@ -3,10 +3,13 @@ package com._2491nomythic.watt.commands.drivetrain;
 import com._2491nomythic.watt.commands.CommandBase;
 
 /**
- *
+ * Resets the drive encoders
  */
 public class ResetEncoders extends CommandBase {
 
+	/**
+	 * Resets the drive encoders
+	 */
     public ResetEncoders() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
