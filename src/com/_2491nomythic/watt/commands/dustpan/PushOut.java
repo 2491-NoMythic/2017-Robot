@@ -5,10 +5,10 @@ import com._2491nomythic.watt.commands.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- *
+ * 
  */
 public class PushOut extends CommandBase{
-Timer timer;
+	Timer timer;
 
     public PushOut() {
         // Use requires() here to declare subsystem dependencies
@@ -31,12 +31,7 @@ Timer timer;
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (timer.get() >= 5){
-        	return true;
-        }
-        else{
-        	return false;
-        }
+        return timer.get() >= 5;
     }
 
     // Called once after isFinished returns true
