@@ -1,5 +1,8 @@
 package com._2491nomythic.watt.settings;
 
+/**
+ * Various information needed for robot functionality that cannot be modified by the code itself
+ */
 public class Constants {
 	
 	//Controllers
