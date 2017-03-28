@@ -5,11 +5,14 @@ import com._2491nomythic.watt.commands.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- *
+ * Toggles whether the push bar is extended
  */
 public class TogglePusher extends CommandBase {
 	private Timer timer;
 
+	/**
+	 * Toggles whether the push bar is extended
+	 */
     public TogglePusher() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
