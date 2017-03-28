@@ -5,11 +5,14 @@ import com._2491nomythic.watt.commands.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * 
+ * Ejects a gear from the dustpan
  */
 public class PushOut extends CommandBase{
 	Timer timer;
 
+	/**
+	 * Ejects a gear from the dustpan
+	 */
     public PushOut() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
