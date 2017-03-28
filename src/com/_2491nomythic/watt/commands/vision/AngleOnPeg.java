@@ -5,13 +5,17 @@ import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.Variables;
 
 /**
- *
+ * Rotates the robot to line up to the gear peg using vision
  */
 public class AngleOnPeg extends CommandBase {
 	private double actualX, targetX, speed;
 	private int margin;
 	//for the central wheel drivetrain methods, positive = right.
 
+	/**
+	 * Rotates the robot to line up to the gear peg using vision
+	 * @param desiredSpeed The power fed to the motors, ranging from 0 to 1
+	 */
     public AngleOnPeg(double desiredSpeed) {
     	actualX = Variables.x1;
     	targetX = Constants.xPerfectValue;
