@@ -4,10 +4,13 @@ import com._2491nomythic.watt.commands.CommandBase;
 
 
 /**
- *
+ * Toggles whether or not the dustpan is flipped up or down
  */
 public class FlipDustpan extends CommandBase {
 
+	/**
+	 * Toggles whether or not the dustpan is flipped up or down
+	 */
     public FlipDustpan() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
