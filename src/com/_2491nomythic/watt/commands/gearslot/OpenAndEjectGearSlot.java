@@ -4,7 +4,7 @@ import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
 
 /**
- *
+ * Opens the gear slot and ejects a gear onto a peg, then backs up a few feet
  */
 public class OpenAndEjectGearSlot extends CommandBase {
 	private ToggleDoors openDoors, closeDoors;
@@ -12,6 +12,9 @@ public class OpenAndEjectGearSlot extends CommandBase {
 	private DriveStraightToPosition backAway;
 	private int state;
 
+	/**
+	 * Opens the gear slot and ejects a gear onto a peg, then backs up a few feet
+	 */
     public OpenAndEjectGearSlot() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
