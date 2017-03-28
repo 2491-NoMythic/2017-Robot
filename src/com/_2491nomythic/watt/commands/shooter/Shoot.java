@@ -4,12 +4,13 @@ import com._2491nomythic.watt.commands.CommandBase;
 
 /**
  * Runs the shooter
+ * @deprecated
  */
-@SuppressWarnings("deprecation")
 public class Shoot extends CommandBase {
 
 	/**
 	 * Runs the shooter
+	 * @deprecated
 	 */
     public Shoot() {
         // Use requires() here to declare subsystem dependencies
