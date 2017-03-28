@@ -11,7 +11,7 @@ public class RotateDrivetrainCentralWithGyro extends CommandBase {
 	/**
 	 * Rotates the drivetrain a specified angle using the center motors at a specified power
 	 * @param speed The power fed to the motors, ranging from 0 to 1 
-	 * @param angle The angle for the robot to rotate to, where negative values rotate the robot counterclockwise
+	 * @param angle The angle that the robot rotates to, where negative values rotate the robot counterclockwise
 	 */
     public RotateDrivetrainCentralWithGyro(double speed, double angle) {
         // Use requires() here to declare subsystem dependencies
