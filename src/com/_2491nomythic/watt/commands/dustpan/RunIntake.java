@@ -3,11 +3,14 @@ package com._2491nomythic.watt.commands.dustpan;
 import com._2491nomythic.watt.commands.CommandBase;
 
 /**
- *
+ * Runs the intake motor on the dustpan
  */
 public class RunIntake extends CommandBase {
 	//pew pew
 
+	/**
+	 * Runs the intake motor on the dustpan
+	 */
     public RunIntake() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
