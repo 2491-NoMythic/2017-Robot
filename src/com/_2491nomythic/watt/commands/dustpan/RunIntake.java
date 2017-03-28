@@ -1,6 +1,7 @@
 package com._2491nomythic.watt.commands.dustpan;
 
 import com._2491nomythic.watt.commands.CommandBase;
+import com._2491nomythic.watt.settings.ControllerMap;
 
 /**
  * Runs the intake motor on the dustpan
@@ -19,11 +20,11 @@ public class RunIntake extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	dustpan.runMotor(1);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	dustpan.runMotor(oi.getAxisDeadzonedSquared(ControllerMap.secondaryDriveController, ControllerMap.dustpanIntakeAxis, 0.1));
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -33,7 +34,7 @@ public class RunIntake extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	dustpan.runMotor(0);
+    	dustpan.stop();
     }
 
     // Called when another command which requires one or more of the same

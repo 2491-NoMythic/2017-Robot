@@ -8,6 +8,7 @@ import com._2491nomythic.watt.commands.drivetrain.PivotBack;
 import com._2491nomythic.watt.commands.drivetrain.PivotFront;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 import com._2491nomythic.watt.commands.drivetrain.SafeMode;
+import com._2491nomythic.watt.commands.dustpan.FlipDustpan;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlotWithoutMoving;
 import com._2491nomythic.watt.commands.gearslot.TogglePusher;
@@ -27,7 +28,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button correctLineUp, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, almostAutoGear, lightTest, killSwitch, safeMode, pivotFrontDrive, pivotBackDrive;
+	Button correctLineUp, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, almostAutoGear, lightTest, killSwitch, safeMode, pivotFrontDrive, pivotBackDrive, toggleDustpan;
 	
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
@@ -71,6 +72,9 @@ public class OI {
 		
 		pivotBackDrive = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.pivotBackButton);
 		pivotBackDrive.whileHeld(new PivotBack());
+		
+		toggleDustpan = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.dustpanToggleButton);
+		toggleDustpan.whenPressed(new FlipDustpan());
 	}
 	
 	/**

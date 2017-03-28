@@ -1,5 +1,6 @@
 package com._2491nomythic.watt.subsystems;
 
+import com._2491nomythic.watt.commands.dustpan.RunIntake;
 import com._2491nomythic.watt.settings.Constants;
 import com.ctre.CANTalon;
 
@@ -87,6 +88,6 @@ public class Dustpan extends Subsystem {
 	@Override
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new RunIntake());
 	}
 }

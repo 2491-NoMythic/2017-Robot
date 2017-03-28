@@ -23,9 +23,11 @@ public class ControllerMap {
 	//Operator
 	public static final int secondaryDriveController = 1;
 	public static final int climbThrottleAxis = 1;
+	public static final int dustpanIntakeAxis = 3;
 	public static final int openDoorButton = 1; //x
 	public static final int pushGearButton = 3; //b
 	public static final int autoGearButton = 4; //y
 	public static final int autoGearButtonWithoutMovement = 2; //a
 	public static final int climbButton = 7;
+	public static final int dustpanToggleButton = 6;
 }
