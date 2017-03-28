@@ -1,5 +1,8 @@
 package com._2491nomythic.watt.settings;
 
+/**
+ * Values for button and axis IDs on the controllers
+ */
 public class ControllerMap {
 	//Driver
 	public static final int mainDriveController = 0;
