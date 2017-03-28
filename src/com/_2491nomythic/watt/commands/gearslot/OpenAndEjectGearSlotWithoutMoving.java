@@ -3,13 +3,16 @@ package com._2491nomythic.watt.commands.gearslot;
 import com._2491nomythic.watt.commands.CommandBase;
 
 /**
- *
+ * Opens the gear slot and ejects a gear onto a peg
  */
 public class OpenAndEjectGearSlotWithoutMoving extends CommandBase {
 	private int state;
 	private ToggleDoors openDoors;
 	private TogglePusher extend, retract;
 
+	/**
+	 * Opens the gear slot and ejects a gear onto a peg
+	 */
     public OpenAndEjectGearSlotWithoutMoving() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
