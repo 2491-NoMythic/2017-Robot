@@ -6,12 +6,17 @@ import com._2491nomythic.watt.settings.Variables;
 
 
 /**
- *
+ * Horizontally moves the robot to line up to the gear peg using vision
  */
 public class CenterOnPeg extends CommandBase {
 	private boolean isDone;
 	private int margin;
 	private double speed;
+	
+	/**
+	 * Horizontally moves the robot to line up to the gear peg using vision
+	 * @param desiredSpeed The power fed to the motor, ranging from 0 to 1
+	 */
     public CenterOnPeg(double desiredSpeed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
