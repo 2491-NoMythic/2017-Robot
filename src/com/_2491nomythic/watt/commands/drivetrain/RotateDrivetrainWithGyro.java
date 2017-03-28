@@ -3,7 +3,7 @@ package com._2491nomythic.watt.commands.drivetrain;
 import com._2491nomythic.watt.commands.CommandBase;
 
 /**
- *
+ * Rotates the drivetrain a specified angle at a specified power
  */
 public class RotateDrivetrainWithGyro extends CommandBase {
 	private double speed;
@@ -11,6 +11,11 @@ public class RotateDrivetrainWithGyro extends CommandBase {
 	private double direction;
 	private double initialAngle;
 
+	/**
+	 * Rotates the drivetrain a specified angle at a specified power
+	 * @param speed The power fed to the motors, ranging from 0 to 1
+	 * @param angle The angle that the robot rotates to, where negative values rotate the robot counterclockwise
+	 */
     public RotateDrivetrainWithGyro(double speed, double angle) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
