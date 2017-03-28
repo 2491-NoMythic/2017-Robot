@@ -1,5 +1,8 @@
 package com._2491nomythic.watt.settings;
 
+/**
+ * Groups multiple pixy outputs into a single class
+ */
 public class CameraPacket {
 	public int objectSignature;
 	public int camX;
