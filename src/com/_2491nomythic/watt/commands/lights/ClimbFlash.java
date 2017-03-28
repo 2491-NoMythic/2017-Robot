@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj.Timer;
 
 /**
  * Flashes the lights during the endgame
+ * @deprecated
  */
-@SuppressWarnings("deprecation")
 public class ClimbFlash extends CommandBase {
 	private Timer timer;
 	private boolean climbTime;
@@ -16,6 +16,7 @@ public class ClimbFlash extends CommandBase {
 
 	/**
 	 * Flashes the lights during the endgame
+	 * @deprecated
 	 */
     public ClimbFlash() {
         // Use requires() here to declare subsystem dependencies
