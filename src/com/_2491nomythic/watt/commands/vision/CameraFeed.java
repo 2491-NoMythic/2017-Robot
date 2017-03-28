@@ -7,9 +7,16 @@ import com._2491nomythic.watt.settings.Variables;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+/**
+ * Updates values for vision in Variables.java and on the SmartDashboard
+ */
 public class CameraFeed extends CommandBase {
 	
 	private CameraPacket[] packet = new CameraPacket[7];
+	
+	/**
+	 * Updates values for vision in Variables.java and on the SmartDashboard
+	 */
     public CameraFeed() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
