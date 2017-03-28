@@ -4,10 +4,13 @@ import com._2491nomythic.watt.commands.CommandBase;
 
 
 /**
- *
+ * Sucks a gear into the dustpan
  */
 public class RollIn extends CommandBase {
 
+	/**
+	 * Sucks a gear into the dustpan
+	 */
     public RollIn() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
