@@ -3,11 +3,14 @@ package com._2491nomythic.watt.commands.shooter;
 import com._2491nomythic.watt.commands.CommandBase;
 
 /**
- *
+ * Runs the shooter
  */
 @SuppressWarnings("deprecation")
 public class Shoot extends CommandBase {
 
+	/**
+	 * Runs the shooter
+	 */
     public Shoot() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
