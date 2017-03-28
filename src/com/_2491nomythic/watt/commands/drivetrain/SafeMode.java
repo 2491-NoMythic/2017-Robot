@@ -4,11 +4,14 @@ import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.Variables;
 
 /**
- *
+ * Puts the robot in a "safe mode" where robot movement is restricted to half power, and the transmission will not shift
  */
 public class SafeMode extends CommandBase {
 	boolean enabled = false;
 	
+	/**
+	 * Puts the robot in a "safe mode" where robot movement is restricted to half power, and the transmission will not shift
+	 */
     public SafeMode() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
