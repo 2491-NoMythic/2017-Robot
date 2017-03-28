@@ -5,13 +5,18 @@ import com._2491nomythic.watt.commands.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- *
+ * Rotates the drivetrain using the center motors at a specified power for a specified time
  */
 public class RotateDrivetrainCentral extends CommandBase {
 	private Timer timer;
 	private double motorPower;
 	private double rotateDuration;
 
+	/**
+	 * Rotates the drivetrain using the center motors at a specified power for a specified time
+	 * @param power The power fed to the motors, ranging from -1 to 1, where negative values rotate the robot counterclockwise
+	 * @param time The amount of time for the robot to rotate, in seconds
+	 */
     public RotateDrivetrainCentral(double power,double time) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
