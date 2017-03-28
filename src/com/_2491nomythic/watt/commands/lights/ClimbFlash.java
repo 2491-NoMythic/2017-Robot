@@ -6,7 +6,7 @@ import com._2491nomythic.watt.subsystems.Lights;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- *
+ * Flashes the lights during the endgame
  */
 @SuppressWarnings("deprecation")
 public class ClimbFlash extends CommandBase {
@@ -14,6 +14,9 @@ public class ClimbFlash extends CommandBase {
 	private boolean climbTime;
 	private int state;
 
+	/**
+	 * Flashes the lights during the endgame
+	 */
     public ClimbFlash() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
