@@ -3,9 +3,13 @@ package com._2491nomythic.watt.commands.drivetrain;
 import com._2491nomythic.watt.commands.CommandBase;
 
 /**
- *
+ * Resets the gyroscope on the drivetrain
  */
 public class ResetGyro extends CommandBase {
+	
+	/**
+	 * Resets the gyroscope on the drivetrain
+	 */
 	public ResetGyro() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
