@@ -57,7 +57,7 @@ public class CameraFeed extends CommandBase {
 			SmartDashboard.putNumber("Height: ", -1);
 			SmartDashboard.putNumber("Width: ", -1);
 		}
-		SmartDashboard.putBoolean("Target: ", Variables.hasTarget);
+		SmartDashboard.putBoolean("", Variables.hasTarget);
 }
 
     // Make this return true when this Command no longer needs to run execute()

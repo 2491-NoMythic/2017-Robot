@@ -39,19 +39,17 @@ public class Vision extends Subsystem {
 	 * Puts values from the pixy in Variables.java and on the SmartDashboard
 	 */
 	public void oneTargetCameraFeed() {
-		for (int i = 1; i < 8; i++) {
 			try {
-				packet[i - 1] = pixy.readPacket(i);
+				packet[0] = pixy.readPacket(1);
 			} catch (CameraException e) {
-				SmartDashboard.putString("Pixy error: " + i, "Exception");
+				SmartDashboard.putString("Pixy error: ", "Exception");
 			}
-			if (packet[i - 1] == null) {
-				SmartDashboard.putString("Pixy error: " + i, "Absent Data");
+			if (packet[0] == null) {
+				SmartDashboard.putString("Pixy error: ", "Absent Data");
 			} else {
-				SmartDashboard.putString("Pixy error: " + i, "None");
+				SmartDashboard.putString("Pixy error: ", "None");
 				Variables.hasTarget = true;
 			}
-		}
 		try {
 			Variables.x1 = packet[0].camX;
 			Variables.y1 = packet[0].camY;
@@ -69,7 +67,6 @@ public class Vision extends Subsystem {
 			SmartDashboard.putNumber("Height: ", -1);
 			SmartDashboard.putNumber("Width: ", -1);
 		}
-		SmartDashboard.putBoolean("Target: ", Variables.hasTarget);
 	}
 	
 	public CameraPacket[] getPegPosition() {

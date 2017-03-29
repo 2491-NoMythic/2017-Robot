@@ -10,6 +10,7 @@ import com._2491nomythic.watt.settings.Variables;
 public class AngleOnPeg extends CommandBase {
 	private double actualX, targetX, speed;
 	private int margin;
+	private boolean isDone;
 	//for the central wheel drivetrain methods, positive = right.
 
 	/**
@@ -17,6 +18,7 @@ public class AngleOnPeg extends CommandBase {
 	 * @param desiredSpeed The power fed to the motors, ranging from 0 to 1
 	 */
     public AngleOnPeg(double desiredSpeed) {
+    	isDone = false;
     	actualX = Variables.x1;
     	targetX = Constants.xPerfectValue;
     	speed = desiredSpeed;
@@ -33,13 +35,17 @@ public class AngleOnPeg extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if (Variables.hasTarget) {
-    		if (targetX < actualX) {
+    		if (targetX + margin < actualX) {
     			drivetrain.driveLeft(-speed);
     			drivetrain.driveRight(speed);
     		}
-    		else if (targetX > actualX) {
+    		else if (targetX - margin > actualX) {
     			drivetrain.driveLeft(speed);
     			drivetrain.driveRight(-speed);
+    		}
+    		else {
+    			drivetrain.stop();
+    			isDone = true;
     		}
     	}
     	else {
@@ -49,7 +55,7 @@ public class AngleOnPeg extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (targetX < (actualX + margin)) && (targetX > (actualX - margin));
+        return isDone;
     }
 
     // Called once after isFinished returns true
