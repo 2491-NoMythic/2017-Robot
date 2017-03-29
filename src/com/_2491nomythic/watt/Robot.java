@@ -50,9 +50,23 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+    	//Base
 		oi = new OI();
 		CommandBase.init();
-        chooser = new SendableChooser<Command>();
+		//Auto Modes
+        chooser = new SendableChooser<Command>(); 
+        chooser.addDefault("Do Nothing", new DoNothing());
+        chooser.addObject("Passive Left", new PassiveLeft());
+        chooser.addObject("Passive Center", new PassiveCenter());
+        chooser.addObject("Passive Right", new PassiveRight());
+        chooser.addObject("Angled Left", new AngledLeft());
+        chooser.addObject("Angled Center", new AngledCenter());
+        chooser.addObject("Angled Right", new AngledRight());
+        chooser.addObject("Vision Left", new VisionLeft());
+        chooser.addObject("Vision Center", new VisionCenter());
+        chooser.addObject("Vision Right", new VisionRight());
+        //SmartDashboard Buttons and Data
+        SmartDashboard.putData("Auto mode", chooser);
         SmartDashboard.putData("Line Up To Peg", new CenterOnPeg(0.25));
         SmartDashboard.putData("Angle on Peg", new AngleOnPeg(0.25));
         SmartDashboard.putData("Reset Gyro", new ResetGyro());
@@ -65,20 +79,8 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Total Shift Time (in seconds)", Variables.shiftTotalTime);
         SmartDashboard.putData("Coast Mode", new EnableCoastMode());
         SmartDashboard.putBoolean("Automatic Transmission", Variables.useAutomaticTransmission);
-        chooser.addDefault("Do Nothing", new DoNothing());
-        chooser.addObject("Passive Left", new PassiveLeft());
-        chooser.addObject("Passive Center", new PassiveCenter());
-        chooser.addObject("Passive Right", new PassiveRight());
-        chooser.addObject("Angled Left", new AngledLeft());
-        chooser.addObject("Angled Center", new AngledCenter());
-        chooser.addObject("Angled Right", new AngledRight());
-        chooser.addObject("Vision Left", new VisionLeft());
-        chooser.addObject("Vision Center", new VisionCenter());
-        chooser.addObject("Vision Right", new VisionRight());
         SmartDashboard.putBoolean("Use Linear Acceleration",Variables.useLinearAcceleration);
         SmartDashboard.putData("Drive with speed for 2 secs", new DriveSpeedTime(30, 2));
-        SmartDashboard.putData("Auto mode", chooser);
-
     }
 	
 	/**
