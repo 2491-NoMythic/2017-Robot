@@ -1,5 +1,12 @@
 <xml version="1.0">
 <dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="0" y="527"/>
+		<width>1396</width>
+		<height>65</height>
+		<property name="Connection Color" value="153.0.51.255"/>
+		<property name="No Connection Color" value="0.0.0.255"/>
+	</static-widget>
 	<widget field="syncword: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
 		<location x="1034" y="422"/>
 	</widget>
