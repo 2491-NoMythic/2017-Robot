@@ -1,0 +1,114 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="syncword: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="1034" y="422"/>
+	</widget>
+	<widget field="Width: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="1058" y="400"/>
+	</widget>
+	<widget field="Height: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="1052" y="374"/>
+	</widget>
+	<widget field="Y Value: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="1048" y="352"/>
+	</widget>
+	<widget field="X Value: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="1048" y="326"/>
+	</widget>
+	<widget field="Pixy error: " type="String" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="1034" y="304"/>
+	</widget>
+	<widget field="Drivetrain" type="PIDSubsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="464" y="80"/>
+	</widget>
+	<widget field="Left Encoder Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="176" y="182"/>
+	</widget>
+	<widget field="Gyro in Degrees" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="213" y="224"/>
+	</widget>
+	<widget field="Right Encoder Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="167" y="203"/>
+	</widget>
+	<widget field="Automatic Transmission" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="464" y="48"/>
+		<width>192</width>
+		<height>28</height>
+	</widget>
+	<widget field="Use Linear Acceleration" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="464" y="16"/>
+		<width>184</width>
+		<height>28</height>
+	</widget>
+	<widget field="" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="1040" y="2"/>
+		<width>344</width>
+		<height>302</height>
+	</widget>
+	<widget field="Reset Gyro" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="490" y="288"/>
+	</widget>
+	<widget field="Angle on Peg" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="864" y="9"/>
+	</widget>
+	<widget field="Vision" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="487" y="150"/>
+	</widget>
+	<widget field="Reset Encoders" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="462" y="313"/>
+	</widget>
+	<widget field="Climber" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="480" y="128"/>
+		<width>176</width>
+	</widget>
+	<widget field="Coast Mode" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="483" y="265"/>
+	</widget>
+	<widget field="Auto mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="656" y="262"/>
+	</widget>
+	<widget field="PID P Value" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="254" y="105"/>
+	</widget>
+	<widget field="Time To Engage Pneumatics For Shifter (in seconds)" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="0"/>
+	</widget>
+	<widget field="Drive with speed for 2 secs" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="386" y="336"/>
+	</widget>
+	<widget field="GearSlot" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="474" y="102"/>
+	</widget>
+	<widget field="Rotate Drivetrain Central PID" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="377" y="361"/>
+	</widget>
+	<widget field="Line Up To Peg" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="853" y="36"/>
+	</widget>
+	<widget field="Shift Up Speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="233" y="84"/>
+	</widget>
+	<widget field="Time to open GearSlot doors" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="145" y="63"/>
+	</widget>
+	<widget field="Total Shift Time (in seconds)" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="145" y="42"/>
+		<height>26</height>
+	</widget>
+	<widget field="Time to eject Gear" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="211" y="20"/>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+	<hidden field="Pixy error: 5"/>
+	<hidden field="Pixy error: 4"/>
+	<hidden field="Shooter"/>
+	<hidden field="Has Target: "/>
+	<hidden field="Pixy error: 7"/>
+	<hidden field="Pixy error: 6"/>
+	<hidden field="Pixy error: 1"/>
+	<hidden field="Target: "/>
+	<hidden field="Pixy error: 3"/>
+	<hidden field="Pixy error: 2"/>
+</xml>
