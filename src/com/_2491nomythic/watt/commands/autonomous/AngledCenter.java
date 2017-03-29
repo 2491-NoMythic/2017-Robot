@@ -10,7 +10,7 @@ import com._2491nomythic.watt.commands.gearslot.TogglePusher;
 /**
  * Attempts to deposit a gear onto the center gear peg by approaching it diagonally
  */
-public class HighlyExperimentalCenter extends CommandBase {
+public class AngledCenter extends CommandBase {
 	private DriveStraightToPosition driveNearPeg, landPeg, impalePeg;
 	private RotateDrivetrainWithGyro aimForPeg;
 	private PivotFrontAUTOONLY squareUp;
@@ -28,7 +28,7 @@ public class HighlyExperimentalCenter extends CommandBase {
 	/**
 	 * Attempts to deposit a gear onto the center gear peg by approaching it diagonally
 	 */
-	public HighlyExperimentalCenter() {
+	public AngledCenter() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	driveNearPeg = new DriveStraightToPosition(0.75, 4.1);

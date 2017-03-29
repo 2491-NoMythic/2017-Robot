@@ -8,13 +8,13 @@ import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 import com._2491nomythic.watt.commands.gearslot.TogglePusher;
 
 /**
- * Attempts to deposit a gear onto the left gear peg by approaching it diagonally
+ * Attempts to deposit a gear onto the right gear peg by approaching it diagonally
  */
-public class HighlyExperimentalLeft extends CommandBase {
+public class AngledRight extends CommandBase {
 	private DriveStraightToPosition drivePastPeg, landPeg, impalePeg;
 	private RotateDrivetrainWithGyro aimForPeg;
-	private OpenAndEjectGearSlot eject;
 	private PivotFrontAUTOONLY squareUp;
+	private OpenAndEjectGearSlot eject;
 	private TogglePusher extend, retract;
 	private int state;
 	
@@ -24,16 +24,16 @@ public class HighlyExperimentalLeft extends CommandBase {
 		// Right: As far to the right as possible (- inches from center)
 
 	/**
-	 * Attempts to deposit a gear onto the left gear peg by approaching it diagonally
+	 * Attempts to deposit a gear onto the right gear peg by approaching it diagonally
 	 */
-    public HighlyExperimentalLeft() {
+    public AngledRight() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	drivePastPeg = new DriveStraightToPosition(0.75,7.9);
     	landPeg = new DriveStraightToPosition(0.6,4.6);
     	impalePeg = new DriveStraightToPosition(0.85,0.35);
-    	aimForPeg = new RotateDrivetrainWithGyro(0.4,60);
-    	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, -0.35, 0.35, 0.5);
+    	aimForPeg = new RotateDrivetrainWithGyro(-0.4,70);
+    	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, 0.35, -0.35, 0.5);
     	eject = new OpenAndEjectGearSlot();
     	extend = new TogglePusher();
     	retract = new TogglePusher();

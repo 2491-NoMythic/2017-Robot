@@ -3,9 +3,9 @@ package com._2491nomythic.watt;
 
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.commands.autonomous.DoNothing;
-import com._2491nomythic.watt.commands.autonomous.HighlyExperimentalCenter;
-import com._2491nomythic.watt.commands.autonomous.HighlyExperimentalLeft;
-import com._2491nomythic.watt.commands.autonomous.HighlyExperimentalRight;
+import com._2491nomythic.watt.commands.autonomous.AngledCenter;
+import com._2491nomythic.watt.commands.autonomous.AngledLeft;
+import com._2491nomythic.watt.commands.autonomous.AngledRight;
 import com._2491nomythic.watt.commands.autonomous.PassiveCenter;
 import com._2491nomythic.watt.commands.autonomous.PassiveLeft;
 import com._2491nomythic.watt.commands.autonomous.PassiveRight;
@@ -68,9 +68,9 @@ public class Robot extends IterativeRobot {
         chooser.addObject("Passive Left", new PassiveLeft());
         chooser.addObject("Passive Center", new PassiveCenter());
         chooser.addObject("Passive Right", new PassiveRight());
-        chooser.addObject("Angled Left", new HighlyExperimentalLeft());
-        chooser.addObject("Angled Center", new HighlyExperimentalCenter());
-        chooser.addObject("Angled Right", new HighlyExperimentalRight());
+        chooser.addObject("Angled Left", new AngledLeft());
+        chooser.addObject("Angled Center", new AngledCenter());
+        chooser.addObject("Angled Right", new AngledRight());
         chooser.addObject("Vision Left", new VisionLeft());
         chooser.addObject("Vision Center", new VisionCenter());
         chooser.addObject("Vision Right", new VisionRight());
