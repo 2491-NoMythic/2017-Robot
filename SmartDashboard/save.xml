@@ -2,28 +2,34 @@
 <dashboard>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
 		<location x="0" y="527"/>
-		<width>1396</width>
+		<width>1408</width>
 		<height>65</height>
 		<property name="Connection Color" value="153.0.51.255"/>
 		<property name="No Connection Color" value="0.0.0.255"/>
 	</static-widget>
 	<widget field="syncword: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
-		<location x="1034" y="422"/>
+		<location x="1216" y="304"/>
+		<width>160</width>
 	</widget>
 	<widget field="Width: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
-		<location x="1058" y="400"/>
+		<location x="1216" y="327"/>
+		<width>160</width>
 	</widget>
 	<widget field="Height: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
-		<location x="1052" y="374"/>
+		<location x="1216" y="352"/>
+		<width>160</width>
 	</widget>
 	<widget field="Y Value: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
-		<location x="1048" y="352"/>
+		<location x="1056" y="352"/>
+		<width>160</width>
 	</widget>
 	<widget field="X Value: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
-		<location x="1048" y="326"/>
+		<location x="1056" y="327"/>
+		<width>160</width>
 	</widget>
 	<widget field="Pixy error: " type="String" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
-		<location x="1034" y="304"/>
+		<location x="1056" y="304"/>
+		<width>160</width>
 	</widget>
 	<widget field="Drivetrain" type="PIDSubsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
 		<location x="464" y="80"/>
@@ -44,19 +50,19 @@
 	</widget>
 	<widget field="Use Linear Acceleration" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
 		<location x="464" y="16"/>
-		<width>184</width>
+		<width>185</width>
 		<height>28</height>
 	</widget>
 	<widget field="" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="1040" y="2"/>
+		<location x="1056" y="0"/>
 		<width>344</width>
-		<height>302</height>
+		<height>304</height>
 	</widget>
 	<widget field="Reset Gyro" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="490" y="288"/>
 	</widget>
 	<widget field="Angle on Peg" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="864" y="9"/>
+		<location x="858" y="9"/>
 	</widget>
 	<widget field="Vision" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
 		<location x="487" y="150"/>
@@ -65,8 +71,7 @@
 		<location x="462" y="313"/>
 	</widget>
 	<widget field="Climber" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-		<location x="480" y="128"/>
-		<width>176</width>
+		<location x="477" y="128"/>
 	</widget>
 	<widget field="Coast Mode" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="483" y="265"/>
@@ -90,7 +95,7 @@
 		<location x="377" y="361"/>
 	</widget>
 	<widget field="Line Up To Peg" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="853" y="36"/>
+		<location x="848" y="32"/>
 	</widget>
 	<widget field="Shift Up Speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="233" y="84"/>
