@@ -20,7 +20,7 @@ public class PickUpGears extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
     	dustpan.flipDown();
-    	dustpan.runMotor(1);
+    	dustpan.runMotor(-1);
     }
 
     // Called repeatedly when this Command is scheduled to run
