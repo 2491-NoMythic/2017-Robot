@@ -1,6 +1,7 @@
 package com._2491nomythic.watt.commands.dustpan;
 
 import com._2491nomythic.watt.commands.CommandBase;
+import com._2491nomythic.watt.settings.Variables;
 
 import edu.wpi.first.wpilibj.Timer;
 
@@ -21,7 +22,6 @@ public class PushOut extends CommandBase{
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	dustpan.flipUp();
     	timer = new Timer();
     	timer.reset();
     	timer.start();
@@ -30,11 +30,14 @@ public class PushOut extends CommandBase{
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(timer.get() > Variables.ejectTiming) {
+    		dustpan.flipDown();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return timer.get() >= 5;
+        return timer.get() >= 1;
     }
 
     // Called once after isFinished returns true

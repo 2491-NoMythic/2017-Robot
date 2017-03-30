@@ -46,6 +46,9 @@ public class Variables {
 	public static double timeToEjectGear = 0.25;
 	public static boolean ejected = false;
 	
+	//Dustpan
+	public static double ejectTiming = 0.2;
+	
 	//Global Camera Variables
 	public static double x1;
 	public static double y1;
