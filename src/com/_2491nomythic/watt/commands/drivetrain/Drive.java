@@ -146,7 +146,7 @@ public class Drive extends CommandBase {
     	currentRightSpeed = Math.min(/*Variables.lowGearMaxSpeed*/1, Math.abs(currentRightSpeed)) * (currentRightSpeed > 0? 1: -1);
     	currentCenterSpeed = Math.min(1, Math.abs(currentCenterSpeed)) * (currentCenterSpeed > 0? 1: -1);
     	    	
-    	drivetrain.drive(currentLeftSpeed+Variables.pivotCoefficientAmount, currentRightSpeed+(Variables.pivotCoefficientAmount*-1), currentCenterSpeed*Variables.frontPivotCoefficient, currentCenterSpeed*Variables.backPivotCoefficient);
+    	drivetrain.drive(currentLeftSpeed, currentRightSpeed, currentCenterSpeed, currentCenterSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
