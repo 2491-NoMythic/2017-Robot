@@ -4,6 +4,7 @@ import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 import com._2491nomythic.watt.commands.vision.AngleOnPeg;
+import com._2491nomythic.watt.commands.vision.CenterOnPeg;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -12,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class VisionLeft extends Command {
 	private DriveStraightToPosition driveToBaseLine, approachPeg, impalePeg;
-	private AngleOnPeg lineUp;
+	private CenterOnPeg lineUp;
 	private RotateDrivetrainWithGyro aimForPeg;
 	private OpenAndEjectGearSlot eject;
 	private int state;
@@ -28,7 +29,7 @@ public class VisionLeft extends Command {
     	driveToBaseLine = new DriveStraightToPosition(1,6.3);
     	approachPeg = new DriveStraightToPosition(1,4.5);
     	impalePeg = new DriveStraightToPosition(0.85,2);
-    	lineUp = new AngleOnPeg(0.2);
+    	lineUp = new CenterOnPeg(0.2);
     	aimForPeg = new RotateDrivetrainWithGyro(0.25,50);
     	eject = new OpenAndEjectGearSlot();
     }
