@@ -23,11 +23,8 @@ public class PivotBackCoefficient extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, .1) < 0) {
-    		Variables.pivotCoefficientAmount = -.5;
-    	}
-    	if (oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, .1) > 0) {
-    		Variables.pivotCoefficientAmount = .5;
+    	if (oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, .1) < 0 || oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, .1) < 0) {
+    		Variables.pivotCoefficientAmount = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, .1);
     	}
     	speed = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveTurnAxis, .1);
     	drivetrain.driveCenter(speed, Constants.pivotDriveRatio * speed);
