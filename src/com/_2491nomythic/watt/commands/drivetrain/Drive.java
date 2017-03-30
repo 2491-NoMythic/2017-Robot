@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * Drives the robot using an automatic transmission and linear acceleration as specified by the driver
  */
 public class Drive extends CommandBase {
-	double currentLeftSpeed, currentRightSpeed, lastLeftSpeed, lastRightSpeed, directionMultiplierLeft, directionMultiplierRight, futureLeftSpeed, futureRightSpeed;
+	double currentLeftSpeed, currentRightSpeed, currentCenterSpeed, lastLeftSpeed, lastRightSpeed, lastCenterSpeed, directionMultiplierLeft, directionMultiplierRight, futureLeftSpeed, futureRightSpeed;
 	double /*leftPower, rightPower,*/ horizontalPower, turnSpeed;
 	int state;
 	boolean isShifted, isShifting;
@@ -42,6 +42,7 @@ public class Drive extends CommandBase {
     	
     	lastLeftSpeed = currentLeftSpeed;
 		lastRightSpeed = currentRightSpeed;
+		lastCenterSpeed = currentCenterSpeed;
     	
 		if (Variables.useAutomaticTransmission) {
 			if (((Math.abs(drivetrain.getLeftEncoderRate()) > Variables.shiftUpSpeed && Math.abs(drivetrain.getRightEncoderRate()) > Variables.shiftUpSpeed) || oi.getButton(ControllerMap.mainDriveController, ControllerMap.manualShiftButton)) && !isShifted && !isShifting && timer.get() > 1) {
@@ -104,6 +105,8 @@ public class Drive extends CommandBase {
 			currentRightSpeed = -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, 0.05) - turnSpeed;
 		}
 		
+    	currentCenterSpeed = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, 0.05);
+		
 		if (Variables.useLinearAcceleration) {
 			double leftAcceleration = (currentLeftSpeed - lastLeftSpeed);
 			double signOfLeftAcceleration = leftAcceleration / Math.abs(leftAcceleration);
@@ -114,7 +117,6 @@ public class Drive extends CommandBase {
 					
 				}
 				// if the difference between the numbers is positive it is going up
-				
 			}
 			double rightAcceleration = (currentRightSpeed - lastRightSpeed);
 			double signOfRightAcceleration = rightAcceleration / Math.abs(rightAcceleration);
@@ -125,17 +127,26 @@ public class Drive extends CommandBase {
 				}
 				// if the difference between the numbers is positive it is going up
 			}
+			double centerAcceleration = (currentCenterSpeed - lastCenterSpeed);
+			double signOfCenterAcceleration = centerAcceleration / Math.abs(centerAcceleration);
+			if (Math.abs(centerAcceleration) > Variables.accelerationSpeed) { // otherwise the power is below 0.05 accel and is fine
+				if (Math.abs(currentCenterSpeed) - Math.abs(lastCenterSpeed) > 0) {
+					System.out.println(currentCenterSpeed + " was too high, setting to " + (lastCenterSpeed + (Variables.accelerationSpeed * signOfCenterAcceleration)));
+					currentCenterSpeed = lastCenterSpeed + (Variables.accelerationSpeed * signOfCenterAcceleration);
+				}
+				// if the difference between the numbers is positive it is going up
+			}
 		}
 		
 		SmartDashboard.putNumber("Right Encoder Distance", drivetrain.getRightEncoderDistance());
 		SmartDashboard.putNumber("Left Encoder Distance", drivetrain.getLeftEncoderDistance());
-    	
-    	horizontalPower = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, 0.05);
-    	
+		SmartDashboard.putNumber("Center Encoder Distance", drivetrain.getCenterEncoderDistance());
+    	    	
     	currentLeftSpeed = Math.min(/*Variables.lowGearMaxSpeed*/1, Math.abs(currentLeftSpeed)) * (currentLeftSpeed > 0? 1: -1);
     	currentRightSpeed = Math.min(/*Variables.lowGearMaxSpeed*/1, Math.abs(currentRightSpeed)) * (currentRightSpeed > 0? 1: -1);
+    	currentCenterSpeed = Math.min(1, Math.abs(currentCenterSpeed)) * (currentCenterSpeed > 0? 1: -1);
     	    	
-    	drivetrain.drive(currentLeftSpeed+Variables.pivotCoefficientAmount, currentRightSpeed+(Variables.pivotCoefficientAmount*-1), horizontalPower*Variables.frontPivotCoefficient, horizontalPower*Variables.backPivotCoefficient);
+    	drivetrain.drive(currentLeftSpeed+Variables.pivotCoefficientAmount, currentRightSpeed+(Variables.pivotCoefficientAmount*-1), currentCenterSpeed*Variables.frontPivotCoefficient, currentCenterSpeed*Variables.backPivotCoefficient);
     }
 
     // Make this return true when this Command no longer needs to run execute()
