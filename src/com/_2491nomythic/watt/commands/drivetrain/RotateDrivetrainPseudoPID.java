@@ -6,7 +6,7 @@ import com._2491nomythic.watt.commands.CommandBase;
  *
  */
 public class RotateDrivetrainPseudoPID extends CommandBase {
-	private double initialAngle, desiredAngle, direction, distanceRemaining;
+	private double initialAngle, desiredAngle, direction, distanceRemaining, currentAngle;
 
     public RotateDrivetrainPseudoPID(double desiredAngle) {
         // Use requires() here to declare subsystem dependencies
@@ -28,14 +28,16 @@ public class RotateDrivetrainPseudoPID extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	distanceRemaining = desiredAngle - drivetrain.getGyroAngle() + initialAngle;
+    	currentAngle = drivetrain.getGyroAngle() - initialAngle;
+    	
+    	distanceRemaining = desiredAngle - currentAngle;
     	
     	drivetrain.drive(direction * Math.abs(distanceRemaining / desiredAngle), -direction * Math.abs(distanceRemaining / desiredAngle), 0, 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return desiredAngle - initialAngle >= drivetrain.getGyroAngle();
+        return Math.abs(desiredAngle - currentAngle) <= 0;
     }
 
     // Called once after isFinished returns true
