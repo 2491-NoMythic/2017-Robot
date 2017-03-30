@@ -137,6 +137,16 @@ public class Drivetrain extends PIDSubsystem {
 		centerRight.pidWrite(-rightSpeed);
 	}
 	
+	public void driveLeftRightPID(double leftSpeed, double rightSpeed) {
+		left1.pidWrite(leftSpeed);
+		left2.pidWrite(leftSpeed);
+		left3.pidWrite(leftSpeed);
+		right1.pidWrite(rightSpeed);
+		right2.pidWrite(rightSpeed);
+		right3.pidWrite(rightSpeed);
+	}
+	
+	
 	/**
 	 * Stops all drive motion
 	 */
