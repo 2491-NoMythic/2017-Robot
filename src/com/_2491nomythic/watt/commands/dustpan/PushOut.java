@@ -25,12 +25,12 @@ public class PushOut extends CommandBase{
     	timer = new Timer();
     	timer.reset();
     	timer.start();
-    	dustpan.runMotor(1);
+    	dustpan.runMotor(Variables.gearEjectPower);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(timer.get() > Variables.ejectTiming) {
+    	if(timer.get() > Variables.gearEjectTiming) {
     		dustpan.flipDown();
     	}
     }
