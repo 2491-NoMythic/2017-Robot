@@ -82,6 +82,8 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putBoolean("Automatic Transmission", Variables.useAutomaticTransmission);
         SmartDashboard.putBoolean("Use Linear Acceleration",Variables.useLinearAcceleration);
         SmartDashboard.putNumber("Slide Drive Acceleration Value", Variables.centerAccelerationSpeed);
+        SmartDashboard.putNumber("Dustpan Eject Motor Power", Variables.gearEjectPower);
+        SmartDashboard.putNumber("Dustpan Eject Motor Timing", Variables.gearEjectTiming);
         SmartDashboard.putData("Drive with speed for 2 secs", new DriveSpeedTime(30, 2));
     }
 	
