@@ -2,12 +2,14 @@ package com._2491nomythic.watt.commands;
 
 import com._2491nomythic.watt.commands.dustpan.FlipDustpan;
 import com._2491nomythic.watt.commands.gearslot.ToggleDoors;
+import com._2491nomythic.watt.subsystems.Lights;
 
 import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
  */
+@SuppressWarnings("deprecation")
 public class AyyyyyMacarena extends CommandBase {
 	private ToggleDoors open, close;
 	private FlipDustpan lower, raise;
@@ -33,7 +35,7 @@ public class AyyyyyMacarena extends CommandBase {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+	protected void execute() {
     	switch(state) {
     	case 1:
     		timer.start();
@@ -114,14 +116,14 @@ public class AyyyyyMacarena extends CommandBase {
     		
     	case 11:
     		if(timer.get() > 10 * macarenaTime) {
-    			lights.deactivateLights();
+    			Lights.deactivateLights();
     			state++;
     		}
     		break;
     		
     	case 12:
     		if(timer.get() > 11 * macarenaTime) {
-    			lights.activateLights();
+    			Lights.activateLights();
     			state++;
     		}
     		break;
