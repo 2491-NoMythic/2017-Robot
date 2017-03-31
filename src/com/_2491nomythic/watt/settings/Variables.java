@@ -58,10 +58,11 @@ public class Variables {
 	public static double y2;
 	public static double height2;
 	public static double width2;
-	public static double avgHeight = (height1 + height2)/2;
-	public static double avgWidth = (width1 + width2)/2;
-	public static double avgX = (x1 + x2)/2;
-	public static double avgY = (y1 + y2)/2;
+	public static double avgHeight;
+	public static double avgWidth;
+	public static double avgX;
+	public static double avgY;
+	public static double avgArea;
 	public static boolean hasTarget;
 
 }

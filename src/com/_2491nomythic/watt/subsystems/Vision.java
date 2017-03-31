@@ -1,6 +1,7 @@
 package com._2491nomythic.watt.subsystems;
 
-import com._2491nomythic.util.CameraI2CType;
+import com._2491nomythic.util.CameraI2C;
+import com._2491nomythic.util.GearTarget;
 import com._2491nomythic.watt.commands.vision.CameraFeed;
 import com._2491nomythic.watt.settings.CameraException;
 import com._2491nomythic.watt.settings.CameraPacket;
@@ -15,7 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * The system that controls the pixy and its outputs
  */
 public class Vision extends Subsystem {
-	public CameraI2CType pixy;
+	public CameraI2C pixy;
 	private Port port = Port.kOnboard;
 	private String print;
 	private CameraPacket[] packet = new CameraPacket[7];
@@ -25,7 +26,7 @@ public class Vision extends Subsystem {
 	 * The system that controls the pixy and its outputs
 	 */
 	private Vision() {
-		pixy = new CameraI2CType("Pixy", new I2C(port, 0x55), packet, new CameraException(print));
+		pixy = new CameraI2C("Pixy", new I2C(port, 0x55), packet, new CameraException(print));
 	}
 	
 	public static Vision getInstance() {
@@ -78,18 +79,12 @@ public class Vision extends Subsystem {
 		return blocks;
 	}
 	
-	public CameraPacket getGearTarget(int desiredTarget) {
-		CameraPacket[] packet = getPegPosition();
-		if (packet == null || packet[0] == null && packet[1] == null) {
+	public GearTarget getGearTarget() {
+		CameraPacket[] tacket = getPegPosition();
+		if (tacket == null || (tacket[0] == null && tacket[1] == null)) {
 			return null;
 		}
-		if (packet[0] == null && packet[1] != null) {
-			packet[0] = packet[1];
-		}
-		if (packet[1] == null && packet[0] != null) {
-			packet[1] = packet[0];
-		}
-		return packet[desiredTarget];
+		return new GearTarget(tacket[0], tacket[1]);
 	}
 
     // Put methods for controlling this subsystem
