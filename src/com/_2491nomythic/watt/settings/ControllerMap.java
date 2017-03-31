@@ -13,7 +13,8 @@ public class ControllerMap {
 	public static final int noTurnLockButton = 3;
 	public static final int rotateDrivetrainLeftPOV = 270;
 	public static final int rotateDrivetrainRightPOV = 90;
-	public static final int killSwitchButton = 7;
+	public static final int killSwitchButton1 = 7;
+	public static final int killSwitchButton2 = 8;
 	public static final int pivotFrontButton = 1;
 	public static final int pivotBackButton = 2;
 	public static final int manualShiftButton = 4;

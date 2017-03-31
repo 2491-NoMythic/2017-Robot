@@ -29,7 +29,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button correctLineUp, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, almostAutoGear, lightTest, killSwitch, safeMode, pivotFrontDrive, pivotBackDrive, toggleDustpan, automatedIntakeDriver1, automatedIntakeDriver2, automatedIntakeOperator;
+	Button correctLineUp, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, almostAutoGear, lightTest, killSwitch1, killSwitch2, safeMode, pivotFrontDrive, pivotBackDrive, toggleDustpan, automatedIntakeDriver1, automatedIntakeDriver2, automatedIntakeOperator;
 	
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
@@ -62,8 +62,11 @@ public class OI {
 		rotateRight = new JoystickPOVButton(controllers[ControllerMap.mainDriveController], ControllerMap.rotateDrivetrainRightPOV);
 		rotateRight.whenPressed(new RotateDrivetrainWithGyro(1, 47));
 		
-		killSwitch = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.killSwitchButton);
-		killSwitch.whenPressed(new KillSwitch());
+		killSwitch1 = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.killSwitchButton1);
+		killSwitch1.whenPressed(new KillSwitch());
+		
+		killSwitch2 = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.killSwitchButton2);
+		killSwitch2.whenPressed(new KillSwitch());
 		
 //		safeMode = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.safeModeButton);
 //		safeMode.whenPressed(new SafeMode());
