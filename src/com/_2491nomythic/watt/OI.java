@@ -7,7 +7,7 @@ import com._2491nomythic.watt.commands.drivetrain.NoTurnLock;
 import com._2491nomythic.watt.commands.drivetrain.PivotDriveBack;
 import com._2491nomythic.watt.commands.drivetrain.PivotDriveFront;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
-import com._2491nomythic.watt.commands.drivetrain.SafeMode;
+//import com._2491nomythic.watt.commands.drivetrain.SafeMode;
 import com._2491nomythic.watt.commands.dustpan.AutomatedPickup;
 import com._2491nomythic.watt.commands.dustpan.FlipDustpan;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
