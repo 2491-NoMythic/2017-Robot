@@ -37,8 +37,8 @@ public class OI {
 		noTurnLock = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.noTurnLockButton);
 		noTurnLock.whileHeld(new NoTurnLock());
 		
-		correctLineUp = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.correctLineUpButton);
-		correctLineUp.whenPressed(new AngleOnPeg(.2));
+//		correctLineUp = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.correctLineUpButton);
+//		correctLineUp.whenPressed(new AngleOnPeg(.2));
 		
 		climb = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.climbButton);
 		climb.whileHeld(new Climb());
@@ -64,8 +64,8 @@ public class OI {
 		killSwitch = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.killSwitchButton);
 		killSwitch.whenPressed(new KillSwitch());
 		
-		safeMode = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.safeModeButton);
-		safeMode.whenPressed(new SafeMode());
+//		safeMode = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.safeModeButton);
+//		safeMode.whenPressed(new SafeMode());
 		
 		pivotFrontDrive = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.pivotFrontButton);
 		pivotFrontDrive.whileHeld(new PivotFront());
