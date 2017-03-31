@@ -149,7 +149,7 @@ public class AyyyyyMacarena extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return numberOfCycles == 5 && state ==  1;
+        return numberOfCycles == 5 && state == 1;
     }
 
     // Called once after isFinished returns true
