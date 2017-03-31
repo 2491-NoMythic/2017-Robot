@@ -1,10 +1,31 @@
 <xml version="1.0">
 <dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="1056" y="268"/>
+		<width>60</width>
+		<height>36</height>
+		<property name="Text" value="Target"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="624" y="541"/>
+		<width>144</width>
+		<height>35</height>
+		<property name="Text" value="Connected"/>
+	</static-widget>
+	<widget field="Center Encoder Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="151"/>
+	</widget>
+	<widget field="Rotate 90 Experimental" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="250"/>
+	</widget>
+	<widget field="Rotate -90 Experimental" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="111"/>
+	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
 		<location x="0" y="527"/>
 		<width>1408</width>
 		<height>65</height>
-		<property name="Connection Color" value="153.0.51.255"/>
+		<property name="Connection Color" value="153.0.153.255"/>
 		<property name="No Connection Color" value="0.0.0.255"/>
 	</static-widget>
 	<widget field="syncword: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
@@ -113,14 +134,4 @@
 </dashboard>
 <live-window>
 </live-window>
-	<hidden field="Pixy error: 5"/>
-	<hidden field="Pixy error: 4"/>
-	<hidden field="Shooter"/>
-	<hidden field="Has Target: "/>
-	<hidden field="Pixy error: 7"/>
-	<hidden field="Pixy error: 6"/>
-	<hidden field="Pixy error: 1"/>
-	<hidden field="Target: "/>
-	<hidden field="Pixy error: 3"/>
-	<hidden field="Pixy error: 2"/>
 </xml>
