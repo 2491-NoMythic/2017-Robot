@@ -25,6 +25,7 @@ public class Drivetrain extends PIDSubsystem {
 	
 	private static Drivetrain instance;
 	
+	
 	public static Drivetrain getInstance() {
 		if (instance == null) {
 			instance = new Drivetrain();
@@ -36,8 +37,9 @@ public class Drivetrain extends PIDSubsystem {
 	 * The system of motors, solenoids, encoders, and a gyro that allows us to drive the robot
 	 */
 	private Drivetrain() {
-		super(Variables.drivetrainPID_P, Variables.drivetrainPID_I, Variables.drivetrainPID_D);
-		setAbsoluteTolerance(2);
+		super("Drive", Variables.drivetrainPID_P, Variables.drivetrainPID_I, Variables.drivetrainPID_D);
+		setAbsoluteTolerance(1);
+		getPIDController().setContinuous(true);
 		
 		left1 = new CANTalon(Constants.driveTalonLeft1Channel);
 		left2 = new CANTalon(Constants.driveTalonLeft2Channel);
