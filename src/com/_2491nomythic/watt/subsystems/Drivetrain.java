@@ -135,8 +135,8 @@ public class Drivetrain extends PIDSubsystem {
 	 * @param rightSpeed The desired speed for the right motor
 	 */
 	public void driveCenterPID(double leftSpeed, double rightSpeed){
-		centerLeft.pidWrite(leftSpeed);
-		centerRight.pidWrite(-rightSpeed);
+		setSetpoint(leftSpeed);
+		setSetpoint(-rightSpeed);
 	}
 	
 	public void driveLeftRightPID(double leftSpeed, double rightSpeed) {
@@ -327,7 +327,7 @@ public class Drivetrain extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		currentPIDOutput = output;
+		drive(output, -output, 0, 0);
 	}
 	
 	/**
