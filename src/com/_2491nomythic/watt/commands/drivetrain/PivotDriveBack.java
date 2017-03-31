@@ -8,10 +8,10 @@ import com._2491nomythic.watt.settings.ControllerMap;
  *
  */
 public class PivotDriveBack extends CommandBase {
-	private double speed, turnSpeed, centerSpeed;
+	private double speed, centerSpeed, forAftSpeed;
 
     public PivotDriveBack() {
-    	centerSpeed = turnSpeed * .5;
+    	requires(drivetrain);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -22,16 +22,21 @@ public class PivotDriveBack extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	speed = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, .1);
+    	if (oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, .1) == 0 || oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, .1) == 0 || oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveTurnAxis, .1) == 0) {
+    		speed = 0;
+    		centerSpeed = 0;
+    	}
+    		forAftSpeed = -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, .1);
     	if (Math.abs(oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveTurnAxis, .1)) > 0) {
-    		turnSpeed = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveTurnAxis, .1);
+    		speed = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveTurnAxis, .1);
+    		centerSpeed = speed;
     	}
-    	else {
-    		turnSpeed = oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, .1);
+    	else if (Math.abs(oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, .1)) > 0) {
+    		speed = -oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, .1);
+    		centerSpeed = speed;
     	}
-    	drivetrain.drive(speed);
-    	drivetrain.driveLeft(turnSpeed);
-    	drivetrain.driveRight(-turnSpeed);
+    	drivetrain.driveLeft(speed + forAftSpeed);
+    	drivetrain.driveRight(-speed + forAftSpeed);
     	drivetrain.driveCenter(centerSpeed, Constants.pivotDriveRatio * centerSpeed);
     }
 

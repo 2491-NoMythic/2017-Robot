@@ -2,7 +2,6 @@ package com._2491nomythic.watt.commands.dustpan;
 
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.Variables;
-import com._2491nomythic.watt.subsystems.Drivetrain;
 
 /**
  *
