@@ -129,7 +129,7 @@ public class Drive extends CommandBase {
 			}
 			double centerAcceleration = (currentCenterSpeed - lastCenterSpeed);
 			double signOfCenterAcceleration = centerAcceleration / Math.abs(centerAcceleration);
-			if (Math.abs(centerAcceleration) > Variables.accelerationSpeed) { // otherwise the power is below 0.05 accel and is fine
+			if (Math.abs(centerAcceleration) > Variables.centerAccelerationSpeed) { // otherwise the power is below 0.05 accel and is fine
 				if (Math.abs(currentCenterSpeed) - Math.abs(lastCenterSpeed) > 0) {
 					System.out.println(currentCenterSpeed + " was too high, setting to " + (lastCenterSpeed + (Variables.accelerationSpeed * signOfCenterAcceleration)));
 					currentCenterSpeed = lastCenterSpeed + (Variables.accelerationSpeed * signOfCenterAcceleration);

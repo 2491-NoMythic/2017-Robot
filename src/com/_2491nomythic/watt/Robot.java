@@ -81,6 +81,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Coast Mode", new EnableCoastMode());
         SmartDashboard.putBoolean("Automatic Transmission", Variables.useAutomaticTransmission);
         SmartDashboard.putBoolean("Use Linear Acceleration",Variables.useLinearAcceleration);
+        SmartDashboard.putNumber("Slide Drive Acceleration Value", Variables.centerAccelerationSpeed);
         SmartDashboard.putData("Drive with speed for 2 secs", new DriveSpeedTime(30, 2));
     }
 	

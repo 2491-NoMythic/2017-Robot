@@ -12,6 +12,7 @@ public class Variables {
 	public static boolean useLinearAcceleration = true;
 	public static boolean useAutomaticTransmission = true;
 	public static double accelerationSpeed = 0.05;
+	public static double centerAccelerationSpeed = 0.02;
 	public static double wheelCircumference = 0.5 * Math.PI;
 	
 	public static double lowGearMaxSpeedFeetPerSecond = 6.51;
