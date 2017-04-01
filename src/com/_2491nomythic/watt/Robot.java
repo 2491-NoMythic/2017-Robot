@@ -17,6 +17,7 @@ import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainPseudoPID;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
+import com._2491nomythic.watt.commands.dustpan.PushOut;
 import com._2491nomythic.watt.commands.vision.AngleOnPeg;
 import com._2491nomythic.watt.commands.vision.CenterOnPeg;
 import com._2491nomythic.watt.settings.Variables;
@@ -73,6 +74,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Reset Encoders", new ResetEncoders());
         SmartDashboard.putData("Rotate 90 Experimental", new RotateDrivetrainPseudoPID(90));
         SmartDashboard.putData("Rotate -90 Experimental", new RotateDrivetrainPseudoPID(-90));
+        SmartDashboard.putData("Push Gear From Dustpan", new PushOut());
         SmartDashboard.putNumber("PID P Value", 1.0);
         SmartDashboard.putNumber("Shift Up Speed", Variables.shiftUpPercentage);
         SmartDashboard.putNumber("Time To Engage Pneumatics For Shifter (in seconds)", Variables.shiftEngagePneumaticsTime);
