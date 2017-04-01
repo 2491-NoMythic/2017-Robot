@@ -15,7 +15,6 @@ public class RunIntake extends CommandBase {
     public RunIntake() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(dustpan);
     }
 
     // Called just before this Command runs the first time
