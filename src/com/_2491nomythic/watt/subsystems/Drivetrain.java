@@ -13,6 +13,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The system of motors, solenoids, encoders, and a gyro that allows us to drive the robot
@@ -328,8 +329,8 @@ public class Drivetrain extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		drive(output, -output, 0, 0);
-		System.out.println("PID drive 2");
+		driveCenterPID(output, -output);
+		SmartDashboard.putNumber("PID drive 2", output);
 		System.out.print(output);
 	}
 	

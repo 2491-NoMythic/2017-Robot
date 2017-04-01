@@ -16,6 +16,7 @@ import com._2491nomythic.watt.commands.drivetrain.EnableCoastMode;
 import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainPseudoPID;
+import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
 import com._2491nomythic.watt.commands.vision.AngleOnPeg;
 import com._2491nomythic.watt.commands.vision.CenterOnPeg;
 import com._2491nomythic.watt.settings.Variables;
@@ -65,6 +66,7 @@ public class Robot extends IterativeRobot {
         chooser.addObject("Vision Right", new VisionRight());
         //SmartDashboard Buttons and Data
         SmartDashboard.putData("Auto mode", chooser);
+        SmartDashboard.putData("PID Turn", new RotateDrivetrainWithGyroPID(90));
         SmartDashboard.putData("Line Up To Peg", new CenterOnPeg(0.25));
         SmartDashboard.putData("Angle on Peg", new AngleOnPeg(0.25));
         SmartDashboard.putData("Reset Gyro", new ResetGyro());
