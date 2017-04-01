@@ -1,137 +1,125 @@
 <xml version="1.0">
 <dashboard>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
-		<location x="1056" y="268"/>
-		<width>60</width>
-		<height>36</height>
-		<property name="Text" value="Target"/>
-	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
-		<location x="624" y="541"/>
-		<width>144</width>
-		<height>35</height>
-		<property name="Text" value="Connected"/>
-	</static-widget>
-	<widget field="Center Encoder Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="151"/>
-	</widget>
-	<widget field="Rotate 90 Experimental" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="0" y="250"/>
-	</widget>
-	<widget field="Rotate -90 Experimental" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="0" y="111"/>
-	</widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
-		<location x="0" y="527"/>
-		<width>1408</width>
-		<height>65</height>
-		<property name="Connection Color" value="153.0.153.255"/>
-		<property name="No Connection Color" value="0.0.0.255"/>
-	</static-widget>
-	<widget field="syncword: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
-		<location x="1216" y="304"/>
-		<width>160</width>
-	</widget>
-	<widget field="Width: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
-		<location x="1216" y="327"/>
-		<width>160</width>
-	</widget>
-	<widget field="Height: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
-		<location x="1216" y="352"/>
-		<width>160</width>
-	</widget>
-	<widget field="Y Value: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
-		<location x="1056" y="352"/>
-		<width>160</width>
-	</widget>
-	<widget field="X Value: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
-		<location x="1056" y="327"/>
-		<width>160</width>
-	</widget>
-	<widget field="Pixy error: " type="String" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
-		<location x="1056" y="304"/>
-		<width>160</width>
-	</widget>
-	<widget field="Drivetrain" type="PIDSubsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-		<location x="464" y="80"/>
+	<widget field="Gyro in Degrees" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="68" y="71"/>
 	</widget>
 	<widget field="Left Encoder Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
-		<location x="176" y="182"/>
-	</widget>
-	<widget field="Gyro in Degrees" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
-		<location x="213" y="224"/>
+		<location x="31" y="48"/>
 	</widget>
 	<widget field="Right Encoder Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
-		<location x="167" y="203"/>
+		<location x="22" y="0"/>
 	</widget>
-	<widget field="Automatic Transmission" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="464" y="48"/>
-		<width>192</width>
-		<height>28</height>
-	</widget>
-	<widget field="Use Linear Acceleration" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="464" y="16"/>
-		<width>185</width>
-		<height>28</height>
-	</widget>
-	<widget field="" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="1056" y="0"/>
-		<width>344</width>
-		<height>304</height>
-	</widget>
-	<widget field="Reset Gyro" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="490" y="288"/>
-	</widget>
-	<widget field="Angle on Peg" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="858" y="9"/>
-	</widget>
-	<widget field="Vision" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-		<location x="487" y="150"/>
-	</widget>
-	<widget field="Reset Encoders" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="462" y="313"/>
-	</widget>
-	<widget field="Climber" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-		<location x="477" y="128"/>
-	</widget>
-	<widget field="Coast Mode" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="483" y="265"/>
-	</widget>
-	<widget field="Auto mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="656" y="262"/>
-	</widget>
-	<widget field="PID P Value" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="254" y="105"/>
+	<widget field="Center Encoder Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="14" y="23"/>
 	</widget>
 	<widget field="Time To Engage Pneumatics For Shifter (in seconds)" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="0"/>
-	</widget>
-	<widget field="Drive with speed for 2 secs" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="386" y="336"/>
-	</widget>
-	<widget field="GearSlot" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-		<location x="474" y="102"/>
-	</widget>
-	<widget field="Rotate Drivetrain Central PID" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="377" y="361"/>
-	</widget>
-	<widget field="Line Up To Peg" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="848" y="32"/>
+		<location x="937" y="0"/>
 	</widget>
 	<widget field="Shift Up Speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="233" y="84"/>
+		<location x="1171" y="22"/>
 	</widget>
-	<widget field="Time to open GearSlot doors" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="145" y="63"/>
+	<widget field="Use Linear Acceleration" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="303" y="36"/>
+		<width>174</width>
+		<height>31</height>
 	</widget>
-	<widget field="Total Shift Time (in seconds)" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="145" y="42"/>
+	<widget field="" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="512" y="0"/>
+		<width>416</width>
+		<height>256</height>
+	</widget>
+	<widget field="Automatic Transmission" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="304" y="0"/>
+		<width>180</width>
+		<height>32</height>
+	</widget>
+	<widget field="Auto mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="1" y="150"/>
+	</widget>
+	<widget field="Climber" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="317" y="96"/>
+	</widget>
+	<widget field="GearSlot" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="314" y="70"/>
+	</widget>
+	<widget field="Coast Mode" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="323" y="224"/>
+	</widget>
+	<widget field="Vision" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="327" y="118"/>
+	</widget>
+	<widget field="PID Turn" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="343" y="153"/>
+	</widget>
+	<widget field="Rotate -90 Experimental" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="243" y="272"/>
+	</widget>
+	<widget field="Reset Gyro" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="330" y="201"/>
+	</widget>
+	<widget field="Push Gear From Dustpan" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="240" y="320"/>
+	</widget>
+	<widget field="Angle on Peg" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="747" y="329"/>
+	</widget>
+	<widget field="Drive with speed for 2 secs" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="226" y="249"/>
+	</widget>
+	<widget field="Line Up To Peg" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="528" y="329"/>
+	</widget>
+	<widget field="Rotate 90 Experimental" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="251" y="297"/>
+	</widget>
+	<widget field="Reset Encoders" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="302" y="176"/>
+	</widget>
+	<widget field="Drive" type="PIDSubsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.PIDSubsystem">
+		<widget field="Controller" type="PIDController" class="edu.wpi.first.smartdashboard.gui.elements.PIDEditor">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<location x="289" y="70"/>
+	</widget>
+	<widget field="Dustpan Eject Motor Power" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1093" y="118"/>
 		<height>26</height>
 	</widget>
-	<widget field="Time to eject Gear" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="211" y="20"/>
+	<widget field="X Value: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="744" y="304"/>
+	</widget>
+	<widget field="Pixy error: " type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="730" y="256"/>
+	</widget>
+	<widget field="Y Value: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="744" y="278"/>
+	</widget>
+	<widget field="Height: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="540" y="278"/>
+	</widget>
+	<widget field="Width: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="546" y="304"/>
+	</widget>
+	<widget field="syncword: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="522" y="256"/>
+		<height>26</height>
+	</widget>
+	<widget field="Slide Drive Acceleration Value" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1075" y="70"/>
+	</widget>
+	<widget field="Dustpan Eject Motor Timing" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1086" y="48"/>
+	</widget>
+	<widget field="PID drive 2" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="90" y="96"/>
+	</widget>
+	<widget field="Total Shift Time (in seconds)" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1082" y="96"/>
 	</widget>
 </dashboard>
 <live-window>
 </live-window>
+	<hidden field="PID P Value"/>
 </xml>
