@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  *
  */
-@SuppressWarnings("deprecation")
 public class AyyyyyMacarena extends CommandBase {
 	private ToggleDoors open, close;
 	private FlipDustpan lower, raise;
