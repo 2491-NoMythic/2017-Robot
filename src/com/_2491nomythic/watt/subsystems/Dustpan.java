@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Dustpan extends Subsystem {
 	private DigitalInput limitSwitch;
 	private CANTalon intakeMotor;
-	private Solenoid turner1, turner2;
+	private Solenoid turner1;
 
 	private static Dustpan instance;
 
@@ -63,7 +63,6 @@ public class Dustpan extends Subsystem {
 	 */
 	public void flipUp() {
 		turner1.set(false);
-		turner2.set(false);
 	}
 
 	/**
@@ -71,7 +70,6 @@ public class Dustpan extends Subsystem {
 	 */
 	public void flipDown() {
 		turner1.set(true);
-		turner2.set(true);
 	}
 
 	/**
