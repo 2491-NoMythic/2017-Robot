@@ -4,6 +4,7 @@ import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
 import com._2491nomythic.watt.commands.drivetrain.PivotFrontAUTOONLY;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
+import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 import com._2491nomythic.watt.commands.gearslot.TogglePusher;
 
@@ -12,7 +13,7 @@ import com._2491nomythic.watt.commands.gearslot.TogglePusher;
  */
 public class AngledRight extends CommandBase {
 	private DriveStraightToPosition drivePastPeg, landPeg, impalePeg;
-	private RotateDrivetrainWithGyro aimForPeg;
+	private RotateDrivetrainWithGyroPID aimForPeg;
 	private PivotFrontAUTOONLY squareUp;
 	private OpenAndEjectGearSlot eject;
 	private TogglePusher extend, retract;
@@ -32,7 +33,7 @@ public class AngledRight extends CommandBase {
     	drivePastPeg = new DriveStraightToPosition(0.75,7.9);
     	landPeg = new DriveStraightToPosition(0.6,4.6);
     	impalePeg = new DriveStraightToPosition(0.85,0.35);
-    	aimForPeg = new RotateDrivetrainWithGyro(-0.4,70);
+    	aimForPeg = new RotateDrivetrainWithGyroPID(-110);
     	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, 0.35, -0.35, 0.5);
     	eject = new OpenAndEjectGearSlot();
     	extend = new TogglePusher();
