@@ -327,7 +327,9 @@ public class Drivetrain extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		currentPIDOutput = output;
+		drive(output, -output, 0, 0);
+		System.out.println("PID drive");
+		System.out.print(output);
 	}
 	
 	/**

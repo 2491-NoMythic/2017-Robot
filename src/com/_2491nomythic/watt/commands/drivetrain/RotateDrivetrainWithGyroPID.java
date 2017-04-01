@@ -21,19 +21,14 @@ public class RotateDrivetrainWithGyroPID extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(angle > 0) {
-    		direction = 1;
-    	}
-    	else if(angle < 0) {
-    		direction = -1;
-    	}
     	drivetrain.enable();
     	drivetrain.setSetpoint(angle);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	drivetrain.driveCenterPID(direction * drivetrain.getPIDOutput(), -direction * drivetrain.getPIDOutput());
+    	System.out.print(drivetrain.getPIDOutput());
+    	drivetrain.driveCenterPID(drivetrain.getPIDOutput(), -drivetrain.getPIDOutput());
     }
 
     // Make this return true when this Command no longer needs to run execute()
