@@ -5,11 +5,16 @@ import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.ControllerMap;
 
 /**
- *
+ * Allows the driver to pivot around the back side of the robot while driving.
  */
 public class PivotDriveBack extends CommandBase {
 	private double pivotSpeed, centerSpeed, speed;
-
+	
+	/**
+	 *  Allows the driver to pivot around the back side of the robot while driving.
+	 */
+	
+	
     public PivotDriveBack() {
     	requires(drivetrain);
         // Use requires() here to declare subsystem dependencies

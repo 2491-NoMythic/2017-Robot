@@ -6,11 +6,14 @@ import com._2491nomythic.watt.settings.ControllerMap;
 
 
 /**
- *
+ * Allows the driver to pivot around the front side of the robot while driving.
  */
 public class PivotDriveFront extends CommandBase {
 	private double pivotSpeed, centerSpeed, speed;
 
+	/**
+	 * Allows the driver to pivot around the front side of the robot while driving.
+	 */
     public PivotDriveFront() {
     	requires(drivetrain);
         // Use requires() here to declare subsystem dependencies
