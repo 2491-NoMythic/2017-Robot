@@ -7,7 +7,7 @@ import com._2491nomythic.watt.subsystems.Lights;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- *
+ * Makes the robot perform the Macarena. Runs four times.
  */
 public class AyyyyyMacarena extends CommandBase {
 	private ToggleDoors open, close;
@@ -15,6 +15,11 @@ public class AyyyyyMacarena extends CommandBase {
 	private Timer timer;
 	private double macarenaTime, numberOfCycles;
 	private int state;
+	
+	/**
+	 * Makes the robot perform the Macarena. Runs four times.
+	 * macarenaTime variable represents the time of each individual phase.
+	 */
 
     public AyyyyyMacarena() {
         // Use requires() here to declare subsystem dependencies
