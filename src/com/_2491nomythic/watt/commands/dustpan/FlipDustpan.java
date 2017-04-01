@@ -14,7 +14,6 @@ public class FlipDustpan extends CommandBase {
     public FlipDustpan() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(dustpan);
     }
 
     // Called just before this Command runs the first time
