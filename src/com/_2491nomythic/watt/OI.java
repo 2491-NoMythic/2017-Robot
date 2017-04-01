@@ -28,8 +28,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button correctLineUp, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, almostAutoGear, lightTest, killSwitch1, killSwitch2, safeMode, pivotFront, pivotBack, toggleDustpan, automatedIntakeDriver1, automatedIntakeDriver2, automatedIntakeOperator;
-	
+	Button correctLineUp, pivotFront, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, almostAutoGear, lightTest, killSwitch1, killSwitch2, safeMode, pivotBack, toggleDustpan, automatedIntakeDriver1, automatedIntakeDriver2, automatedIntakeOperator;
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
 		controllers[1] = new Joystick(Constants.ControllerTwoPort);
@@ -73,7 +72,7 @@ public class OI {
 		
 		pivotBack = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.pivotBackButton);
 		pivotBack.whileHeld(new PivotDriveBack());
-		
+
 		toggleDustpan = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.dustpanToggleButton);
 		toggleDustpan.whenPressed(new FlipDustpan());
 		
