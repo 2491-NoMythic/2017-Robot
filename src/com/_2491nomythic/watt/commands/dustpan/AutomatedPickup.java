@@ -4,7 +4,7 @@ import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.Variables;
 
 /**
- *
+ * Flips down the dustpan and runs the motor
  */
 public class AutomatedPickup extends CommandBase {
 	private static AutomatedPickup instance;
@@ -16,6 +16,9 @@ public class AutomatedPickup extends CommandBase {
 		return instance;
 	}
 	
+	/**
+	 * Flips down the dustpan and runs the motor
+	 */
     public AutomatedPickup() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
