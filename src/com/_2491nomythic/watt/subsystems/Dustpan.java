@@ -31,8 +31,7 @@ public class Dustpan extends Subsystem {
 	private Dustpan() {
 		limitSwitch = new DigitalInput(Constants.dustpanLimitSwitchChannel);
 		intakeMotor = new CANTalon(Constants.dustpanTalonChannel);
-		turner1 = new Solenoid(Constants.dustpanSolenoid1Channel);
-		turner2 = new Solenoid(Constants.dustpanSolenoid2Channel);
+		turner1 = new Solenoid(Constants.dustpanSolenoidChannel);
 	}
 
 	/**
