@@ -45,9 +45,9 @@ public class Variables {
 	public static boolean ejected = false;
 	
 	//Dustpan
-	public static double gearEjectPower = 0.25;
+	public static double gearEjectPower = -0.25;
 	public static double gearEjectTiming = 0.2;
-	public static double automatedIntakePower = -0.25;
+	public static double automatedIntakePower = 0.25;
 	
 	//Global Camera Variables
 	public static double x1;
