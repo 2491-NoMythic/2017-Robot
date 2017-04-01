@@ -145,8 +145,13 @@ public class Drive extends CommandBase {
     	currentLeftSpeed = Math.min(/*Variables.lowGearMaxSpeed*/1, Math.abs(currentLeftSpeed)) * (currentLeftSpeed > 0? 1: -1);
     	currentRightSpeed = Math.min(/*Variables.lowGearMaxSpeed*/1, Math.abs(currentRightSpeed)) * (currentRightSpeed > 0? 1: -1);
     	currentCenterSpeed = Math.min(1, Math.abs(currentCenterSpeed)) * (currentCenterSpeed > 0? 1: -1);
-    	    	
-    	drivetrain.drive(currentLeftSpeed, currentRightSpeed, currentCenterSpeed, currentCenterSpeed);
+    	
+    	if (oi.getButton(ControllerMap.mainDriveController, ControllerMap.driveReverseButton1) || oi.getButton(ControllerMap.mainDriveController, ControllerMap.driveReverseButton2)) {
+    		drivetrain.drive(-currentRightSpeed, -currentLeftSpeed, -currentCenterSpeed, -currentCenterSpeed);
+    	}
+    	else {
+    		drivetrain.drive(currentLeftSpeed, currentRightSpeed, currentCenterSpeed, currentCenterSpeed);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

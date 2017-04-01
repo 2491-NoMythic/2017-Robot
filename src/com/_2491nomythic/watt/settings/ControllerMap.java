@@ -20,6 +20,8 @@ public class ControllerMap {
 	public static final int manualShiftButton = 4;
 	public static final int automatedIntakeDriverButton1 = 11;
 	public static final int automatedIntakeDriverButton2 = 12;
+	public static final int driveReverseButton1 = 9;
+	public static final int driveReverseButton2 = 10;
 	
 	//Operator
 	public static final int secondaryDriveController = 1;
