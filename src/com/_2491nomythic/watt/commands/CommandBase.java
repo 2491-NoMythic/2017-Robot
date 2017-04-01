@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * The base for all commands. All atomic commands should subclass CommandBase. CommandBase stores creates and stores each control system. To access a subsystem elsewhere in your code in your code use CommandBase.exampleSubsystem
  */
-@SuppressWarnings("deprecation")
 public abstract class CommandBase extends Command {
 	protected static OI oi;
 	protected static Drivetrain drivetrain;
@@ -19,7 +18,6 @@ public abstract class CommandBase extends Command {
 	protected static Lights lights;
 	protected static Vision vision;
 	protected static Dustpan dustpan;
-	protected static Shooter shooter;
 	
 	public static void init() {
 		drivetrain = Drivetrain.getInstance();
@@ -27,7 +25,6 @@ public abstract class CommandBase extends Command {
 		gearslot = GearSlot.getInstance();
 		updateDriverstationSubsystem = UpdateDriverstationSubsystem.getInstance();
 		lights = Lights.getInstance();
-		shooter = Shooter.getInstance();
 		vision = Vision.getInstance();
 		dustpan = Dustpan.getInstance();
 		// This MUST be here. If the OI creates Commands (which it very likely

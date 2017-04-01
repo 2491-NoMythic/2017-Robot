@@ -14,7 +14,6 @@ public class KillSwitch extends CommandBase {
     	requires(drivetrain);
     	requires(climber);
     	requires(gearslot);
-    	requires(shooter);
     	requires(lights);
     }
 
