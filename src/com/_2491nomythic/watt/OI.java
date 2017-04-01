@@ -74,7 +74,7 @@ public class OI {
 		pivotBack.whileHeld(new PivotDriveBack());
 
 		toggleDustpan = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.dustpanToggleButton);
-		toggleDustpan.whileHeld(new FlipDustpan());
+		toggleDustpan.whenPressed(new FlipDustpan());
 		
 		automatedIntakeDriver1 = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.automatedIntakeDriverButton1);
 		automatedIntakeDriver1.whileHeld(AutomatedPickup.getInstance());
