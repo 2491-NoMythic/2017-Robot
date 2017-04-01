@@ -20,7 +20,7 @@ public class PushOut extends CommandBase{
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(dustpan);
-    	driveBack = new DriveStraightToPosition(-1, 2);
+    	driveBack = new DriveStraightToPosition(1, 2);
     }
 
     // Called just before this Command runs the first time
@@ -29,13 +29,13 @@ public class PushOut extends CommandBase{
     	timer = new Timer();
     	timer.reset();
     	timer.start();
-    	dustpan.runMotor(Variables.gearEjectPower);
+    	dustpan.flipDown();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(timer.get() > Variables.gearEjectTiming) {
-    		dustpan.flipDown();
+    		dustpan.runMotor(Variables.gearEjectPower);
     		driveBack.start();
     		hasEjected = true;
     	}
