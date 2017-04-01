@@ -6,7 +6,7 @@ import com._2491nomythic.watt.commands.CommandBase;
  * Rotates the drivetrain to a specified angle using PID
  */
 public class RotateDrivetrainWithGyroPID extends CommandBase {
-	private double  angle, initialAngle;
+	private double  target, initialAngle;
 
 	/**
 	 * Rotates the drivetrain to a specified angle using PID
@@ -15,14 +15,13 @@ public class RotateDrivetrainWithGyroPID extends CommandBase {
     public RotateDrivetrainWithGyroPID(double angle) {
         // Use requires() here to declare subsystem dependencies
       	requires(drivetrain);
-    	initialAngle = drivetrain.getGyroAngle();
-    	this.angle = angle + initialAngle;
+    	target = angle;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	drivetrain.setSetpoint(target);
     	drivetrain.enable();
-    	drivetrain.setSetpoint(angle);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -38,8 +37,8 @@ public class RotateDrivetrainWithGyroPID extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	drivetrain.stop();
     	drivetrain.disable();
+    	drivetrain.stop();
     }
 
     // Called when another command which requires one or more of the same

@@ -39,8 +39,8 @@ public class Drivetrain extends PIDSubsystem {
 	 */
 	private Drivetrain() {
 		super("Drive", Variables.drivetrainPID_P, Variables.drivetrainPID_I, Variables.drivetrainPID_D);
-		setAbsoluteTolerance(1);
-		getPIDController().setContinuous(true);
+		setAbsoluteTolerance(2);
+		getPIDController().setContinuous(false);
 		
 		left1 = new CANTalon(Constants.driveTalonLeft1Channel);
 		left2 = new CANTalon(Constants.driveTalonLeft2Channel);
@@ -142,7 +142,11 @@ public class Drivetrain extends PIDSubsystem {
 	
 	public void driveLeftRightPID(double leftSpeed, double rightSpeed) {
 		left1.pidWrite(leftSpeed);
+		left2.pidWrite(leftSpeed);
+		left3.pidWrite(leftSpeed);
 		right1.pidWrite(rightSpeed);
+		right2.pidWrite(rightSpeed);
+		right3.pidWrite(rightSpeed);
 	}
 	
 	
@@ -329,9 +333,8 @@ public class Drivetrain extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		driveCenterPID(output, -output);
+		drive(-output, output, 0, 0);
 		SmartDashboard.putNumber("PID drive 2", output);
-		System.out.print(output);
 	}
 	
 	/**
