@@ -19,7 +19,7 @@ public class FlipDustpan extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	dustpan.flipDown();
+    	dustpan.runLeverAxis();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -33,7 +33,6 @@ public class FlipDustpan extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	dustpan.flipUp();
     }
 
     // Called when another command which requires one or more of the same
