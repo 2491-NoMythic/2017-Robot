@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * Some stuff needed for vision
  */
-public class CameraI2CType {
+public class CameraI2C {
 	String name;
 	I2C camera;
 	CameraPacket[] packets;
@@ -17,7 +17,7 @@ public class CameraI2CType {
 	/**
 	 * Some stuff needed for vision
 	 */
-	public CameraI2CType(String id, I2C pixyI2C, CameraPacket[] pixyPacket, CameraException pixyException) {
+	public CameraI2C(String id, I2C pixyI2C, CameraPacket[] pixyPacket, CameraException pixyException) {
 		camera = pixyI2C;
 		packets = pixyPacket;
 		exc = pixyException;

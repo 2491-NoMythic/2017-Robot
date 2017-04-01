@@ -4,14 +4,12 @@ package com._2491nomythic.watt.settings;
  * Various information needed for robot functionality that can be modified by the code itself
  */
 public class Variables {
-	public static double frontPivotCoefficient = 1;
-	public static double backPivotCoefficient = 1;
-	public static double pivotCoefficientAmount = 0;
 	
 	//Linear Acceleration
 	public static boolean useLinearAcceleration = true;
 	public static boolean useAutomaticTransmission = true;
 	public static double accelerationSpeed = 0.05;
+	public static double centerAccelerationSpeed = 0.02;
 	public static double wheelCircumference = 0.5 * Math.PI;
 	
 	public static double lowGearMaxSpeedFeetPerSecond = 6.51;
@@ -47,7 +45,9 @@ public class Variables {
 	public static boolean ejected = false;
 	
 	//Dustpan
-	public static double ejectTiming = 0.2;
+	public static double gearEjectPower = 0.25;
+	public static double gearEjectTiming = 0.2;
+	public static double automatedIntakePower = -0.25;
 	
 	//Global Camera Variables
 	public static double x1;
@@ -58,10 +58,11 @@ public class Variables {
 	public static double y2;
 	public static double height2;
 	public static double width2;
-	public static double avgHeight = (height1 + height2)/2;
-	public static double avgWidth = (width1 + width2)/2;
-	public static double avgX = (x1 + x2)/2;
-	public static double avgY = (y1 + y2)/2;
+	public static double avgHeight;
+	public static double avgWidth;
+	public static double avgX;
+	public static double avgY;
+	public static double avgArea;
 	public static boolean hasTarget;
 
 }

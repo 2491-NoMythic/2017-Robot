@@ -4,15 +4,15 @@ import com._2491nomythic.util.JoystickPOVButton;
 import com._2491nomythic.watt.commands.KillSwitch;
 import com._2491nomythic.watt.commands.climber.Climb;
 import com._2491nomythic.watt.commands.drivetrain.NoTurnLock;
-import com._2491nomythic.watt.commands.drivetrain.PivotBack;
-import com._2491nomythic.watt.commands.drivetrain.PivotFront;
+import com._2491nomythic.watt.commands.drivetrain.PivotDriveBack;
+import com._2491nomythic.watt.commands.drivetrain.PivotDriveFront;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
-import com._2491nomythic.watt.commands.drivetrain.SafeMode;
+//import com._2491nomythic.watt.commands.drivetrain.SafeMode;
+import com._2491nomythic.watt.commands.dustpan.AutomatedPickup;
 import com._2491nomythic.watt.commands.dustpan.FlipDustpan;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlotWithoutMoving;
 import com._2491nomythic.watt.commands.gearslot.TogglePusher;
-import com._2491nomythic.watt.commands.vision.AngleOnPeg;
 import com._2491nomythic.watt.commands.gearslot.ToggleDoors;
 import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.ControllerMap;
@@ -28,8 +28,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button correctLineUp, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, almostAutoGear, lightTest, killSwitch, safeMode, pivotFrontDrive, pivotBackDrive, toggleDustpan;
-	
+	Button correctLineUp, pivotFront, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, almostAutoGear, lightTest, killSwitch1, killSwitch2, safeMode, pivotBack, toggleDustpan, automatedIntakeDriver1, automatedIntakeDriver2, automatedIntakeOperator;
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
 		controllers[1] = new Joystick(Constants.ControllerTwoPort);
@@ -37,8 +36,6 @@ public class OI {
 		noTurnLock = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.noTurnLockButton);
 		noTurnLock.whileHeld(new NoTurnLock());
 		
-		correctLineUp = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.correctLineUpButton);
-		correctLineUp.whenPressed(new AngleOnPeg(.2));
 		
 		climb = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.climbButton);
 		climb.whileHeld(new Climb());
@@ -61,20 +58,32 @@ public class OI {
 		rotateRight = new JoystickPOVButton(controllers[ControllerMap.mainDriveController], ControllerMap.rotateDrivetrainRightPOV);
 		rotateRight.whenPressed(new RotateDrivetrainWithGyro(1, 47));
 		
-		killSwitch = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.killSwitchButton);
-		killSwitch.whenPressed(new KillSwitch());
+		killSwitch1 = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.killSwitchButton1);
+		killSwitch1.whenPressed(new KillSwitch());
 		
-		safeMode = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.safeModeButton);
-		safeMode.whenPressed(new SafeMode());
+		killSwitch2 = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.killSwitchButton2);
+		killSwitch2.whenPressed(new KillSwitch());
 		
-		pivotFrontDrive = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.pivotFrontButton);
-		pivotFrontDrive.whileHeld(new PivotFront());
+//		safeMode = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.safeModeButton);
+//		safeMode.whenPressed(new SafeMode());
 		
-		pivotBackDrive = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.pivotBackButton);
-		pivotBackDrive.whileHeld(new PivotBack());
+		pivotFront = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.pivotFrontButton);
+		pivotFront.whileHeld(new PivotDriveFront());
 		
+		pivotBack = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.pivotBackButton);
+		pivotBack.whileHeld(new PivotDriveBack());
+
 		toggleDustpan = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.dustpanToggleButton);
 		toggleDustpan.whenPressed(new FlipDustpan());
+		
+		automatedIntakeDriver1 = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.automatedIntakeDriverButton1);
+		automatedIntakeDriver1.whileHeld(AutomatedPickup.getInstance());
+		
+		automatedIntakeDriver2 = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.automatedIntakeDriverButton2);
+		automatedIntakeDriver2.whileHeld(AutomatedPickup.getInstance());
+		
+		automatedIntakeOperator = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.automatedIntakeOperatorButton);
+		automatedIntakeOperator.whileHeld(AutomatedPickup.getInstance());
 	}
 	
 	/**
