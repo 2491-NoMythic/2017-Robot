@@ -70,7 +70,7 @@ public class Vision extends Subsystem {
 		}
 	}
 	
-	public CameraPacket[] getPegPosition() {
+	public CameraPacket[] FindGearTarget() {
 		CameraPacket[] blocks = pixy.readBlocks();
 		if (blocks == null)
 			return null;
@@ -79,8 +79,8 @@ public class Vision extends Subsystem {
 		return blocks;
 	}
 	
-	public GearTarget getGearTarget() {
-		CameraPacket[] tacket = getPegPosition();
+	public GearTarget GearTargetFeed() {
+		CameraPacket[] tacket = FindGearTarget();
 		if (tacket == null || (tacket[0] == null && tacket[1] == null)) {
 			return null;
 		}
