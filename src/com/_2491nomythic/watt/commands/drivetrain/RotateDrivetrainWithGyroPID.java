@@ -6,7 +6,7 @@ import com._2491nomythic.watt.commands.CommandBase;
  * Rotates the drivetrain to a specified angle using PID
  */
 public class RotateDrivetrainWithGyroPID extends CommandBase {
-	private double  target, initialAngle;
+	private double  target;
 
 	/**
 	 * Rotates the drivetrain to a specified angle using PID

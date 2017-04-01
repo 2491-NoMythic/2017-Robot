@@ -10,7 +10,7 @@ import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 //import com._2491nomythic.watt.commands.drivetrain.SafeMode;
 import com._2491nomythic.watt.commands.dustpan.AutomatedPickup;
 import com._2491nomythic.watt.commands.dustpan.FlipDustpan;
-import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
+import com._2491nomythic.watt.commands.dustpan.PushOut;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlotWithoutMoving;
 import com._2491nomythic.watt.commands.gearslot.TogglePusher;
 import com._2491nomythic.watt.commands.gearslot.ToggleDoors;
@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button correctLineUp, pivotFront, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, autoGear, almostAutoGear, lightTest, killSwitch1, killSwitch2, safeMode, pivotBack, toggleDustpan, automatedIntakeDriver1, automatedIntakeDriver2, automatedIntakeOperator;
+	Button dustpanPushOut, correctLineUp, pivotFront, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, almostAutoGear, lightTest, killSwitch1, killSwitch2, safeMode, pivotBack, toggleDustpan, automatedIntakeDriver1, automatedIntakeDriver2, automatedIntakeOperator;
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
 		controllers[1] = new Joystick(Constants.ControllerTwoPort);
@@ -46,8 +46,8 @@ public class OI {
 		ejectGear = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.pushGearButton);
 		ejectGear.whenPressed(new TogglePusher());
 		
-		autoGear = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.autoGearButton);
-		autoGear.whenPressed(new OpenAndEjectGearSlot());
+		dustpanPushOut = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.autoDustpanEjectButton);
+		dustpanPushOut.whenPressed(new PushOut());
 		
 		almostAutoGear = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.autoGearButtonWithoutMovement);
 		almostAutoGear.whenPressed(new OpenAndEjectGearSlotWithoutMoving());
