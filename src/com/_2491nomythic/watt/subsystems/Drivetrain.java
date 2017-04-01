@@ -141,11 +141,7 @@ public class Drivetrain extends PIDSubsystem {
 	
 	public void driveLeftRightPID(double leftSpeed, double rightSpeed) {
 		left1.pidWrite(leftSpeed);
-		left2.pidWrite(leftSpeed);
-		left3.pidWrite(leftSpeed);
 		right1.pidWrite(rightSpeed);
-		right2.pidWrite(rightSpeed);
-		right3.pidWrite(rightSpeed);
 	}
 	
 	
@@ -170,6 +166,11 @@ public class Drivetrain extends PIDSubsystem {
 	public void changeVerticalToSpeed() {
 		left1.changeControlMode(TalonControlMode.Speed);
 		right1.changeControlMode(TalonControlMode.Speed);
+	}
+	
+	public void changeVerticalToPosition() {
+		left1.changeControlMode(TalonControlMode.Position);
+		right1.changeControlMode(TalonControlMode.Position);
 	}
 	
 	/**
@@ -328,7 +329,7 @@ public class Drivetrain extends PIDSubsystem {
 	@Override
 	protected void usePIDOutput(double output) {
 		drive(output, -output, 0, 0);
-		System.out.println("PID drive");
+		System.out.println("PID drive 2");
 		System.out.print(output);
 	}
 	
