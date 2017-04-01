@@ -34,9 +34,11 @@ public class PushOut extends CommandBase{
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(timer.get() > Variables.gearEjectTiming) {
-    		dustpan.runMotor(Variables.gearEjectPower);
+    	if(timer.get() > (Variables.gearEjectTiming/2)) {
     		driveBack.start();
+    		dustpan.runMotor(Variables.gearEjectPower);
+    	}
+    	if(timer.get() > Variables.gearEjectTiming) {
     		hasEjected = true;
     	}
     }
