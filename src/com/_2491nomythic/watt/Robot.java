@@ -2,17 +2,16 @@
 package com._2491nomythic.watt;
 
 import com._2491nomythic.watt.commands.CommandBase;
-import com._2491nomythic.watt.commands.autonomous.DoNothing;
 import com._2491nomythic.watt.commands.autonomous.AngledCenter;
 import com._2491nomythic.watt.commands.autonomous.AngledLeft;
 import com._2491nomythic.watt.commands.autonomous.AngledRight;
+import com._2491nomythic.watt.commands.autonomous.DoNothing;
 import com._2491nomythic.watt.commands.autonomous.PassiveCenter;
 import com._2491nomythic.watt.commands.autonomous.PassiveLeft;
 import com._2491nomythic.watt.commands.autonomous.PassiveRight;
 import com._2491nomythic.watt.commands.autonomous.VisionCenter;
 import com._2491nomythic.watt.commands.autonomous.VisionLeft;
 import com._2491nomythic.watt.commands.autonomous.VisionRight;
-import com._2491nomythic.watt.commands.drivetrain.DriveSpeedTime;
 import com._2491nomythic.watt.commands.drivetrain.EnableCoastMode;
 import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
@@ -20,7 +19,6 @@ import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainPseudoPID;
 import com._2491nomythic.watt.commands.vision.AngleOnPeg;
 import com._2491nomythic.watt.commands.vision.CenterOnPeg;
 import com._2491nomythic.watt.settings.Variables;
-import com._2491nomythic.watt.subsystems.Lights;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -38,7 +36,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * 
  * 
  */
-@SuppressWarnings("deprecation")
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
@@ -84,7 +81,6 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Slide Drive Acceleration Value", Variables.centerAccelerationSpeed);
         SmartDashboard.putNumber("Dustpan Eject Motor Power", Variables.gearEjectPower);
         SmartDashboard.putNumber("Dustpan Eject Motor Timing", Variables.gearEjectTiming);
-        SmartDashboard.putData("Drive with speed for 2 secs", new DriveSpeedTime(30, 2));
     }
 	
 	/**
@@ -112,7 +108,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         autonomousCommand = (Command) chooser.getSelected();
         
-        Lights.activateLights();
+//        Lights.activateLights();
         
 		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		switch(autoSelected) {

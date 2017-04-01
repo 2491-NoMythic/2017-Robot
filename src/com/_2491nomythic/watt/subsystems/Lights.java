@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * The system that controls the lights
- * @deprecated
  */
 public class Lights extends Subsystem {
 	private PWM red, green, blue;
@@ -24,7 +23,6 @@ public class Lights extends Subsystem {
 	
 	/**
 	 * The system that controls the lights
-	 * @deprecated
 	 */
 	private Lights() {
 		red = new PWM(Constants.redLightChannel);
