@@ -53,8 +53,8 @@ public class Dustpan extends Subsystem {
 	 * Toggles whether or not the dustpan is flipped up or down
 	 */
 	public void runLeverAxis() {
-		if (turner1.get() == true) flipDown();
-		else if (turner1.get() == false) flipUp();
+		if (turner1.get() == false) flipDown();
+		else if (turner1.get() == true) flipUp();
 		else flipUp();
 	}
 
@@ -62,14 +62,14 @@ public class Dustpan extends Subsystem {
 	 * Flips the dustpan up
 	 */
 	public void flipUp() {
-		turner1.set(true);
+		turner1.set(false);
 	}
 
 	/**
 	 * Flips the dustpan down
 	 */
 	public void flipDown() {
-		turner1.set(false);
+		turner1.set(true);
 	}
 
 	/**
