@@ -70,7 +70,7 @@ public class Robot extends IterativeRobot {
         chooser.addObject("Vision Right", new VisionRight());
         //SmartDashboard Buttons and Data
         SmartDashboard.putData("Auto mode", chooser);
-        SmartDashboard.putData("PID Turn", new RotateDrivetrainWithGyroPID(-90));
+        SmartDashboard.putData("PID Turn", new RotateDrivetrainWithGyroPID(90));
         SmartDashboard.putData("Line Up To Peg", new CenterOnPeg(0.25));
         SmartDashboard.putData("Angle on Peg", new AngleOnPeg(0.25));
         SmartDashboard.putData("Reset Gyro", new ResetGyro());
