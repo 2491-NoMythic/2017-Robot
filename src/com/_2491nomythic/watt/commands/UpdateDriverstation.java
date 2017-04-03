@@ -43,6 +43,9 @@ public class UpdateDriverstation extends CommandBase {
 			Variables.centerAccelerationSpeed = SmartDashboard.getNumber("Slide Drive Acceleration Value", Variables.centerAccelerationSpeed);
 			Variables.gearEjectPower = SmartDashboard.getNumber("Dustpan Eject Motor Power", Variables.gearEjectPower);
 			Variables.gearEjectTiming = SmartDashboard.getNumber("Dustpan Eject Motor Timing", Variables.gearEjectTiming);
+			Variables.drivetrainPID_P = SmartDashboard.getNumber("Drivetrain PID P", Variables.drivetrainPID_P);
+			Variables.drivetrainPID_I = SmartDashboard.getNumber("Drivetrain PID I", Variables.drivetrainPID_I);
+			Variables.drivetrainPID_D = SmartDashboard.getNumber("Drivetrain PID D", Variables.drivetrainPID_D);
 			SmartDashboard.putNumber("Gyro in Degrees", drivetrain.getGyroAngle());
 			Variables.lowGearMaxSpeedFeetPerSecond = SmartDashboard.getNumber("Low Gear Max Speed (ft/s)", Variables.lowGearMaxSpeedFeetPerSecond);
 			SmartDashboard.putBoolean("Use Linear Acceleration", Variables.useLinearAcceleration);

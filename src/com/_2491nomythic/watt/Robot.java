@@ -88,6 +88,9 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Slide Drive Acceleration Value", Variables.centerAccelerationSpeed);
         SmartDashboard.putNumber("Dustpan Eject Motor Power", Variables.gearEjectPower);
         SmartDashboard.putNumber("Dustpan Eject Motor Timing", Variables.gearEjectTiming);
+        SmartDashboard.putNumber("Drivetrain PID P", Variables.drivetrainPID_P);
+        SmartDashboard.putNumber("Drivetrain PID I", Variables.drivetrainPID_I);
+        SmartDashboard.putNumber("Drivetrain PID D", Variables.drivetrainPID_D);
     }
 	
 	/**
