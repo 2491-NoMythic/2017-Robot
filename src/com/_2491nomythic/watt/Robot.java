@@ -28,6 +28,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Preferences;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -44,6 +45,8 @@ public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
     SendableChooser<Command> chooser;
+	Preferences pref;
+	double P;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -93,7 +96,7 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
      */
     public void disabledInit(){
-
+    	
     }
 	
 	public void disabledPeriodic() {
@@ -157,6 +160,8 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
+        SmartDashboard.putData("PID Turn", new RotateDrivetrainWithGyroPID(-90));
+        
     }
     
     

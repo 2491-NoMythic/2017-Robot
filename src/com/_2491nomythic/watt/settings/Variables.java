@@ -32,7 +32,7 @@ public class Variables {
 	public static double shiftTotalTime = 0.05;
 
 	//PID Constants
-	public static double drivetrainPID_P = 0.0;
+	public static double drivetrainPID_P = 0.02;
 	public static double drivetrainPID_I = 0.0;
 	public static double drivetrainPID_D = 0.0;
 	public static double encoderP = 0.0;

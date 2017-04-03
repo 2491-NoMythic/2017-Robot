@@ -333,7 +333,7 @@ public class Drivetrain extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		drive(-output, output, 0, 0);
+		drive(output, -output, 0, 0);
 		SmartDashboard.putNumber("PID drive 2", output);
 	}
 	
