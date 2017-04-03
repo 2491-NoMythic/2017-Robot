@@ -37,8 +37,8 @@ public class RotateDrivetrainWithGyroPID extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	drivetrain.disable();
     	drivetrain.stop();
+    	drivetrain.disable(); 	
     }
 
     // Called when another command which requires one or more of the same

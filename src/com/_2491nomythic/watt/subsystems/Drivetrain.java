@@ -39,7 +39,7 @@ public class Drivetrain extends PIDSubsystem {
 	 */
 	private Drivetrain() {
 		super("Drive", Variables.drivetrainPID_P, Variables.drivetrainPID_I, Variables.drivetrainPID_D);
-		setAbsoluteTolerance(1);
+		setAbsoluteTolerance(2);
 		getPIDController().setContinuous(false);
 		
 		left1 = new CANTalon(Constants.driveTalonLeft1Channel);
