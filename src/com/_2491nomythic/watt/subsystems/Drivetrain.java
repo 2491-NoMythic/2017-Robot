@@ -314,7 +314,7 @@ public class Drivetrain extends PIDSubsystem {
 	 * @return The value of the gyro
 	 */
 	public double getGyroAngle(){
-		return (getGyroAngle() % 360 + 360) % 360;
+		return (gyro.getAngle()  % 360 + 360) % 360;
 	}
 	
 	
@@ -329,7 +329,7 @@ public class Drivetrain extends PIDSubsystem {
 
 	@Override
 	protected double returnPIDInput() {
-		return (getGyroAngle() % 360 + 360) % 360;
+		return getGyroAngle();
 	}
 
 	@Override
