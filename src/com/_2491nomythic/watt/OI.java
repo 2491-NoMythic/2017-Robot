@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private final Joystick[] controllers = new Joystick[2];
-	Button dustpanPushOut, correctLineUp, pivotFront, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, almostAutoGear, lightTest, killSwitch1, killSwitch2, safeMode, pivotBack, toggleDustpan, automatedIntakeDriver1, automatedIntakeDriver2, automatedIntakeOperator;
+	Button dustpanPushOut, correctLineUp, pivotFront, openDoors, ejectGear, climb, autoLeftTest, autoRightTest, autoCenterTest, drive1FootTest, shift, noTurnLock, rotateLeft, rotateRight, speedTest, almostAutoGear, lightTest, killSwitch1, killSwitch2, safeMode, pivotBack, toggleDustpan, automatedIntakeDriver1, automatedIntakeDriver2, automatedIntakeOperator, turn180Left, turn180Right;
 	public void init() {
 		controllers[0] = new Joystick(Constants.ControllerOnePort);
 		controllers[1] = new Joystick(Constants.ControllerTwoPort);
@@ -84,6 +84,12 @@ public class OI {
 		
 		automatedIntakeOperator = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.automatedIntakeOperatorButton);
 		automatedIntakeOperator.whileHeld(AutomatedPickup.getInstance());
+		
+		turn180Left = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.rotateDrivetrainLeft180POV);
+		turn180Left.whenPressed(new RotateDrivetrainWithGyro(1,150));
+		
+		turn180Right = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.rotateDrivetrainRight180POV);
+		turn180Right.whenPressed(new RotateDrivetrainWithGyro(1,-150));
 	}
 	
 	/**

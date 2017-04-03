@@ -22,6 +22,8 @@ public class ControllerMap {
 	public static final int automatedIntakeDriverButton2 = 12;
 	public static final int driveReverseButton1 = 9;
 	public static final int driveReverseButton2 = 10;
+	public static final int rotateDrivetrainLeft180POV = 0;
+	public static final int rotateDrivetrainRight180POV = 180;
 	
 	//Operator
 	public static final int secondaryDriveController = 1;
