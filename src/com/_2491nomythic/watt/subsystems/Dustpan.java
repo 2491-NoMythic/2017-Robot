@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * The system that allow us to pick up a gear
  */
 public class Dustpan extends Subsystem {
-	private DigitalInput limitSwitch;
 	private CANTalon intakeMotor;
 	private Solenoid turner1;
 
@@ -29,7 +28,6 @@ public class Dustpan extends Subsystem {
 	 * The system that allow us to pick up a gear
 	 */
 	private Dustpan() {
-		limitSwitch = new DigitalInput(Constants.dustpanLimitSwitchChannel);
 		intakeMotor = new CANTalon(Constants.dustpanTalonChannel);
 		turner1 = new Solenoid(Constants.dustpanSolenoidChannel);
 	}
@@ -45,9 +43,6 @@ public class Dustpan extends Subsystem {
 	/**
 	 * @return Whether the limit switch has been pressed, indicating the gear is fully in the dustpan
 	 */
-	public boolean getLimitSwitch() {
-		return limitSwitch.get();
-	}
 
 	/**
 	 * Toggles whether or not the dustpan is flipped up or down
