@@ -55,7 +55,6 @@ public class Constants {
 	
 	//Dustpan
 	public static final int dustpanTalonChannel=21;
-	public static final int dustpanLimitSwitchChannel=1;
 	public static final int dustpanSolenoidChannel=7;
 	
 	//Vision
