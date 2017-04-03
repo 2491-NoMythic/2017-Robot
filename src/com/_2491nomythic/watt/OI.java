@@ -85,10 +85,10 @@ public class OI {
 		automatedIntakeOperator = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.automatedIntakeOperatorButton);
 		automatedIntakeOperator.whileHeld(AutomatedPickup.getInstance());
 		
-		turn180Left = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.rotateDrivetrainLeft180POV);
+		turn180Left = new JoystickPOVButton(controllers[ControllerMap.mainDriveController], ControllerMap.rotateDrivetrainLeft180POV);
 		turn180Left.whenPressed(new RotateDrivetrainWithGyro(1,130));
 		
-		turn180Right = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.rotateDrivetrainRight180POV);
+		turn180Right = new JoystickPOVButton(controllers[ControllerMap.mainDriveController], ControllerMap.rotateDrivetrainRight180POV);
 		turn180Right.whenPressed(new RotateDrivetrainWithGyro(1,-130));
 	}
 	
