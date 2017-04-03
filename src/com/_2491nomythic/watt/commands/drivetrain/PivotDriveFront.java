@@ -39,8 +39,15 @@ public class PivotDriveFront extends CommandBase {
     		pivotSpeed = .5 * oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveTurnAxis, .1);
     		centerSpeed = pivotSpeed;
     	}
-    	drivetrain.driveLeft(pivotSpeed + speed);
-    	drivetrain.driveRight(-pivotSpeed + speed);
+    	
+    	if (oi.getButton(ControllerMap.mainDriveController, ControllerMap.driveReverseButton1) || oi.getButton(ControllerMap.mainDriveController, ControllerMap.driveReverseButton2)) {
+    		drivetrain.driveLeft(pivotSpeed - speed);
+    		drivetrain.driveRight(-pivotSpeed - speed);
+    	}
+    	else {
+    		drivetrain.driveLeft(pivotSpeed + speed);
+    		drivetrain.driveRight(-pivotSpeed + speed);
+    	}
     	drivetrain.driveCenter(Constants.pivotDriveRatio * -centerSpeed, -centerSpeed);
     }
 
