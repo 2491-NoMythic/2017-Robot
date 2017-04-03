@@ -40,7 +40,8 @@ public class Drivetrain extends PIDSubsystem {
 	private Drivetrain() {
 		super("Drive", Variables.drivetrainPID_P, Variables.drivetrainPID_I, Variables.drivetrainPID_D);
 		setAbsoluteTolerance(2);
-		getPIDController().setContinuous(false);
+		setInputRange(0, 360);
+		getPIDController().setContinuous(true);
 		
 		left1 = new CANTalon(Constants.driveTalonLeft1Channel);
 		left2 = new CANTalon(Constants.driveTalonLeft2Channel);
@@ -313,7 +314,7 @@ public class Drivetrain extends PIDSubsystem {
 	 * @return The value of the gyro
 	 */
 	public double getGyroAngle(){
-		return gyro.getAngle();
+		return (getGyroAngle() % 360 + 360) % 360;
 	}
 	
 	
@@ -328,7 +329,7 @@ public class Drivetrain extends PIDSubsystem {
 
 	@Override
 	protected double returnPIDInput() {
-		return getGyroAngle();
+		return (getGyroAngle() % 360 + 360) % 360;
 	}
 
 	@Override
