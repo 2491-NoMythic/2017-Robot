@@ -141,6 +141,12 @@ public class Drivetrain extends PIDSubsystem {
 		centerRight.pidWrite(-rightSpeed);
 	}
 	
+	/**
+	 * Drives the left and right drive motors using PID
+	 * @param leftSpeed The desired speed for the left motors
+	 * @param rightSpeed The desired speed for the right motors
+	 * @deprecated
+	 */
 	public void driveLeftRightPID(double leftSpeed, double rightSpeed) {
 		left1.pidWrite(leftSpeed);
 		left2.pidWrite(leftSpeed);
@@ -149,7 +155,6 @@ public class Drivetrain extends PIDSubsystem {
 		right2.pidWrite(rightSpeed);
 		right3.pidWrite(rightSpeed);
 	}
-	
 	
 	/**
 	 * Stops all drive motion
@@ -174,6 +179,9 @@ public class Drivetrain extends PIDSubsystem {
 		right1.changeControlMode(TalonControlMode.Speed);
 	}
 	
+	/**
+	 * Changes vertical drive motors to Position mode
+	 */
 	public void changeVerticalToPosition() {
 		left1.changeControlMode(TalonControlMode.Position);
 		right1.changeControlMode(TalonControlMode.Position);

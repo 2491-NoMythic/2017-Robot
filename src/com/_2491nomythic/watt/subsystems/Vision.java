@@ -70,6 +70,9 @@ public class Vision extends Subsystem {
 		}
 	}
 	
+	/**
+	 * @return The camera packets from the pixy
+	 */
 	public CameraPacket[] FindGearTarget() {
 		CameraPacket[] blocks = pixy.readBlocks();
 		if (blocks == null)
@@ -79,6 +82,9 @@ public class Vision extends Subsystem {
 		return blocks;
 	}
 	
+	/**
+	 * @return The vision target for lining up a gear
+	 */
 	public GearTarget GearTargetFeed() {
 		CameraPacket[] tacket = FindGearTarget();
 		if (tacket == null || (tacket[0] == null && tacket[1] == null)) {

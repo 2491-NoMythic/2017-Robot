@@ -3,11 +3,15 @@ package com._2491nomythic.watt.commands.drivetrain;
 import com._2491nomythic.watt.commands.CommandBase;
 
 /**
- *
+ * Rotates the robot to a specific angle using the left and right motors and PID
  */
 public class RotateSidesPID extends CommandBase {
 	private double initialAngle, desiredAngle, direction;
 
+	/**
+	 * Rotates the robot to a specific angle using the left and right motors and PID
+	 * @param desiredAngle The angle the robot turns to, where negative values rotate the robot counterclockwise
+	 */
     public RotateSidesPID(double desiredAngle) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

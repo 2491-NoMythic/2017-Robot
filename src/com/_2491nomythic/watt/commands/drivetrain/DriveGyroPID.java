@@ -11,7 +11,7 @@ public class DriveGyroPID extends CommandBase {
 	
 	/**
 	 * Drives the robot based on the gyro using PID
-	 * @param target The target position used for the PID
+	 * @param target The target position used for PID
 	 */
     public DriveGyroPID(double target) {
         requires(drivetrain);

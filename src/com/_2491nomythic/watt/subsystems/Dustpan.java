@@ -40,10 +40,6 @@ public class Dustpan extends Subsystem {
 	}
 
 	/**
-	 * @return Whether the limit switch has been pressed, indicating the gear is fully in the dustpan
-	 */
-
-	/**
 	 * Toggles whether or not the dustpan is flipped up or down
 	 */
 	public void runLeverAxis() {

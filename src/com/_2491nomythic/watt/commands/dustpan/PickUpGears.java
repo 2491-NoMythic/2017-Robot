@@ -5,11 +5,13 @@ import com._2491nomythic.watt.commands.CommandBase;
 
 /**
  * Automatically picks a gear up  off of the ground
+ * @deprecated
  */
 public class PickUpGears extends CommandBase {
 
 	/**
 	 * Automatically picks a gear up  off of the ground
+	 * @deprecated
 	 */
     public PickUpGears() {
         // Use requires() here to declare subsystem dependencies
