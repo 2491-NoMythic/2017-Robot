@@ -1,7 +1,6 @@
 package com._2491nomythic.watt.commands.dustpan;
 
 import com._2491nomythic.watt.commands.CommandBase;
-import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
 import com._2491nomythic.watt.settings.Variables;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -11,41 +10,35 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class PushOut extends CommandBase{
 	private Timer timer;
-	private DriveStraightToPosition driveBack;
-	private boolean hasEjected;
 	/**
-	 * Ejects a gear from the dustpan
+	 * Ejects a gear from the dustpan and drives away from the peg.
 	 */
     public PushOut() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(dustpan);
-    	driveBack = new DriveStraightToPosition(1, 2);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	hasEjected = false;
     	timer = new Timer();
     	timer.reset();
     	timer.start();
     	dustpan.flipDown();
+    	dustpan.runMotor(Variables.gearEjectPower);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(timer.get() > (Variables.gearEjectTiming/2)) {
-    		driveBack.start();
-    		dustpan.runMotor(Variables.gearEjectPower);
-    	}
-    	if(timer.get() > Variables.gearEjectTiming) {
-    		hasEjected = true;
+    		drivetrain.driveLeft(.2);
+    		drivetrain.driveRight(.2);
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !driveBack.isRunning() && hasEjected;
+        return timer.get() > Variables.gearEjectTiming;
     }
 
     // Called once after isFinished returns true
