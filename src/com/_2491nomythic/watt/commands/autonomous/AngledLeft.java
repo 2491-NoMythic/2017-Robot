@@ -35,10 +35,9 @@ public class AngledLeft extends CommandBase {
     	drivePastPeg = new DriveStraightToPosition(0.75,7.9);
     	landPeg = new DriveStraightToPosition(0.6,4.6);
     	impalePeg = new DriveStraightToPosition(0.85,0.35);
-    	aimForPeg = new RotateDrivetrainWithGyroPID(110);
+    	aimForPeg = new RotateDrivetrainWithGyroPID(80);
     	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, -0.35, 0.35, 0.5);
     	eject = new OpenAndEjectGearSlot();
-    	extend = new TogglePusher();
     	retract = new TogglePusher();
     	timer = new Timer();
     }

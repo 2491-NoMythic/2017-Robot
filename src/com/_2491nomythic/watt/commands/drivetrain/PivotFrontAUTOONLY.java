@@ -42,7 +42,7 @@ public class PivotFrontAUTOONLY extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Math.abs(drivetrain.getCenterEncoderDistance()) - Math.abs(initialPosition) >= Math.abs(distance);
+        return Math.abs(drivetrain.getCenterEncoderDistance() - initialPosition) >= Math.abs(distance);
     }
 
     // Called once after isFinished returns true

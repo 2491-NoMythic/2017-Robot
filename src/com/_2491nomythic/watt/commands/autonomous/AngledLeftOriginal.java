@@ -3,6 +3,7 @@ package com._2491nomythic.watt.commands.autonomous;
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
 import com._2491nomythic.watt.commands.drivetrain.PivotFrontAUTOONLY;
+import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 import com._2491nomythic.watt.commands.gearslot.TogglePusher;
@@ -10,111 +11,101 @@ import com._2491nomythic.watt.commands.gearslot.TogglePusher;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * Attempts to deposit a gear onto the center gear peg by approaching it diagonally
+ * Attempts to deposit a gear onto the left gear peg by approaching it diagonally
  */
-public class AngledCenter extends CommandBase {
-	private DriveStraightToPosition driveNearPeg, landPeg, impalePeg;
-	private RotateDrivetrainWithGyroPID aimForPeg;
-	private PivotFrontAUTOONLY squareUp;
+public class AngledLeftOriginal extends CommandBase {
+	private DriveStraightToPosition drivePastPeg, landPeg, impalePeg;
+	private RotateDrivetrainWithGyro aimForPeg;
 	private OpenAndEjectGearSlot eject;
+	private PivotFrontAUTOONLY squareUp;
 	private TogglePusher extend, retract;
-	private Timer timer;
-	int state;
+	private int state;
 	
 	// Autonomous positioning numbers
-	// Left: As far to the left as possible (- inches from edge)
-	// Center: Lined up with peg
-	// Right: As far to the right as possible (- inches from center)
-	
-	//LINUX NUMBER 2 IS REQUIRED
-	
+		// Left: As far to the left as possible (- inches from edge)
+		// Center: Lined up with peg
+		// Right: As far to the right as possible (- inches from center)
+
 	/**
-	 * Attempts to deposit a gear onto the center gear peg by approaching it diagonally
+	 * Attempts to deposit a gear onto the left gear peg by approaching it diagonally
 	 */
-	public AngledCenter() {
+    public AngledLeftOriginal() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	driveNearPeg = new DriveStraightToPosition(0.75, 4.1);
-    	landPeg = new DriveStraightToPosition(0.75, 2.3);
-    	impalePeg = new DriveStraightToPosition(0.75,0.45);
-    	aimForPeg = new RotateDrivetrainWithGyroPID(45);
-    	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, -0.35, 0.35, 0.65);
+    	drivePastPeg = new DriveStraightToPosition(0.75,7.9);
+    	landPeg = new DriveStraightToPosition(0.6,4.6);
+    	impalePeg = new DriveStraightToPosition(0.85,0.35);
+    	aimForPeg = new RotateDrivetrainWithGyro(0.5, 47);
+    	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, -0.35, 0.35, 0.5);
     	eject = new OpenAndEjectGearSlot();
-    	extend = new TogglePusher();
     	retract = new TogglePusher();
-    	timer = new Timer();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	state = 1;
+    	state = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("Center Encoder Value: " + drivetrain.getCenterEncoderDistance());
-    	
-    	System.out.println("State: " + state);
-    	
     	switch(state) {
-    	case 1:
-    			driveNearPeg.start();
-    			state++;
+    	case 0:
+    		drivePastPeg.start();
+    		state++;
     		break;
-    	case 2:
-    		if(!driveNearPeg.isRunning()) {
-    			timer.start();
-    			timer.reset();
+    	case 1:
+    		if(!drivePastPeg.isRunning()) {
     			aimForPeg.start();
     			state++;
     		}
     		break;
-    	case 3:
-    		if(timer.get() > 2 || !aimForPeg.isRunning()) {
+    	case 2:
+    		if(!aimForPeg.isRunning()) {
+    			aimForPeg.cancel();
     			landPeg.start();
     			state++;
     		}
     		break;
-    	case 4:
+    	case 3:
     		if(!landPeg.isRunning()) {
     			squareUp.start();
     			state++;
     		}
     		break;
-    	case 5:
+    	case 4:
     		if(!squareUp.isRunning()) {
     			impalePeg.start();
     			state++;
     		}
     		break;
-    	case 6:
+    	case 5:
     		if(!impalePeg.isRunning()) {
     			eject.start();
     			state++;
     		}
     		break;
-    	case 7:
+    	case 6:
     		if(!eject.isRunning()) {
     			extend.start();
     			state++;
     		}
     		break;
-    	case 8:
+    	case 7:
     		if(!extend.isRunning()) {
     			retract.start();
     			state++;
     		}
     		break;
-    	case 9:
+    	case 8:
     		break;
     	default:
-    		System.out.println("Error in autonomous. State: " + state);
+    		System.out.println("Something went wrong in auto switchcase. State: " + state);
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !retract.isRunning() && state == 9;
+        return state == 8 && !retract.isRunning();
     }
 
     // Called once after isFinished returns true
@@ -124,7 +115,7 @@ public class AngledCenter extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	driveNearPeg.cancel();
+    	drivePastPeg.cancel();
     	landPeg.cancel();
     	impalePeg.cancel();
     	aimForPeg.cancel();
