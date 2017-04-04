@@ -36,7 +36,7 @@ public class AngledRight extends CommandBase {
     	landPeg = new DriveStraightToPosition(0.6,4.45);
     	impalePeg = new DriveStraightToPosition(0.85,0.35);
     	aimForPeg = new RotateDrivetrainWithGyroPID(-80);
-    	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, 0.35, -0.35, 0.5);
+    	squareUp = new PivotFrontAUTOONLY(-0.35, -0.35, 0.35, -0.35, 0.5);
     	eject = new OpenAndEjectGearSlot();
     	extend = new TogglePusher();
     	retract = new TogglePusher();
