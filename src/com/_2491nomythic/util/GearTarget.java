@@ -3,9 +3,17 @@ package com._2491nomythic.util;
 import com._2491nomythic.watt.settings.CameraPacket;
 import com._2491nomythic.watt.settings.Variables;
 
+/**
+ * The target position for vision to line up the gear
+ */
 public class GearTarget {
 	CameraPacket block1, block2;
 	
+	/**
+	 * The target position for vision to line up the gear
+	 * @param b1 One of the camera packets to compare
+	 * @param b2 The other camera packet to compare
+	 */
 	public GearTarget(CameraPacket b1, CameraPacket b2) {
 		block1 = b1;
 		block2 = b2;
