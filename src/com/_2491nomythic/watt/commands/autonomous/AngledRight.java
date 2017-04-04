@@ -33,7 +33,7 @@ public class AngledRight extends CommandBase {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	drivePastPeg = new DriveStraightToPosition(0.75,7.9);
-    	landPeg = new DriveStraightToPosition(0.6,4.3);
+    	landPeg = new DriveStraightToPosition(0.6,4.45);
     	impalePeg = new DriveStraightToPosition(0.85,0.35);
     	aimForPeg = new RotateDrivetrainWithGyroPID(-80);
     	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, 0.35, -0.35, 0.5);
