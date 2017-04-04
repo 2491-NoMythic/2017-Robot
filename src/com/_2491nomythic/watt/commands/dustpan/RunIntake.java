@@ -4,13 +4,13 @@ import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.ControllerMap;
 
 /**
- * Runs the intake motor on the dustpan
+ * Runs the intake motor on the dustpan according to driver control
  */
 public class RunIntake extends CommandBase {
 	//pew pew
 
 	/**
-	 * Runs the intake motor on the dustpan
+	 * Runs the intake motor on the dustpan according to driver control
 	 */
     public RunIntake() {
         // Use requires() here to declare subsystem dependencies
