@@ -7,6 +7,8 @@ import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 import com._2491nomythic.watt.commands.gearslot.TogglePusher;
 
+import edu.wpi.first.wpilibj.Timer;
+
 /**
  * Attempts to deposit a gear onto the right gear peg by approaching it diagonally
  */
@@ -16,6 +18,7 @@ public class AngledRight extends CommandBase {
 	private PivotFrontAUTOONLY squareUp;
 	private OpenAndEjectGearSlot eject;
 	private TogglePusher extend, retract;
+	private Timer timer;
 	private int state;
 	
 	// Autonomous positioning numbers
@@ -32,11 +35,12 @@ public class AngledRight extends CommandBase {
     	drivePastPeg = new DriveStraightToPosition(0.75,7.9);
     	landPeg = new DriveStraightToPosition(0.6,4.6);
     	impalePeg = new DriveStraightToPosition(0.85,0.35);
-    	aimForPeg = new RotateDrivetrainWithGyroPID(-110);
+    	aimForPeg = new RotateDrivetrainWithGyroPID(-80);
     	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, 0.35, -0.35, 0.5);
     	eject = new OpenAndEjectGearSlot();
     	extend = new TogglePusher();
     	retract = new TogglePusher();
+    	timer = new Timer();
     }
 
     // Called just before this Command runs the first time
@@ -53,12 +57,14 @@ public class AngledRight extends CommandBase {
     		break;
     	case 1:
     		if(!drivePastPeg.isRunning()) {
+    			timer.start();
+    			timer.reset();
     			aimForPeg.start();
     			state++;
     		}
     		break;
     	case 2:
-    		if(!aimForPeg.isRunning()) {
+    		if(!aimForPeg.isRunning() || timer.get() > 1.5) {
     			landPeg.start();
     			state++;
     		}

@@ -70,7 +70,7 @@ public class AngledCenter extends CommandBase {
     		}
     		break;
     	case 3:
-    		if(timer.get() > 2 || !aimForPeg.isRunning()) {
+    		if(timer.get() > 1.5 || !aimForPeg.isRunning()) {
     			landPeg.start();
     			state++;
     		}
