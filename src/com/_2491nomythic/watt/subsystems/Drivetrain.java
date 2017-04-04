@@ -145,6 +145,7 @@ public class Drivetrain extends PIDSubsystem {
 	 * Drives the left and right drive motors using PID
 	 * @param leftSpeed The desired speed for the left motors
 	 * @param rightSpeed The desired speed for the right motors
+	 * @deprecated
 	 */
 	public void driveLeftRightPID(double leftSpeed, double rightSpeed) {
 		left1.pidWrite(leftSpeed);
