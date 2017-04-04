@@ -7,14 +7,15 @@ import com._2491nomythic.watt.settings.Variables;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * Ejects a gear from the dustpan
+ * Ejects a gear from the dustpan onto a peg
  */
 public class PushOut extends CommandBase{
 	private Timer timer;
 	private DriveStraightToPosition driveBack;
 	private boolean hasEjected;
+	
 	/**
-	 * Ejects a gear from the dustpan
+	 * Ejects a gear from the dustpan onto a peg
 	 */
     public PushOut() {
         // Use requires() here to declare subsystem dependencies
