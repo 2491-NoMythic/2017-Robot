@@ -37,10 +37,6 @@ public class Constants {
 	public static final int gearDoorSolenoidChannel = 1;
 	public static final int gearPusherSolenoidChannel = 2;
 	
-	//Shooter
-	
-	public static final int shooterTalonChannel = 21;
-		
 	//Computation
 	public static final double driveEncoderToFeet = 1.0 / 670; //6.0 * Math.PI / 256 / 12; //TODO change this value to something more accurate.
 	
@@ -50,12 +46,12 @@ public class Constants {
 	//Lights
 	public static final int redLightChannel = 0;
 	public static final int blueLightChannel = 1;
-	public static final int greenLightChannel =2;
+	public static final int greenLightChannel = 2;
 	public static final int lightSolenoidChannel = 5;
 	
 	//Dustpan
-	public static final int dustpanTalonChannel=21;
-	public static final int dustpanSolenoidChannel=7;
+	public static final int dustpanTalonChannel = 21;
+	public static final int dustpanSolenoidChannel = 7;
 	
 	//Vision
 	public static final int xPerfectValue = 162;
