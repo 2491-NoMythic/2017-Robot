@@ -4,6 +4,7 @@ import com._2491nomythic.watt.commands.CommandBase;
 
 /**
  * Rotates the robot to a specific angle using the left and right motors and PID
+ * @deprecated
  */
 public class RotateSidesPID extends CommandBase {
 	private double initialAngle, desiredAngle, direction;
