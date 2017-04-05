@@ -32,11 +32,11 @@ public class AngledRight extends CommandBase {
     public AngledRight() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	drivePastPeg = new DriveStraightToPosition(0.75,7.9);
-    	landPeg = new DriveStraightToPosition(0.6,4.45);
-    	impalePeg = new DriveStraightToPosition(0.85,0.35);
+    	drivePastPeg = new DriveStraightToPosition(0.6,7.75);
+    	landPeg = new DriveStraightToPosition(0.6,4.8);
+    	impalePeg = new DriveStraightToPosition(0.6,0.35);
     	aimForPeg = new RotateDrivetrainWithGyroPID(-80);
-    	squareUp = new PivotFrontAUTOONLY(-0.35, -0.35, 0.35, -0.35, 0.5);
+    	squareUp = new PivotFrontAUTOONLY(-0.35, -0.35, 0.35, -0.35, 0.4);
     	eject = new OpenAndEjectGearSlot();
     	extend = new TogglePusher();
     	retract = new TogglePusher();
@@ -77,12 +77,13 @@ public class AngledRight extends CommandBase {
     		break;
     	case 4:
     		if(!squareUp.isRunning()) {
+    			timer.reset();
     			impalePeg.start();
     			state++;
     		}
     		break;
     	case 5:
-    		if(!impalePeg.isRunning()) {
+    		if(!impalePeg.isRunning() || timer.get() > 1.5) {
     			eject.start();
     			state++;
     		}
