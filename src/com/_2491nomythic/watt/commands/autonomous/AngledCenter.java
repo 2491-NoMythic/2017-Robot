@@ -36,7 +36,7 @@ public class AngledCenter extends CommandBase {
         // eg. requires(chassis);
     	driveNearPeg = new DriveStraightToPosition(0.75, 4.1);
     	landPeg = new DriveStraightToPosition(0.75, 2.3);
-    	impalePeg = new DriveStraightToPosition(0.75,0.45);
+    	impalePeg = new DriveStraightToPosition(0.75,0.3);
     	aimForPeg = new RotateDrivetrainWithGyroPID(30);
     	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, -0.35, 0.35, 0.6);
     	eject = new OpenAndEjectGearSlot();

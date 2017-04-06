@@ -32,8 +32,7 @@ public class AngledLeft extends CommandBase {
     public AngledLeft() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	drivePastPeg = new DriveStraightToPosition(0.6, 8.4);
-    	//drivePastPeg = new DriveStraightToPosition(0.6,8.55);
+    	drivePastPeg = new DriveStraightToPosition(0.6, 8.1);
     	landPeg = new DriveStraightToPosition(0.6,4.7);
     	impalePeg = new DriveStraightToPosition(0.85,0.35);
     	aimForPeg = new RotateDrivetrainWithGyroPID(80);
