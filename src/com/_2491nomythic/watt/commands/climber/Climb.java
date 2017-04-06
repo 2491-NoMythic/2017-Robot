@@ -24,7 +24,7 @@ public class Climb extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	climber.runClimberMotors(oi.getAxisDeadzonedSquared(ControllerMap.secondaryDriveController, ControllerMap.climbThrottleAxis, 0.05));
+    	climber.runClimberMotors(oi.getAxis(ControllerMap.secondaryDriveController, ControllerMap.climbThrottleAxis));
     }
 
     // Make this return true when this Command no longer needs to run execute()
