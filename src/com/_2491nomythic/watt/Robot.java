@@ -66,10 +66,6 @@ public class Robot extends IterativeRobot {
         chooser.addObject("Angled Left", new AngledLeft());
         chooser.addObject("Angled Center", new AngledCenter());
         chooser.addObject("Angled Right", new AngledRight());
-        chooser.addObject("Original Angled Left", new AngledLeftOriginal());
-        chooser.addObject("Vision Left", new VisionLeft());
-        chooser.addObject("Vision Center", new VisionCenter());
-        chooser.addObject("Vision Right", new VisionRight());
         //SmartDashboard Buttons and Data
         SmartDashboard.putData("Auto mode", chooser);
         SmartDashboard.putData("PID Turn", new RotateDrivetrainWithGyroPID(180));
