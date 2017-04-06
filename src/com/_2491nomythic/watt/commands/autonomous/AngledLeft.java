@@ -32,11 +32,12 @@ public class AngledLeft extends CommandBase {
     public AngledLeft() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	drivePastPeg = new DriveStraightToPosition(0.75,7.9);
-    	landPeg = new DriveStraightToPosition(0.6,4.6);
+    	drivePastPeg = new DriveStraightToPosition(0.6, 8.4);
+    	//drivePastPeg = new DriveStraightToPosition(0.6,8.55);
+    	landPeg = new DriveStraightToPosition(0.6,4.7);
     	impalePeg = new DriveStraightToPosition(0.85,0.35);
     	aimForPeg = new RotateDrivetrainWithGyroPID(80);
-    	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, -0.35, 0.35, 0.5);
+    	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, -0.35, 0.35, 0.4);
     	eject = new OpenAndEjectGearSlot();
     	extend = new TogglePusher();
     	retract = new TogglePusher();
@@ -64,26 +65,28 @@ public class AngledLeft extends CommandBase {
     		}
     		break;
     	case 2:
-    		if(timer.get() > 2 || !aimForPeg.isRunning()) {
+    		if(timer.get() > 1.5 || !aimForPeg.isRunning()) {
     			aimForPeg.cancel();
+    			timer.reset();
     			landPeg.start();
     			state++;
     		}
     		break;
     	case 3:
-    		if(!landPeg.isRunning()) {
+    		if(!landPeg.isRunning() || timer.get() > 2.5) {
     			squareUp.start();
     			state++;
     		}
     		break;
     	case 4:
     		if(!squareUp.isRunning()) {
+    			timer.reset();
     			impalePeg.start();
     			state++;
     		}
     		break;
     	case 5:
-    		if(!impalePeg.isRunning()) {
+    		if(!impalePeg.isRunning() || timer.get() > 1.5) {
     			eject.start();
     			state++;
     		}
