@@ -37,8 +37,8 @@ public class AngledCenter extends CommandBase {
     	driveNearPeg = new DriveStraightToPosition(0.75, 4.1);
     	landPeg = new DriveStraightToPosition(0.75, 2.3);
     	impalePeg = new DriveStraightToPosition(0.75,0.45);
-    	aimForPeg = new RotateDrivetrainWithGyroPID(45);
-    	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, -0.35, 0.35, 0.65);
+    	aimForPeg = new RotateDrivetrainWithGyroPID(30);
+    	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, -0.35, 0.35, 0.6);
     	eject = new OpenAndEjectGearSlot();
     	extend = new TogglePusher();
     	retract = new TogglePusher();
@@ -77,18 +77,20 @@ public class AngledCenter extends CommandBase {
     		break;
     	case 4:
     		if(!landPeg.isRunning()) {
+    			timer.reset();
     			squareUp.start();
     			state++;
     		}
     		break;
     	case 5:
-    		if(!squareUp.isRunning()) {
+    		if(!squareUp.isRunning() || timer.get() > 2.5) {
+    			timer.reset();
     			impalePeg.start();
     			state++;
     		}
     		break;
     	case 6:
-    		if(!impalePeg.isRunning()) {
+    		if(!impalePeg.isRunning() || timer.get() > 1.5) {
     			eject.start();
     			state++;
     		}
