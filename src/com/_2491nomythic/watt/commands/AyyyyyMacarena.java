@@ -2,7 +2,6 @@ package com._2491nomythic.watt.commands;
 
 import com._2491nomythic.watt.commands.dustpan.FlipDustpan;
 import com._2491nomythic.watt.commands.gearslot.ToggleDoors;
-import com._2491nomythic.watt.subsystems.Lights;
 
 import edu.wpi.first.wpilibj.Timer;
 
@@ -11,8 +10,8 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class AyyyyyMacarena extends CommandBase {
 	private ToggleDoors open, close;
-	private FlipDustpan lower, raise;
 	private Timer timer;
+	private FlipDustpan lower;
 	private double macarenaTime, numberOfCycles;
 	private int state;
 	
@@ -26,6 +25,7 @@ public class AyyyyyMacarena extends CommandBase {
         // eg. requires(chassis);
     	open = new ToggleDoors();
     	close = new ToggleDoors();
+    	lower = new FlipDustpan();
     	timer = new Timer();
     }
 
@@ -84,7 +84,7 @@ public class AyyyyyMacarena extends CommandBase {
     		
     	case 6:
     		if(timer.get() > 5 * macarenaTime) {
-    			drivetrain.drive(0.75, 0.75, 0, 0);
+    			drivetrain.drive(0.75, -0.75, 0, 0);
     			state++;
     		}
     		break;
@@ -92,42 +92,42 @@ public class AyyyyyMacarena extends CommandBase {
     	case 7:
     		if(timer.get() > 6 * macarenaTime) {
     			drivetrain.stop();
-    			open.start();
+    			drivetrain.drive(0.75, -0.75, 0, 0);
     			state++;
     		}
     		break;
     		
     	case 8:
     		if(timer.get() > 7 * macarenaTime) {
-    			close.start();
+    			drivetrain.drive(-0.75, 0.75, 0, 0);
     			state++;
     		}
     		break;
     		
     	case 9:
     		if(timer.get() > 8 * macarenaTime) {
-    			lower.start();
+    			open.start();
     			state++;
     		}
     		break;
     		
     	case 10:
     		if(timer.get() > 9 * macarenaTime) {
-    			raise.start();
+    			close.start();
     			state++;
     		}
     		break;
     		
     	case 11:
     		if(timer.get() > 10 * macarenaTime) {
-    			Lights.deactivateLights();
+    			lower.start();
     			state++;
     		}
     		break;
     		
     	case 12:
     		if(timer.get() > 11 * macarenaTime) {
-    			Lights.activateLights();
+    			lower.cancel();
     			state++;
     		}
     		break;
@@ -168,6 +168,7 @@ public class AyyyyyMacarena extends CommandBase {
     protected void interrupted() {
     	open.cancel();
     	close.cancel();
+    	lower.cancel();
     	
     	end();
     }

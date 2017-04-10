@@ -1,6 +1,7 @@
 	
 package com._2491nomythic.watt;
 
+import com._2491nomythic.watt.commands.AyyyyyMacarena;
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.commands.autonomous.AngledCenter;
 import com._2491nomythic.watt.commands.autonomous.AngledLeft;
@@ -9,9 +10,6 @@ import com._2491nomythic.watt.commands.autonomous.AngledPassiveLeft;
 import com._2491nomythic.watt.commands.autonomous.AngledPassiveRight;
 import com._2491nomythic.watt.commands.autonomous.AngledRight;
 import com._2491nomythic.watt.commands.autonomous.DoNothing;
-import com._2491nomythic.watt.commands.autonomous.PassiveCenter;
-import com._2491nomythic.watt.commands.autonomous.PassiveLeft;
-import com._2491nomythic.watt.commands.autonomous.PassiveRight;
 import com._2491nomythic.watt.commands.drivetrain.EnableCoastMode;
 import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
@@ -67,6 +65,7 @@ public class Robot extends IterativeRobot {
         chooser.addObject("Angled Right", new AngledRight());
         //SmartDashboard Buttons and Data
         SmartDashboard.putData("Auto mode", chooser);
+        SmartDashboard.putData("Test program please ignore", new AyyyyyMacarena());
         SmartDashboard.putData("PID Turn", new RotateDrivetrainWithGyroPID(180));
         SmartDashboard.putData("Line Up To Peg", new CenterOnPeg(0.25));
         SmartDashboard.putData("Angle on Peg", new AngleOnPeg(0.25));
