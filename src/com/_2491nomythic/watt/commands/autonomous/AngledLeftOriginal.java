@@ -9,6 +9,7 @@ import com._2491nomythic.watt.commands.gearslot.TogglePusher;
 
 /**
  * Attempts to deposit a gear onto the left gear peg by approaching it diagonally
+ * @deprecated
  */
 public class AngledLeftOriginal extends CommandBase {
 	private DriveStraightToPosition drivePastPeg, landPeg, impalePeg;
@@ -25,6 +26,7 @@ public class AngledLeftOriginal extends CommandBase {
 
 	/**
 	 * Attempts to deposit a gear onto the left gear peg by approaching it diagonally
+	 * @deprecated
 	 */
     public AngledLeftOriginal() {
         // Use requires() here to declare subsystem dependencies

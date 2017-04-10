@@ -7,6 +7,7 @@ import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 
 /**
  * Drives to the right gear peg and deposits a gear
+ * @deprecated
  */
 public class ActiveRight extends CommandBase {
 	private DriveStraightToPosition drivePastBaseLine, impalePeg, backOffOfPeg, driveToMiddleLine;
@@ -16,6 +17,7 @@ public class ActiveRight extends CommandBase {
 
 	/**
 	 * Drives to the right gear peg and deposits a gear
+	 * @deprecated
 	 */
     public ActiveRight() {
         // Use requires() here to declare subsystem dependencies

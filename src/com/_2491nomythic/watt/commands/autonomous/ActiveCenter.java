@@ -6,6 +6,7 @@ import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlot;
 
 /**
  * Drives to the center gear peg and deposits a gear
+ * @deprecated
  */
 public class ActiveCenter extends CommandBase {
 	private DriveStraightToPosition impalePeg;
@@ -14,6 +15,7 @@ public class ActiveCenter extends CommandBase {
 
 	/**
 	 * Drives to the center gear peg and deposits a gear
+	 * @deprecated
 	 */
     public ActiveCenter() {
         // Use requires() here to declare subsystem dependencies

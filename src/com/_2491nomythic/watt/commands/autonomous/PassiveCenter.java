@@ -5,12 +5,14 @@ import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
 
 /**
  * Drives to the center gear peg
+ * @deprecated
  */
 public class PassiveCenter extends CommandBase {
 	private DriveStraightToPosition impalePeg;
 	
 	/**
 	 * Drives to the center gear peg
+	 * @deprecated
 	 */
 	public PassiveCenter() {
         // Use requires() here to declare subsystem dependencies
