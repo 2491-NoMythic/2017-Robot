@@ -4,6 +4,9 @@ package com._2491nomythic.watt;
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.commands.autonomous.AngledCenter;
 import com._2491nomythic.watt.commands.autonomous.AngledLeft;
+import com._2491nomythic.watt.commands.autonomous.AngledPassiveCenter;
+import com._2491nomythic.watt.commands.autonomous.AngledPassiveLeft;
+import com._2491nomythic.watt.commands.autonomous.AngledPassiveRight;
 import com._2491nomythic.watt.commands.autonomous.AngledRight;
 import com._2491nomythic.watt.commands.autonomous.DoNothing;
 import com._2491nomythic.watt.commands.autonomous.PassiveCenter;
@@ -56,9 +59,9 @@ public class Robot extends IterativeRobot {
 		//Auto Modes
         chooser = new SendableChooser<Command>(); 
         chooser.addDefault("Do Nothing", new DoNothing());
-        chooser.addObject("Passive Left", new PassiveLeft());
-        chooser.addObject("Passive Center", new PassiveCenter());
-        chooser.addObject("Passive Right", new PassiveRight());
+        chooser.addObject("Angled Passive Left", new AngledPassiveLeft());
+        chooser.addObject("Angled Passive Center", new AngledPassiveCenter());
+        chooser.addObject("Angled Passive Right", new AngledPassiveRight());
         chooser.addObject("Angled Left", new AngledLeft());
         chooser.addObject("Angled Center", new AngledCenter());
         chooser.addObject("Angled Right", new AngledRight());
