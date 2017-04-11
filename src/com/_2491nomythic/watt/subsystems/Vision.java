@@ -71,6 +71,7 @@ public class Vision extends Subsystem {
 	}
 	
 	/**
+	 * the method used to locate and set data for the blocks in a geartarget
 	 * @return The camera packets from the pixy
 	 */
 	public CameraPacket[] FindGearTarget() {
@@ -83,6 +84,7 @@ public class Vision extends Subsystem {
 	}
 	
 	/**
+	 * the method used to find and establish data to line up with a geartarget
 	 * @return The vision target for lining up a gear
 	 */
 	public GearTarget GearTargetFeed() {

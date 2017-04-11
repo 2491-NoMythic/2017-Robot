@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * Some stuff needed for vision
+ * The class that allows a variable to be defined as a camera
  */
 public class CameraI2C {
 	String name;
@@ -15,7 +15,7 @@ public class CameraI2C {
 	CameraException exc;
 	
 	/**
-	 * Some stuff needed for vision
+	 * The class that allows a variable to be defined as a camera
 	 */
 	public CameraI2C(String id, I2C pixyI2C, CameraPacket[] pixyPacket, CameraException pixyException) {
 		camera = pixyI2C;
@@ -23,10 +23,26 @@ public class CameraI2C {
 		exc = pixyException;
 		name = id;
 	}
+	/**
+	 *  Turns two bytes of data into more useful integers
+	 * @param upper
+	 * 				the greater of two bytes to be parsed
+	 * @param lower
+	 * 				the smaller of two bytes to be parsed
+	 * @return the bytes of data converted to integers
+	 */
 
 	public int datToInt(byte upper, byte lower) {
 		return (((int) upper & 0xff) << 8) | ((int) lower & 0xff);
 	}
+	/**
+	 * 
+	 * @param objectSignature
+	 * 							The defined signature of the object being tracked
+	 * @return a parsed packet of data from a Pixy camera
+	 * @throws CameraException
+	 * 							a user-defined exception to catch errors produced by the camera
+	 */
 	
 	public CameraPacket readPacket(int objectSignature) throws CameraException {
 		int checkSum;
@@ -75,6 +91,12 @@ public class CameraI2C {
 		packets[objectSignature - 1] = null;
 		return packet;
 	}
+	/**
+	 * a method needed to allow readWord to work 
+	 * @param len
+	 * 				the amount of the data or bytes being read
+	 * @return organized data, prepared for readWord
+	 */
 
 	private byte[] readData(int len) {
 		byte[] rawData = new byte[len];
@@ -91,6 +113,10 @@ public class CameraI2C {
 		}
 		return rawData;
 	}
+	/**
+	 * 
+	 * @return takes the organized, packeted data from readData and makes it useful integers
+	 */
 
 	private int readWord() {
 		byte[] data = readData(2);
@@ -99,6 +125,11 @@ public class CameraI2C {
 		}
 		return datToInt(data[1], data[0]);
 	}
+	/**
+	 * reads a set of data referring to the information of one object on a Pixy Camera, called a block
+	 * @param checkSum the data sent in a packet used to check if the data is valid
+	 * @return a parsed/prepared block of data about a pixy object
+	 */
 
 	private CameraPacket readBlock(int checkSum) {
 
@@ -128,6 +159,10 @@ public class CameraI2C {
 	private final int startWord = 0xaa55;
 	private final int startWordCC = 0xaa5;
 	private final int startWordX = 0x55aa;
+	/**
+	 * regulates the block-reading process
+	 * @return whether to continue the process of reading blocks or halt due to bad/absent data
+	 */
 
 	public boolean getStart() {
 		int numBytesRead = 0;
@@ -152,6 +187,10 @@ public class CameraI2C {
 	}
 
 	private boolean skipStart = false;
+	/**
+	 * the method used to read multiple blocks of data from the Pixy
+	 * @return parsed and prepared data for the amount of blocks specified in the Pixy's settings
+	 */
 
 	public CameraPacket[] readBlocks() {
 		// This has to match the max block setting in pixymon?

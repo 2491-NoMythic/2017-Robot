@@ -4,7 +4,7 @@ import com._2491nomythic.watt.settings.CameraPacket;
 import com._2491nomythic.watt.settings.Variables;
 
 /**
- * The target position for vision to line up the gear
+ * The target position for vision to line up to the gear, composed of two targets
  */
 public class GearTarget {
 	CameraPacket block1, block2;
