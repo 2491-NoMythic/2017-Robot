@@ -36,6 +36,14 @@ public class Climber extends Subsystem {
 		right.set(Math.abs(power));
 	}
 	
+	public double getLeftCurrent() {
+		return left.getOutputCurrent();
+	}
+	
+	public double getEncoderVelocity() {
+		return left.getEncVelocity();
+	}
+	
 	/**
 	 * Stops all movement of the climber motors
 	 */

@@ -7,7 +7,10 @@ import com._2491nomythic.watt.settings.ControllerMap;
  * Runs the climber motors at a speed specified by a driver
  */
 public class Climb extends CommandBase {
-
+	private boolean overridden;
+	private double lastAmps;
+	private double currentAmps;
+	private boolean placeHolderVariable;
 	/**
 	 * Runs the climber motors at a speed specified by a driver
 	 */
@@ -19,12 +22,23 @@ public class Climb extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	overridden = false;
+    
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(placeHolderVariable) {
+    		overridden = true; 
+    	}
+    	else {
+    		overridden = false;
+    	}
+    	
+    	if(overridden || (placeHolderVariable)) {
     	climber.runClimberMotors(oi.getAxis(ControllerMap.secondaryDriveController, ControllerMap.climbThrottleAxis));
+    	//TODO Make a program that reads current and makes sure the encoder is moving to determine whether or not to stop
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
