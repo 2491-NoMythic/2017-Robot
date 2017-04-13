@@ -8,7 +8,7 @@ import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- *
+ * Approaches the left peg at around a 45 degree angle and sits there so the gear can be removed
  */
 public class AngledPassiveLeft extends CommandBase {
 	private DriveStraightToPosition drivePastPeg, landPeg, impalePeg;
@@ -16,6 +16,10 @@ public class AngledPassiveLeft extends CommandBase {
 	private PivotFrontAUTOONLY squareUp;
 	private Timer timer;
 	private int state;
+	
+	/**
+	 * Approaches the left peg at around a 45 degree angle and sits there so the gear can be removed
+	 */
 
     public AngledPassiveLeft() {
         // Use requires() here to declare subsystem dependencies
