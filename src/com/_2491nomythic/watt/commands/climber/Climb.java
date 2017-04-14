@@ -4,6 +4,7 @@ import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.ControllerMap;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Runs the climber motors at a speed specified by a driver
@@ -35,6 +36,7 @@ public class Climb extends CommandBase {
     	else {
     		climber.runClimberMotors(oi.getAxis(ControllerMap.secondaryDriveController, ControllerMap.climbThrottleAxis));
     	}
+    	SmartDashboard.putNumber("Current Amps", climber.getLeftCurrent());
     }
 
     // Make this return true when this Command no longer needs to run execute()
