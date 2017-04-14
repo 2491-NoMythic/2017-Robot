@@ -3,14 +3,15 @@ package com._2491nomythic.watt.commands.climber;
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.ControllerMap;
 
+import edu.wpi.first.wpilibj.Timer;
+
 /**
  * Runs the climber motors at a speed specified by a driver
  */
 public class Climb extends CommandBase {
-	private boolean overridden;
-	private double lastAmps;
-	private double currentAmps;
-	private boolean placeHolderVariable;
+	private double velocityThreshold;
+	private Timer timer;
+	
 	/**
 	 * Runs the climber motors at a speed specified by a driver
 	 */
@@ -22,22 +23,17 @@ public class Climb extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	overridden = false;
-    
+    	timer.reset();
+    	timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(placeHolderVariable) {
-    		overridden = true; 
+    	if(timer.get() > .5 && Math.abs(climber.getEncoderVelocity()) < velocityThreshold) {
+    		climber.stop();
     	}
     	else {
-    		overridden = false;
-    	}
-    	
-    	if(overridden || (placeHolderVariable)) {
-    	climber.runClimberMotors(oi.getAxis(ControllerMap.secondaryDriveController, ControllerMap.climbThrottleAxis));
-    	//TODO Make a program that reads current and makes sure the encoder is moving to determine whether or not to stop
+    		climber.runClimberMotors(oi.getAxis(ControllerMap.secondaryDriveController, ControllerMap.climbThrottleAxis));
     	}
     }
 
@@ -49,6 +45,7 @@ public class Climb extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
     	climber.stop();
+    	timer.stop();
     }
 
     // Called when another command which requires one or more of the same
