@@ -64,14 +64,14 @@ public class FasterAngledRight extends CommandBase {
     		}
     		break;
     	case 2:
-    		if(!aimForPeg.isRunning() || timer.get() > 1.5) {
+    		if(!aimForPeg.isRunning() || timer.get() > 1.1) {
     			timer.reset();
     			landPeg.start();
     			state++;
     		}
     		break;
     	case 3:
-    		if(!landPeg.isRunning() || timer.get() > 2.5) {
+    		if(!landPeg.isRunning() || timer.get() > 2.4) {
     			squareUp.start();
     			state++;
     		}
@@ -84,7 +84,7 @@ public class FasterAngledRight extends CommandBase {
     		}
     		break;
     	case 5:
-    		if(!impalePeg.isRunning() || timer.get() > 1.5) {
+    		if(!impalePeg.isRunning() || timer.get() > 1.4) {
     			eject.start();
     			state++;
     		}

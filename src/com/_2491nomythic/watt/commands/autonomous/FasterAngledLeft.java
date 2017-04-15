@@ -72,7 +72,7 @@ public class FasterAngledLeft extends CommandBase {
     		}
     		break;
     	case 3:
-    		if(!landPeg.isRunning() || timer.get() > 2.35) {
+    		if(!landPeg.isRunning() || timer.get() > 2.4) {
     			squareUp.start();
     			state++;
     		}
@@ -85,7 +85,7 @@ public class FasterAngledLeft extends CommandBase {
     		}
     		break;
     	case 5:
-    		if(!impalePeg.isRunning() || timer.get() > 1.35) {
+    		if(!impalePeg.isRunning() || timer.get() > 1.4) {
     			eject.start();
     			state++;
     		}
