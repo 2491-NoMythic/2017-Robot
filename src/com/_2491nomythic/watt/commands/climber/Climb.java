@@ -2,12 +2,13 @@ package com._2491nomythic.watt.commands.climber;
 
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.ControllerMap;
+import com._2491nomythic.watt.settings.Variables;
+
 
 /**
  * Runs the climber motors at a speed specified by a driver
  */
 public class Climb extends CommandBase {
-	private double ampThreshold;
 	private boolean override;
 	
 	/**
@@ -21,13 +22,12 @@ public class Climb extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	ampThreshold = 75;
     	override = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(climber.getLeftCurrent() > ampThreshold) {
+    	if(climber.getLeftCurrent() > Variables.climberAmpThreshold) {
     		climber.stop();
     		override = true;
     	}

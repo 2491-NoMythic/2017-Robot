@@ -10,6 +10,9 @@ import com._2491nomythic.watt.commands.autonomous.AngledPassiveLeft;
 import com._2491nomythic.watt.commands.autonomous.AngledPassiveRight;
 import com._2491nomythic.watt.commands.autonomous.AngledRight;
 import com._2491nomythic.watt.commands.autonomous.DoNothing;
+import com._2491nomythic.watt.commands.autonomous.FasterAngledCenter;
+import com._2491nomythic.watt.commands.autonomous.FasterAngledLeft;
+import com._2491nomythic.watt.commands.autonomous.FasterAngledRight;
 import com._2491nomythic.watt.commands.drivetrain.EnableCoastMode;
 import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
@@ -67,6 +70,9 @@ public class Robot extends IterativeRobot {
         chooser.addObject("Angled Left", new AngledLeft());
         chooser.addObject("Angled Center", new AngledCenter());
         chooser.addObject("Angled Right", new AngledRight());
+        chooser.addObject("Faster Angled Left", new FasterAngledLeft());
+        chooser.addObject("Faster Angled Center", new FasterAngledCenter());
+        chooser.addObject("Faster Angled Right", new FasterAngledRight());
         //SmartDashboard Buttons and Data
         SmartDashboard.putData("Auto mode", chooser);
         SmartDashboard.putData("Test program please ignore", new AyyyyyMacarena());
@@ -91,6 +97,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Drivetrain PID P", Variables.drivetrainPID_P);
         SmartDashboard.putNumber("Drivetrain PID I", Variables.drivetrainPID_I);
         SmartDashboard.putNumber("Drivetrain PID D", Variables.drivetrainPID_D);
+        SmartDashboard.putNumber("Climber Amp Threshold", Variables.climberAmpThreshold);
     }
 	
 	/**
