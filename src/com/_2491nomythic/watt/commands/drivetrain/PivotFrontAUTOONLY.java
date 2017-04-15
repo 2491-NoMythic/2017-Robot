@@ -33,10 +33,7 @@ public class PivotFrontAUTOONLY extends CommandBase {
     }
 
     // Called repeatedly when this Command is scheduled to run 
-    protected void execute() {
-    	System.out.println("Pivot Front Auto Only is running");
-    	System.out.println(drivetrain.getCenterEncoderDistance());
-    	
+    protected void execute() {    	
     	drivetrain.drive(leftSpeed, rightSpeed, frontSpeed * Constants.pivotDriveRatio, backSpeed);
     }
 

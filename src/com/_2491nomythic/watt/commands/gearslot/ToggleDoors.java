@@ -24,9 +24,7 @@ public class ToggleDoors extends CommandBase {
     protected void initialize() {
     	timer.start();
     	timer.reset();
-    	
-    	System.out.println("ToggleDoors is running.");
-    	
+    	    	
     	if(gearslot.getDoors())	gearslot.closeDoors();
     	else gearslot.openDoors();
     }

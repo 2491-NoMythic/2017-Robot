@@ -51,11 +51,7 @@ public class AngledCenter extends CommandBase {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	System.out.println("Center Encoder Value: " + drivetrain.getCenterEncoderDistance());
-    	
-    	System.out.println("State: " + state);
-    	
+    protected void execute() {    	    	
     	switch(state) {
     	case 1:
     			driveNearPeg.start();
