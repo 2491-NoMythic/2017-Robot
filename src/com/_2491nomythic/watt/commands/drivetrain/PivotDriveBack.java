@@ -42,12 +42,12 @@ public class PivotDriveBack extends CommandBase {
     	}
     	
     	if (oi.getButton(ControllerMap.mainDriveController, ControllerMap.driveReverseButton1) || oi.getButton(ControllerMap.mainDriveController, ControllerMap.driveReverseButton2)) {
-    		drivetrain.driveLeft(pivotSpeed - speed);
-    		drivetrain.driveRight(-pivotSpeed - speed);
+    		drivetrain.driveLeft(.5 * (pivotSpeed - speed));
+    		drivetrain.driveRight(.5 * (-pivotSpeed - speed));
     	}
     	else {
-    		drivetrain.driveLeft(pivotSpeed + speed);
-    		drivetrain.driveRight(-pivotSpeed + speed);
+    		drivetrain.driveLeft(.5 * (pivotSpeed + speed));
+    		drivetrain.driveRight(.5 * (-pivotSpeed + speed));
     	}
     	drivetrain.driveCenter(centerSpeed, Constants.pivotDriveRatio * centerSpeed);
     }
