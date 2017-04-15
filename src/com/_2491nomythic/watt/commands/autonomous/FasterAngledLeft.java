@@ -64,7 +64,7 @@ public class FasterAngledLeft extends CommandBase {
     		}
     		break;
     	case 2:
-    		if(timer.get() > 1.5 || !aimForPeg.isRunning()) {
+    		if(timer.get() > 1.1 || !aimForPeg.isRunning()) {
     			aimForPeg.cancel();
     			timer.reset();
     			landPeg.start();
@@ -72,7 +72,7 @@ public class FasterAngledLeft extends CommandBase {
     		}
     		break;
     	case 3:
-    		if(!landPeg.isRunning() || timer.get() > 2.5) {
+    		if(!landPeg.isRunning() || timer.get() > 2.35) {
     			squareUp.start();
     			state++;
     		}
@@ -85,7 +85,7 @@ public class FasterAngledLeft extends CommandBase {
     		}
     		break;
     	case 5:
-    		if(!impalePeg.isRunning() || timer.get() > 1.5) {
+    		if(!impalePeg.isRunning() || timer.get() > 1.35) {
     			eject.start();
     			state++;
     		}

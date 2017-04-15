@@ -36,6 +36,7 @@ public class UpdateDriverstation extends CommandBase {
     	if (timer.get() > nextRun) {
 			nextRun = nextRun + 0.1;
 			
+			Variables.climberAmpThreshold = SmartDashboard.getNumber("Climber Amp Threshold", Variables.climberAmpThreshold);
 			Variables.useLinearAcceleration = SmartDashboard.getBoolean("Use Linear Acceleration", true);
 			Variables.shiftUpPercentage = SmartDashboard.getNumber("Shift Up Speed", Variables.shiftUpPercentage);
 			Variables.shiftEngagePneumaticsTime = SmartDashboard.getNumber("Time To Engage Pneumatics For Shifter (in seconds)", Variables.shiftEngagePneumaticsTime);

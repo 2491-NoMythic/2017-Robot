@@ -23,6 +23,7 @@ public class AyyyyyMacarena extends CommandBase {
     public AyyyyyMacarena() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(drivetrain);
     	open = new ToggleDoors();
     	close = new ToggleDoors();
     	lower = new FlipDustpan();
@@ -92,34 +93,36 @@ public class AyyyyyMacarena extends CommandBase {
     	case 7:
     		if(timer.get() > 6 * macarenaTime) {
     			drivetrain.stop();
-    			drivetrain.drive(0.75, -0.75, 0, 0);
+    			open.start();
     			state++;
     		}
     		break;
     		
     	case 8:
     		if(timer.get() > 7 * macarenaTime) {
-    			drivetrain.drive(-0.75, 0.75, 0, 0);
+    			close.start();
     			state++;
     		}
     		break;
     		
     	case 9:
     		if(timer.get() > 8 * macarenaTime) {
-    			open.start();
+    			drivetrain.stop();
+    			drivetrain.drive(0.75, -0.75, 0, 0);
     			state++;
     		}
     		break;
     		
     	case 10:
     		if(timer.get() > 9 * macarenaTime) {
-    			close.start();
+    			drivetrain.drive(-0.75, 0.75, 0, 0);
     			state++;
     		}
     		break;
     		
     	case 11:
     		if(timer.get() > 10 * macarenaTime) {
+    			drivetrain.stop();
     			lower.start();
     			state++;
     		}
