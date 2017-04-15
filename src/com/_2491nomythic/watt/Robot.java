@@ -15,6 +15,7 @@ import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainPseudoPID;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
+import com._2491nomythic.watt.commands.drivetrain.SafeMode;
 import com._2491nomythic.watt.commands.dustpan.PushOut;
 import com._2491nomythic.watt.commands.lights.ActivateLights;
 import com._2491nomythic.watt.commands.vision.AngleOnPeg;
@@ -91,6 +92,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Drivetrain PID P", Variables.drivetrainPID_P);
         SmartDashboard.putNumber("Drivetrain PID I", Variables.drivetrainPID_I);
         SmartDashboard.putNumber("Drivetrain PID D", Variables.drivetrainPID_D);
+        SmartDashboard.putData("Safe Mode", new SafeMode());
     }
 	
 	/**
