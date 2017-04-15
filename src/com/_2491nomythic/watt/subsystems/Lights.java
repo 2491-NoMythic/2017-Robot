@@ -35,14 +35,14 @@ public class Lights extends Subsystem {
 	/**
 	 * Activates the lights
 	 */
-	public static void activateLights() {
+	public void activateLights() {
 		activator.set(true);
 	}
 	
 	/**
 	 * Deactivates the lights
 	 */
-	public static void deactivateLights() {
+	public void deactivateLights() {
 		activator.set(false);
 	}
 	

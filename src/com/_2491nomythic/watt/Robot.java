@@ -10,12 +10,16 @@ import com._2491nomythic.watt.commands.autonomous.AngledPassiveLeft;
 import com._2491nomythic.watt.commands.autonomous.AngledPassiveRight;
 import com._2491nomythic.watt.commands.autonomous.AngledRight;
 import com._2491nomythic.watt.commands.autonomous.DoNothing;
+import com._2491nomythic.watt.commands.autonomous.FasterAngledCenter;
+import com._2491nomythic.watt.commands.autonomous.FasterAngledLeft;
+import com._2491nomythic.watt.commands.autonomous.FasterAngledRight;
 import com._2491nomythic.watt.commands.drivetrain.EnableCoastMode;
 import com._2491nomythic.watt.commands.drivetrain.ResetEncoders;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainPseudoPID;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
 import com._2491nomythic.watt.commands.dustpan.PushOut;
+import com._2491nomythic.watt.commands.lights.ActivateLights;
 import com._2491nomythic.watt.commands.vision.AngleOnPeg;
 import com._2491nomythic.watt.commands.vision.CenterOnPeg;
 import com._2491nomythic.watt.settings.Variables;
@@ -42,6 +46,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 
     Command autonomousCommand;
+    ActivateLights activateLights;
     SendableChooser<Command> chooser;
 	Preferences pref;
 	double P;
@@ -54,6 +59,8 @@ public class Robot extends IterativeRobot {
     	//Base
 		oi = new OI();
 		CommandBase.init();
+		activateLights = new ActivateLights();
+        activateLights.start();
 		//Auto Modes
         chooser = new SendableChooser<Command>(); 
         chooser.addDefault("Do Nothing", new DoNothing());
@@ -63,6 +70,9 @@ public class Robot extends IterativeRobot {
         chooser.addObject("Angled Left", new AngledLeft());
         chooser.addObject("Angled Center", new AngledCenter());
         chooser.addObject("Angled Right", new AngledRight());
+        chooser.addObject("Faster Angled Left", new FasterAngledLeft());
+        chooser.addObject("Faster Angled Center", new FasterAngledCenter());
+        chooser.addObject("Faster Angled Right", new FasterAngledRight());
         //SmartDashboard Buttons and Data
         SmartDashboard.putData("Auto mode", chooser);
         SmartDashboard.putData("Test program please ignore", new AyyyyyMacarena());
