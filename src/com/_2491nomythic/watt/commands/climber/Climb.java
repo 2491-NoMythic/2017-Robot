@@ -2,16 +2,13 @@ package com._2491nomythic.watt.commands.climber;
 
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.settings.ControllerMap;
-
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import com._2491nomythic.watt.settings.Variables;
 
 /**
  * Runs the climber motors at a speed specified by a driver
  */
 public class Climb extends CommandBase {
-	private double velocityThreshold;
-	private Timer timer;
+	private boolean override;
 	
 	/**
 	 * Runs the climber motors at a speed specified by a driver
@@ -24,19 +21,19 @@ public class Climb extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	timer.reset();
-    	timer.start();
+    	override = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(timer.get() > .5 && Math.abs(climber.getEncoderVelocity()) < velocityThreshold) {
+    	if(climber.getLeftCurrent() > Variables.climberAmpThreshold) {
     		climber.stop();
+    		override = true;
     	}
-    	else {
+    	if (!override) {
     		climber.runClimberMotors(oi.getAxis(ControllerMap.secondaryDriveController, ControllerMap.climbThrottleAxis));
     	}
-    	SmartDashboard.putNumber("Current Amps", climber.getLeftCurrent());
+    	System.out.println("Climber Amps" + climber.getLeftCurrent());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -47,7 +44,6 @@ public class Climb extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
     	climber.stop();
-    	timer.stop();
     }
 
     // Called when another command which requires one or more of the same

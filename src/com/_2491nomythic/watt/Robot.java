@@ -87,6 +87,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Drivetrain PID P", Variables.drivetrainPID_P);
         SmartDashboard.putNumber("Drivetrain PID I", Variables.drivetrainPID_I);
         SmartDashboard.putNumber("Drivetrain PID D", Variables.drivetrainPID_D);
+        SmartDashboard.putNumber("Climber Amp Threshold", Variables.climberAmpThreshold);
     }
 	
 	/**

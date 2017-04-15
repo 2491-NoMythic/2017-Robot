@@ -44,6 +44,9 @@ public class Variables {
 	public static double timeToEjectGear = 0.25;
 	public static boolean ejected = false;
 	
+	//Climber
+	public static double climberAmpThreshold = 50;
+	
 	//Dustpan
 	public static double gearEjectPower = -1;
 	public static double gearEjectTiming = 1;
