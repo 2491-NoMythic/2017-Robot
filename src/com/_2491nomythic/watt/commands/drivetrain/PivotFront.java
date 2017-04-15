@@ -6,6 +6,7 @@ import com._2491nomythic.watt.settings.ControllerMap;
 
 /**
  * Rotates the robot around the center of the front edge
+ * @deprecated
  */
 public class PivotFront extends CommandBase {
 	private double speed;

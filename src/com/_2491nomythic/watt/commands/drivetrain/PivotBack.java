@@ -6,6 +6,7 @@ import com._2491nomythic.watt.settings.ControllerMap;
 
 /**
  * Rotates the robot around the center of the back edge
+ * @deprecated
  */
 public class PivotBack extends CommandBase {
 	private double speed;
