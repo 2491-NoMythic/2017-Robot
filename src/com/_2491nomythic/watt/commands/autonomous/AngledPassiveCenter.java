@@ -7,7 +7,7 @@ import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
 
 import edu.wpi.first.wpilibj.Timer;
 /**
- * Approaches the center peg at around a 45 degree angle and sits there so the gear can be removed
+ * Approaches the center peg on the left, turns around 45 degrees, then lands the peg and straightens up.
  */
 public class AngledPassiveCenter extends CommandBase {
 	private DriveStraightToPosition driveNearPeg, landPeg, impalePeg;
