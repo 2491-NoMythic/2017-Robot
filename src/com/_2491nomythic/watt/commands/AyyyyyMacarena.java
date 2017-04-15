@@ -23,6 +23,7 @@ public class AyyyyyMacarena extends CommandBase {
     public AyyyyyMacarena() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(drivetrain);
     	open = new ToggleDoors();
     	close = new ToggleDoors();
     	lower = new FlipDustpan();
