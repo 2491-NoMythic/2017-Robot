@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.Timer;
  * @deprecated
  */
 public class ClimbFlash extends CommandBase {
-	private Timer timer;
-	private boolean climbTime;
+	private Timer overallTimer, flashTimer;
+	private boolean thirtyLeft, fifteenLeft;
 	private int state;
 
 	/**
@@ -23,55 +23,88 @@ public class ClimbFlash extends CommandBase {
         // eg. requires(chassis);
     	requires(lights);
     	
-    	timer = new Timer();
+    	overallTimer = new Timer();
+    	flashTimer = new Timer();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	timer.start();
-    	timer.reset();
+    	overallTimer.start();
+    	overallTimer.reset();
     	
-    	climbTime = false;
+    	state = 0;
+    	thirtyLeft = false;
+    	fifteenLeft = false;
     	
     	Lights.activateLights();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(timer.get() > 105) {
-    		timer.reset();
-    		climbTime = true;
+    	if(overallTimer.get() > 120) {
+    		flashTimer.start();
+    		flashTimer.reset();
+    		fifteenLeft = true;
+    		thirtyLeft = false;
+    	} else if(overallTimer.get() > 105) {
+    		flashTimer.reset();
+    		thirtyLeft = true;
+    		fifteenLeft = false;
     	}
     	
-    	while(climbTime) {
+    	
+    	
+    	while(thirtyLeft) {
     		switch(state) {
     		case 0:
-    			if(timer.get() >= 0.5) {
+    			if(flashTimer.get() >= 1) {
     				Lights.deactivateLights();
     				state = 1;
     			}
     			break;
     		case 1:
-    			if(timer.get() >= 1) {
+    			if(flashTimer.get() >= 2) {
     				Lights.activateLights();
-    				timer.reset();
+    				flashTimer.reset();
     				state = 0;
     			}
     			break;
     		default:
     			System.out.println("Something went wrong in ClimbFlash. State: " + state);
+    			break;
     		}
     	}	
+    	
+    	while(fifteenLeft) {
+    		switch(state) {
+    		case 0:
+    			if(flashTimer.get() >= 0.5) {
+    				Lights.deactivateLights();
+    				state = 1;
+    			}
+    			break;
+    		case 1:
+    			if(flashTimer.get() >= 1) {
+    				Lights.activateLights();
+    				flashTimer.reset();
+    				state = 0;
+    			}
+    			break;
+    		default:
+    			System.out.println("Something went wrong in ClimbFlash. State: " + state);
+    			break;
+    		}
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return overallTimer.get() >= 135;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Lights.deactivateLights();
+    	Lights.activateLights();
     }
 
     // Called when another command which requires one or more of the same
