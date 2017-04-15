@@ -2,7 +2,6 @@ package com._2491nomythic.watt;
 
 import com._2491nomythic.util.JoystickPOVButton;
 import com._2491nomythic.watt.commands.KillSwitch;
-import com._2491nomythic.watt.commands.climber.Climb;
 import com._2491nomythic.watt.commands.drivetrain.NoTurnLock;
 import com._2491nomythic.watt.commands.drivetrain.PivotDriveBack;
 import com._2491nomythic.watt.commands.drivetrain.PivotDriveFront;
@@ -12,8 +11,8 @@ import com._2491nomythic.watt.commands.dustpan.AutomatedPickup;
 import com._2491nomythic.watt.commands.dustpan.FlipDustpan;
 import com._2491nomythic.watt.commands.dustpan.PushOut;
 import com._2491nomythic.watt.commands.gearslot.OpenAndEjectGearSlotWithoutMoving;
-import com._2491nomythic.watt.commands.gearslot.TogglePusher;
 import com._2491nomythic.watt.commands.gearslot.ToggleDoors;
+import com._2491nomythic.watt.commands.gearslot.TogglePusher;
 import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.ControllerMap;
 
