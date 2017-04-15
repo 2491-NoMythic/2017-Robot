@@ -16,6 +16,7 @@ import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainPseudoPID;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
 import com._2491nomythic.watt.commands.dustpan.PushOut;
+import com._2491nomythic.watt.commands.lights.ActivateLights;
 import com._2491nomythic.watt.commands.vision.AngleOnPeg;
 import com._2491nomythic.watt.commands.vision.CenterOnPeg;
 import com._2491nomythic.watt.settings.Variables;
@@ -42,6 +43,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 
     Command autonomousCommand;
+    ActivateLights activateLights;
     SendableChooser<Command> chooser;
 	Preferences pref;
 	double P;
@@ -54,6 +56,8 @@ public class Robot extends IterativeRobot {
     	//Base
 		oi = new OI();
 		CommandBase.init();
+		activateLights = new ActivateLights();
+        activateLights.start();
 		//Auto Modes
         chooser = new SendableChooser<Command>(); 
         chooser.addDefault("Do Nothing", new DoNothing());

@@ -1,13 +1,10 @@
 package com._2491nomythic.watt.commands.lights;
 
 import com._2491nomythic.watt.commands.CommandBase;
-import com._2491nomythic.watt.subsystems.Lights;
-
 import edu.wpi.first.wpilibj.Timer;
 
 /**
  * Flashes the lights during the endgame
- * @deprecated
  */
 public class ClimbFlash extends CommandBase {
 	private Timer timer;
@@ -16,7 +13,6 @@ public class ClimbFlash extends CommandBase {
 
 	/**
 	 * Flashes the lights during the endgame
-	 * @deprecated
 	 */
     public ClimbFlash() {
         // Use requires() here to declare subsystem dependencies
@@ -33,7 +29,7 @@ public class ClimbFlash extends CommandBase {
     	
     	climbTime = false;
     	
-    	Lights.activateLights();
+    	lights.activateLights();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -47,13 +43,13 @@ public class ClimbFlash extends CommandBase {
     		switch(state) {
     		case 0:
     			if(timer.get() >= 0.5) {
-    				Lights.deactivateLights();
+    				lights.deactivateLights();
     				state = 1;
     			}
     			break;
     		case 1:
     			if(timer.get() >= 1) {
-    				Lights.activateLights();
+    				lights.activateLights();
     				timer.reset();
     				state = 0;
     			}
@@ -71,7 +67,7 @@ public class ClimbFlash extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Lights.deactivateLights();
+    	lights.deactivateLights();
     }
 
     // Called when another command which requires one or more of the same
