@@ -91,7 +91,7 @@ public class AyyyyyMacarena extends CommandBase {
     		break;
     		
     	case 7:
-    		if(timer.get() > 8 * macarenaTime) {
+    		if(timer.get() > 6 * macarenaTime) {
     			drivetrain.stop();
     			open.start();
     			state++;
@@ -99,14 +99,14 @@ public class AyyyyyMacarena extends CommandBase {
     		break;
     		
     	case 8:
-    		if(timer.get() > 9 * macarenaTime) {
+    		if(timer.get() > 7 * macarenaTime) {
     			close.start();
     			state++;
     		}
     		break;
     		
     	case 9:
-    		if(timer.get() > 6 * macarenaTime) {
+    		if(timer.get() > 8 * macarenaTime) {
     			drivetrain.stop();
     			drivetrain.drive(0.75, -0.75, 0, 0);
     			state++;
@@ -114,7 +114,7 @@ public class AyyyyyMacarena extends CommandBase {
     		break;
     		
     	case 10:
-    		if(timer.get() > 7 * macarenaTime) {
+    		if(timer.get() > 9 * macarenaTime) {
     			drivetrain.drive(-0.75, 0.75, 0, 0);
     			state++;
     		}
