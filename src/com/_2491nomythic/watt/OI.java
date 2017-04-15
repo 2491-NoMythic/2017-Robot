@@ -37,9 +37,6 @@ public class OI {
 		noTurnLock.whileHeld(new NoTurnLock());
 		
 		
-		climb = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.climbButton);
-		climb.whileHeld(new Climb());
-		
 		openDoors = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.openDoorButton);
 		openDoors.whenPressed(new ToggleDoors());
 		
