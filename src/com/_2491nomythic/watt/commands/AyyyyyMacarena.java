@@ -146,7 +146,7 @@ public class AyyyyyMacarena extends CommandBase {
     		//13 and 14 for the turn, 15 for the clap
     		if(timer.get() > 15 * macarenaTime) {
     			drivetrain.stop();
-    			state++;
+    			state = 1;
     		}
     		break;
     		
