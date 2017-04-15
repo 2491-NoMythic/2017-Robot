@@ -7,7 +7,7 @@ public class Variables {
 	
 	//Linear Acceleration
 	public static boolean useLinearAcceleration = true;
-	public static boolean useAutomaticTransmission = true;
+	public static boolean useAutomaticTransmission = false;
 	public static double accelerationSpeed = 0.05;
 	public static double centerAccelerationSpeed = 0.02;
 	public static double wheelCircumference = 0.5 * Math.PI;
@@ -20,7 +20,7 @@ public class Variables {
 	public static double highGearRatio = 4.72;
 	public static double highGearMaxSpeed = (highGearMaxSpeedFeetPerSecond / wheelCircumference) * highGearRatio * 60;
 	
-	public static double driveRestriction = 1;
+	public static double driveRestriction = 0.5;
 	
 	//Shifting Constants
 	public static double shiftUpPercentage = 0.9;
