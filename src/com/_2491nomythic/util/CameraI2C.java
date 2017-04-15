@@ -3,7 +3,6 @@ package com._2491nomythic.util;
 import com._2491nomythic.watt.settings.CameraException;
 import com._2491nomythic.watt.settings.CameraPacket;
 import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The class that allows a variable to be defined as a camera
@@ -51,12 +50,9 @@ public class CameraI2C {
 		try {
 			camera.readOnly(rawData, 32);
 		} catch (RuntimeException e) {
-			SmartDashboard.putString(name + "Status", e.toString());
 			System.out.println(name + "  " + e);
 		}
 		if (rawData.length < 32) {
-			SmartDashboard.putString(name + "Status", "raw data length " + rawData.length);
-			System.out.println("byte array length is broken length=" + rawData.length);
 			return null;
 		}
 		for (int i = 0; i <= 16; i++) {
@@ -83,8 +79,7 @@ public class CameraI2C {
 					throw exc;
 				}
 				break;
-			} else
-				SmartDashboard.putNumber("syncword: ", syncWord);
+			}
 		}
 
 		CameraPacket packet = packets[objectSignature - 1];
@@ -92,10 +87,11 @@ public class CameraI2C {
 		return packet;
 	}
 	/**
-	 * a method needed to allow readWord to work 
+	 * prepares a byte of data for readWord to process
 	 * @param len
 	 * 				the amount of the data or bytes being read
 	 * @return organized data, prepared for readWord
+	 * TODO combine readData and readWord into one more cohesive method (maybe)
 	 */
 
 	private byte[] readData(int len) {
@@ -103,12 +99,9 @@ public class CameraI2C {
 		try {
 			camera.readOnly(rawData, len);
 		} catch (RuntimeException e) {
-			SmartDashboard.putString(name + "Status", e.toString());
 			System.out.println(name + "  " + e);
 		}
 		if (rawData.length < len) {
-			SmartDashboard.putString(name + "Status", "raw data length " + rawData.length);
-			System.out.println("byte array length is broken length=" + rawData.length);
 			return null;
 		}
 		return rawData;
