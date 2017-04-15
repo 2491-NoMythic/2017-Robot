@@ -45,7 +45,7 @@ public class Variables {
 	public static boolean ejected = false;
 	
 	//Climber
-	public static double climberAmpThreshold = 50;
+	public static double climberAmpThreshold = 75;
 	
 	//Dustpan
 	public static double gearEjectPower = -1;
