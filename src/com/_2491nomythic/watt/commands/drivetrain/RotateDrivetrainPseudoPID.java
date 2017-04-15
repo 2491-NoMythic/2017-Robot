@@ -4,12 +4,14 @@ import com._2491nomythic.watt.commands.CommandBase;
 
 /**
  * Rotates the robot to a specific position using a process that crudely imitates PID
+ * @deprecated
  */
 public class RotateDrivetrainPseudoPID extends CommandBase {
 	private double initialAngle, desiredAngle, direction, distanceRemaining, currentAngle;
 
 	/**
 	 * Rotates the robot to a specific position using a process that crudely imitates PID
+	 * @deprecated
 	 * @param desiredAngle The angle the robot turns to, where negative values rotate the robot counterclockwise
 	 */
     public RotateDrivetrainPseudoPID(double desiredAngle) {
