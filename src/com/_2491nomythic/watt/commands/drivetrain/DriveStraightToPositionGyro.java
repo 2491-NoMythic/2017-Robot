@@ -31,7 +31,7 @@ public class DriveStraightToPositionGyro extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	adjustment = drivetrain.getGyroAngle() / 10;
+    	adjustment = drivetrain.getGyroAngle() / 10.0;
     	if (speed > 0) {
 			drivetrain.drive(Math.min(speed, speed + Math.max(-0.5 * speed, adjustment)), Math.min(speed, speed - Math.min(0.5 * speed, adjustment)), 0, 0);
 		}
