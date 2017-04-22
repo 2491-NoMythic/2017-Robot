@@ -325,6 +325,9 @@ public class Drivetrain extends PIDSubsystem {
 		return (gyro.getAngle()  % 360 + 360) % 360;
 	}	
 	
+	public double getRawGyroAngle(){
+		return gyro.getAngle();
+	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 

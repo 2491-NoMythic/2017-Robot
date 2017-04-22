@@ -1,6 +1,7 @@
 	
 package com._2491nomythic.watt;
 
+import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPositionGyro;
 import com._2491nomythic.watt.commands.AyyyyyMacarena;
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.commands.autonomous.AngledCenter;
@@ -77,6 +78,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Reset Gyro", new ResetGyro());
         SmartDashboard.putData("Reset Encoders", new ResetEncoders());
         SmartDashboard.putData("Push Gear From Dustpan", new PushOut());
+		SmartDashboard.putData("Drive Straight with Gyro", new DriveStraightToPositionGyro(0.8, 5));
         SmartDashboard.putNumber("PID P Value", 1.0);
         SmartDashboard.putNumber("Shift Up Speed", Variables.shiftUpPercentage);
         SmartDashboard.putNumber("Time To Engage Pneumatics For Shifter (in seconds)", Variables.shiftEngagePneumaticsTime);

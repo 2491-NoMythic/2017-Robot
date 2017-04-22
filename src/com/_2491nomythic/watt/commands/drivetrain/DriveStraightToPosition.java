@@ -10,8 +10,8 @@ public class DriveStraightToPosition extends CommandBase {
 	private double distance, leftDistance, rightDistance, leftStart, rightStart;
 
 	/**
-	 * Drives straight using encoders for a specified distance at a specified speed
-	 * @param speed The power fed to the vertical drive motors, ranging from -1 to 1, where negative values run the motors backwards
+	 * Drives straight using encoders for a specified distance at a specified variableSpeed
+	 * @param variableSpeed The power fed to the vertical drive motors, ranging from -1 to 1, where negative values run the motors backwards
 	 * @param distance The distance (in feet) for the robot to drive
 	 */
     public DriveStraightToPosition(double speed, double distance) {
@@ -35,10 +35,10 @@ public class DriveStraightToPosition extends CommandBase {
     	leftSpeed = speed;
     	rightSpeed = speed;
     	
-    	if (leftDistance - rightDistance > 1 / 12) {
+    	if (leftDistance - rightDistance > 1 / 120) {
     		leftSpeed -= 0.05;
     	}
-    	else if (rightDistance - leftDistance > 1 / 12) {
+    	else if (rightDistance - leftDistance > 1 / 120) {
     		rightSpeed -= 0.05;
     	}
     	

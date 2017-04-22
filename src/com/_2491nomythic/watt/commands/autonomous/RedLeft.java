@@ -2,6 +2,7 @@ package com._2491nomythic.watt.commands.autonomous;
 
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
+import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPositionGyroSlowdown;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPositionNoSlowdown;
 import com._2491nomythic.watt.commands.drivetrain.PivotFrontAUTOONLY;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
@@ -16,7 +17,8 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class RedLeft extends CommandBase {
 	private DriveStraightToPositionNoSlowdown initialDrive;
-	private DriveStraightToPosition drivePastPeg, landPeg, impalePeg, driveIntoNeutralZone;
+	private DriveStraightToPositionGyroSlowdown drivePastPeg;
+	private DriveStraightToPosition landPeg, impalePeg, driveIntoNeutralZone;
 	private RotateDrivetrainWithGyroPID aimForPeg, aimForDispenser;
 	private OpenAndEjectGearSlot eject;
 	private PivotFrontAUTOONLY squareUp;
@@ -36,12 +38,13 @@ public class RedLeft extends CommandBase {
     public RedLeft() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	initialDrive = new DriveStraightToPositionNoSlowdown(0.6, 1);
-    	drivePastPeg = new DriveStraightToPosition(0.8, 7.4);
+//    	initialDrive = new DriveStraightToPositionNoSlowdown(0.6, 1);
+//    	drivePastPeg = new DriveStraightToPosition(0.8, 7.5);
+    	drivePastPeg = new DriveStraightToPositionGyroSlowdown(0.8, 8.1);
     	landPeg = new DriveStraightToPosition(0.7, 4.7);
     	impalePeg = new DriveStraightToPosition(0.85, 0.35);
     	driveIntoNeutralZone = new DriveStraightToPosition(0.9, 10);
-    	aimForPeg = new RotateDrivetrainWithGyroPID(80, false);
+    	aimForPeg = new RotateDrivetrainWithGyroPID(80, true);
     	aimForDispenser = new RotateDrivetrainWithGyroPID(-60, false);
     	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, -0.35, 0.35, 0.4);
     	eject = new OpenAndEjectGearSlot();
@@ -53,21 +56,22 @@ public class RedLeft extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	state = 0;
+    	state = 1;
     	resetGyro.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	switch(state) {
-    	case 0:
-    		initialDrive.start();
-    		state++;
+//    	case 0:
+//    		initialDrive.start();
+//    		state++;
+//    		break;
     	case 1:
-    		if(!initialDrive.isRunning()) {
+//    		if(!initialDrive.isRunning()) {
     			drivePastPeg.start();
     			state++;
-    		}
+//    		}
     		break;
     	case 2:
     		if(!drivePastPeg.isRunning()) {
@@ -141,7 +145,7 @@ public class RedLeft extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return state == 10 && !driveIntoNeutralZone.isRunning();
+        return state == 11 && !driveIntoNeutralZone.isRunning();
     }
 
     // Called once after isFinished returns true
