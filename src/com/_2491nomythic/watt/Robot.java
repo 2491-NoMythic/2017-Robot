@@ -71,7 +71,7 @@ public class Robot extends IterativeRobot {
         //SmartDashboard Buttons and Data
         SmartDashboard.putData("Auto mode", chooser);
         SmartDashboard.putData("Test program please ignore", new AyyyyyMacarena());
-        SmartDashboard.putData("PID Turn", new RotateDrivetrainWithGyroPID(180));
+        SmartDashboard.putData("PID Turn", new RotateDrivetrainWithGyroPID(180, false));
         SmartDashboard.putData("Line Up To Peg", new CenterOnPeg(0.25));
         SmartDashboard.putData("Angle on Peg", new AngleOnPeg(0.25));
         SmartDashboard.putData("Reset Gyro", new ResetGyro());
@@ -163,7 +163,7 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
-        SmartDashboard.putData("PID Turn", new RotateDrivetrainWithGyroPID(-90));
+        SmartDashboard.putData("PID Turn", new RotateDrivetrainWithGyroPID(-90, false));
         
     }
     

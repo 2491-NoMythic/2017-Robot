@@ -22,7 +22,7 @@ public class OpenAndEjectGearSlot extends CommandBase {
     	closeDoors = new ToggleDoors();
     	extend = new TogglePusher();
     	retract = new TogglePusher();
-    	backAway = new DriveStraightToPosition(-1, 2);
+    	backAway = new DriveStraightToPosition(-0.9, 2);
     }
 
     // Called just before this Command runs the first time

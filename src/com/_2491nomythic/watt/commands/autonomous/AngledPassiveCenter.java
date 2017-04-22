@@ -26,7 +26,7 @@ public class AngledPassiveCenter extends CommandBase {
     	driveNearPeg = new DriveStraightToPosition(0.75, 4.1);
     	landPeg = new DriveStraightToPosition(0.75, 2.3);
     	impalePeg = new DriveStraightToPosition(0.75, 0.3);
-    	aimForPeg = new RotateDrivetrainWithGyroPID(30);
+    	aimForPeg = new RotateDrivetrainWithGyroPID(30, false);
     	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, -0.35, 0.35, 0.6);
     	timer = new Timer();
     }

@@ -37,9 +37,9 @@ public class RedRight extends CommandBase {
     	impalePeg = new DriveStraightToPosition(0.85, 0.35);
     	driveIntoNeutral = new DriveStraightToPosition(1, 8);
     	driveTowardsDispenser = new DriveStraightToPosition(1, 15);
-    	aimForPeg = new RotateDrivetrainWithGyroPID(-80);
-    	aimForNeutral = new RotateDrivetrainWithGyroPID(80);
-    	aimForDispenser = new RotateDrivetrainWithGyroPID(-45);
+    	aimForPeg = new RotateDrivetrainWithGyroPID(-80, true);
+    	aimForNeutral = new RotateDrivetrainWithGyroPID(80, false);
+    	aimForDispenser = new RotateDrivetrainWithGyroPID(-45, false);
     	squareUp = new PivotFrontAUTOONLY(-0.35, -0.35, 0.35, -0.35, 0.4);
     	eject = new OpenAndEjectGearSlot();
     	extend = new TogglePusher();

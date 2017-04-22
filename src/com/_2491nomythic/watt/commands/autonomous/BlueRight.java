@@ -36,8 +36,8 @@ public class BlueRight extends CommandBase {
     	landPeg = new DriveStraightToPosition(0.6, 4.7);
     	impalePeg = new DriveStraightToPosition(0.85, 0.35);
     	driveIntoNeutralZone = new DriveStraightToPosition(1, 15);
-    	aimForPeg = new RotateDrivetrainWithGyroPID(-80);
-    	aimForDispenser = new RotateDrivetrainWithGyroPID(80);
+    	aimForPeg = new RotateDrivetrainWithGyroPID(-80, true);
+    	aimForDispenser = new RotateDrivetrainWithGyroPID(80, false);
     	squareUp = new PivotFrontAUTOONLY(-0.35, -0.35, 0.35, -0.35, 0.4);
     	eject = new OpenAndEjectGearSlot();
     	extend = new TogglePusher();

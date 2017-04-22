@@ -35,7 +35,7 @@ public class FasterAngledRight extends CommandBase {
     	drivePastPeg = new DriveStraightToPosition(0.6, 7.8);
     	landPeg = new DriveStraightToPosition(0.6, 4.7);
     	impalePeg = new DriveStraightToPosition(0.85, 0.35);
-    	aimForPeg = new RotateDrivetrainWithGyroPID(-80);
+    	aimForPeg = new RotateDrivetrainWithGyroPID(-80, false);
     	squareUp = new PivotFrontAUTOONLY(-0.35, -0.35, 0.35, -0.35, 0.4);
     	eject = new OpenAndEjectGearSlot();
     	extend = new TogglePusher();
