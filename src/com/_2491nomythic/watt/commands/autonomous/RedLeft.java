@@ -3,7 +3,6 @@ package com._2491nomythic.watt.commands.autonomous;
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPositionGyroSlowdown;
-import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPositionNoSlowdown;
 import com._2491nomythic.watt.commands.drivetrain.PivotFrontAUTOONLY;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
@@ -16,7 +15,7 @@ import edu.wpi.first.wpilibj.Timer;
  * Attempts to deposit a gear onto the left gear peg by approaching it diagonally
  */
 public class RedLeft extends CommandBase {
-	private DriveStraightToPositionNoSlowdown initialDrive;
+//	private DriveStraightToPositionNoSlowdown initialDrive;
 	private DriveStraightToPositionGyroSlowdown drivePastPeg;
 	private DriveStraightToPosition landPeg, impalePeg, driveIntoNeutralZone;
 	private RotateDrivetrainWithGyroPID aimForPeg, aimForDispenser;

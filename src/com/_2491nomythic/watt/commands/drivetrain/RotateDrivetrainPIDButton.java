@@ -31,6 +31,7 @@ public class RotateDrivetrainPIDButton extends CommandBase {
     	}
     	else { //relative
     		drivetrain.setInputRange(relative - 5, relative + 5);
+    		drivetrain.setAbsoluteTolerance(10);
     	}
     	drivetrain.enable();
     }
