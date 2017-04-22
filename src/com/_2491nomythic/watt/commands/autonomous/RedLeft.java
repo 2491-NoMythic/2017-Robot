@@ -37,7 +37,7 @@ public class RedLeft extends CommandBase {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	initialDrive = new DriveStraightToPositionNoSlowdown(0.6, 1);
-    	drivePastPeg = new DriveStraightToPosition(0.8, 7.1);
+    	drivePastPeg = new DriveStraightToPosition(0.8, 7.4);
     	landPeg = new DriveStraightToPosition(0.7, 4.7);
     	impalePeg = new DriveStraightToPosition(0.85, 0.35);
     	driveIntoNeutralZone = new DriveStraightToPosition(0.9, 10);
