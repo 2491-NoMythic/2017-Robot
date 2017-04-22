@@ -2,6 +2,7 @@ package com._2491nomythic.watt.commands.autonomous;
 
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
+import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPositionNoSlowdown;
 import com._2491nomythic.watt.commands.drivetrain.PivotFrontAUTOONLY;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
@@ -14,6 +15,7 @@ import edu.wpi.first.wpilibj.Timer;
  * Attempts to deposit a gear onto the left gear peg by approaching it diagonally
  */
 public class RedLeft extends CommandBase {
+	private DriveStraightToPositionNoSlowdown initialDrive;
 	private DriveStraightToPosition drivePastPeg, landPeg, impalePeg, driveIntoNeutralZone;
 	private RotateDrivetrainWithGyroPID aimForPeg, aimForDispenser;
 	private OpenAndEjectGearSlot eject;
@@ -34,11 +36,12 @@ public class RedLeft extends CommandBase {
     public RedLeft() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	initialDrive = new DriveStraightToPositionNoSlowdown(0.6, 1);
     	drivePastPeg = new DriveStraightToPosition(0.8, 7.1);
     	landPeg = new DriveStraightToPosition(0.7, 4.7);
     	impalePeg = new DriveStraightToPosition(0.85, 0.35);
     	driveIntoNeutralZone = new DriveStraightToPosition(0.9, 10);
-    	aimForPeg = new RotateDrivetrainWithGyroPID(80, true);
+    	aimForPeg = new RotateDrivetrainWithGyroPID(80, false);
     	aimForDispenser = new RotateDrivetrainWithGyroPID(-60, false);
     	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, -0.35, 0.35, 0.4);
     	eject = new OpenAndEjectGearSlot();
@@ -50,16 +53,21 @@ public class RedLeft extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	state = 1;
+    	state = 0;
     	resetGyro.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	switch(state) {
+    	case 0:
+    		initialDrive.start();
+    		state++;
     	case 1:
+    		if(!initialDrive.isRunning()) {
     			drivePastPeg.start();
     			state++;
+    		}
     		break;
     	case 2:
     		if(!drivePastPeg.isRunning()) {
