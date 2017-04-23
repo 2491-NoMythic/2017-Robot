@@ -2,7 +2,7 @@ package com._2491nomythic.watt.commands.autonomous;
 
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPosition;
-import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPositionGyroSlowdown;
+import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPositionNoSlowdown;
 import com._2491nomythic.watt.commands.drivetrain.PivotFrontAUTOONLY;
 import com._2491nomythic.watt.commands.drivetrain.ResetGyro;
 import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
@@ -15,9 +15,8 @@ import edu.wpi.first.wpilibj.Timer;
  * Attempts to deposit a gear onto the left gear peg by approaching it diagonally
  */
 public class RedLeft extends CommandBase {
-//	private DriveStraightToPositionNoSlowdown initialDrive;
-	private DriveStraightToPositionGyroSlowdown drivePastPeg;
-	private DriveStraightToPosition landPeg, impalePeg, driveIntoNeutralZone;
+	private DriveStraightToPositionNoSlowdown initialDrive1, initialDrive2;
+	private DriveStraightToPosition drivePastPeg, landPeg, impalePeg, driveIntoNeutralZone;
 	private RotateDrivetrainWithGyroPID aimForPeg, aimForDispenser;
 	private OpenAndEjectGearSlot eject;
 	private PivotFrontAUTOONLY squareUp;
@@ -37,10 +36,10 @@ public class RedLeft extends CommandBase {
     public RedLeft() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-//    	initialDrive = new DriveStraightToPositionNoSlowdown(0.6, 1);
-//    	drivePastPeg = new DriveStraightToPosition(0.8, 7.5);
-    	drivePastPeg = new DriveStraightToPositionGyroSlowdown(0.8, 8.1);
-    	landPeg = new DriveStraightToPosition(0.7, 4.7);
+    	initialDrive1 = new DriveStraightToPositionNoSlowdown(0.3, 0.5);
+    	initialDrive2 = new DriveStraightToPositionNoSlowdown(0.6, 0.5);
+    	drivePastPeg = new DriveStraightToPosition(0.8, 6.6);
+    	landPeg = new DriveStraightToPosition(0.8, 4.95);
     	impalePeg = new DriveStraightToPosition(0.85, 0.35);
     	driveIntoNeutralZone = new DriveStraightToPosition(0.9, 10);
     	aimForPeg = new RotateDrivetrainWithGyroPID(80, true);
@@ -62,17 +61,23 @@ public class RedLeft extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	switch(state) {
-//    	case 0:
-//    		initialDrive.start();
-//    		state++;
-//    		break;
+    	case 0:
+    		initialDrive1.start();
+    		state++;
+    		break;
     	case 1:
-//    		if(!initialDrive.isRunning()) {
-    			drivePastPeg.start();
+    		if(!initialDrive1.isRunning()) {
+    			initialDrive2.start();
     			state++;
-//    		}
+    		}
     		break;
     	case 2:
+    		if(!initialDrive2.isRunning()) {
+    			drivePastPeg.start();
+    			state++;
+    		}
+    		break;
+    	case 3:
     		if(!drivePastPeg.isRunning()) {
     			timer.start();
     			timer.reset();
@@ -80,7 +85,7 @@ public class RedLeft extends CommandBase {
     			state++;
     		}
     		break;
-    	case 3:
+    	case 4:
     		if(timer.get() > 1.1 || !aimForPeg.isRunning()) {
     			aimForPeg.cancel();
     			timer.reset();
@@ -88,52 +93,53 @@ public class RedLeft extends CommandBase {
     			state++;
     		}
     		break;
-    	case 4:
+    	case 5:
     		if(!landPeg.isRunning() || timer.get() > 2.4) {
     			squareUp.start();
     			state++;
     		}
     		break;
-    	case 5:
+    	case 6:
     		if(!squareUp.isRunning()) {
     			timer.reset();
     			impalePeg.start();
     			state++;
     		}
     		break;
-    	case 6:
+    	case 7:
     		if(!impalePeg.isRunning() || timer.get() > 1.4) {
     			eject.start();
     			state++;
     		}
     		break;
-    	case 7:
+    	case 8:
     		if(!eject.isRunning()) {
     			extend.start();
     			state++;
     		}
     		break;
-    	case 8:
+    	case 9:
     		if(!extend.isRunning()) {
     			retract.start();
     			state++;
     		}
     		break;
-    	case 9:
+    	case 10:
     		if(!retract.isRunning()) {
     			timer.reset();
     			aimForDispenser.start();
     			state++;
     		}
     		break;
-    	case 10:
+    	case 11:
     		if(!aimForDispenser.isRunning() || timer.get() > 1.1) {
     			aimForDispenser.cancel();
+    			System.out.println("Case 11 in RedLeft");
     			driveIntoNeutralZone.start();
     			state++;
     		}
     		break;
-    	case 11:
+    	case 12:
     		break;
     	default:
     		System.out.println("Something went wrong in auto switchcase. State: " + state);
@@ -144,11 +150,13 @@ public class RedLeft extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return state == 11 && !driveIntoNeutralZone.isRunning();
+        return state == 12 && !driveIntoNeutralZone.isRunning();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	initialDrive1.cancel();
+    	initialDrive2.cancel();
     	drivePastPeg.cancel();
     	landPeg.cancel();
     	impalePeg.cancel();
@@ -161,7 +169,7 @@ public class RedLeft extends CommandBase {
     	retract.cancel();
     }
 
-    // Called when anothe
+    // Called when another
     // command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
