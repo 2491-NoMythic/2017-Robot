@@ -36,7 +36,6 @@ public class OI {
 		noTurnLock = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.noTurnLockButton);
 		noTurnLock.whileHeld(new NoTurnLock());
 		
-		
 		climb = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.climbButton);
 		climb.whileHeld(new Climb());
 		
@@ -82,8 +81,8 @@ public class OI {
 		automatedIntakeDriver2 = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.automatedIntakeDriverButton2);
 		automatedIntakeDriver2.whileHeld(AutomatedPickup.getInstance());
 		
-		automatedIntakeOperator = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.automatedIntakeOperatorButton);
-		automatedIntakeOperator.whileHeld(AutomatedPickup.getInstance());
+		//automatedIntakeOperator = new JoystickButton(controllers[ControllerMap.secondaryDriveController], ControllerMap.automatedIntakeOperatorButton);
+		//automatedIntakeOperator.whileHeld(AutomatedPickup.getInstance());
 		
 		turn180Left = new JoystickPOVButton(controllers[ControllerMap.mainDriveController], ControllerMap.rotateDrivetrainLeft180POV);
 		turn180Left.whenPressed(new RotateDrivetrainPIDButton(180, false));

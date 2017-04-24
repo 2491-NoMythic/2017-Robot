@@ -26,15 +26,17 @@ public class Climb extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(climber.getLeftCurrent() > Variables.climberAmpThreshold) {
-    		climber.stop();
-    		override = true;
-    	}
-    	if (!override) {
-    		climber.runClimberMotors(oi.getAxis(ControllerMap.secondaryDriveController, ControllerMap.climbThrottleAxis));
-    	}
-    	if (climber.getLeftCurrent() > 0) {
-    	System.out.println("Climber Amps" + climber.getLeftCurrent());
+    	if (oi.getButton(ControllerMap.secondaryDriveController, 8)) {
+    		if(climber.getLeftCurrent() > Variables.climberAmpThreshold) {
+    			climber.stop();
+    			override = true;
+    		}
+    		if (!override) {
+    			climber.runClimberMotors(oi.getAxis(ControllerMap.secondaryDriveController, ControllerMap.climbThrottleAxis));
+    		}
+    		if (climber.getLeftCurrent() > 0) {
+    			System.out.println("Climber Amps" + climber.getLeftCurrent());
+    		}
     	}
     }
 

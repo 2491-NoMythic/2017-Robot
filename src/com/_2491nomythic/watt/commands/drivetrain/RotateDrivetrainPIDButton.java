@@ -1,6 +1,7 @@
 package com._2491nomythic.watt.commands.drivetrain;
 
 import com._2491nomythic.watt.commands.CommandBase;
+import com._2491nomythic.watt.settings.ControllerMap;
 
 /**
  * Rotates the drivetrain to a specified angle using PID
@@ -8,7 +9,7 @@ import com._2491nomythic.watt.commands.CommandBase;
 public class RotateDrivetrainPIDButton extends CommandBase {
 	private double  target, relative;
 	private boolean type;
-
+	
 	/**
 	 * Rotates the drivetrain to a specified angle using PID
 	 * @param angle The angle that the robot rotates to, where negative values rotate the robot counterclockwise
@@ -26,24 +27,24 @@ public class RotateDrivetrainPIDButton extends CommandBase {
     	relative = ((drivetrain.getGyroAngle() + target) % 360 + 360) % 360;
     	System.out.println(relative);
     	if (type) { //absolute
-    		drivetrain.resetGyro();
-    		drivetrain.setInputRange(target - 5, target + 5);
+    		drivetrain.setSetpoint(target);
     	}
     	else { //relative
-    		drivetrain.setInputRange(relative - 5, relative + 5);
-    		drivetrain.setAbsoluteTolerance(10);
+    		drivetrain.setSetpoint(relative);
     	}
     	drivetrain.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-
+    	/*if ((Math.abs(oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, .1)) > 0) || (Math.abs(oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, .1)) > 0) || (Math.abs(oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveTurnAxis, .1)) > 0)) {
+    		end();
+    	}*/
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	return (Math.abs(oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveVerticalAxis, .1)) > 0) || (Math.abs(oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveHorizontalAxis, .1)) > 0) || (Math.abs(oi.getAxisDeadzonedSquared(ControllerMap.mainDriveController, ControllerMap.driveTurnAxis, .1)) > 0);
     }
 
     // Called once after isFinished returns true
