@@ -12,7 +12,7 @@ import com._2491nomythic.watt.commands.gearslot.TogglePusher;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * Attempts to deposit a gear onto the left gear peg by approaching it diagonally
+ * Attempts to deposit a gear onto the left gear peg by approaching it diagonally, turns, and drives down field
  */
 public class RedLeft extends CommandBase {
 	private DriveStraightToPositionNoSlowdown initialDrive1, initialDrive2;
@@ -31,7 +31,7 @@ public class RedLeft extends CommandBase {
 		// Right: As far to the right as possible (- inches from center)
 
 	/**
-	 * Attempts to deposit a gear onto the left gear peg by approaching it diagonally
+	 * Attempts to deposit a gear onto the left gear peg by approaching it diagonally, turns, and drives down field
 	 */
     public RedLeft() {
         // Use requires() here to declare subsystem dependencies

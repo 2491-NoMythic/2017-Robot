@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * Places the gear on the center peg using vision
+ * @deprecated
  */
 public class VisionCenter extends Command {
 	private DriveStraightToPosition approachPeg, impalePeg;
@@ -17,6 +18,7 @@ public class VisionCenter extends Command {
 
 	/**
 	 * Places the gear on the center peg using vision
+	 * @deprecated
 	 */
     public VisionCenter() {
         // Use requires() here to declare subsystem dependencies

@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Timer;
 
 /**
  * Attempts to deposit a gear onto the right gear peg by approaching it diagonally
+ * @deprecated
  */
 public class FasterAngledRight extends CommandBase {
 	private DriveStraightToPosition drivePastPeg, landPeg, impalePeg;
@@ -28,6 +29,7 @@ public class FasterAngledRight extends CommandBase {
 
 	/**
 	 * Attempts to deposit a gear onto the right gear peg by approaching it diagonally
+	 * @deprecated
 	 */
     public FasterAngledRight() {
         // Use requires() here to declare subsystem dependencies

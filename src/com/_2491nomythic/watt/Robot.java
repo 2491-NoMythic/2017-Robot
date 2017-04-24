@@ -62,13 +62,13 @@ public class Robot extends IterativeRobot {
 		//Auto Modes
         chooser = new SendableChooser<Command>(); 
         chooser.addDefault("Do Nothing", new DoNothing());
-        chooser.addObject("Angled Left", new AngledLeft());
-        chooser.addObject("Angled Center", new AngledCenter());
-        chooser.addObject("Angled Right", new AngledRight());
+        chooser.addObject("Mariucci Left", new AngledLeft());
+        chooser.addObject("Mariucci Center", new AngledCenter());
+        chooser.addObject("Mariucci Right", new AngledRight());
         chooser.addObject("Fast Red Left", new RedLeft());
-        chooser.addObject("Fast Red Right", new RedRight());
+        chooser.addObject("Fast Red Right NEVER TESTED", new RedRight());
         chooser.addObject("Fast Blue Left", new BlueLeft());
-        chooser.addObject("Fast Blue Right", new BlueRight());
+        chooser.addObject("Fast Blue Right NEVER TESTED", new BlueRight());
         //SmartDashboard Buttons and Data
         SmartDashboard.putData("Auto mode", chooser);
         SmartDashboard.putData("Test program please ignore", new AyyyyyMacarena());

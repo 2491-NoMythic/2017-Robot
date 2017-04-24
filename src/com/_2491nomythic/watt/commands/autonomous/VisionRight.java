@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * Places the gear on the right peg using vision
+ * @deprecated
  */
 public class VisionRight extends Command {
 	private DriveStraightToPosition driveToBaseLine, approachPeg, impalePeg;
@@ -19,6 +20,7 @@ public class VisionRight extends Command {
 
 	/**
 	 * Places the gear on the right peg using vision
+	 * @deprecated
 	 */
     public VisionRight() {
         // Use requires() here to declare subsystem dependencies

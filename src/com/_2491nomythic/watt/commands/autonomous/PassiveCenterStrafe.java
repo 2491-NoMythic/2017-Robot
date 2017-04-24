@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * Drives to the center gear peg and slowly moves side to side to assist in gear extraction
+ * @deprecated
  */
 public class PassiveCenterStrafe extends Command {
 	private DriveStraightToPosition driveToHook;
@@ -15,6 +16,7 @@ public class PassiveCenterStrafe extends Command {
 
 	/**
 	 * Drives to the center gear peg and slowly moves side to side to assist in gear extraction
+	 * @deprecated
 	 */
     public PassiveCenterStrafe() {
         // Use requires() here to declare subsystem dependencies

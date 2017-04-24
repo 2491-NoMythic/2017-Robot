@@ -8,7 +8,8 @@ import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyroPID;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * Drives past the right peg, turns back, lands peg and sits there so the gear can be removed
+ * Drives past the right peg, turns back, lands peg, squares up, and sits there for the gear to be removed
+ * @deprecated
  */
 public class AngledPassiveRight extends CommandBase {
 	private DriveStraightToPosition drivePastPeg, landPeg, impalePeg;
@@ -18,7 +19,8 @@ public class AngledPassiveRight extends CommandBase {
 	private int state;
 	
 	/**
-	 * Approaches the right peg at around a 45 degree angle and sits there so the gear can be removed
+	 * Drives past the right peg, turns back, lands peg, squares up, and sits there for the gear to be removed
+	 * @deprecated
 	 */
 	
     public AngledPassiveRight() {

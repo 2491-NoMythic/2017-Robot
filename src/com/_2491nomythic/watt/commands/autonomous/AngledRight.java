@@ -10,7 +10,7 @@ import com._2491nomythic.watt.commands.gearslot.TogglePusher;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * Attempts to deposit a gear onto the right gear peg by approaching it diagonally
+ * Drives past the right peg, turns back, lands it, squares up and deposits the gear.
  */
 public class AngledRight extends CommandBase {
 	private DriveStraightToPosition drivePastPeg, landPeg, impalePeg;
@@ -27,7 +27,7 @@ public class AngledRight extends CommandBase {
 		// Right: As far to the right as possible (- inches from center)
 
 	/**
-	 * Attempts to deposit a gear onto the right gear peg by approaching it diagonally
+	 * Drives past the right peg, turns back, lands it, squares up and deposits the gear.
 	 */
     public AngledRight() {
         // Use requires() here to declare subsystem dependencies
