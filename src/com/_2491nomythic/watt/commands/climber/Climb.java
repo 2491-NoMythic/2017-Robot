@@ -35,6 +35,7 @@ public class Climb extends CommandBase {
     	if (!override) {
     		climber.runClimberMotors(oi.getAxis(ControllerMap.secondaryDriveController, ControllerMap.climbThrottleAxis));
     	}
+    	if (climber.getLeftCurrent() > 5) {
     		System.out.println("Climber Amps" + climber.getLeftCurrent());
     	}
     }
