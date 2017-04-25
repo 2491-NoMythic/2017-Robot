@@ -31,12 +31,11 @@ public class Climb extends CommandBase {
     			climber.stop();
     			override = true;
     		}
-    		if (!override) {
-    			climber.runClimberMotors(oi.getAxis(ControllerMap.secondaryDriveController, ControllerMap.climbThrottleAxis));
-    		}
-    		if (climber.getLeftCurrent() > 0) {
-    			System.out.println("Climber Amps" + climber.getLeftCurrent());
-    		}
+    	}
+    	if (!override) {
+    		climber.runClimberMotors(oi.getAxis(ControllerMap.secondaryDriveController, ControllerMap.climbThrottleAxis));
+    	}
+    		System.out.println("Climber Amps" + climber.getLeftCurrent());
     	}
     }
 
