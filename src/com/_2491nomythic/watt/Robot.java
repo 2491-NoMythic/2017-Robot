@@ -5,11 +5,13 @@ import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPositionGyro;
 import com._2491nomythic.watt.commands.AyyyyyMacarena;
 import com._2491nomythic.watt.commands.CommandBase;
 import com._2491nomythic.watt.commands.autonomous.AngledCenter;
-import com._2491nomythic.watt.commands.autonomous.AngledLeft;
-import com._2491nomythic.watt.commands.autonomous.AngledRight;
 import com._2491nomythic.watt.commands.autonomous.BlueLeft;
 import com._2491nomythic.watt.commands.autonomous.BlueRight;
 import com._2491nomythic.watt.commands.autonomous.DoNothing;
+import com._2491nomythic.watt.commands.autonomous.MariucciBlueLeft;
+import com._2491nomythic.watt.commands.autonomous.MariucciBlueRight;
+import com._2491nomythic.watt.commands.autonomous.MariucciRedLeft;
+import com._2491nomythic.watt.commands.autonomous.MariucciRedRight;
 import com._2491nomythic.watt.commands.autonomous.RedLeft;
 import com._2491nomythic.watt.commands.autonomous.RedRight;
 import com._2491nomythic.watt.commands.drivetrain.EnableCoastMode;
@@ -62,13 +64,18 @@ public class Robot extends IterativeRobot {
 		//Auto Modes
         chooser = new SendableChooser<Command>(); 
         chooser.addDefault("Do Nothing", new DoNothing());
-        chooser.addObject("Mariucci Left", new AngledLeft());
         chooser.addObject("Mariucci Center", new AngledCenter());
-        chooser.addObject("Mariucci Right", new AngledRight());
+        chooser.addObject("Mariucci RedLeft", new MariucciRedLeft());
+        chooser.addObject("Mariucci BlueLeft", new MariucciBlueLeft());
+        chooser.addObject("Mariucci RedRight", new MariucciRedRight());
+        chooser.addObject("Mariucci BlueRight", new MariucciBlueRight());
         chooser.addObject("Fast Red Left", new RedLeft());
         chooser.addObject("Fast Red Right NEVER TESTED", new RedRight());
         chooser.addObject("Fast Blue Left", new BlueLeft());
         chooser.addObject("Fast Blue Right NEVER TESTED", new BlueRight());
+        
+        
+        
         //SmartDashboard Buttons and Data
         SmartDashboard.putData("Auto mode", chooser);
         SmartDashboard.putData("Test program please ignore", new AyyyyyMacarena());
