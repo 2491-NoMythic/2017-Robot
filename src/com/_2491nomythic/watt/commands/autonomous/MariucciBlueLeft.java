@@ -34,14 +34,14 @@ public class MariucciBlueLeft extends CommandBase {
     public MariucciBlueLeft() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	drivePastPeg = new DriveStraightToPosition(0.8, 6.6);
-    	landPeg = new DriveStraightToPosition(0.8, 4.95);
+    	drivePastPeg = new DriveStraightToPosition(0.6, 8.1);
+    	landPeg = new DriveStraightToPosition(0.6, 4.7);
     	impalePeg = new DriveStraightToPosition(0.85, 0.35);
     	driveIntoNeutralZone = new DriveStraightToPosition(0.9, 8);
-    	driveTowardsDispenser = new DriveStraightToPosition(0.9, 20);
+    	driveTowardsDispenser = new DriveStraightToPosition(0.9, 15);
     	aimForPeg = new RotateDrivetrainWithGyroPID(80, false);
     	aimForNeutral = new RotateDrivetrainWithGyroPID(-60, false);
-    	aimForDispenser = new RotateDrivetrainWithGyroPID(60, true);
+    	aimForDispenser = new RotateDrivetrainWithGyroPID(40, true);
     	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, -0.35, 0.35, 0.4);
     	eject = new OpenAndEjectGearSlot();
     	extend = new TogglePusher();
@@ -72,7 +72,7 @@ public class MariucciBlueLeft extends CommandBase {
     		}
     		break;
     	case 4:
-    		if(timer.get() > 1.1 || !aimForPeg.isRunning()) {
+    		if(timer.get() > 1.5 || !aimForPeg.isRunning()) {
     			aimForPeg.cancel();
     			timer.reset();
     			landPeg.start();

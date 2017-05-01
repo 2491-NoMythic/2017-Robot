@@ -40,7 +40,7 @@ public class MariucciBlueRight extends CommandBase {
     	driveIntoNeutralZone = new DriveStraightToPosition(0.9, 20);
     	aimForPeg = new RotateDrivetrainWithGyroPID(-80, false);
     	aimForDispenser = new RotateDrivetrainWithGyroPID(60, false);
-    	squareUp = new PivotFrontAUTOONLY(0.35, 0.35, -0.35, 0.35, 0.4);
+    	squareUp = new PivotFrontAUTOONLY(-0.35, -0.35, 0.35, -0.35, 0.4);
     	eject = new OpenAndEjectGearSlot();
     	extend = new TogglePusher();
     	retract = new TogglePusher();
@@ -70,7 +70,7 @@ public class MariucciBlueRight extends CommandBase {
     		}
     		break;
     	case 4:
-    		if(!aimForPeg.isRunning() || timer.get() > 1.1) {
+    		if(!aimForPeg.isRunning() || timer.get() > 1.5) {
     			timer.reset();
     			landPeg.start();
     			state++;

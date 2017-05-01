@@ -70,7 +70,7 @@ public class MariucciRedLeft extends CommandBase {
     		}
     		break;
     	case 4:
-    		if(timer.get() > 1.1 || !aimForPeg.isRunning()) {
+    		if(timer.get() > 1.5 || !aimForPeg.isRunning()) {
     			aimForPeg.cancel();
     			timer.reset();
     			landPeg.start();

@@ -4,7 +4,6 @@ package com._2491nomythic.watt;
 import com._2491nomythic.watt.commands.drivetrain.DriveStraightToPositionGyro;
 import com._2491nomythic.watt.commands.AyyyyyMacarena;
 import com._2491nomythic.watt.commands.CommandBase;
-import com._2491nomythic.watt.commands.autonomous.AngledCenter;
 import com._2491nomythic.watt.commands.autonomous.BlueLeft;
 import com._2491nomythic.watt.commands.autonomous.BlueRight;
 import com._2491nomythic.watt.commands.autonomous.DoNothing;
@@ -64,7 +63,6 @@ public class Robot extends IterativeRobot {
 		//Auto Modes
         chooser = new SendableChooser<Command>(); 
         chooser.addDefault("Do Nothing", new DoNothing());
-        chooser.addObject("Mariucci Center", new AngledCenter());
         chooser.addObject("Mariucci RedLeft", new MariucciRedLeft());
         chooser.addObject("Mariucci BlueLeft", new MariucciBlueLeft());
         chooser.addObject("Mariucci RedRight", new MariucciRedRight());
