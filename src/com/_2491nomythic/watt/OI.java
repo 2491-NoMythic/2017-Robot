@@ -6,7 +6,7 @@ import com._2491nomythic.watt.commands.climber.Climb;
 import com._2491nomythic.watt.commands.drivetrain.NoTurnLock;
 import com._2491nomythic.watt.commands.drivetrain.PivotDriveBack;
 import com._2491nomythic.watt.commands.drivetrain.PivotDriveFront;
-import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainPIDButton;
+import com._2491nomythic.watt.commands.drivetrain.RotateDrivetrainWithGyro;
 //import com._2491nomythic.watt.commands.drivetrain.SafeMode;
 import com._2491nomythic.watt.commands.dustpan.AutomatedPickup;
 import com._2491nomythic.watt.commands.dustpan.FlipDustpan;
@@ -52,10 +52,10 @@ public class OI {
 		almostAutoGear.whenPressed(new OpenAndEjectGearSlotWithoutMoving());
 		
 		rotateLeft = new JoystickPOVButton(controllers[ControllerMap.mainDriveController], ControllerMap.rotateDrivetrainLeftPOV);
-		rotateLeft.whenPressed(new RotateDrivetrainPIDButton(-90, false));
+		rotateLeft.whenPressed(new RotateDrivetrainWithGyro(1, -47));
 		
 		rotateRight = new JoystickPOVButton(controllers[ControllerMap.mainDriveController], ControllerMap.rotateDrivetrainRightPOV);
-		rotateRight.whenPressed(new RotateDrivetrainPIDButton(90, false));
+		rotateRight.whenPressed(new RotateDrivetrainWithGyro(1, 47));
 		
 		killSwitch1 = new JoystickButton(controllers[ControllerMap.mainDriveController], ControllerMap.killSwitchButton1);
 		killSwitch1.whenPressed(new KillSwitch());
@@ -85,10 +85,10 @@ public class OI {
 		//automatedIntakeOperator.whileHeld(AutomatedPickup.getInstance());
 		
 		turn180Left = new JoystickPOVButton(controllers[ControllerMap.mainDriveController], ControllerMap.rotateDrivetrainLeft180POV);
-		turn180Left.whenPressed(new RotateDrivetrainPIDButton(180, false));
+		turn180Left.whenPressed(new RotateDrivetrainWithGyro(1,130));
 		
 		turn180Right = new JoystickPOVButton(controllers[ControllerMap.mainDriveController], ControllerMap.rotateDrivetrainRight180POV);
-		turn180Right.whenPressed(new RotateDrivetrainPIDButton(180, false));
+		turn180Right.whenPressed(new RotateDrivetrainWithGyro(1,-130));
 	}
 	
 	/**
