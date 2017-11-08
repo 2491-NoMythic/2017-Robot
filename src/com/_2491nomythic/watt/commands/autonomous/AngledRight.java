@@ -21,7 +21,6 @@ public class AngledRight extends CommandBase {
 	private Timer timer;
 	private int state;
 	
-	//Boopity boop test
 	// Autonomous positioning numbers
 		// Left: As far to the left as possible (- inches from edge)
 		// Center: Lined up with peg
