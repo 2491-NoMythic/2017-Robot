@@ -2,7 +2,8 @@ package com._2491nomythic.watt.subsystems;
 
 import com._2491nomythic.watt.commands.dustpan.RunIntake;
 import com._2491nomythic.watt.settings.Constants;
-import com.ctre.CANTalon;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -11,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * The system that allow us to pick up a gear
  */
 public class Dustpan extends Subsystem {
-	private CANTalon intakeMotor;
+	private TalonSRX intakeMotor;
 	private Solenoid turner1;
 
 	private static Dustpan instance;
@@ -27,7 +28,7 @@ public class Dustpan extends Subsystem {
 	 * The system that allow us to pick up a gear
 	 */
 	private Dustpan() {
-		intakeMotor = new CANTalon(Constants.dustpanTalonChannel);
+		intakeMotor = new TalonSRX(Constants.dustpanTalonChannel);
 		turner1 = new Solenoid(Constants.dustpanSolenoidChannel);
 	}
 
@@ -36,7 +37,7 @@ public class Dustpan extends Subsystem {
 	 * @param power The power fed to the motor, ranging from -1 to 1, where negative values run the motor backwards
 	 */
 	public void runMotor(double power) {
-		intakeMotor.set(power);
+		intakeMotor.set(ControlMode.PercentOutput, power);
 	}
 
 	/**
@@ -66,7 +67,7 @@ public class Dustpan extends Subsystem {
 	 * Stops the intake motor
 	 */
 	public void stop() {
-		intakeMotor.set(0);
+		intakeMotor.set(ControlMode.PercentOutput, 0);
 	}
 
 	// Put methods for controlling this subsystem

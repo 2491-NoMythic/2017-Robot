@@ -3,9 +3,10 @@ package com._2491nomythic.watt.subsystems;
 import com._2491nomythic.watt.commands.drivetrain.Drive;
 import com._2491nomythic.watt.settings.Constants;
 import com._2491nomythic.watt.settings.Variables;
-import com.ctre.CANTalon;
-import com.ctre.CANTalon.FeedbackDevice;
-import com.ctre.CANTalon.TalonControlMode;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
 //import edu.wpi.first.wpilibj.CounterBase;
@@ -19,7 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * The system of motors, solenoids, encoders, and a gyro that allows us to drive the robot
  */
 public class Drivetrain extends PIDSubsystem {
-	private CANTalon left1, left2, left3, centerLeft, centerRight, right1, right2, right3;
+	private TalonSRX left1, left2, left3, centerLeft, centerRight, right1, right2, right3;
 	private Solenoid shifter;
 	private double currentPIDOutput;
 	private AHRS gyro;
@@ -43,32 +44,23 @@ public class Drivetrain extends PIDSubsystem {
 		setInputRange(0, 360);
 		getPIDController().setContinuous(true);
 		
-		left1 = new CANTalon(Constants.driveTalonLeft1Channel);
-		left2 = new CANTalon(Constants.driveTalonLeft2Channel);
-		left3 = new CANTalon(Constants.driveTalonLeft3Channel);
-		centerLeft = new CANTalon(Constants.driveTalonCenterLeftChannel);
-		centerRight = new CANTalon(Constants.driveTalonCenterRightChannel);
-		right1 = new CANTalon(Constants.driveTalonRight1Channel);
-		right2 = new CANTalon(Constants.driveTalonRight2Channel);
-		right3 = new CANTalon(Constants.driveTalonRight3Channel);
+		left1 = new TalonSRX(Constants.driveTalonLeft1Channel);
+		left2 = new TalonSRX(Constants.driveTalonLeft2Channel);
+		left3 = new TalonSRX(Constants.driveTalonLeft3Channel);
+		centerLeft = new TalonSRX(Constants.driveTalonCenterLeftChannel);
+		centerRight = new TalonSRX(Constants.driveTalonCenterRightChannel);
+		right1 = new TalonSRX(Constants.driveTalonRight1Channel);
+		right2 = new TalonSRX(Constants.driveTalonRight2Channel);
+		right3 = new TalonSRX(Constants.driveTalonRight3Channel);
 		
-		left2.changeControlMode(TalonControlMode.Follower);
-		left3.changeControlMode(TalonControlMode.Follower);
-		right2.changeControlMode(TalonControlMode.Follower);
-		right3.changeControlMode(TalonControlMode.Follower);
+		left2.follow(left1);
+		left3.follow(left1);
+		right2.follow(right1);
+		right3.follow(right1);
 		
-		left2.set(left1.getDeviceID());
-		left3.set(left1.getDeviceID());
-		right2.set(right1.getDeviceID());
-		right3.set(right1.getDeviceID());
-		
-		left1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		right1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		centerLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		
-		left1.configEncoderCodesPerRev(256);
-		right1.configEncoderCodesPerRev(256);
-		centerLeft.configEncoderCodesPerRev(256);
+		left1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+		right1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+		centerLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		
 		shifter = new Solenoid(Constants.driveSolenoidChannel);
 		
@@ -110,7 +102,7 @@ public class Drivetrain extends PIDSubsystem {
 	 * @param speed The power fed to the motors, ranging from -1 to 1, where negative values run the motors backwards
 	 */
 	public void driveLeft(double speed){
-		left1.set(-speed);
+		left1.set(ControlMode.PercentOutput, -speed);
 	}
 	
 	/**
@@ -118,7 +110,7 @@ public class Drivetrain extends PIDSubsystem {
 	 * @param speed The power fed to the motors, ranging from -1 to 1, where negative values run the motors backwards
 	 */
 	public void driveRight(double speed){
-		right1.set(speed);
+		right1.set(ControlMode.PercentOutput, speed);
 	}
 	
 	/**
@@ -127,33 +119,8 @@ public class Drivetrain extends PIDSubsystem {
 	 * @param rightSpeed The power fed to the back (or right) center drive motor, ranging from -1 to 1, where negative values move the robot to the left
 	 */
 	public void driveCenter(double leftSpeed, double rightSpeed){
-		centerLeft.set(leftSpeed);
-		centerRight.set(-rightSpeed);
-	}
-	
-	/**
-	 * Drives the center motors on the robot using PID
-	 * @param leftSpeed The desired speed for the left motor
-	 * @param rightSpeed The desired speed for the right motor
-	 */
-	public void driveCenterPID(double leftSpeed, double rightSpeed){
-		centerLeft.pidWrite(leftSpeed);
-		centerRight.pidWrite(-rightSpeed);
-	}
-	
-	/**
-	 * Drives the left and right drive motors using PID
-	 * @param leftSpeed The desired speed for the left motors
-	 * @param rightSpeed The desired speed for the right motors
-	 * @deprecated
-	 */
-	public void driveLeftRightPID(double leftSpeed, double rightSpeed) {
-		left1.pidWrite(leftSpeed);
-		left2.pidWrite(leftSpeed);
-		left3.pidWrite(leftSpeed);
-		right1.pidWrite(rightSpeed);
-		right2.pidWrite(rightSpeed);
-		right3.pidWrite(rightSpeed);
+		centerLeft.set(ControlMode.PercentOutput, leftSpeed);
+		centerRight.set(ControlMode.PercentOutput, -rightSpeed);
 	}
 	
 	/**
@@ -165,129 +132,132 @@ public class Drivetrain extends PIDSubsystem {
 	
 	/**
 	 * Changes vertical drive motors to PercentVBus mode
+	 * @deprecated
 	 */
 	public void changeVerticalToPercentVbus() {
-		left1.changeControlMode(TalonControlMode.PercentVbus);
-		right1.changeControlMode(TalonControlMode.PercentVbus);
+		left1.set(ControlMode.PercentOutput, 0);
+		right1.set(ControlMode.PercentOutput, 0);
 	}
 	
 	/**
 	 * Changes vertical drive motors to Speed mode
+	 * @deprecated
 	 */
 	public void changeVerticalToSpeed() {
-		left1.changeControlMode(TalonControlMode.Speed);
-		right1.changeControlMode(TalonControlMode.Speed);
+		left1.set(ControlMode.Velocity, 0);
+		right1.set(ControlMode.Velocity, 0);
 	}
 	
 	/**
 	 * Changes vertical drive motors to Position mode
+	 * @deprecated
 	 */
 	public void changeVerticalToPosition() {
-		left1.changeControlMode(TalonControlMode.Position);
-		right1.changeControlMode(TalonControlMode.Position);
+		left1.set(ControlMode.Position, 0);
+		right1.set(ControlMode.Position, 0);
 	}
 	
 	/**
 	 * Changes vertical drive motors to Coast mode
 	 */
 	public void enableVerticalCoastMode() {
-		left1.enableBrakeMode(false);
-		left2.enableBrakeMode(false);
-		left3.enableBrakeMode(false);
-		right1.enableBrakeMode(false);
-		right2.enableBrakeMode(false);
-		right3.enableBrakeMode(false);
+		left1.setNeutralMode(NeutralMode.Coast);
+		left2.setNeutralMode(NeutralMode.Coast);
+		left3.setNeutralMode(NeutralMode.Coast);
+		right1.setNeutralMode(NeutralMode.Coast);
+		right2.setNeutralMode(NeutralMode.Coast);
+		right3.setNeutralMode(NeutralMode.Coast);
 	}
 	
 	/**
 	 * Changes horizontal drive motors to Coast mode
 	 */
 	public void enableHorizontalCoastMode() {
-		centerLeft.enableBrakeMode(false);
-		centerRight.enableBrakeMode(false);
+		centerLeft.setNeutralMode(NeutralMode.Coast);
+		centerRight.setNeutralMode(NeutralMode.Coast);
 	}
 	
 	/**
 	 * Changes vertical drive motors to Brake mode
 	 */
 	public void enableVerticalBrakeMode() {
-		left1.enableBrakeMode(true);
-		left2.enableBrakeMode(true);
-		left3.enableBrakeMode(true);
-		right1.enableBrakeMode(true);
-		right2.enableBrakeMode(true);
-		right3.enableBrakeMode(true);
+		left1.setNeutralMode(NeutralMode.Brake);
+		left2.setNeutralMode(NeutralMode.Brake);
+		left3.setNeutralMode(NeutralMode.Brake);
+		right1.setNeutralMode(NeutralMode.Brake);
+		right2.setNeutralMode(NeutralMode.Brake);
+		right3.setNeutralMode(NeutralMode.Brake);
 	}
 	
 	/**
 	 * Changes horizontal drive motors to Brake mode
 	 */
 	public void enableHorizontalBrakeMode() {
-		centerLeft.enableBrakeMode(true);
-		centerRight.enableBrakeMode(true);
+		centerLeft.setNeutralMode(NeutralMode.Brake);
+		centerRight.setNeutralMode(NeutralMode.Brake);
 	}
 	
 	/**
 	 * Resets the left drive encoder value to 0
 	 */
 	public void resetLeftEncoder() {
-		left1.setEncPosition(0);
+		left1.setSelectedSensorPosition(0, 0, 0);
 	}
 	
 	/**
 	 * Resets the right drive encoder value to 0
 	 */
 	public void resetRightEncoder() {
-		right1.setEncPosition(0);
+		right1.getSelectedSensorPosition(0);
 	}
 	
 	/**
 	 * Resets the center drive encoder value to 0
 	 */
 	public void resetCenterEncoder() {
-		centerLeft.setEncPosition(0);
+		centerLeft.setSelectedSensorPosition(0, 0, 0);
 	}
 	
 	/**
 	 * @return The value of the left drive encoder
 	 */
 	public double getLeftEncoderDistance() {
-		return left1.getEncPosition() * Constants.driveEncoderToFeet;
+		return left1.getSelectedSensorPosition(0) * Constants.driveEncoderToFeet;
 	}
 	
 	/**
 	 * @return The value of the right drive encoder
 	 */
 	public double getRightEncoderDistance() {
-		return right1.getEncPosition() * Constants.driveEncoderToFeet;
+		return right1.getSelectedSensorPosition(0) * Constants.driveEncoderToFeet;
 	}
 	
 	/**
 	 * @return The value of the center drive encoder
 	 */
 	public double getCenterEncoderDistance() {
-		return -centerLeft.getEncPosition() * Constants.driveEncoderToFeet;
+		return -centerLeft.getSelectedSensorPosition(0) * Constants.driveEncoderToFeet;
 	}
 	
 	/**
 	 * @return The speed of the left motor in feet per second
 	 */
 	public double getLeftEncoderRate() {
-		return left1.getEncVelocity();
+		return left1.getSelectedSensorVelocity(0);
 	}
 	
 	/**
 	 * @return The speed of the right motor in feet per second
 	 */
 	public double getRightEncoderRate() {
-		return right1.getEncVelocity();
+		return right1.getSelectedSensorVelocity(0);
 	}
 	
 	/**
 	 * @return The speed of the center motor in feet per second
 	 */
 	public double getCenterEncoderRate() {;
-		return centerLeft.getEncVelocity();
+		return centerLeft.getSelectedSensorVelocity(0);
 	}
 	
 	/**

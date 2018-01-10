@@ -39,7 +39,7 @@ public class Constants {
 	public static final int gearPusherSolenoidChannel = 2;
 	
 	//Computation
-	public static final double driveEncoderToFeet = 1.0 / 670; //6.0 * Math.PI / 256 / 12; //TODO change this value to something more accurate.
+	public static final double driveEncoderToFeet = 1.0 / 670 / 256; //6.0 * Math.PI / 256 / 12; //TODO change this value to something more accurate.
 	
 	//Autonomous (all measurements are in feet)
 	public static final int driveStraightAutoDistance = 10;
