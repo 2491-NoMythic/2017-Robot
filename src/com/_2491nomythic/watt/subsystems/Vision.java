@@ -40,17 +40,19 @@ public class Vision extends Subsystem {
 	 * Puts values from the pixy in Variables.java and on the SmartDashboard
 	 */
 	public void oneTargetCameraFeed() {
-			try {
-				packet[0] = pixy.readPacket(1);
-			} catch (CameraException e) {
+		try {
+			packet[0] = pixy.readPacket(1);
+		}
+		catch (CameraException e) {
 				SmartDashboard.putString("Pixy error: ", "Exception");
-			}
-			if (packet[0] == null) {
-				SmartDashboard.putString("Pixy error: ", "Absent Data");
-			} else {
-				SmartDashboard.putString("Pixy error: ", "None");
-				Variables.hasTarget = true;
-			}
+		}
+		if (packet[0] == null) {
+			SmartDashboard.putString("Pixy error: ", "Absent Data");
+		}
+		else {
+			SmartDashboard.putString("Pixy error: ", "None");
+			Variables.hasTarget = true;
+		}
 		try {
 			Variables.x1 = packet[0].camX;
 			Variables.y1 = packet[0].camY;
